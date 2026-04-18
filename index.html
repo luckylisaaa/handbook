@@ -216,9 +216,14 @@ const firebaseConfig = {
   messagingSenderId: "618597633790",
   appId: "1:618597633790:web:e25c4c7b48406b99d6dfaf"
 };
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+let db = null;
 const DOC_ID = 'baby_handbook';
+try {
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore();
+} catch(e) {
+  console.log('Firebase init failed, using localStorage only');
+}
 </script>
 </head>
 <body>
@@ -3106,6 +3111,17 @@ function setSyncStatus(state){
 
 /* ── 雲端讀取 ── */
 function loadFromCloud(){
+  if(!db){ 
+    setSyncStatus('saved');
+    try{
+      const c=localStorage.getItem(STORAGE_KEY);
+      const n=localStorage.getItem(NOTES_KEY);
+      if(c){const d=JSON.parse(c);if(Array.isArray(d))S.c=d;}
+      if(n){const d=JSON.parse(n);if(typeof d==='object'&&d)S.n=d;}
+    }catch(e){}
+    applyState();
+    return;
+  }
   setSyncStatus('loading');
   db.collection('handbooks').doc(DOC_ID).get().then(doc=>{
     if(doc.exists){
@@ -3515,7 +3531,7 @@ function runDiag(){
 }
 
 window.jumpToGoal = function jumpToGoal(num){
-  jumpTab(6);
+  jumpTab(6, false);
   setTimeout(()=>{
     const el=document.getElementById('goal-'+num);
     if(!el)return;
@@ -3539,7 +3555,8 @@ window.jumpToGoal = function jumpToGoal(num){
 }
 
 window.jumpToHook = function jumpToHook(hookId){
-  window.jumpTab(5);
+  window.jumpTab(5, false);
+  window.scrollTo({top:0});
   setTimeout(()=>{
     const el = document.getElementById(hookId);
     if(!el) return;
@@ -3550,14 +3567,14 @@ window.jumpToHook = function jumpToHook(hookId){
   }, 600);
 }
 
-window.jumpTab = function jumpTab(idx){
+window.jumpTab = function jumpTab(idx, scrollTop){
   const tabs=document.querySelectorAll('.tab');
   const pages=document.querySelectorAll('.tpage');
   tabs.forEach(t=>t.classList.remove('active'));
   pages.forEach(p=>p.classList.remove('active'));
   if(tabs[idx])tabs[idx].classList.add('active');
   if(pages[idx])pages[idx].classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  if(scrollTop !== false) window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function searchGoals(q){
@@ -3698,7 +3715,8 @@ function searchTerms(q){
 }
 
 function scrollToTerm(name){
-  window.jumpTab(7);
+  window.jumpTab(7, false);
+  window.scrollTo({top:0});
   setTimeout(()=>{
     const tp7=document.getElementById('tp-7');
     if(!tp7) return;
