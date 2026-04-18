@@ -270,6 +270,45 @@ try {
 <div class="tpage active" id="tp-0">
 
 <div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">📋</div>
+  <div><div class="ch-title">客戶類型診斷器</div><div class="ch-sub">選客戶特徵，推薦最佳接洽策略</div></div>
+</div>
+<div style="padding:0 12px 16px">
+  <div style="background:var(--w2);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px">這個客戶是什麼類型？</div>
+    <div style="display:grid;gap:8px;margin-bottom:12px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">① 來源方式</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setClient('source','inbound')" id="cl-source-inbound" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">📩 主動來找<br><span style="font-size:9px;opacity:.7">看影片/介紹</span></button>
+          <button onclick="setClient('source','outbound')" id="cl-source-outbound" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🎯 我主動開發<br><span style="font-size:9px;opacity:.7">自己找的</span></button>
+          <button onclick="setClient('source','referral')" id="cl-source-referral" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🤝 朋友介紹<br><span style="font-size:9px;opacity:.7">轉介紹</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">② 決策速度</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setClient('speed','fast')" id="cl-speed-fast" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">⚡ 很快<br><span style="font-size:9px;opacity:.7">馬上想簽</span></button>
+          <button onclick="setClient('speed','mid')" id="cl-speed-mid" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🤔 需要考慮<br><span style="font-size:9px;opacity:.7">問很多問題</span></button>
+          <button onclick="setClient('speed','slow')" id="cl-speed-slow" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🐢 很慢<br><span style="font-size:9px;opacity:.7">一直拖</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">③ 預算感受</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setClient('budget','high')" id="cl-budget-high" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">💰 預算充足<br><span style="font-size:9px;opacity:.7">不太問價格</span></button>
+          <button onclick="setClient('budget','mid')" id="cl-budget-mid" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">💭 需要說服<br><span style="font-size:9px;opacity:.7">在意CP值</span></button>
+          <button onclick="setClient('budget','low')" id="cl-budget-low" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">😰 預算有限<br><span style="font-size:9px;opacity:.7">一直問能不能便宜</span></button>
+        </div>
+      </div>
+    </div>
+    <button onclick="runClientDiag()" style="width:100%;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">📋 推薦接洽策略</button>
+    <div id="client-result" style="margin-top:10px"></div>
+  </div>
+</div>
+
+
+<div class="ch">
   <div class="ch-ico" style="background:var(--p1)">🎬</div>
   <div><div class="ch-title">公司定位</div><div class="ch-sub">你是誰、幫誰、怎麼不一樣</div></div>
 </div>
@@ -597,6 +636,50 @@ try {
 <div class="tpage" id="tp-1">
 
 <div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">🎯</div>
+  <div><div class="ch-title">IP定位快速診斷器</div><div class="ch-sub">選幾個特質，秒出你的定位方向</div></div>
+</div>
+<div style="padding:0 12px 16px">
+  <div style="background:var(--w2);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px">客戶的核心特質是什麼？</div>
+    <div style="display:grid;gap:8px;margin-bottom:12px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">① 職業類型</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setIP('job','expert')" id="ip-job-expert" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🎓 專業人士<br><span style="font-size:9px;opacity:.7">律師/醫師/顧問</span></button>
+          <button onclick="setIP('job','biz')" id="ip-job-biz" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🏢 企業/品牌<br><span style="font-size:9px;opacity:.7">公司/機構</span></button>
+          <button onclick="setIP('job','creator')" id="ip-job-creator" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">✨ 個人創作者<br><span style="font-size:9px;opacity:.7">KOL/自媒體</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">② 想要的風格</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setIP('style','pro')" id="ip-style-pro" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">👔 專業嚴謹<br><span style="font-size:9px;opacity:.7">權威/信任</span></button>
+          <button onclick="setIP('style','warm')" id="ip-style-warm" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🤝 親切平易<br><span style="font-size:9px;opacity:.7">朋友感/接地氣</span></button>
+          <button onclick="setIP('style','bold')" id="ip-style-bold" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🔥 大膽鮮明<br><span style="font-size:9px;opacity:.7">爭議/話題</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">③ 核心受眾</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          <button onclick="setIP('audience','b2b')" id="ip-audience-b2b" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🏢 企業主/老闆<br><span style="font-size:9px;opacity:.7">決策者</span></button>
+          <button onclick="setIP('audience','b2c')" id="ip-audience-b2c" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">👥 一般消費者<br><span style="font-size:9px;opacity:.7">大眾市場</span></button>
+          <button onclick="setIP('audience','parent')" id="ip-audience-parent" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">👨‍👩‍👧 父母/家庭<br><span style="font-size:9px;opacity:.7">家庭決策</span></button>
+          <button onclick="setIP('audience','young')" id="ip-audience-young" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🧑 年輕族群<br><span style="font-size:9px;opacity:.7">20-35歲</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px">④ 補充說明（選填）</div>
+        <textarea id="ip-note" placeholder="例如：他有德國法學背景，想強調國際視野..." style="width:100%;padding:8px 10px;border:1.5px solid var(--w3);border-radius:8px;font-size:10px;font-family:'Noto Sans TC',sans-serif;outline:none;color:var(--text);background:var(--w1);resize:none;height:50px;box-sizing:border-box"></textarea>
+      </div>
+    </div>
+    <button onclick="runIPDiag()" style="width:100%;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">🎯 產出IP定位方向</button>
+    <div id="ip-result" style="margin-top:10px"></div>
+  </div>
+</div>
+
+
+<div class="ch">
   <div class="ch-ico" style="background:var(--r4)">🎯</div>
   <div><div class="ch-title">IP 定位四階段</div><div class="ch-sub">簽約後幫客戶找到核心定位</div></div>
 </div>
@@ -891,6 +974,44 @@ try {
 <div class="tpage" id="tp-3">
 
 <div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">💰</div>
+  <div><div class="ch-title">方案推薦器</div><div class="ch-sub">選客戶條件，自動推薦最適合的方案</div></div>
+</div>
+<div style="padding:0 12px 16px">
+  <div style="background:var(--w2);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px">這個客戶的條件是？</div>
+    <div style="display:grid;gap:8px;margin-bottom:12px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">① 公司規模</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setPricing('size','small')" id="pr-size-small" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🌱 個人/小型<br><span style="font-size:9px;opacity:.7">1-5人</span></button>
+          <button onclick="setPricing('size','mid')" id="pr-size-mid" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🏢 中小企業<br><span style="font-size:9px;opacity:.7">10-50人</span></button>
+          <button onclick="setPricing('size','large')" id="pr-size-large" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🏭 大型企業<br><span style="font-size:9px;opacity:.7">50人以上</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">② 需求深度</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px">
+          <button onclick="setPricing('need','strategy')" id="pr-need-strategy" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🧠 只要策略<br><span style="font-size:9px;opacity:.7">顧問諮詢</span></button>
+          <button onclick="setPricing('need','partial')" id="pr-need-partial" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">✂️ 部分執行<br><span style="font-size:9px;opacity:.7">腳本+剪輯</span></button>
+          <button onclick="setPricing('need','full')" id="pr-need-full" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">🚀 全程代運營<br><span style="font-size:9px;opacity:.7">全包</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">③ 配合度</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          <button onclick="setPricing('coop','high')" id="pr-coop-high" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">✅ 很配合<br><span style="font-size:9px;opacity:.7">願意出鏡/快速回覆</span></button>
+          <button onclick="setPricing('coop','low')" id="pr-coop-low" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">⚠️ 較不配合<br><span style="font-size:9px;opacity:.7">很忙/難約時間</span></button>
+        </div>
+      </div>
+    </div>
+    <button onclick="runPricingDiag()" style="width:100%;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">💰 推薦最適合的方案</button>
+    <div id="pricing-result" style="margin-top:10px"></div>
+  </div>
+</div>
+
+
+<div class="ch">
   <div class="ch-ico" style="background:var(--p1)">💰</div>
   <div><div class="ch-title">報價單 + 收款 + 合約</div><div class="ch-sub">三方案報價、收款規則、八大條款</div></div>
 </div>
@@ -1145,6 +1266,10 @@ try {
       </div>
     </div>
 
+    <div style="margin-bottom:8px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:4px">⑤ 我的補充判斷（選填）</div>
+      <textarea id="diag-note" placeholder="例如：理鴻網站看起來專業但實際口碑不確定；詢問量不清楚，先假設低..." style="width:100%;padding:8px 10px;border:1.5px solid var(--w3);border-radius:8px;font-size:10px;font-family:'Noto Sans TC',sans-serif;outline:none;color:var(--text);background:var(--w1);resize:none;height:54px;box-sizing:border-box"></textarea>
+    </div>
     <button onclick="runDiag()" style="width:100%;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">🧭 診斷下一步目標</button>
     <div id="diag-result" style="margin-top:10px"></div>
   </div>
@@ -3506,10 +3631,12 @@ function runDiag(){
   const colors = {'01':'var(--yellow)','02':'var(--yellow)','03':'var(--blue)','04':'var(--blue)','05':'var(--green)','06':'var(--p1)','07':'var(--p1)','08':'var(--p1)','09':'var(--orange)'};
   const tcolors = {'01':'var(--yellow-d)','02':'var(--yellow-d)','03':'var(--blue-d)','04':'var(--blue-d)','05':'var(--green-d)','06':'var(--r2)','07':'var(--r2)','08':'var(--r2)','09':'var(--orange-d)'};
 
+  const myNote = document.getElementById('diag-note') ? document.getElementById('diag-note').value.trim() : '';
   res.innerHTML = `
     <div style="background:#1A1210;border-radius:9px;padding:12px">
       <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px;letter-spacing:.08em">🎯 診斷結果</div>
       ${specialNote ? `<div style="background:rgba(255,200,0,.15);border-radius:7px;padding:8px 10px;margin-bottom:8px;font-size:10px;color:#FFD580;line-height:1.6">${specialNote}</div>` : ''}
+      ${myNote ? `<div style="background:rgba(255,255,255,.08);border-radius:7px;padding:8px 10px;margin-bottom:8px;font-size:10px;color:#B3D4FF;line-height:1.6">📝 你的判斷：${myNote}</div>` : ''}
       <div style="font-size:11px;color:#E8E3DA;line-height:1.7;margin-bottom:10px">${reason}</div>
       <div style="display:grid;gap:6px;margin-bottom:10px">
         ${goals.map(g=>{
@@ -3751,6 +3878,214 @@ function scrollToTerm(name){
     }
   }, 500);
 }
+
+// ========== IP定位診斷器 ==========
+var ipState = {job:'', style:'', audience:''};
+function setIP(key, val){
+  ipState[key] = val;
+  const opts = {job:['expert','biz','creator'], style:['pro','warm','bold'], audience:['b2b','b2c','parent','young']};
+  (opts[key]||[]).forEach(v=>{
+    const btn = document.getElementById('ip-'+key+'-'+v);
+    if(!btn) return;
+    btn.style.background = (v===val) ? 'var(--r1)' : 'var(--w2)';
+    btn.style.color = (v===val) ? '#fff' : 'var(--muted)';
+    btn.style.borderColor = (v===val) ? 'var(--r1)' : 'var(--w3)';
+  });
+}
+function runIPDiag(){
+  const j=ipState.job, s=ipState.style, a=ipState.audience;
+  const res=document.getElementById('ip-result');
+  if(!j||!s||!a){
+    res.innerHTML='<div style="background:var(--ye);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--yd)">⚠️ 請先選擇①②③再診斷</div>';
+    return;
+  }
+  const note = document.getElementById('ip-note') ? document.getElementById('ip-note').value.trim() : '';
+  
+  let tag='', hook='', content_dir='', diff='';
+  
+  if(j==='expert' && s==='pro') { tag='「幫[受眾]解決[問題]的[職稱]」'; hook='迷思破解型'; content_dir='教學型+案例型'; diff='專業背景+實戰經驗'; }
+  else if(j==='expert' && s==='warm') { tag='「說人話的[職稱]，讓你看懂[領域]」'; hook='故事開場型'; content_dir='故事型+FAQ型'; diff='親切感+專業感並存'; }
+  else if(j==='expert' && s==='bold') { tag='「[職稱]不說謊：[顛覆常識的觀點]」'; hook='打破常識型'; content_dir='觀點型+爭議型'; diff='有立場+敢說真話'; }
+  else if(j==='biz' && a==='b2b') { tag='「幫[產業]企業解決[問題]的[公司名]」'; hook='痛點直擊型'; content_dir='案例型+教育型'; diff='B2B信任建立+決策支援'; }
+  else if(j==='biz' && a==='b2c') { tag='「讓你的[生活/健康/財務]更好的[品牌]」'; hook='數字震驚型'; content_dir='科普型+見證型'; diff='情感連結+解決方案'; }
+  else if(j==='creator') { tag='「[獨特標籤]+[核心主題]的[你的名字]」'; hook='故事開場型+問題引發型'; content_dir='人設型+日常型+觀點型'; diff='真實感+個性化+一致風格'; }
+  else { tag='「[幫誰]+[做什麼]+[你是誰]」'; hook='最適合你受眾的鉤子'; content_dir='根據受眾選擇'; diff='你的獨特背景+差異化'; }
+  
+  res.innerHTML = `
+    <div style="background:#1A1210;border-radius:9px;padding:12px;margin-top:8px">
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px">🎯 IP定位建議</div>
+      ${note?`<div style="background:rgba(255,255,255,.08);border-radius:7px;padding:7px 9px;margin-bottom:8px;font-size:10px;color:#B3D4FF">📝 補充：${note}</div>`:''}
+      <div style="display:grid;gap:6px">
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">核心標籤句</div>
+          <div style="font-size:11px;color:#E8E3DA">${tag}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">建議鉤子類型</div>
+          <div style="font-size:11px;color:#E8E3DA">${hook}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">內容方向</div>
+          <div style="font-size:11px;color:#E8E3DA">${content_dir}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">差異化重點</div>
+          <div style="font-size:11px;color:#E8E3DA">${diff}</div>
+        </div>
+      </div>
+      <div onclick="window.jumpTab(5)" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center;margin-top:8px">→ 去腳本系統看對應鉤子怎麼寫 ↗</div>
+    </div>`;
+}
+
+// ========== 客戶類型診斷器 ==========
+var clientState = {source:'', speed:'', budget:''};
+function setClient(key, val){
+  clientState[key] = val;
+  const opts = {source:['inbound','outbound','referral'], speed:['fast','mid','slow'], budget:['high','mid','low']};
+  (opts[key]||[]).forEach(v=>{
+    const btn = document.getElementById('cl-'+key+'-'+v);
+    if(!btn) return;
+    btn.style.background = (v===val) ? 'var(--r1)' : 'var(--w2)';
+    btn.style.color = (v===val) ? '#fff' : 'var(--muted)';
+    btn.style.borderColor = (v===val) ? 'var(--r1)' : 'var(--w3)';
+  });
+}
+function runClientDiag(){
+  const src=clientState.source, spd=clientState.speed, bdg=clientState.budget;
+  const res=document.getElementById('client-result');
+  if(!src||!spd||!bdg){
+    res.innerHTML='<div style="background:var(--ye);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--yd)">⚠️ 請先選擇①②③再診斷</div>';
+    return;
+  }
+  
+  let strategy='', risk='', action='', color='var(--gr)', tc='var(--gd)';
+  
+  if(src==='inbound' && spd==='fast' && bdg==='high'){
+    strategy='⭐ 優質客戶！直接進入提案流程，不要拖';
+    risk='風險低。但要確認期待值一致，避免後期翻臉';
+    action='24小時內發提案，強調你的差異化，趁熱簽約';
+    color='var(--gr)'; tc='var(--gd)';
+  } else if(bdg==='low'){
+    strategy='⚠️ 預算有限客戶，要謹慎';
+    risk='最容易在後期要求追加服務不加錢，或中途取消';
+    action='先說清楚服務範圍和費用，不清楚的不要接；或推最小方案先試水';
+    color='var(--or)'; tc='var(--od)';
+  } else if(spd==='slow' && bdg==='mid'){
+    strategy='需要說服型客戶，準備好理由';
+    risk='容易在比較競品，要建立你的差異化論述';
+    action='發提案後主動追蹤，用數據和案例說服，設一個「回覆期限」';
+    color='var(--ye)'; tc='var(--yd)';
+  } else if(src==='outbound'){
+    strategy='你主動開發的客戶，要先建立信任再談錢';
+    risk='對方沒有主動需求，容易覺得你在推銷';
+    action='第一次接觸不談報價，先展示你對他們的了解，讓他們覺得「你懂我的問題」';
+    color='var(--bl)'; tc='var(--bd)';
+  } else if(src==='referral'){
+    strategy='轉介紹客戶！信任基礎好，成交率高';
+    risk='要確保服務品質，因為做不好會連帶影響介紹人';
+    action='提案要比一般更用心，感謝介紹人，服務後請求下一個轉介紹';
+    color='var(--gr)'; tc='var(--gd)';
+  } else {
+    strategy='一般客戶，按標準流程走';
+    risk='注意期待值管理，簽約前把服務範圍說清楚';
+    action='發初診表單→AI分析→20分諮詢→24h發提案→追蹤→簽約';
+    color='var(--p1)'; tc='var(--r2)';
+  }
+  
+  res.innerHTML = `
+    <div style="background:${color};border-radius:9px;padding:12px;margin-top:8px">
+      <div style="font-size:11px;font-weight:700;color:${tc};margin-bottom:8px">📋 接洽策略建議</div>
+      <div style="display:grid;gap:6px">
+        <div style="background:rgba(0,0,0,.06);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:${tc};margin-bottom:2px">策略判斷</div>
+          <div style="font-size:11px;color:${tc}">${strategy}</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:${tc};margin-bottom:2px">⚠️ 風險提醒</div>
+          <div style="font-size:11px;color:${tc}">${risk}</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:${tc};margin-bottom:2px">✅ 立即行動</div>
+          <div style="font-size:11px;color:${tc}">${action}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+// ========== 方案推薦器 ==========
+var pricingState = {size:'', need:'', coop:''};
+function setPricing(key, val){
+  pricingState[key] = val;
+  const opts = {size:['small','mid','large'], need:['strategy','partial','full'], coop:['high','low']};
+  (opts[key]||[]).forEach(v=>{
+    const btn = document.getElementById('pr-'+key+'-'+v);
+    if(!btn) return;
+    btn.style.background = (v===val) ? 'var(--r1)' : 'var(--w2)';
+    btn.style.color = (v===val) ? '#fff' : 'var(--muted)';
+    btn.style.borderColor = (v===val) ? 'var(--r1)' : 'var(--w3)';
+  });
+}
+function runPricingDiag(){
+  const sz=pricingState.size, nd=pricingState.need, cp=pricingState.coop;
+  const res=document.getElementById('pricing-result');
+  if(!sz||!nd||!cp){
+    res.innerHTML='<div style="background:var(--ye);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--yd)">⚠️ 請先選擇①②③再推薦</div>';
+    return;
+  }
+  
+  let plan='', price='', include='', tip='';
+  
+  if(nd==='strategy'){
+    plan='策略顧問包';
+    price='NT$18,000 - 28,000 / 月';
+    include='IP定位診斷書、每月內容策略規劃、腳本方向建議、數據解讀報告';
+    tip='適合有內部執行團隊，只需要方向的客戶';
+  } else if(nd==='partial' && cp==='high'){
+    plan='腳本+剪輯執行包';
+    price='NT$28,000 - 45,000 / 月';
+    include='IP定位、每月10支腳本、剪輯製作、發布排程、月報';
+    tip='客戶需要自己出鏡，你處理前後製';
+  } else if(nd==='full' && sz==='small' && cp==='high'){
+    plan='全程代運營 入門版';
+    price='NT$35,000 - 50,000 / 月';
+    include='IP定位+策略+腳本+拍攝協助+剪輯+發布+月報，10支/月';
+    tip='個人或小品牌的完整服務，適合想快速建立IP的客戶';
+  } else if(nd==='full' && (sz==='mid'||sz==='large')){
+    plan='全程代運營 企業版';
+    price='NT$50,000 - 80,000 / 月';
+    include='完整IP策略+品牌定位+腳本+拍攝+剪輯+多平台發布+月報，12-15支/月';
+    tip='企業客戶需要更完整的品牌策略服務';
+  } else if(cp==='low'){
+    plan='輕量顧問包（配合度低時建議）';
+    price='NT$15,000 - 20,000 / 月';
+    include='IP定位診斷、每月2次策略會議、腳本框架提供';
+    tip='⚠️ 配合度低的客戶不建議接全程代運營，先從小包開始試合作';
+  } else {
+    plan='策略+部分執行包';
+    price='NT$28,000 - 40,000 / 月';
+    include='IP定位+內容策略+腳本撰寫+剪輯，8-10支/月';
+    tip='彈性方案，根據實際需求調整';
+  }
+  
+  res.innerHTML = `
+    <div style="background:var(--r1);border-radius:9px;padding:12px;margin-top:8px">
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px">💰 推薦方案</div>
+      <div style="display:grid;gap:6px">
+        <div style="background:rgba(255,255,255,.12);border-radius:6px;padding:8px 10px">
+          <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:3px">${plan}</div>
+          <div style="font-size:13px;font-weight:700;color:#FFD580">${price}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">包含服務</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">${include}</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;color:var(--p1);line-height:1.5">💡 ${tip}</div>
+        </div>
+      </div>
+    </div>`;
+}
+
 
 init();
 </script>
