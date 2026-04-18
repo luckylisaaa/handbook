@@ -1163,23 +1163,23 @@ const DOC_ID = 'baby_handbook';
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--yellow-d)">02 提高品牌記憶點</span><span style="font-size:9px;background:var(--yellow-d);color:#fff;padding:2px 6px;border-radius:10px">A認知</span></div>
         <div style="font-size:11px;color:var(--yellow-d);line-height:1.7">KPI：回訪率、系列觀看率<br>內容：系列型、人設型、固定欄目型<br>成功判讀：留言開始出現固定印象詞</div>
       </div>
-      <div style="background:var(--blue);border-radius:9px;padding:10px 12px">
+      <div id="goal-03" style="background:var(--blue);border-radius:9px;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--blue-d)">03 建立個人IP</span><span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span></div>
         <div style="font-size:11px;color:var(--blue-d);line-height:1.7">KPI：粉絲成長率、互動率、系列回訪率<br>內容：故事型、觀點型、日常型<br>成功判讀：觀眾能描述你的風格與人格</div>
       </div>
-      <div style="background:var(--blue);border-radius:9px;padding:10px 12px">
+      <div id="goal-04" style="background:var(--blue);border-radius:9px;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--blue-d)">04 教育市場/改變認知</span><span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span></div>
         <div style="font-size:11px;color:var(--blue-d);line-height:1.7">KPI：完播率、收藏率<br>內容：解說型、FAQ型、科普型<br>成功判讀：留言從「這是什麼」變成「怎麼買」</div>
       </div>
-      <div style="background:var(--green);border-radius:9px;padding:10px 12px">
+      <div id="goal-05" style="background:var(--green);border-radius:9px;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--green-d)">05 建立專業信任感</span><span style="font-size:9px;background:var(--green-d);color:#fff;padding:2px 6px;border-radius:10px">C信任</span></div>
         <div style="font-size:11px;color:var(--green-d);line-height:1.7">KPI：收藏率、完播率、預約率<br>內容：教學型、問答型、迷思破解型<br>成功判讀：收藏和預約率提升，比高觀看更有價值</div>
       </div>
-      <div style="background:var(--p1);border-radius:9px;padding:10px 12px">
+      <div id="goal-06" style="background:var(--p1);border-radius:9px;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--r2)">06 增加詢問量</span><span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
         <div style="font-size:11px;color:var(--r2);line-height:1.7">KPI：私訊數、表單數、CTA轉化率<br>內容：痛點型、需求喚醒型<br>成功判讀：觀看高但詢問低 = CTA太弱</div>
       </div>
-      <div style="background:var(--p1);border-radius:9px;padding:10px 12px">
+      <div id="goal-07" style="background:var(--p1);border-radius:9px;padding:10px 12px">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--r2)">07 提升轉單品質</span><span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
         <div style="font-size:11px;color:var(--r2);line-height:1.7">KPI：有效詢問數、預約率、成交率<br>內容：篩選型、案例型、前置教育型<br>成功判讀：詢問精準度提升就是進步</div>
       </div>
@@ -1822,57 +1822,90 @@ const DOC_ID = 'baby_handbook';
 
   <!-- IP定位表單範本 -->
   <div style="padding:0 14px 10px">
-    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📋 IP定位初診表單（針對理鴻法律）</div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📋 Step 1 初診資料（AI預填，自己開發客戶用）</div>
     <div style="background:#1A1210;border-radius:9px;padding:12px;margin-bottom:8px">
-      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px">發給律師填寫的問卷</div>
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:4px">🤖 AI根據公開資料預填（自己主動開發客戶用）</div>
+      <div style="font-size:10px;color:var(--li);margin-bottom:8px;opacity:.7">因為是你主動去開發，不是客戶填寫，AI幫你先把已知資訊填好</div>
       <div style="display:grid;gap:6px">
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">① 專業定位</div>
-          <div style="font-size:10px;color:var(--li)">你們最擅長、最想被知道的法律領域？（勞資、個資、商業糾紛？）</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">① 專業定位（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">商業訴訟＋勞資爭議＋個資法＋房屋租賃法律（2026年4月主打方向）<br>企業法律顧問為核心，含德英德三語服務</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">② 目標客群</div>
-          <div style="font-size:10px;color:var(--li)">理想客戶是誰？中小企業主？哪個產業？最常遇到什麼法律困擾？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">② 目標客群（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">主：35-55歲中小企業主（最大痛點：員工糾紛、合約漏洞）<br>次：房東房客（現在內容方向）｜現有7,680 IG粉基礎</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">③ 出鏡意願</div>
-          <div style="font-size:10px;color:var(--li)">郭律師或李律師，哪位比較願意出鏡？風格偏專業嚴謹還是親切平易？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">③ 出鏡意願（待確認）</div>
+          <div style="font-size:10px;color:#FFD580;line-height:1.6">⚠️ 待諮詢確認：郭律師或李律師哪位更願意出鏡？<br>推測：郭律師（德國背景作差異化）更適合主出鏡</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">④ 競品參考</div>
-          <div style="font-size:10px;color:var(--li)">有沒有欣賞的法律帳號？有沒有不想像的對象？各說一個原因。</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">④ 競品參考（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">想超越：仙塔律師的親民感（但她已出事，現在是機會）<br>不想像：純知識型帳號（法律百科），要有溫度有人味</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">⑤ 合作目標</div>
-          <div style="font-size:10px;color:var(--li)">3個月後希望達到什麼？增加諮詢詢問？提升知名度？吸引特定產業客戶？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">⑤ 合作目標（AI推測）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">短期：修復爭議後的信任感＋篩選對的商務客戶<br>長期：建立「台灣商務法代表律師」的個人IP</div>
         </div>
       </div>
     </div>
     <button onclick="jumpTab(1)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd)">→ 跳到「IP定位」分頁看完整流程 ↗</button>
   </div>
 
-<!-- 競品分析 -->
+<!-- 競品分析 + 市場定位四宮格 -->
   <div style="padding:0 14px 10px">
-    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔍 競品分析（市場現況）</div>
-    <div style="display:grid;gap:6px">
-      <div style="background:var(--w2);border-radius:9px;overflow:hidden;border:1px solid var(--w3)">
-        <div style="background:var(--r1);padding:6px 12px;font-size:10px;font-weight:700;color:#fff">最強競品：仙塔律師 @santa.com.tw</div>
-        <div style="padding:9px 12px;font-size:11px;color:var(--muted);line-height:1.7">217K粉絲｜個人IP極強｜親切幽默風格<br>主打：免費初步法律分析，降低詢問門檻<br>⚠️ 差異：仙塔是個人品牌，理鴻是事務所，可以主打「企業法律顧問」這個空缺</div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔍 競品分析＋市場定位四宮格</div>
+    
+    <div style="background:var(--w2);border-radius:9px;overflow:hidden;border:1px solid var(--w3);margin-bottom:6px">
+      <div style="background:#7B2D00;padding:6px 12px;display:flex;justify-content:space-between;align-items:center">
+        <div style="font-size:10px;font-weight:700;color:#fff">⚠️ 最強競品已爆雷：仙塔律師</div>
+        <a href="https://www.instagram.com/santa.com.tw/" target="_blank" style="font-size:9px;color:#FFD0B0;text-decoration:none">@santa.com.tw ↗</a>
       </div>
-      <div style="background:var(--w2);border-radius:9px;overflow:hidden;border:1px solid var(--w3)">
-        <div style="background:var(--r3);padding:6px 12px;font-size:10px;font-weight:700;color:#fff">次要競品：法律人 @lawplayer.tw</div>
-        <div style="padding:9px 12px;font-size:11px;color:var(--muted);line-height:1.7">26K粉絲｜知識型內容｜教育市場為主<br>⚠️ 差異：法律人偏學術，理鴻可主打「商業實戰」角度</div>
+      <div style="padding:9px 12px">
+        <div style="font-size:11px;color:var(--text);line-height:1.7;margin-bottom:5px">曾有217K粉｜刺青親民風格｜個人IP極強</div>
+        <div style="background:var(--or);border-radius:6px;padding:7px 9px;font-size:10px;color:var(--od);line-height:1.6;margin-bottom:5px">🚨 2025年7月：涉嫌替靈骨塔詐騙集團洗錢洩密遭起訴，求刑1年，2025年底認罪，限制出境，律師生涯岌岌可危</div>
+        <div style="background:var(--gr);border-radius:6px;padding:7px 9px;font-size:10px;color:var(--gd);line-height:1.6">💡 理鴻機會：最強競品倒下，「有商業道德的商務律師」這個位置幾乎空白，現在是最好的切入時機！</div>
       </div>
-      <div style="background:var(--gr);border-radius:9px;padding:9px 12px">
-        <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:3px">✦ 理鴻的市場缺口</div>
-        <div style="font-size:11px;color:var(--gd);line-height:1.7">「專注商務法的事務所短影音帳號」目前幾乎空白<br>郭律師的德國法學背景＋商業訴訟經驗 = 獨特IP素材<br>切角：「中小企業老闆必看的法律常識」</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-bottom:8px">
+      <div style="background:#1565A0;border-radius:8px;overflow:hidden">
+        <div style="background:#0a2d5e;padding:5px 9px;font-size:9px;font-weight:700;color:#fff;display:flex;justify-content:space-between"><span>法律人</span><a href="https://www.instagram.com/lawplayer.tw/" target="_blank" style="color:#B3D4FF;text-decoration:none;font-weight:400">@lawplayer.tw ↗</a></div>
+        <div style="padding:7px 9px;font-size:10px;color:#fff;line-height:1.6">26K粉｜偏學術<br>理鴻機會：主打商業實戰</div>
+      </div>
+      <div style="background:#444;border-radius:8px;overflow:hidden">
+        <div style="background:#222;padding:5px 9px;font-size:9px;font-weight:700;color:#fff;display:flex;justify-content:space-between"><span>法律百科</span><a href="https://www.instagram.com/legispedia_tw/" target="_blank" style="color:#ccc;text-decoration:none;font-weight:400">@legispedia_tw ↗</a></div>
+        <div style="padding:7px 9px;font-size:10px;color:#eee;line-height:1.6">12K粉｜偏知識<br>理鴻機會：律師真人出鏡</div>
+      </div>
+    </div>
+
+    <div style="background:var(--w2);border-radius:9px;padding:10px 12px;border:1px solid var(--w3)">
+      <div style="background:var(--r1);border-radius:7px;padding:6px 10px;text-align:center;margin-bottom:7px"><div style="font-size:10px;font-weight:700;color:#fff">市場定位四宮格</div></div>
+      <div style="font-size:9px;color:var(--muted);text-align:center;margin-bottom:6px">X軸：個人 ←→ 事務所　Y軸：娛樂 ←→ 專業</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+        <div style="background:var(--or);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:var(--od)">娛樂 × 個人</div>
+          <div style="font-size:10px;color:var(--od);margin-top:3px;line-height:1.5">仙塔律師（已爆）<br>Sunny律師</div>
+        </div>
+        <div style="background:var(--ye);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:var(--yd)">娛樂 × 事務所</div>
+          <div style="font-size:10px;color:var(--yd);margin-top:3px;line-height:1.5;font-weight:700">🔓 目前空白<br>✦ 機會點</div>
+        </div>
+        <div style="background:#1565A0;border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#fff">專業 × 個人</div>
+          <div style="font-size:10px;color:#E3F0FB;margin-top:3px;line-height:1.5">法律人<br>法律百科</div>
+        </div>
+        <div style="background:var(--r1);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#fff">專業 × 事務所 ⭐</div>
+          <div style="font-size:10px;color:var(--p1);margin-top:3px;line-height:1.5">理鴻的位置<br>幾乎無競爭！</div>
+        </div>
       </div>
     </div>
   </div>
 
   <!-- AI預填IP定位 -->
   <div style="padding:0 14px 10px">
-    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🤖 AI預填IP定位建議書</div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🤖 IP定位建議書（提案時給客戶看）</div>
     <div style="background:#1A1210;border-radius:9px;padding:12px;margin-bottom:8px">
       <div style="display:grid;gap:8px">
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:9px 11px">
@@ -2222,27 +2255,28 @@ const DOC_ID = 'baby_handbook';
   <div style="padding:0 14px 10px">
     <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📋 IP定位初診表單範本（針對喜躍生醫）</div>
     <div style="background:#1A1210;border-radius:9px;padding:12px;margin-bottom:8px">
-      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px;letter-spacing:.08em">發給客戶填寫的問卷</div>
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:4px">🤖 AI根據公開資料預填（自己主動開發客戶用）</div>
+      <div style="font-size:10px;color:var(--li);margin-bottom:8px;opacity:.7">因為是你主動去開發，不是客戶填寫，AI幫你先把已知資訊填好</div>
       <div style="display:grid;gap:6px">
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">① 公司介紹（用自己的話說）</div>
-          <div style="font-size:10px;color:var(--li)">你們的核心服務是什麼？最想讓哪種人知道你們？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">① 公司核心（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">幹細胞儲存＋免疫細胞治療＋臍帶血儲存｜2009成立｜資本額2億<br>台灣＋中國雙專利｜GTP廠房｜曾獲生策會優良企業</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">② 目標受眾</div>
-          <div style="font-size:10px;color:var(--li)">理想客戶的年齡、職業、最大健康擔憂是什麼？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">② 目標受眾（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">主：35-55歲有健康意識族群，痛點：擔心老化生病、想提前預防<br>次：新生兒父母（臍帶血）｜癌症患者家屬（免疫細胞輔助治療）</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">③ 出鏡意願</div>
-          <div style="font-size:10px;color:var(--li)">公司有沒有願意出鏡的醫師、研究員或執行長？</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">③ 出鏡人選（待確認）</div>
+          <div style="font-size:10px;color:#FFD580;line-height:1.6">⚠️ 待諮詢確認：公司有無執行長或醫師可出鏡？<br>建議：找懂科普的醫師或研究員，走「醫學科普」路線</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">④ 內容邊界</div>
-          <div style="font-size:10px;color:var(--li)">哪些詞彙絕對不能用？（療效、治好、根治等）<br>哪些可以說？（輔助、預防、儲存、改善）</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">④ 法規內容邊界（AI填）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">❌ 不能說：治好、根治、療效、百分百有效<br>✅ 可以說：輔助、儲存備用、預防醫學、提前準備、改善生活品質</div>
         </div>
         <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
-          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">⑤ 合作目標</div>
-          <div style="font-size:10px;color:var(--li)">3個月後希望達到什麼？（詢問數、品牌知名度、特定族群觸及）</div>
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">⑤ 合作目標（AI推測）</div>
+          <div style="font-size:10px;color:#E8E3DA;line-height:1.6">短期：讓一般民眾知道幹細胞儲存是什麼（教育市場）<br>長期：建立「台灣最值得信賴的細胞儲存品牌」形象</div>
         </div>
       </div>
     </div>
@@ -2251,21 +2285,69 @@ const DOC_ID = 'baby_handbook';
     </button>
   </div>
 
-  <!-- 競品分析 -->
+
+
+  <!-- 競品分析 + 市場定位四宮格 -->
   <div style="padding:0 14px 10px">
-    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔍 競品分析（市場現況）</div>
-    <div style="display:grid;gap:6px">
-      <div style="background:var(--w2);border-radius:9px;overflow:hidden;border:1px solid var(--w3)">
-        <div style="background:var(--td);padding:6px 12px;font-size:10px;font-weight:700;color:#fff">市場競品：國璽幹細胞 gwoxi.com</div>
-        <div style="padding:9px 12px;font-size:11px;color:var(--muted);line-height:1.7">有官網、有教育型內容，但短影音幾乎空白<br>主打：幹細胞新藥研發，較學術<br>⚠️ 差異：喜躍可主打「一般人也能用的細胞保存服務」</div>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔍 競品分析＋市場定位四宮格</div>
+    
+    <!-- 主要競品 -->
+    <div style="display:grid;gap:6px;margin-bottom:8px">
+      <div style="background:var(--gd);border-radius:9px;overflow:hidden">
+        <div style="background:#0a4a2a;padding:6px 12px;display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:10px;font-weight:700;color:#fff">同類型競品：國璽幹細胞</div>
+          <a href="https://www.gwoxi.com" target="_blank" style="font-size:9px;color:#A5D6A7;text-decoration:none">gwoxi.com ↗</a>
+        </div>
+        <div style="background:var(--gr);padding:9px 12px">
+          <div style="font-size:11px;color:var(--gd);line-height:1.7;margin-bottom:4px">專注幹細胞新藥開發｜有官網有科研論文<br>但社群幾乎空白，短影音完全沒有</div>
+          <div style="background:rgba(0,0,0,.06);border-radius:6px;padding:6px 9px;font-size:10px;color:var(--gd)">💡 喜躍機會：國璽偏學術B2B，喜躍可主打「一般民眾可用的B2C細胞儲存服務」</div>
+        </div>
       </div>
-      <div style="background:var(--w2);border-radius:9px;overflow:hidden;border:1px solid var(--w3)">
-        <div style="background:var(--gd);padding:6px 12px;font-size:10px;font-weight:700;color:#fff">整體市場現況</div>
-        <div style="padding:9px 12px;font-size:11px;color:var(--muted);line-height:1.7">台灣幹細胞、細胞治療的短影音內容幾乎空白<br>2026年再生醫療雙法上路，民眾開始主動搜尋相關知識<br>現在進場是藍海，搶先建立「細胞治療教育者」的定位</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <div style="background:var(--w2);border-radius:8px;overflow:hidden;border:1px solid var(--w3)">
+          <div style="background:var(--te);padding:5px 9px;font-size:9px;font-weight:700;color:var(--td);display:flex;justify-content:space-between">
+            <span>沛爾生技</span>
+            <a href="https://www.pellbmt.com" target="_blank" style="color:var(--td);text-decoration:none;font-weight:400">pellbmt.com ↗</a>
+          </div>
+          <div style="background:#DDF3EF;padding:7px 9px;font-size:10px;color:var(--td);line-height:1.6">2017年成立｜免疫細胞治療<br>機會：喜躍有更長歷史和雙專利</div>
+        </div>
+        <div style="background:var(--w2);border-radius:8px;overflow:hidden;border:1px solid var(--w3)">
+          <div style="background:#1B5E20;padding:5px 9px;font-size:9px;font-weight:700;color:#fff;display:flex;justify-content:space-between">
+            <span>臍帶血公司</span>
+            <span style="color:#A5D6A7;font-weight:400">多家競爭</span>
+          </div>
+          <div style="background:#E8F5E9;padding:7px 9px;font-size:10px;color:#1B5E20;line-height:1.6">如：訊聯、寶貝基因等<br>機會：喜躍整合幹細胞＋臍帶血</div>
+        </div>
       </div>
-      <div style="background:var(--te);border-radius:9px;padding:9px 12px">
-        <div style="font-size:10px;font-weight:700;color:var(--td);margin-bottom:3px">✦ 喜躍的市場缺口</div>
-        <div style="font-size:11px;color:var(--td);line-height:1.7">「讓一般人看懂幹細胞儲存的短影音帳號」= 目前台灣沒有人在做<br>切角：「為什麼你現在就要考慮幹細胞儲存？」預防醫學角度切入</div>
+
+      <div style="background:var(--r1);border-radius:9px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:4px">🔥 最大機會：整個市場幾乎無短影音</div>
+        <div style="font-size:11px;color:var(--p1);line-height:1.7">台灣細胞治療公司在社群媒體上幾乎全部缺席<br>2026年再生醫療雙法上路，民眾主動搜尋資訊暴增<br>✦ 現在進場 = 藍海，先佔領「細胞治療教育者」定位</div>
+      </div>
+    </div>
+
+    <!-- 四宮格 -->
+    <div style="background:var(--w2);border-radius:9px;padding:10px 12px;border:1px solid var(--w3)">
+      <div style="background:var(--te);border-radius:7px;padding:6px 10px;text-align:center;margin-bottom:6px"><div style="font-size:10px;font-weight:700;color:var(--td)">市場定位四宮格</div></div>
+      <div style="font-size:9px;color:var(--muted);text-align:center;margin-bottom:6px">X軸：B2B學術←→B2C大眾　Y軸：靜態圖文←→短影音</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px">
+        <div style="background:#1A3A6E;border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#fff">圖文 × B2B</div>
+          <div style="font-size:10px;color:#B3D4FF;margin-top:3px;line-height:1.5">國璽幹細胞<br>學術機構</div>
+        </div>
+        <div style="background:var(--ye);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:var(--yd)">圖文 × B2C</div>
+          <div style="font-size:10px;color:var(--yd);margin-top:3px;line-height:1.5">訊聯臍帶血<br>沛爾生技</div>
+        </div>
+        <div style="background:var(--or);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:var(--od)">短影音 × B2B</div>
+          <div style="font-size:10px;color:var(--od);margin-top:3px;line-height:1.5">目前空白<br>醫療法人</div>
+        </div>
+        <div style="background:var(--r1);border-radius:7px;padding:8px;text-align:center">
+          <div style="font-size:9px;font-weight:700;color:#fff">短影音 × B2C ⭐</div>
+          <div style="font-size:10px;color:var(--p1);margin-top:3px;line-height:1.5"><strong>喜躍的位置！</strong><br>幾乎無競爭</div>
+        </div>
       </div>
     </div>
   </div>
@@ -2763,28 +2845,27 @@ function nextCard(){
 
 
 function jumpToGoal(num){
-  // 跳到合作目標分頁並展開對應目標
   jumpTab(5);
   setTimeout(()=>{
-    const tp5=document.getElementById('tp-5');
-    if(!tp5)return;
-    // 先展開detail
-    const exbtn=tp5.querySelector('.exbtn');
-    if(exbtn&&!tp5.querySelector('.detail.on'))exbtn.click();
-    setTimeout(()=>{
-      const allEls=tp5.querySelectorAll('[style*="font-size:12px"]');
-      let target=null;
-      allEls.forEach(el=>{
-        if(!target&&el.textContent.includes(num+' ')){target=el;}
-      });
-      if(target){
-        target.scrollIntoView({behavior:'smooth',block:'center'});
-        const box=target.closest('[style*="border-radius:9px"]')||target;
-        box.style.outline='3px solid var(--r1)';
-        setTimeout(()=>box.style.outline='',2500);
+    const el=document.getElementById('goal-'+num);
+    if(!el)return;
+    // 找到goal所在的detail，如果還沒展開就展開
+    const parentDetail=el.closest('.detail');
+    if(parentDetail&&!parentDetail.classList.contains('open')){
+      // 找這個detail的對應exbtn（detail的前一個sibling）
+      let btn=parentDetail.previousElementSibling;
+      while(btn&&!btn.classList.contains('exbtn')){
+        btn=btn.previousElementSibling;
       }
-    },400);
-  },300);
+      if(btn)btn.click();
+    }
+    setTimeout(()=>{
+      el.scrollIntoView({behavior:'smooth',block:'center'});
+      el.style.outline='3px solid var(--r1)';
+      el.style.transition='all .3s';
+      setTimeout(()=>{el.style.outline='';},3000);
+    },350);
+  },400);
 }
 
 function jumpTab(idx){
