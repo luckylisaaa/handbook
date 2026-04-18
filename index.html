@@ -203,72 +203,20 @@ h1,h2,h3{font-family:'Noto Serif TC',serif}
 .bpct{font-size:10px;color:var(--light);margin-top:3px}
 .bbtn{background:var(--r1);color:#fff;font-size:12px;font-weight:700;padding:9px 14px;border-radius:9px;border:none;cursor:pointer;font-family:'Noto Sans TC',sans-serif;white-space:nowrap}
 </style>
-
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyDSw-N0KsSXUdKHEatiJa3tut0m279C_38",
-    authDomain: "lucky-handbook.firebaseapp.com",
-    projectId: "lucky-handbook",
-    storageBucket: "lucky-handbook.firebasestorage.app",
-    messagingSenderId: "618597633790",
-    appId: "1:618597633790:web:e25c4c7b48406b99d6dfaf"
-  };
-
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  const USER_ID = 'baby_handbook';
-  const STORAGE_KEY = 'wg_progress';
-  const NOTES_KEY = 'wg_notes';
-
-  // 儲存到 Firebase + localStorage 雙重備份
-  window.firebaseSave = async function(progress, notes) {
-    try {
-      await setDoc(doc(db, 'handbooks', USER_ID), {
-        progress: JSON.stringify(progress),
-        notes: JSON.stringify(notes),
-        updatedAt: new Date().toISOString()
-      });
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
-      return true;
-    } catch(e) {
-      // Firebase失敗時，localStorage還是有備份
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-      localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
-      return false;
-    }
-  };
-
-  // 從 Firebase 讀取（優先），失敗則用 localStorage
-  window.firebaseLoad = async function() {
-    try {
-      const docSnap = await getDoc(doc(db, 'handbooks', USER_ID));
-      if (docSnap.exists()) {
-        const data = docSnap.data();
-        const progress = JSON.parse(data.progress || '[]');
-        const notes = JSON.parse(data.notes || '{}');
-        // 同步到 localStorage
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-        localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
-        return { progress, notes, source: 'firebase' };
-      }
-    } catch(e) {}
-    // Firebase失敗，用 localStorage
-    try {
-      const progress = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-      const notes = JSON.parse(localStorage.getItem(NOTES_KEY) || '{}');
-      return { progress, notes, source: 'local' };
-    } catch(e) {
-      return { progress: [], notes: {}, source: 'empty' };
-    }
-  };
-
-  window.firebaseReady = true;
-  if (window.onFirebaseReady) window.onFirebaseReady();
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyDSw-N0KsSXUdKHEatiJa3tut0m279C_38",
+  authDomain: "lucky-handbook.firebaseapp.com",
+  projectId: "lucky-handbook",
+  storageBucket: "lucky-handbook.firebasestorage.app",
+  messagingSenderId: "618597633790",
+  appId: "1:618597633790:web:e25c4c7b48406b99d6dfaf"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const DOC_ID = 'baby_handbook';
 </script>
 </head>
 <body>
@@ -1687,27 +1635,62 @@ function setSyncStatus(state){
 /* ── 雲端讀取 ── */
 function loadFromCloud(){
   setSyncStatus('loading');
-  try{
-    const c=localStorage.getItem(STORAGE_KEY);
-    const n=localStorage.getItem(NOTES_KEY);
-    if(c){const d=JSON.parse(c);if(Array.isArray(d))S.c=d;}
-    if(n){const d=JSON.parse(n);if(typeof d==='object'&&d)S.n=d;}
+  db.collection('handbooks').doc(DOC_ID).get().then(doc=>{
+    if(doc.exists){
+      const data=doc.data();
+      try{
+        const c=JSON.parse(data.progress||'[]');
+        const n=JSON.parse(data.notes||'{}');
+        if(Array.isArray(c))S.c=c;
+        if(typeof n==='object')S.n=n;
+        // 同步到localStorage
+        localStorage.setItem(STORAGE_KEY,JSON.stringify(S.c));
+        localStorage.setItem(NOTES_KEY,JSON.stringify(S.n));
+        setSyncStatus('cloud');
+      }catch(e){setSyncStatus('cloud');}
+    } else {
+      // 沒有雲端資料，用localStorage
+      try{
+        const c=localStorage.getItem(STORAGE_KEY);
+        const n=localStorage.getItem(NOTES_KEY);
+        if(c){const d=JSON.parse(c);if(Array.isArray(d))S.c=d;}
+        if(n){const d=JSON.parse(n);if(typeof d==='object'&&d)S.n=d;}
+      }catch(e){}
+      setSyncStatus('saved');
+    }
+    applyState();
+  }).catch(err=>{
+    console.log('Firebase error:', err);
+    // Firebase失敗，用localStorage
+    try{
+      const c=localStorage.getItem(STORAGE_KEY);
+      const n=localStorage.getItem(NOTES_KEY);
+      if(c){const d=JSON.parse(c);if(Array.isArray(d))S.c=d;}
+      if(n){const d=JSON.parse(n);if(typeof d==='object'&&d)S.n=d;}
+    }catch(e){}
     setSyncStatus('saved');
-  }catch(e){
-    setSyncStatus('saved');
-  }
-  applyState();
+    applyState();
+  });
 }
 
 /* ── 雲端儲存（防抖 800ms）── */
 function save(){
+  setSyncStatus('saving');
+  // 先存localStorage備份
   try{
     localStorage.setItem(STORAGE_KEY,JSON.stringify(S.c));
     localStorage.setItem(NOTES_KEY,JSON.stringify(S.n));
+  }catch(e){}
+  // 再存Firebase
+  db.collection('handbooks').doc(DOC_ID).set({
+    progress: JSON.stringify(S.c),
+    notes: JSON.stringify(S.n),
+    updatedAt: new Date().toISOString()
+  }).then(()=>{
+    setSyncStatus('cloud');
+  }).catch(()=>{
     setSyncStatus('saved');
-  }catch(e){
-    setSyncStatus('error');
-  }
+  });
 }
 
 /* ── 套用已儲存狀態到 DOM ── */
