@@ -2094,20 +2094,21 @@ function searchGoals(q){
   const result=document.getElementById('goal-result');
   if(!q.trim()){result.innerHTML='';return;}
   const goals=[
-    {name:'01 增加品牌曝光',layer:'A認知',kpi:'觸及人數、觀看次數、分享數',content:'娛樂型、話題型、病毒型',judge:'曝光高→互動是否跟上',color:'var(--yellow)',tc:'var(--yellow-d)'},
-    {name:'02 提高品牌記憶點',layer:'A認知',kpi:'回訪率、系列觀看率',content:'系列型、人設型、固定欄目型',judge:'留言開始出現固定印象詞',color:'var(--yellow)',tc:'var(--yellow-d)'},
-    {name:'03 建立個人IP',layer:'B品牌',kpi:'粉絲成長率、互動率',content:'故事型、觀點型、日常型',judge:'觀眾能描述你的風格',color:'var(--blue)',tc:'var(--blue-d)'},
+    {name:'01 增加品牌曝光',layer:'A認知',kpi:'觸及人數、觀看次數、分享數',content:'娛樂型、話題型、病毒型',judge:'曝光高→互動是否跟上',color:'var(--yellow)',tc:'var(--yellow-d)',tags:'曝光 流量 觸及 讓人知道 被看見 知名度 陌生人'},
+    {name:'02 提高品牌記憶點',layer:'A認知',kpi:'回訪率、系列觀看率',content:'系列型、人設型、固定欄目型',judge:'留言開始出現固定印象詞',color:'var(--yellow)',tc:'var(--yellow-d)',tags:'記憶 印象 人設 風格 辨識度 記得你 提起你'},
+    {name:'03 建立個人IP',layer:'B品牌',kpi:'粉絲成長率、互動率',content:'故事型、觀點型、日常型',judge:'觀眾能描述你的風格',color:'var(--blue)',tc:'var(--blue-d)',tags:'IP 個人品牌 定位 風格 人設 粉絲 追蹤'},
     {name:'04 教育市場',layer:'B品牌',kpi:'完播率、收藏率',content:'解說型、FAQ型、科普型',judge:'留言從「這是什麼」變成「怎麼買」',color:'var(--blue)',tc:'var(--blue-d)'},
-    {name:'05 建立專業信任感',layer:'C信任',kpi:'收藏率、完播率、預約率',content:'教學型、問答型、迷思破解型',judge:'收藏和預約率提升',color:'var(--green)',tc:'var(--green-d)'},
-    {name:'06 增加詢問量',layer:'D轉化',kpi:'私訊數、表單數、CTA轉化率',content:'痛點型、需求喚醒型',judge:'觀看高但詢問低=CTA太弱',color:'var(--p1)',tc:'var(--r2)'},
+    {name:'05 建立專業信任感',layer:'C信任',kpi:'收藏率、完播率、預約率',content:'教學型、問答型、迷思破解型',judge:'收藏和預約率提升',color:'var(--green)',tc:'var(--green-d)',tags:'信任 專業 可信 權威 相信你 資歷 案例'},
+    {name:'06 增加詢問量',layer:'D轉化',kpi:'私訊數、表單數、CTA轉化率',content:'痛點型、需求喚醒型',judge:'觀看高但詢問低=CTA太弱',color:'var(--p1)',tc:'var(--r2)',tags:'詢問 私訊 表單 聯絡 問我 找我 帶客 導流'},
     {name:'07 提升轉單品質',layer:'D轉化',kpi:'有效詢問數、預約率、成交率',content:'篩選型、案例型、前置教育型',judge:'詢問精準度提升就是進步',color:'var(--p1)',tc:'var(--r2)'},
     {name:'08 直接帶業績',layer:'D轉化',kpi:'銷售額、訂單數、轉換率、ROAS',content:'見證型、比較型、限時型',judge:'點擊高但成交低→查商品頁',color:'var(--p1)',tc:'var(--r2)'},
     {name:'09 活動導流',layer:'D轉化',kpi:'報名數、頁面點擊數',content:'倒數型、限時型、活動亮點型',judge:'前期聲量有但轉化低=urgency不足',color:'var(--orange)',tc:'var(--orange-d)'},
     {name:'10 招募人才',layer:'E組織',kpi:'履歷投遞數、商務詢問數',content:'團隊日常型、理念型、幕後型',judge:'商務詢問主動增加就是有效',color:'var(--purple)',tc:'var(--purple-d)'},
   ];
-  const matched=goals.filter(g=>
-    g.name.includes(q)||g.kpi.includes(q)||g.content.includes(q)||g.judge.includes(q)||g.layer.includes(q)
-  );
+  const matched=goals.filter(g=>{
+    const target=(g.name+g.kpi+g.content+g.judge+g.layer+(g.tags||'')).toLowerCase();
+    return q.toLowerCase().split(/[ ,]+/).some(w=>w.length>1&&target.includes(w));
+  });
   if(matched.length===0){result.innerHTML='<div style="font-size:11px;color:var(--muted);padding:8px 0">找不到相關目標，試試：曝光、詢問、信任、業績、IP</div>';return;}
   result.innerHTML=matched.map(g=>`
     <div style="background:${g.color};border-radius:9px;padding:10px 12px;margin-bottom:8px">
@@ -2160,6 +2161,25 @@ function searchTerms(q){
     {t:'Retargeting / 再行銷',en:'Retargeting',d:'對看過影片的人再投廣告，轉換率高3-5倍',tags:'再行銷 再投放 追蹤 看過 轉換 重新觸及',color:'var(--w2)',tc:'var(--text)'},
     {t:'Qualified Lead / 有效名單',en:'Qualified Lead',d:'符合目標客群、較可能成交的潛在客戶',tags:'有效名單 精準 符合 目標 高意向',color:'var(--w2)',tc:'var(--text)'},
     {t:'Offer / 提案',en:'Offer',d:'你提供什麼，以及為什麼現在要行動',tags:'提案 方案 產品 服務 現在行動 購買理由',color:'var(--w2)',tc:'var(--text)'},
+    // ===== B2B / B2C / 受眾 =====
+    {t:'B2B',en:'Business to Business',d:'你的客戶是企業或專業人士（例如：律師事務所、生技公司）。決策慢、客單高、重信任。',formula:'',example:'「理鴻法律的潛在客戶是需要企業法律顧問的老闆，這是B2B，所以內容要建立專業信任感，不是娛樂性。」',tags:'企業 商業 客戶 B2B 法人 老闆 決策',color:'var(--pu)',tc:'var(--pd)'},
+    {t:'B2C',en:'Business to Consumer',d:'你的客戶服務的是一般消費者。決策快、客單低、重情感共鳴。',formula:'',example:'「喜躍生醫的幹細胞儲存最終是賣給一般民眾，這是B2C，所以內容要讓普通人看得懂、有感。」',tags:'消費者 個人 一般人 B2C 大眾',color:'var(--pu)',tc:'var(--pd)'},
+    {t:'目標受眾',en:'Target Audience',d:'你想要影片被哪種人看到。越精準，內容效果越好。',formula:'',example:'「理鴻的目標受眾是台灣35-55歲的中小企業老闆，他們在乎勞資問題和商業糾紛。」',tags:'受眾 目標 對象 誰看 客群 族群',color:'var(--bl)',tc:'var(--bd)'},
+    {t:'冷受眾',en:'Cold Audience',d:'從來沒聽過你的人。需要先引起興趣，不要太快推銷。',formula:'',example:'「TikTok上大部分看到你的人都是冷受眾，所以第一支影片要讓他們想繼續看，不是馬上買。」',tags:'陌生人 冷受眾 新受眾 第一次 不認識',color:'var(--w2)',tc:'var(--text)'},
+    {t:'熱受眾',en:'Warm Audience',d:'已經知道你、看過你內容的人。轉換率比冷受眾高3-5倍。',formula:'',example:'「已經追蹤你IG的人是熱受眾，這時候推服務詢問的CTA效果最好。」',tags:'熱受眾 追蹤者 粉絲 已知道 高意向',color:'var(--gr)',tc:'var(--gd)'},
+    // ===== 計算公式術語 =====
+    {t:'CTR（點擊率）',en:'Click-Through Rate',d:'點擊數÷曝光數×100%。2%以上算好，5%以上很優秀。',formula:'CTR = 點擊數 ÷ 曝光數 × 100%',example:'「這個廣告曝光1000次，有30人點擊，CTR就是3%，算不錯！」',tags:'點擊率 點擊 廣告效果 連結 CTA效果',color:'var(--w2)',tc:'var(--text)'},
+    {t:'CPM（千次曝光成本）',en:'Cost Per Mille',d:'每花1000元廣告費，可以獲得多少曝光。CPM越低越省錢。',formula:'CPM = 廣告費 ÷ 曝光次數 × 1000',example:'「你花了500元，廣告曝光了10,000次，CPM就是50元，代表每千次曝光花50元。」',tags:'廣告費 成本 曝光成本 千次 投放',color:'var(--w2)',tc:'var(--text)'},
+    {t:'CPA（每次行動成本）',en:'Cost Per Action',d:'每獲得一個目標行動（詢問/購買/預約）需要花多少廣告費。',formula:'CPA = 總廣告費 ÷ 行動次數',example:'「你花了3000元廣告費，帶來10個詢問，CPA就是300元，代表每帶一個詢問花300元。」',tags:'行動成本 每次成本 詢問成本 購買成本 廣告效益',color:'var(--ye)',tc:'var(--yd)'},
+    {t:'CPC（每次點擊成本）',en:'Cost Per Click',d:'每獲得一次點擊需要花多少廣告費。',formula:'CPC = 總廣告費 ÷ 點擊次數',example:'「廣告花了1000元，帶來200次點擊，CPC就是5元，代表每個點擊花5元。」',tags:'點擊成本 每次點擊 廣告費 投放',color:'var(--ye)',tc:'var(--yd)'},
+    {t:'LTV（客戶終身價值）',en:'Lifetime Value',d:'一個客戶在整個合作期間帶給你的總收入。LTV越高，值得花更多去獲取一個客戶。',formula:'LTV = 平均客單價 × 平均合作月數',example:'「如果客戶月費3萬，平均合作6個月，LTV就是18萬。知道LTV才能判斷花多少錢找客戶值不值得。」',tags:'終身價值 客戶價值 長期 續約 總收入 LTV',color:'var(--r4)',tc:'var(--r2)'},
+    {t:'高客單',en:'High Ticket',d:'服務定價高（通常指NT$3萬以上/月）。特色是客戶決策慢、但成交後利潤高。',formula:'',example:'「全程代運營45K-80K是高客單服務，要先建立信任再談價格，不能一開始就報價。」',tags:'高客單 高價 貴 專業 精緻 高端',color:'var(--r1)',tc:'var(--p1)'},
+    {t:'客單價',en:'Average Order Value',d:'每個客戶平均支付的金額。提高客單價比增加客戶數量更有效率。',formula:'客單價 = 總營收 ÷ 客戶數',example:'「現在有5個客戶，月收入15萬，平均客單價就是3萬。目標是把客單價提高到5萬。」',tags:'客單 價格 平均 收入 定價',color:'var(--r4)',tc:'var(--r2)'},
+    {t:'觸及率',en:'Reach Rate',d:'觸及人數÷總粉絲數×100%。反映你的內容被多少比例的粉絲看到。',formula:'觸及率 = 觸及人數 ÷ 粉絲數 × 100%',example:'「你有1000個粉絲，這支影片觸及了200人，觸及率就是20%，算正常水準。」',tags:'觸及率 觸及 粉絲 覆蓋 曝光',color:'#EEF5FD',tc:'var(--bd)'},
+    {t:'儲存率',en:'Save Rate',d:'儲存數÷觸及數×100%。儲存率高代表內容有「參考價值」，演算法很喜歡。',formula:'儲存率 = 儲存數 ÷ 觸及數 × 100%',example:'「這支教學型影片儲存率8%，代表很多人把它存起來以後再看，演算法會大力推播。」',tags:'儲存 收藏 保存 參考價值 演算法',color:'var(--gr)',tc:'var(--gd)'},
+    {t:'分享率',en:'Share Rate',d:'分享數÷觸及數×100%。分享率高代表內容讓人有「幫我說出心聲」的感覺。',formula:'分享率 = 分享數 ÷ 觸及數 × 100%',example:'「這支影片分享率5%很高，說明內容打到受眾的共鳴，會帶來大量免費曝光。」',tags:'分享 轉發 病毒 擴散 共鳴',color:'var(--gr)',tc:'var(--gd)'},
+    {t:'KOL vs KOC',en:'Key Opinion Leader / Consumer',d:'KOL是知名網紅（大流量），KOC是素人意見領袖（高信任）。現在KOC效果往往比KOL好。',formula:'',example:'「找一個有10萬粉絲但很精準的KOC，效果可能比找100萬粉絲的KOL更好，因為轉換率高。」',tags:'網紅 KOL KOC 意見領袖 素人 合作 推廣',color:'var(--or)',tc:'var(--od)'},
+    {t:'UGC（用戶生成內容）',en:'User Generated Content',d:'由你的客戶或粉絲自己創作的內容。是最真實的社會證明，轉換率極高。',formula:'',example:'「讓客戶自己分享使用你服務的影片，這就是UGC，比你自己說有效10倍。」',tags:'用戶 客戶 創作 真實 口碑 見證 UGC',color:'var(--or)',tc:'var(--od)'},
     // 廣告術語
     {t:'自然流量',en:'Organic Traffic',d:'靠演算法推播，不花錢，需時間素積，適合IP建立長期信任',tags:'自然 免費 流量 演算法 不花錢 有機 長期',color:'var(--gr)',tc:'var(--gd)'},
     {t:'付費流量',en:'Paid Traffic',d:'花錢投廣告，效果立即可見，需素材＋預算＋測試',tags:'付費 廣告 投放 花錢 立即 快速',color:'#1A1210',tc:'#E8E3DA'},
