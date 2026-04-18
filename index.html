@@ -41,8 +41,10 @@ h1,h2,h3{font-family:'Noto Serif TC',serif}
 .hslabel{font-size:9px;color:var(--p1);margin-top:1px}
 
 /* TABS */
-.tabs{display:flex;background:var(--r2);overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.1)}
+.tabs{display:flex;background:var(--r2);overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.1);align-items:center}
 .tabs::-webkit-scrollbar{display:none}
+.tab-label{flex-shrink:0;padding:0 8px;font-size:9px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.12em;white-space:nowrap;text-transform:uppercase}
+.tab-divider{flex-shrink:0;width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 4px}
 .tab{flex-shrink:0;padding:10px 14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
 .tab.active{color:#fff;border-bottom-color:#fff}
 .tpage{display:none}.tpage.active{display:block}
@@ -237,7 +239,7 @@ const DOC_ID = 'baby_handbook';
     <div class="hsub">圖像色塊快速理解 ／ 展開看步驟說明 ／ 模擬表格練習 ／ AI提示詞直接複製</div>
   </div>
   <div class="hstats">
-    <div class="hstat"><div class="hsnum">29</div><div class="hslabel">主題</div></div>
+    <div class="hstat"><div class="hsnum">32</div><div class="hslabel">主題</div></div>
     <div class="hstat"><div class="hsnum" id="h-done">0</div><div class="hslabel">已理解</div></div>
     <div class="hstat"><div class="hsnum" id="h-note">0</div><div class="hslabel">有筆記</div></div>
     <div class="hstat"><div class="hsnum" id="h-pct">0%</div><div class="hslabel">完成率</div></div>
@@ -245,15 +247,19 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 <div class="tabs">
+  <div class="tab-label">⚡ 執行引擎</div>
   <div class="tab active" onclick="switchTab(0,this)">📋 客戶流程</div>
   <div class="tab" onclick="switchTab(1,this)">🎯 IP定位</div>
   <div class="tab" onclick="switchTab(2,this)">⚡ AI工具</div>
   <div class="tab" onclick="switchTab(3,this)">💰 報價合約</div>
   <div class="tab" onclick="switchTab(4,this)">🔄 每月執行</div>
-  <div class="tab" onclick="switchTab(5,this)">🎯 合作目標</div>
-  <div class="tab" onclick="switchTab(6,this)">📖 術語庫</div>
-  <div class="tab" onclick="switchTab(7,this)">🛡️ 權責邊界</div>
-  <div class="tab" onclick="switchTab(8,this)">🏢 提案練習</div>
+  <div class="tab" onclick="switchTab(5,this)">🎬 腳本系統</div>
+  <div class="tab-divider"></div>
+  <div class="tab-label">✦ 底氣區</div>
+  <div class="tab" onclick="switchTab(6,this)">🎯 合作目標</div>
+  <div class="tab" onclick="switchTab(7,this)">📖 術語庫</div>
+  <div class="tab" onclick="switchTab(8,this)">🛡️ 權責邊界</div>
+  <div class="tab" onclick="switchTab(9,this)">🏢 提案練習</div>
 </div>
 <!-- ===== TAB 0 ===== -->
 <div class="tpage active" id="tp-0">
@@ -1084,7 +1090,7 @@ const DOC_ID = 'baby_handbook';
 
 
 <!-- ===== TAB 5: 合作目標 ===== -->
-<div class="tpage" id="tp-5">
+<div class="tpage" id="tp-6">
 
 
 <div class="ch">
@@ -1242,8 +1248,217 @@ const DOC_ID = 'baby_handbook';
 
 </div>
 
+<!-- ===== TAB 5: 腳本系統 ===== -->
+<div class="tpage" id="tp-5">
+
+<div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">🎬</div>
+  <div><div class="ch-title">腳本系統</div><div class="ch-sub">從目標到腳本，從上片到複盤的完整流程</div></div>
+</div>
+
+<!-- 卡片A：腳本撰寫框架 -->
+<div class="card" data-id="30" data-title="腳本撰寫框架">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--r1);color:var(--p1)">S1</div>
+    <div class="cinfo"><div class="ctitle">腳本撰寫框架</div><div class="csub">前3秒鉤子→中段→結尾CTA，每個環節怎麼設計</div></div>
+    <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
+  </div>
+
+  <div style="padding:0 14px 12px">
+
+    <!-- 前3秒鉤子 -->
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em">⚡ 前3秒｜鉤子設計（決定要不要繼續看）</div>
+    <div style="display:grid;gap:5px;margin-bottom:12px">
+      <div style="background:var(--r1);border-radius:8px;padding:9px 12px">
+        <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">① 打破常識型</div>
+        <div style="font-size:10px;color:var(--p1);line-height:1.6">「你以為的XXX，其實是錯的」<br>「99%的人都不知道這件事」<br>→ 用反直覺製造好奇心</div>
+      </div>
+      <div style="background:var(--r4);border-radius:8px;padding:9px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:3px">② 痛點直擊型</div>
+        <div style="font-size:10px;color:var(--r2);line-height:1.6">「如果你有這個問題，繼續看」<br>「老闆必看！這個錯誤很多人都在犯」<br>→ 讓受眾覺得「這在說我」</div>
+      </div>
+      <div style="background:var(--or);border-radius:8px;padding:9px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--od);margin-bottom:3px">③ 故事開場型</div>
+        <div style="font-size:10px;color:var(--od);line-height:1.6">「上個月有個客戶找我，他說…」<br>「我第一次遇到這種情況，是在…」<br>→ 人天生對故事有好奇心</div>
+      </div>
+      <div style="background:var(--ye);border-radius:8px;padding:9px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--yd);margin-bottom:3px">④ 數字震驚型</div>
+        <div style="font-size:10px;color:var(--yd);line-height:1.6">「3個步驟讓你的詢問量翻倍」<br>「這個方法幫客戶省了50萬」<br>→ 具體數字製造可信度</div>
+      </div>
+      <div style="background:var(--pu);border-radius:8px;padding:9px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--pd);margin-bottom:3px">⑤ 問題引發型</div>
+        <div style="font-size:10px;color:var(--pd);line-height:1.6">「你有沒有遇過這種狀況？」<br>「如果是你，你會怎麼做？」<br>→ 讓觀眾主動思考，停止滑動</div>
+      </div>
+    </div>
+
+    <!-- 中段結構 -->
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em">📐 中段｜內容結構（三種類型）</div>
+    <div style="display:grid;gap:5px;margin-bottom:12px">
+      <div style="background:var(--w2);border-radius:8px;padding:9px 12px;border:1px solid var(--w3)">
+        <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px">知識型 → 適合「建立信任感」目標</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">提問（鉤子）→ 解釋原因 → 給解決方案 → 強調重點<br><span style="color:var(--r1)">⚠️ 每個知識點只說一個，說清楚就好</span></div>
+      </div>
+      <div style="background:var(--w2);border-radius:8px;padding:9px 12px;border:1px solid var(--w3)">
+        <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px">故事型 → 適合「建立IP」「改變認知」目標</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">情境（發生了什麼）→ 衝突（遇到什麼問題）→ 轉折（怎麼解決）→ 結論（帶出你的服務）</div>
+      </div>
+      <div style="background:var(--w2);border-radius:8px;padding:9px 12px;border:1px solid var(--w3)">
+        <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:4px">觀點型 → 適合「曝光」「記憶點」目標</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">你的立場（我認為）→ 理由1、2、3 → 反方說法 → 你的回應<br><span style="color:var(--r1)">⚠️ 有點爭議才會被分享，但不要踩雷</span></div>
+      </div>
+    </div>
+
+    <!-- 結尾CTA -->
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em">🎯 結尾CTA｜對應合作目標設計</div>
+    <div style="background:#1A1210;border-radius:9px;padding:12px">
+      <div style="display:grid;gap:6px">
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">目標：增加詢問量 → CTA</div>
+          <div style="font-size:10px;color:#E8E3DA">「有問題嗎？Line私訊我，免費幫你分析」</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">目標：建立信任感 → CTA</div>
+          <div style="font-size:10px;color:#E8E3DA">「追蹤我，每週分享一個你用得到的知識」</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">目標：直接帶業績 → CTA</div>
+          <div style="font-size:10px;color:#E8E3DA">「連結在主頁，現在預約享早鳥優惠」</div>
+        </div>
+        <div style="background:rgba(255,255,255,.08);border-radius:6px;padding:8px 10px">
+          <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:2px">目標：教育市場 → CTA</div>
+          <div style="font-size:10px;color:#E8E3DA">「儲存這支影片，下次遇到這情況你會知道怎麼做」</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cacts">
+    <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
+    <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
+  </div>
+  <div class="npanel"></div>
+</div>
+
+<!-- 卡片B：上片前中後 -->
+<div class="card" data-id="31" data-title="上片前中後作戰系統">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--gr);color:var(--gd)">S2</div>
+    <div class="cinfo"><div class="ctitle">上片前中後作戰系統</div><div class="csub">上片前準備→發布後追蹤→複盤優化，五個階段</div></div>
+    <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
+  </div>
+
+  <div style="padding:0 14px 12px;display:grid;gap:8px">
+
+    <!-- 階段1：上片前 -->
+    <div style="background:var(--r1);border-radius:9px;overflow:hidden">
+      <div style="padding:8px 12px;font-size:11px;font-weight:700;color:#fff">📝 階段1｜上片前（D-3到D-1）</div>
+      <div style="background:rgba(0,0,0,.15);padding:9px 12px;font-size:10px;color:var(--p1);line-height:1.8">
+        ✦ D-3：研究競品最近爆款，找鉤子靈感<br>
+        ✦ D-2：確認最佳發布時段（看受眾活躍時間）<br>
+        ✦ D-1：寫3個不同版本的標題，選最強的<br>
+        ✦ D-1：確認封面圖（封面決定70%的點擊率）
+      </div>
+    </div>
+
+    <!-- 階段2：發布後24小時 -->
+    <div style="background:var(--or);border-radius:9px;overflow:hidden">
+      <div style="padding:8px 12px;font-size:11px;font-weight:700;color:var(--od)">🔥 階段2｜發布後0-24小時（最關鍵）</div>
+      <div style="background:rgba(0,0,0,.05);padding:9px 12px;font-size:10px;color:var(--od);line-height:1.8">
+        ✦ 發布後30分鐘：主動回覆前5則留言（觸發演算法）<br>
+        ✦ 發布後2小時：看完播率，低於30%代表鉤子太弱<br>
+        ✦ 發布後6小時：看分享數，高代表內容有共鳴<br>
+        ✦ 發布後24小時：看整體觸及，決定要不要投放廣告
+      </div>
+    </div>
+
+    <!-- 階段3：發布後72小時 -->
+    <div style="background:var(--ye);border-radius:9px;overflow:hidden">
+      <div style="padding:8px 12px;font-size:11px;font-weight:700;color:var(--yd)">📊 階段3｜發布後25-72小時</div>
+      <div style="background:rgba(0,0,0,.04);padding:9px 12px;font-size:10px;color:var(--yd);line-height:1.8">
+        ✦ 看儲存率：高＝有參考價值，演算法會繼續推<br>
+        ✦ 看觸及中新受眾比例：高＝突破同溫層<br>
+        ✦ 看詢問量變化：有沒有帶來私訊或表單<br>
+        ✦ 記錄：這支影片用了哪個鉤子類型→哪個數據高
+      </div>
+    </div>
+
+    <!-- 階段4：一週複盤 -->
+    <div style="background:var(--gr);border-radius:9px;overflow:hidden">
+      <div style="padding:8px 12px;font-size:11px;font-weight:700;color:var(--gd)">🔍 階段4｜一週複盤（每週五做）</div>
+      <div style="background:rgba(0,0,0,.04);padding:9px 12px;font-size:10px;color:var(--gd);line-height:1.8">
+        ✦ 這週哪支表現最好？用了什麼鉤子？<br>
+        ✦ 這週哪支最差？鉤子太弱？中段太長？CTA不對？<br>
+        ✦ 留言裡有沒有新的內容靈感？<br>
+        ✦ 下週腳本要調整哪一個環節？
+      </div>
+    </div>
+
+    <!-- 階段5：月度優化 -->
+    <div style="background:var(--pu);border-radius:9px;overflow:hidden">
+      <div style="padding:8px 12px;font-size:11px;font-weight:700;color:var(--pd)">📈 階段5｜月度優化（交給客戶的報告）</div>
+      <div style="background:rgba(0,0,0,.04);padding:9px 12px;font-size:10px;color:var(--pd);line-height:1.8">
+        ✦ 本月總觸及、完播率、儲存率趨勢<br>
+        ✦ 最佳鉤子類型 → 下月多用<br>
+        ✦ 對應合作目標KPI達成率（05、06、07…）<br>
+        ✦ 下月內容策略調整方向<br>
+        <span style="color:var(--r1);font-weight:700">✦ 這份報告是你續約的關鍵武器</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cacts">
+    <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
+    <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
+  </div>
+  <div class="npanel"></div>
+</div>
+
+<!-- 卡片C：目標對應腳本 -->
+<div class="card" data-id="32" data-title="合作目標對應腳本範本">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">S3</div>
+    <div class="cinfo"><div class="ctitle">合作目標對應腳本範本</div><div class="csub">知道目標，腳本就知道怎麼寫</div></div>
+    <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
+  </div>
+
+  <div style="padding:0 14px 12px;display:grid;gap:7px">
+    <div style="background:var(--gr);border-radius:9px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--gd);margin-bottom:5px">目標05｜建立專業信任感</div>
+      <div style="font-size:10px;color:var(--gd);line-height:1.7">鉤子：迷思破解型「你以為XXX？其實是這樣」<br>中段：知識型，給1-2個具體可操作的知識<br>CTA：「追蹤我，每週讓你多懂一件事」<br>核心KPI：收藏率目標5%+、完播率40%+</div>
+    </div>
+    <div style="background:var(--bl);border-radius:9px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:#1565A0;margin-bottom:5px">目標03｜建立個人IP</div>
+      <div style="font-size:10px;color:#1565A0;line-height:1.7">鉤子：故事開場型「讓我告訴你我怎麼走到這裡」<br>中段：觀點型，說出你獨特的角度和立場<br>CTA：「如果你也這樣想，追蹤我」<br>核心KPI：粉絲成長率、回訪率</div>
+    </div>
+    <div style="background:var(--p1);border-radius:9px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:5px">目標06｜增加詢問量</div>
+      <div style="font-size:10px;color:var(--r2);line-height:1.7">鉤子：痛點直擊型「如果你有這個問題」<br>中段：故事型，講一個客戶案例（匿名）<br>CTA：「私訊我，免費幫你分析你的狀況」<br>核心KPI：私訊數、CTA點擊率</div>
+    </div>
+    <div style="background:var(--ye);border-radius:9px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--yd);margin-bottom:5px">目標04｜教育市場/改變認知</div>
+      <div style="font-size:10px;color:var(--yd);line-height:1.7">鉤子：數字震驚型「3個你不知道的事」<br>中段：知識型，科普式解說，說人話不說術語<br>CTA：「儲存這支影片，以後用得到」<br>核心KPI：儲存率5%+、完播率</div>
+    </div>
+    <div style="background:var(--r1);border-radius:9px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:5px">目標08｜直接帶業績</div>
+      <div style="font-size:10px;color:var(--p1);line-height:1.7">鉤子：數字型「限時優惠剩3天」或見證型<br>中段：展示成果、比較、解決疑慮（抗拒點）<br>CTA：「連結在主頁，立即預約/購買」<br>核心KPI：ROAS、轉換率、點擊率</div>
+    </div>
+    <div style="margin-top:4px">
+      <button onclick="jumpTab(6)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
+    </div>
+  </div>
+
+  <div class="cacts">
+    <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
+    <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
+  </div>
+  <div class="npanel"></div>
+</div>
+
+</div>
+
 <!-- ===== TAB 6: 術語庫 ===== -->
-<div class="tpage" id="tp-6">
+<div class="tpage" id="tp-7">
 
 <div class="ch">
   <div class="ch-ico" style="background:var(--blue)">🔍</div>
@@ -1562,7 +1777,7 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 <!-- ===== TAB 7: 權責邊界 ===== -->
-<div class="tpage" id="tp-7">
+<div class="tpage" id="tp-8">
 
 <div class="ch">
   <div class="ch-ico" style="background:var(--green)">🛡️</div>
@@ -1766,7 +1981,7 @@ const DOC_ID = 'baby_handbook';
 
 
 <!-- ===== TAB 8: 提案練習 ===== -->
-<div class="tpage" id="tp-8">
+<div class="tpage" id="tp-9">
 
 <div class="ch">
   <div class="ch-ico" style="background:var(--r1)">🏢</div>
@@ -2572,7 +2787,7 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 <script>
-const TOTAL=29;
+const TOTAL=32;
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
@@ -2845,7 +3060,7 @@ function nextCard(){
 
 
 function jumpToGoal(num){
-  jumpTab(5);
+  jumpTab(6);
   setTimeout(()=>{
     const el=document.getElementById('goal-'+num);
     if(!el)return;
