@@ -1522,24 +1522,21 @@ let saveTimer=null;
 function setSyncStatus(state){
   const el=document.getElementById('sync-status');
   if(!el)return;
-  const map={loading:'⏳ 載入中...',saving:'☁️ 儲存中...',saved:'✓ 已同步',error:'⚠️ 離線模式'};
+  const map={loading:'✓ 本機儲存',saving:'☁️ 儲存中...',saved:'✓ 已同步',error:'⚠️ 離線模式'};
   el.textContent=map[state]||'';
   el.style.color=state==='error'?'#ffb3b3':state==='saved'?'#a8f0c6':'var(--p1)';
 }
 
 /* ── 雲端讀取 ── */
-async function loadFromCloud(){
+function loadFromCloud(){
   setSyncStatus('loading');
   try{
-    const [pr,nr]=await Promise.all([
-      window.storage.get(STORAGE_KEY),
-      window.storage.get(NOTES_KEY)
-    ]);
-    if(pr&&pr.value){const d=JSON.parse(pr.value);if(Array.isArray(d))S.c=d;}
-    if(nr&&nr.value){const d=JSON.parse(nr.value);if(typeof d==='object')S.n=d;}
+    const c=localStorage.getItem(STORAGE_KEY);
+    const n=localStorage.getItem(NOTES_KEY);
+    if(c){const d=JSON.parse(c);if(Array.isArray(d))S.c=d;}
+    if(n){const d=JSON.parse(n);if(typeof d==='object'&&d)S.n=d;}
     setSyncStatus('saved');
   }catch(e){
-    /* 找不到 key 或第一次使用 → 正常，從空白開始 */
     setSyncStatus('saved');
   }
   applyState();
@@ -1547,19 +1544,13 @@ async function loadFromCloud(){
 
 /* ── 雲端儲存（防抖 800ms）── */
 function save(){
-  if(saveTimer)clearTimeout(saveTimer);
-  setSyncStatus('saving');
-  saveTimer=setTimeout(async()=>{
-    try{
-      await Promise.all([
-        window.storage.set(STORAGE_KEY,JSON.stringify(S.c)),
-        window.storage.set(NOTES_KEY,JSON.stringify(S.n))
-      ]);
-      setSyncStatus('saved');
-    }catch(e){
-      setSyncStatus('error');
-    }
-  },800);
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(S.c));
+    localStorage.setItem(NOTES_KEY,JSON.stringify(S.n));
+    setSyncStatus('saved');
+  }catch(e){
+    setSyncStatus('error');
+  }
 }
 
 /* ── 套用已儲存狀態到 DOM ── */
