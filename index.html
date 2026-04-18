@@ -2013,7 +2013,7 @@ const DOC_ID = 'baby_handbook';
     <div class="mctx"><div class="mctx-l">你在看的項目</div><div class="mctx-t" id="mctx-t"></div></div>
     <textarea class="mta" id="mta" placeholder="你不懂的地方是什麼？想問什麼都可以..."></textarea>
     <div class="mhint">💡 點「複製問題」後，去 Claude 對話視窗貼上，我會直接回答你</div>
-    <button class="msend" onclick="sendQ()">複製問題並關閉</button>
+    <button class="msend" onclick="sendQ()">🤖 直接問 Claude</button>
   </div>
 </div>
 
@@ -2197,12 +2197,63 @@ function openAsk(card){
 function closeAsk(){document.getElementById('mbg').classList.remove('open');askCard=null;}
 function closeModal(e){if(e.target===document.getElementById('mbg'))closeAsk();}
 
-function sendQ(){
+async function sendQ(){
   const t=askCard?askCard.dataset.title:'操作手冊項目';
   const q=document.getElementById('mta').value.trim();
   if(!q){alert('請先輸入你的問題');return;}
-  const full='我在看「短影音代理營運公司操作手冊」的「'+t+'」，我有一個問題：\n\n'+q;
-  navigator.clipboard.writeText(full).then(()=>{closeAsk();alert('✓ 問題已複製！\n去 Claude 對話視窗貼上就可以了。');}).catch(()=>{prompt('請複製以下問題：',full);closeAsk();});
+  
+  const btn=document.querySelector('.msend');
+  const originalText=btn.textContent;
+  btn.textContent='⏳ AI思考中...';
+  btn.disabled=true;
+  
+  // 清除舊回答
+  const oldAns=document.getElementById('ai-answer');
+  if(oldAns)oldAns.remove();
+  
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:800,
+        messages:[{
+          role:'user',
+          content:'你是短影音代理營運專家助理。用戶正在學習「'+t+'」，問：'+q+'\n\n請用繁體中文口語回答，150字以內，重點清楚，可以用emoji讓回答更易讀。'
+        }]
+      })
+    });
+    const data=await resp.json();
+    const answer=(data.content&&data.content[0])?data.content[0].text:'抱歉，暫時無法回答，請稍後再試。';
+    
+    const ansDiv=document.createElement('div');
+    ansDiv.id='ai-answer';
+    ansDiv.style.cssText='background:var(--w2);border-radius:9px;padding:12px;margin-top:10px;font-size:12px;color:var(--text);line-height:1.8;border-left:3px solid var(--r1)';
+    ansDiv.innerHTML='<div style="font-size:10px;font-weight:700;color:var(--r1);margin-bottom:6px;letter-spacing:.06em">🤖 CLAUDE 回答</div>'+answer.replace(/\n/g,'<br>');
+    
+    const mhint=document.querySelector('.mhint');
+    if(mhint)mhint.parentNode.insertBefore(ansDiv,mhint);
+    
+    btn.textContent='再問一題';
+    btn.disabled=false;
+    btn.onclick=()=>{
+      document.getElementById('mta').value='';
+      const old=document.getElementById('ai-answer');
+      if(old)old.remove();
+      btn.textContent=originalText;
+      btn.onclick=sendQ;
+    };
+  }catch(e){
+    const ansDiv=document.createElement('div');
+    ansDiv.id='ai-answer';
+    ansDiv.style.cssText='background:var(--ye);border-radius:9px;padding:10px 12px;margin-top:10px;font-size:11px;color:var(--yd)';
+    ansDiv.textContent='⚠️ 暫時無法連線，請直接去 claude.ai 問問題。';
+    const mhint=document.querySelector('.mhint');
+    if(mhint)mhint.parentNode.insertBefore(ansDiv,mhint);
+    btn.textContent=originalText;
+    btn.disabled=false;
+  }
 }
 
 function copyP(btn){
@@ -2277,10 +2328,11 @@ function searchGoals(q){
   });
   if(matched.length===0){result.innerHTML='<div style="font-size:11px;color:var(--muted);padding:8px 0">找不到相關目標，試試：曝光、詢問、信任、業績、IP</div>';return;}
   result.innerHTML=matched.map(g=>`
-    <div style="background:${g.color};border-radius:9px;padding:10px 12px;margin-bottom:8px">
+    <div onclick="scrollToGoal('${g.name}')" style="background:${g.color};border-radius:9px;padding:10px 12px;margin-bottom:8px;cursor:pointer;border:2px solid transparent;transition:border .15s"
+      onmouseover="this.style.borderColor='var(--r1)'" onmouseout="this.style.borderColor='transparent'">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <span style="font-size:12px;font-weight:700;color:${g.tc}">${g.name}</span>
-        <span style="font-size:9px;background:rgba(0,0,0,.15);color:${g.tc};padding:2px 7px;border-radius:10px">${g.layer}</span>
+        <span style="font-size:10px;background:rgba(0,0,0,.15);color:${g.tc};padding:2px 7px;border-radius:10px">點我跳轉 ↓</span>
       </div>
       <div style="font-size:11px;color:${g.tc};line-height:1.7">
         <strong>KPI：</strong>${g.kpi}<br>
@@ -2289,6 +2341,30 @@ function searchGoals(q){
       </div>
     </div>
   `).join('');
+}
+
+function scrollToGoal(name){
+  const tp5=document.getElementById('tp-5');
+  if(!tp5)return;
+  const num=name.split(' ')[0];
+  const detail=tp5.querySelector('.detail');
+  if(detail&&!detail.classList.contains('on')){
+    const btn=tp5.querySelector('.exbtn');
+    if(btn)btn.click();
+  }
+  setTimeout(()=>{
+    const allEls=tp5.querySelectorAll('[style*="font-size:12px"],[style*="font-size:11px"]');
+    let target=null;
+    allEls.forEach(el=>{
+      if(!target&&el.textContent.includes(num)&&el.textContent.length<50){target=el;}
+    });
+    if(target){
+      target.scrollIntoView({behavior:'smooth',block:'center'});
+      const box=target.closest('[style*="border-radius:9px"]')||target;
+      box.style.outline='3px solid var(--r1)';
+      setTimeout(()=>box.style.outline='',2000);
+    }
+  },300);
 }
 
 function searchTerms(q){
@@ -2375,14 +2451,43 @@ function searchTerms(q){
   }
   
   result.innerHTML=scored.slice(0,6).map(f=>`
-    <div style="background:${f.color};border-radius:8px;padding:10px 12px;margin-bottom:6px">
+    <div onclick="scrollToTerm('${f.t}')" style="background:${f.color};border-radius:8px;padding:10px 12px;margin-bottom:6px;cursor:pointer;border:2px solid transparent;transition:border .15s"
+      onmouseover="this.style.borderColor='var(--r1)'" onmouseout="this.style.borderColor='transparent'">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
         <span style="font-size:12px;font-weight:700;color:${f.tc}">${f.t}</span>
-        <span style="font-size:9px;color:${f.tc};opacity:.7">${f.en}</span>
+        <span style="font-size:10px;color:${f.tc};background:rgba(0,0,0,.12);padding:2px 7px;border-radius:10px">點我跳轉 ↓</span>
       </div>
       <div style="font-size:11px;color:${f.tc};line-height:1.5">${f.d}</div>
+      ${f.formula?`<div style="font-size:10px;font-weight:700;color:${f.tc};background:rgba(0,0,0,.1);padding:4px 8px;border-radius:5px;margin-top:5px;font-family:monospace">${f.formula}</div>`:''}
     </div>
   `).join('');
+}
+
+function scrollToTerm(name){
+  const tp6=document.getElementById('tp-6');
+  if(!tp6)return;
+  const cards=tp6.querySelectorAll('.card');
+  let found=null;
+  cards.forEach(c=>{
+    const title=c.querySelector('.ctitle');
+    if(title&&(title.textContent.includes(name.split('/')[0].trim())||title.textContent.includes(name.split(' ')[0]))){
+      found=c;
+    }
+  });
+  if(!found){
+    // 找不到卡片，找頁面內任何包含該文字的元素
+    const allText=tp6.querySelectorAll('[style*="font-size:13px"],[style*="font-size:12px"]');
+    allText.forEach(el=>{
+      if(!found&&el.textContent.includes(name.split('/')[0].trim().substring(0,4))){
+        found=el.closest('.card')||el;
+      }
+    });
+  }
+  if(found){
+    found.scrollIntoView({behavior:'smooth',block:'center'});
+    found.style.outline='3px solid var(--r1)';
+    setTimeout(()=>found.style.outline='',2000);
+  }
 }
 
 init();
