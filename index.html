@@ -253,6 +253,7 @@ const DOC_ID = 'baby_handbook';
   <div class="tab" onclick="switchTab(5,this)">🎯 合作目標</div>
   <div class="tab" onclick="switchTab(6,this)">📖 術語庫</div>
   <div class="tab" onclick="switchTab(7,this)">🛡️ 權責邊界</div>
+  <div class="tab" onclick="switchTab(8,this)">🏢 提案練習</div>
 </div>
 <!-- ===== TAB 0 ===== -->
 <div class="tpage active" id="tp-0">
@@ -1250,7 +1251,7 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 <div style="padding:0 12px 16px">
-  <input type="text" id="term-search" placeholder="搜尋術語，例如：完播率、ROAS、鉤子..." 
+  <input type="text" id="term-search" placeholder="模糊搜尋，例如：流量、廣告費、轉換、信任、提案..." 
     style="width:100%;padding:10px 14px;border:2px solid var(--r1);border-radius:10px;font-size:13px;font-family:'Noto Sans TC',sans-serif;outline:none;color:var(--text);background:var(--w1)"
     oninput="searchTerms(this.value)">
   <div id="search-result" style="margin-top:8px;font-size:11px;color:var(--muted)"></div>
@@ -1597,6 +1598,248 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 
+
+<!-- ===== TAB 8: 提案練習 ===== -->
+<div class="tpage" id="tp-8">
+
+<div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">🏢</div>
+  <div><div class="ch-title">真實客戶提案練習卡</div><div class="ch-sub">對照前面學的，在這裡模擬提案流程</div></div>
+</div>
+
+<div style="padding:0 14px 14px">
+  <div style="background:var(--p1);border-radius:9px;padding:10px 12px">
+    <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:3px">這個分頁怎麼用</div>
+    <div style="font-size:11px;color:var(--r2);line-height:1.7">每張卡片是一個真實潛在客戶。看完客戶現況後，點「→ 跳到對應分頁」按鈕，對照前面學的內容準備提案。提案前反覆看這裡，你會越來越有把握。</div>
+  </div>
+</div>
+
+<!-- 客戶1：理鴻法律 -->
+<div class="ch">
+  <div class="ch-ico" style="background:var(--pu)">⚖️</div>
+  <div><div class="ch-title">客戶①｜理鴻法律事務所</div><div class="ch-sub">商務法專業律師事務所，台北中山區</div></div>
+</div>
+
+<div class="card" data-id="23" data-title="理鴻法律事務所提案練習">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--pu);color:var(--pd)">C1</div>
+    <div class="cinfo"><div class="ctitle">理鴻法律事務所 KAL Attorneys at Law</div><div class="csub">郭柏鴻律師＋李牧宸律師｜企業法律顧問、勞資爭議、商業糾紛</div></div>
+    <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
+  </div>
+
+  <!-- 客戶現況 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📊 客戶現況（AI搜尋資料）</div>
+    <div style="display:grid;gap:6px">
+      <div style="background:var(--pu);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:3px">IG @kl.legal</div>
+        <div style="font-size:11px;color:var(--pd);line-height:1.6">7,680 粉絲｜149篇貼文｜11人追蹤<br>有在經營，但貼文互動空間大</div>
+      </div>
+      <div style="background:var(--bl);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--bd);margin-bottom:3px">FB 粉絲專頁</div>
+        <div style="font-size:11px;color:var(--bd);line-height:1.6">約3,967讚｜定期分享法律時事<br>有基礎受眾但未善用短影音</div>
+      </div>
+      <div style="background:var(--w2);border-radius:8px;padding:9px 12px;border:1px solid var(--w3)">
+        <div style="font-size:10px;font-weight:700;color:var(--text);margin-bottom:3px">官網 kal.tw</div>
+        <div style="font-size:11px;color:var(--muted);line-height:1.6">專業形象完整，服務項目清楚<br>但網站無法帶來主動詢問流量</div>
+      </div>
+      <div style="background:var(--ye);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--yd);margin-bottom:3px">⚠️ 核心痛點</div>
+        <div style="font-size:11px;color:var(--yd);line-height:1.6">法律知識太艱深→一般人看不懂→難以建立信任→潛在客戶不敢主動詢問<br><strong>機會：把艱深法律知識轉成「你看得懂的短影音」</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 你能提供什麼 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">💡 你能為他提供什麼</div>
+    <div style="display:grid;gap:5px">
+      <div style="background:var(--r1);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:#fff;line-height:1.7">✦ 把「勞資爭議、商業糾紛、個資法」等專業法律話題，轉化成讓一般人能看懂、願意轉發的短影音</div></div>
+      <div style="background:var(--r4);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:var(--r2);line-height:1.7">✦ 讓郭律師、李律師建立「親近感＋專業感」兼具的個人IP，成為台灣商務法領域的短影音代表律師</div></div>
+      <div style="background:var(--p1);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:var(--r2);line-height:1.7">✦ 每支影片末端的CTA，讓有法律需求的潛在客戶主動私訊詢問，增加案件來源</div></div>
+    </div>
+  </div>
+
+  <!-- 建議目標層 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🎯 建議對應的合作目標</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div style="background:var(--green);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--gd)">C層 信任</div><div style="font-size:11px;color:var(--gd);margin-top:2px">05 建立專業信任感</div></div>
+      <div style="background:var(--p1);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--r2)">D層 轉化</div><div style="font-size:11px;color:var(--r2);margin-top:2px">06 增加詢問量</div></div>
+      <div style="background:var(--bl);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--bd)">B層 品牌</div><div style="font-size:11px;color:var(--bd);margin-top:2px">03 建立個人IP</div></div>
+      <div style="background:var(--ye);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--yd)">A層 認知</div><div style="font-size:11px;color:var(--yd);margin-top:2px">01 增加品牌曝光</div></div>
+    </div>
+  </div>
+
+  <!-- 建議方案 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">💰 建議報價方案</div>
+    <div style="background:var(--r1);border-radius:8px;padding:10px 12px">
+      <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">策略顧問包 → 全程代運營（建議從這裡切入）</div>
+      <div style="font-size:11px;color:var(--p1);line-height:1.7">起始方案：策略顧問包 NT$18K-30K/月<br>說服點：律師忙，讓他們只需出鏡，其他全交給你<br>升級路徑：3個月後數據好→升級全程代運營</div>
+    </div>
+  </div>
+
+  <!-- 提案關鍵話術 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🗣️ 提案時的關鍵話術</div>
+    <div style="background:#1A1210;border-radius:9px;padding:12px">
+      <div style="font-size:11px;color:#E8E3DA;line-height:1.9">「郭律師，你們的IG有7千多粉絲，代表市場對你們的內容有需求。但你們現在的貼文是靜態文字，對演算法來說幾乎沒有推廣效果。<br><br>我可以幫你們把每週一個法律議題，轉化成2-3分鐘讓一般人看得懂、願意轉傳的短影音。你只需要每週出鏡一次，其他的IP定位、腳本、剪輯、發布，全部我來。<br><br>你不需要學剪輯，你只需要繼續當律師。」</div>
+    </div>
+  </div>
+
+  <!-- 快速跳轉按鈕 -->
+  <div style="padding:0 14px 14px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔗 對照學習跳轉</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <button onclick="jumpTab(0)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">📋 客戶接洽流程</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼約初次諮詢</div>
+      </button>
+      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼幫律師找定位</div>
+      </button>
+      <button onclick="jumpTab(5)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
+      </button>
+      <button onclick="jumpTab(3)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">💰 報價合約</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認報價細節</div>
+      </button>
+    </div>
+    <div style="margin-top:8px">
+      <a href="https://www.instagram.com/kl.legal/" target="_blank" style="display:block;background:var(--w2);border-radius:8px;padding:8px 12px;text-decoration:none;border:1px solid var(--w3)">
+        <div style="font-size:11px;font-weight:700;color:var(--text)">🔗 查看理鴻IG帳號 @kl.legal</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">instagram.com/kl.legal</div>
+      </a>
+      <a href="https://www.kal.tw" target="_blank" style="display:block;background:var(--w2);border-radius:8px;padding:8px 12px;text-decoration:none;border:1px solid var(--w3);margin-top:5px">
+        <div style="font-size:11px;font-weight:700;color:var(--text)">🔗 查看理鴻官網 kal.tw</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">kal.tw</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cacts">
+    <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
+    <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
+  </div>
+  <div class="npanel"></div>
+</div>
+
+<!-- 客戶2：喜躍生醫 -->
+<div class="ch">
+  <div class="ch-ico" style="background:var(--te)">🧬</div>
+  <div><div class="ch-title">客戶②｜喜躍生醫股份有限公司</div><div class="ch-sub">細胞治療｜幹細胞儲存｜再生醫學，新北汐止</div></div>
+</div>
+
+<div class="card" data-id="24" data-title="喜躍生醫提案練習">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--te);color:var(--td)">C2</div>
+    <div class="cinfo"><div class="ctitle">喜躍生醫 XI YUE BIOMEDICINE INC.</div><div class="csub">成立2009年｜幹細胞、免疫細胞儲存｜細胞治療臨床應用｜資本額2億</div></div>
+    <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
+  </div>
+
+  <!-- 客戶現況 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📊 客戶現況（AI搜尋資料）</div>
+    <div style="display:grid;gap:6px">
+      <div style="background:var(--te);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--td);margin-bottom:3px">公司背景</div>
+        <div style="font-size:11px;color:var(--td);line-height:1.6">成立2009年（原名光麗生醫）｜資本額2億元<br>擁有台灣與中國雙專利｜GTP等級細胞製備廠房</div>
+      </div>
+      <div style="background:var(--gr);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:3px">服務項目</div>
+        <div style="font-size:11px;color:var(--gd);line-height:1.6">臍帶血儲存｜脂肪間質幹細胞｜免疫殺手細胞<br>幹細胞治療臨床應用｜預防醫學</div>
+      </div>
+      <div style="background:var(--ye);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--yd);margin-bottom:3px">⚠️ 核心痛點</div>
+        <div style="font-size:11px;color:var(--yd);line-height:1.7">「幹細胞」「細胞治療」對一般民眾太陌生→認知度極低→潛在客戶不知道這個服務存在→市場教育成本高<br><strong>機會：用故事型、科普型短影音建立大眾認知</strong></div>
+      </div>
+      <div style="background:var(--or);border-radius:8px;padding:9px 12px">
+        <div style="font-size:10px;font-weight:700;color:var(--od);margin-bottom:3px">⚠️ 台灣法規注意</div>
+        <div style="font-size:11px;color:var(--od);line-height:1.6">細胞治療涉及醫療法規，影片內容不能宣稱療效<br>需要謹慎設計「教育型」而非「廣告型」內容</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 你能提供什麼 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">💡 你能為他提供什麼</div>
+    <div style="display:grid;gap:5px">
+      <div style="background:var(--r1);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:#fff;line-height:1.7">✦ 把「幹細胞是什麼」「細胞治療如何運作」等硬知識，轉化成讓一般人能理解並主動詢問的科普短影音</div></div>
+      <div style="background:var(--te);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:var(--td);line-height:1.7">✦ 建立「預防醫學、提前準備、保存健康資本」的內容框架，讓受眾產生「我也需要」的共鳴</div></div>
+      <div style="background:var(--p1);border-radius:8px;padding:9px 12px"><div style="font-size:11px;color:var(--r2);line-height:1.7">✦ 符合台灣醫療法規的教育型內容策略，讓品牌在合規前提下最大化曝光與信任</div></div>
+    </div>
+  </div>
+
+  <!-- 建議目標層 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🎯 建議對應的合作目標</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <div style="background:var(--ye);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--yd)">A層 認知</div><div style="font-size:11px;color:var(--yd);margin-top:2px">04 教育市場/改變認知</div></div>
+      <div style="background:var(--bl);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--bd)">B層 品牌</div><div style="font-size:11px;color:var(--bd);margin-top:2px">02 提高品牌記憶點</div></div>
+      <div style="background:var(--green);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--gd)">C層 信任</div><div style="font-size:11px;color:var(--gd);margin-top:2px">05 建立專業信任感</div></div>
+      <div style="background:var(--p1);border-radius:8px;padding:8px 11px"><div style="font-size:10px;font-weight:700;color:var(--r2)">D層 轉化</div><div style="font-size:11px;color:var(--r2);margin-top:2px">06 增加諮詢詢問量</div></div>
+    </div>
+  </div>
+
+  <!-- 建議方案 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">💰 建議報價方案</div>
+    <div style="background:var(--r1);border-radius:8px;padding:10px 12px">
+      <div style="font-size:12px;font-weight:700;color:#fff;margin-bottom:4px">全程代運營（資本額2億的公司，有預算）</div>
+      <div style="font-size:11px;color:var(--p1);line-height:1.7">建議方案：全程代運營 NT$45K-80K/月<br>說服點：公司規模大但內容行銷資源不足，需要完整方案<br>特別強調：幫他們做符合法規的醫療內容策略，這是你的差異化</div>
+    </div>
+  </div>
+
+  <!-- 提案關鍵話術 -->
+  <div style="padding:0 14px 10px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🗣️ 提案時的關鍵話術</div>
+    <div style="background:#1A1210;border-radius:9px;padding:12px">
+      <div style="font-size:11px;color:#E8E3DA;line-height:1.9">「喜躍生醫的技術和專利非常領先，但現在最大的挑戰是：一般人完全不知道幹細胞儲存是什麼，更不知道為什麼現在就需要做。<br><br>我的工作就是幫你把這個知識缺口補起來。用短影音讓目標受眾——尤其是35-50歲有健康意識的族群——開始理解、開始問問題、最後主動詢問。<br><br>而且我會幫你確保所有內容符合台灣的醫療法規，你不用擔心踩到紅線。這正是一般行銷公司做不到的地方。」</div>
+    </div>
+  </div>
+
+  <!-- 快速跳轉 -->
+  <div style="padding:0 14px 14px">
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔗 對照學習跳轉</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+      <button onclick="jumpTab(0)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">📋 客戶接洽流程</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼約初次諮詢</div>
+      </button>
+      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 幫生技公司找定位</div>
+      </button>
+      <button onclick="jumpTab(5)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
+      </button>
+      <button onclick="jumpTab(3)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+        <div style="font-size:10px;font-weight:700;color:var(--r2)">💰 報價合約</div>
+        <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認報價細節</div>
+      </button>
+    </div>
+    <div style="margin-top:8px">
+      <a href="https://xiyue-biomed.com/" target="_blank" style="display:block;background:var(--w2);border-radius:8px;padding:8px 12px;text-decoration:none;border:1px solid var(--w3)">
+        <div style="font-size:11px;font-weight:700;color:var(--text)">🔗 查看喜躍生醫官網</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:2px">xiyue-biomed.com</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="cacts">
+    <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
+    <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
+  </div>
+  <div class="npanel"></div>
+</div>
+
+</div>
+
 <!-- MODAL -->
 <div class="mbg" id="mbg" onclick="closeModal(event)">
   <div class="modal">
@@ -1836,6 +2079,17 @@ function nextCard(){
 
 
 
+
+function jumpTab(idx){
+  const tabs=document.querySelectorAll('.tab');
+  const pages=document.querySelectorAll('.tpage');
+  tabs.forEach(t=>t.classList.remove('active'));
+  pages.forEach(p=>p.classList.remove('active'));
+  if(tabs[idx])tabs[idx].classList.add('active');
+  if(pages[idx])pages[idx].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
 function searchGoals(q){
   const result=document.getElementById('goal-result');
   if(!q.trim()){result.innerHTML='';return;}
@@ -1873,17 +2127,76 @@ function searchGoals(q){
 function searchTerms(q){
   const result=document.getElementById('search-result');
   if(!q.trim()){result.innerHTML='';return;}
-  const terms=document.querySelectorAll('#tp-6 .card [style*="border-radius:8px"]');
-  let found=[];
-  terms.forEach(el=>{
-    if(el.textContent.toLowerCase().includes(q.toLowerCase())){
-      const title=el.querySelector('[style*="font-size:12px"]');
-      const desc=el.querySelector('[style*="font-size:11px"]');
-      if(title)found.push({t:title.textContent,d:desc?desc.textContent:''});
-    }
-  });
-  if(found.length===0){result.innerHTML='<span style="color:var(--muted)">找不到相關術語</span>';return;}
-  result.innerHTML=found.map(f=>`<div style="background:var(--p1);border-radius:8px;padding:8px 10px;margin-bottom:6px"><div style="font-size:12px;font-weight:700;color:var(--r2)">${f.t}</div><div style="font-size:11px;color:var(--r2);margin-top:2px">${f.d}</div></div>`).join('');
+  
+  // 完整術語資料庫（含同義詞和相關詞，用於模糊搜尋）
+  const TERMS=[
+    {t:'KPI',en:'Key Performance Indicator',d:'關鍵績效指標，衡量合作成效的核心數字',tags:'績效 指標 數字 成效 目標 衡量',color:'var(--bl)',tc:'var(--bd)'},
+    {t:'CTA',en:'Call to Action',d:'行動呼籲：影片最後希望觀眾做什麼',tags:'行動 呼籲 導流 點擊 私訊 預約',color:'var(--bl)',tc:'var(--bd)'},
+    {t:'Reach / 觸及',en:'Reach',d:'有多少不重複的人看到這則內容',tags:'觸及 看到 人數 觸達 覆蓋 曝光人數',color:'#EEF5FD',tc:'var(--bd)'},
+    {t:'Impression / 曝光',en:'Impression',d:'內容被顯示的總次數（含重複）≥ 觸及',tags:'曝光 顯示 次數 播放 展示',color:'#EEF5FD',tc:'var(--bd)'},
+    {t:'Hook / 鉤子',en:'Hook',d:'前1-3秒吸引人停下來看的設計',tags:'開頭 鉤子 吸引 前三秒 停留 開場',color:'var(--gr)',tc:'var(--gd)'},
+    {t:'完播率',en:'Completion Rate',d:'看完整支影片的比例，高＝演算法多推',tags:'完播 看完 比例 演算法 推播 留存',color:'var(--gr)',tc:'var(--gd)'},
+    {t:'互動率',en:'Engagement Rate',d:'互動數÷觸及數，比絕對數更能反映品質',tags:'互動 留言 按讚 分享 收藏 品質 參與',color:'#EAF4EC',tc:'var(--gd)'},
+    {t:'轉換率',en:'Conversion Rate',d:'做出目標行動的人÷總觀看或點擊',tags:'轉換 成交 購買 預約 行動 轉化',color:'#EAF4EC',tc:'var(--gd)'},
+    {t:'ROAS',en:'Return on Ad Spend',d:'廣告投資報酬率：營收÷廣告費，客戶最在乎這個',tags:'廣告 投報率 報酬 花費 效益 值不值得',color:'var(--ye)',tc:'var(--yd)'},
+    {t:'ROI',en:'Return on Investment',d:'投資報酬率：比ROAS更廣，含人力時間的整體投入產出',tags:'投報 報酬 成本 效益 整體 人力',color:'var(--ye)',tc:'var(--yd)'},
+    {t:'Funnel / 漏斗',en:'Marketing Funnel',d:'看到→有興趣→詢問→預約→成交的流程',tags:'漏斗 流程 路徑 轉化 購買旅程 客戶旅程',color:'#FEF9E0',tc:'var(--yd)'},
+    {t:'Lead / 潛在客戶',en:'Lead',d:'對服務有興趣、願意留下聯絡方式的人',tags:'潛在客戶 名單 詢問 有興趣 意向',color:'#FEF9E0',tc:'var(--yd)'},
+    {t:'Pain Point / 痛點',en:'Pain Point',d:'受眾真正卡住、迫切想解決的問題',tags:'痛點 問題 需求 困擾 解決 卡住',color:'var(--or)',tc:'var(--od)'},
+    {t:'Social Proof / 社會證明',en:'Social Proof',d:'見證、評價、案例，讓人相信你',tags:'見證 評價 案例 口碑 信任 評論 推薦',color:'var(--or)',tc:'var(--od)'},
+    {t:'Content Pillar / 內容支柱',en:'Content Pillar',d:'長期固定的內容主軸分類',tags:'主題 分類 支柱 內容策略 方向 系列',color:'var(--pu)',tc:'var(--pd)'},
+    {t:'Positioning / 定位',en:'Positioning',d:'你在市場是誰、為誰服務、跟別人差在哪',tags:'定位 IP 差異化 市場 品牌 獨特',color:'var(--pu)',tc:'var(--pd)'},
+    {t:'Persona / 人設',en:'Persona',d:'帳號人設或目標受眾的完整描述',tags:'人設 角色 受眾 輪廓 目標客群 形象',color:'#EAE5FC',tc:'var(--pd)'},
+    {t:'Value Proposition / 價值主張',en:'Value Proposition',d:'你能給市場什麼，為什麼選你不選別人',tags:'價值 主張 差異 特色 為什麼選你 競爭優勢',color:'#EAE5FC',tc:'var(--pd)'},
+    {t:'A/B Test',en:'A/B Testing',d:'同一件事做兩個版本，比較哪個效果好',tags:'測試 AB 比較 版本 優化 實驗',color:'var(--p1)',tc:'var(--r2)'},
+    {t:'Brand Recall / 品牌記憶',en:'Brand Recall',d:'提到某話題，第一個想到的是你',tags:'品牌記憶 記憶點 印象 提及 聯想',color:'var(--p1)',tc:'var(--r2)'},
+    {t:'Retention / 留存',en:'Retention',d:'觀眾願意繼續看到後面的程度',tags:'留存 繼續看 完播 停留 留住',color:'var(--te)',tc:'var(--td)'},
+    {t:'Objection / 抗拒點',en:'Objection',d:'消費者不行動的原因（太貴/不懂/不相信）',tags:'抗拒 拒絕 不行動 反對 疑慮 顧慮 太貴',color:'var(--te)',tc:'var(--td)'},
+    {t:'Top of Funnel / 漏斗上層',en:'Top of Funnel',d:'偏曝光與認知，讓更多人知道你',tags:'漏斗上層 曝光 認知 品牌 陌生人 觸及',color:'#DDF3EF',tc:'var(--td)'},
+    {t:'Bottom of Funnel / 漏斗下層',en:'Bottom of Funnel',d:'偏成交與轉換，讓準備好的人行動',tags:'漏斗下層 成交 轉換 購買 行動 準備好',color:'#DDF3EF',tc:'var(--td)'},
+    {t:'CPM',en:'Cost Per Mille',d:'每千次曝光成本，CPM越低代表廣告越省錢',tags:'廣告費 千次 成本 投放 省錢 效益',color:'var(--w2)',tc:'var(--text)'},
+    {t:'CTR / 點擊率',en:'Click-Through Rate',d:'點擊數÷曝光數，2%以上算好',tags:'點擊 點擊率 連結 廣告 效果',color:'var(--w2)',tc:'var(--text)'},
+    {t:'Lookalike / 相似受眾',en:'Lookalike Audience',d:'用現有粉絲找相似的潛在新客戶',tags:'相似 受眾 廣告 新客 投放 擴展',color:'var(--w2)',tc:'var(--text)'},
+    {t:'Retargeting / 再行銷',en:'Retargeting',d:'對看過影片的人再投廣告，轉換率高3-5倍',tags:'再行銷 再投放 追蹤 看過 轉換 重新觸及',color:'var(--w2)',tc:'var(--text)'},
+    {t:'Qualified Lead / 有效名單',en:'Qualified Lead',d:'符合目標客群、較可能成交的潛在客戶',tags:'有效名單 精準 符合 目標 高意向',color:'var(--w2)',tc:'var(--text)'},
+    {t:'Offer / 提案',en:'Offer',d:'你提供什麼，以及為什麼現在要行動',tags:'提案 方案 產品 服務 現在行動 購買理由',color:'var(--w2)',tc:'var(--text)'},
+    // 廣告術語
+    {t:'自然流量',en:'Organic Traffic',d:'靠演算法推播，不花錢，需時間素積，適合IP建立長期信任',tags:'自然 免費 流量 演算法 不花錢 有機 長期',color:'var(--gr)',tc:'var(--gd)'},
+    {t:'付費流量',en:'Paid Traffic',d:'花錢投廣告，效果立即可見，需素材＋預算＋測試',tags:'付費 廣告 投放 花錢 立即 快速',color:'#1A1210',tc:'#E8E3DA'},
+  ];
+  
+  // 模糊搜尋邏輯
+  const keyword = q.toLowerCase().trim();
+  const words = keyword.split(/\s+/);
+  
+  const scored = TERMS.map(term=>{
+    let score = 0;
+    const searchTarget = (term.t + term.en + term.d + term.tags).toLowerCase();
+    
+    words.forEach(w=>{
+      if(term.t.toLowerCase().includes(w)) score += 10; // 術語名稱完全匹配
+      else if(term.en.toLowerCase().includes(w)) score += 8; // 英文匹配
+      else if(term.d.toLowerCase().includes(w)) score += 5; // 說明匹配
+      else if(term.tags.toLowerCase().includes(w)) score += 3; // 同義詞匹配
+    });
+    
+    return {...term, score};
+  }).filter(t=>t.score>0).sort((a,b)=>b.score-a.score);
+  
+  if(scored.length===0){
+    result.innerHTML=`<div style="background:var(--ye);border-radius:8px;padding:10px 12px"><div style="font-size:11px;color:var(--yd)">找不到「${q}」相關術語<br>試試看：流量、互動、轉換、廣告、定位、信任</div></div>`;
+    return;
+  }
+  
+  result.innerHTML=scored.slice(0,6).map(f=>`
+    <div style="background:${f.color};border-radius:8px;padding:10px 12px;margin-bottom:6px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
+        <span style="font-size:12px;font-weight:700;color:${f.tc}">${f.t}</span>
+        <span style="font-size:9px;color:${f.tc};opacity:.7">${f.en}</span>
+      </div>
+      <div style="font-size:11px;color:${f.tc};line-height:1.5">${f.d}</div>
+    </div>
+  `).join('');
 }
 
 init();
