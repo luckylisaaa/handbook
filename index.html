@@ -1900,37 +1900,142 @@ const DOC_ID = 'baby_handbook';
     <button onclick="jumpTab(1)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd);margin-bottom:6px">→ 跳到「IP定位」分頁，照流程幫他做完整版 ↗</button>
   </div>
 
-  <!-- SOP流程對照 -->
+  <!-- 完整SOP流程 -->
   <div style="padding:0 14px 10px">
-    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📌 我的SOP流程對照（按順序走）</div>
-    <div style="display:grid;gap:5px">
-      <div style="background:var(--r1);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:#fff">Step 1｜發初診表單</div><div style="font-size:10px;color:var(--p1);margin-top:2px">收到詢問後，不報價，先了解需求</div></div>
-        <button onclick="jumpTab(0)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
+    <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">📌 完整SOP作戰流程（針對理鴻）</div>
+    
+    <!-- 現在熱門主題提示 -->
+    <div style="background:var(--r1);border-radius:9px;padding:10px 12px;margin-bottom:10px">
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:4px">🔥 理鴻現在主打方向（2026年4月）</div>
+      <div style="font-size:11px;color:#fff;line-height:1.7">官網連續發「房屋租賃系列」：商業租賃、違約轉租、定期租賃、租約公證、公益出租人稅務⋯每2-3天更新一篇。這是切入點！</div>
+      <div style="background:rgba(255,255,255,.15);border-radius:6px;padding:6px 9px;margin-top:6px;font-size:10px;color:var(--p1)">💡 提案切角：「你已經在寫房屋租賃法律知識，我幫你把這些變成短影音，讓房東房客族群主動找你」</div>
+    </div>
+
+    <div style="display:grid;gap:6px">
+      <!-- Step 1 -->
+      <div style="background:var(--r1);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:#fff">Step 1｜初診分析（自行開發，AI預填）</div>
+            <div style="font-size:10px;color:var(--p1);margin-top:2px">因為是自己主動開發，AI幫你把這份初診填完</div>
+          </div>
+          <button onclick="jumpTab(0)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">客戶流程 →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.2);padding:8px 12px;font-size:10px;color:var(--p1);line-height:1.7">
+          ✦ 目標：建立個人IP，讓中小企業主和房東房客找到他們<br>
+          ✦ 現況：有7,680 IG粉、FB 3,967讚，但都是靜態圖文，無短影音<br>
+          ✦ 預算意願：初步可從策略顧問包談起（18K-30K）<br>
+          ✦ 配合度：律師很忙，需要最少出鏡時間的方案
+        </div>
       </div>
-      <div style="background:var(--r4);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 2｜AI分析表單</div><div style="font-size:10px;color:var(--r2);margin-top:2px">15分鐘五維度分析客戶合作潛力</div></div>
-        <button onclick="jumpTab(2)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
+
+      <!-- Step 2 -->
+      <div style="background:var(--r4);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 2｜AI五維度分析結果</div>
+            <div style="font-size:10px;color:var(--r2);margin-top:2px">合作意願度：8/10｜潛力高，但需處理形象問題</div>
+          </div>
+          <button onclick="jumpTab(2)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
+          ✦ 優質潛力股：有現成受眾、有專業內容素材、有預算空間<br>
+          ✦ 注意：先不提爭議案件，聚焦在「房屋租賃+商業法」這個明確方向<br>
+          ✦ 建議：從「幫他們把現有文章變成短影音」切入，降低決策門檻
+        </div>
       </div>
-      <div style="background:var(--p1);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 3｜20分鐘諮詢</div><div style="font-size:10px;color:var(--r2);margin-top:2px">確認分析，不是再問一次問題</div></div>
-        <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
+
+      <!-- Step 3 -->
+      <div style="background:var(--p1);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 3｜20分鐘諮詢重點</div>
+            <div style="font-size:10px;color:var(--r2);margin-top:2px">確認分析，展現你懂他們</div>
+          </div>
+          <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">流程 →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
+          ✦ 開場：「我看到你們最近在寫房屋租賃系列，這個話題很熱，有很多房東在找這類資訊」<br>
+          ✦ 確認：「你們主要想吸引的是企業主？還是也包含個人房東房客？」<br>
+          ✦ 展現：分析3個競品缺口，讓他們看到機會
+        </div>
       </div>
-      <div style="background:var(--r5);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 4｜24小時內發提案</div><div style="font-size:10px;color:var(--r2);margin-top:2px">趁熱，含IP定位初稿＋報價</div></div>
-        <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價表 →</button>
+
+      <!-- Step 4 -->
+      <div style="background:var(--r5);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 4｜提案內容（24小時內發）</div>
+            <div style="font-size:10px;color:var(--r2);margin-top:2px">包含IP定位初稿＋腳本範例＋報價</div>
+          </div>
+          <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價合約 →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
+          ✦ IP定位：「幫台灣房東房客和企業主看懂法律的務實律師」<br>
+          ✦ 第一批腳本方向：「房東常見5個租賃陷阱」「員工離職可以帶走客戶名單嗎？」<br>
+          ✦ 建議方案：策略顧問包 NT$18K-25K/月（他們先試3個月）<br>
+          ✦ 差異化說明：你把他們的文章素材轉成短影音，他們只需要確認腳本
+        </div>
       </div>
-      <div style="background:var(--w2);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--w3)">
-        <div><div style="font-size:11px;font-weight:700;color:var(--text)">Step 5｜簽約＋訂金入帳才開始</div><div style="font-size:10px;color:var(--muted);margin-top:2px">50%訂金入帳後才執行</div></div>
+
+      <!-- Step 5 -->
+      <div style="background:var(--w2);border-radius:9px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--w3)">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text)">Step 5｜簽約＋50%訂金才開始</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">不管是律師還是朋友，這條線不能破</div>
+        </div>
         <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">合約 →</button>
       </div>
-      <div style="background:var(--gr);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:var(--gd)">Step 6｜首月7天啟動</div><div style="font-size:10px;color:var(--gd);margin-top:2px">Persona問卷→IP診斷書→拍攝</div></div>
-        <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
+
+      <!-- Step 6 -->
+      <div style="background:var(--gr);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--gd)">Step 6｜首月7天啟動</div>
+            <div style="font-size:10px;color:var(--gd);margin-top:2px">Persona問卷→IP診斷書→第一批腳本</div>
+          </div>
+          <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--gd);line-height:1.7">
+          ✦ D1：訂金入帳，歡迎訊息，建Notion客戶卡片<br>
+          ✦ D2：發Persona問卷（重點：誰更願意出鏡？風格偏向？）<br>
+          ✦ D3：AI跑IP診斷書初版<br>
+          ✦ D5：發正式IP定位建議書，請3天內確認<br>
+          ✦ D7：確認後寫第一批5支腳本，以「房屋租賃系列」切入
+        </div>
       </div>
-      <div style="background:var(--bl);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
-        <div><div style="font-size:11px;font-weight:700;color:var(--bd)">Step 7｜每月W1-W4循環</div><div style="font-size:10px;color:var(--bd);margin-top:2px">策劃→拍攝→剪輯→複盤</div></div>
-        <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+
+      <!-- Step 7 腳本範例 -->
+      <div style="background:var(--bl);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--bd)">Step 7｜腳本撰寫方向</div>
+            <div style="font-size:10px;color:var(--bd);margin-top:2px">針對理鴻的第一批腳本框架</div>
+          </div>
+          <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--bd);line-height:1.8">
+          ✦ 支1：「房東必看！押金可以直接扣房租嗎？」（鉤子：打破常識）<br>
+          ✦ 支2：「員工離職帶走客戶名單，老闆能告嗎？」（鉤子：老闆痛點）<br>
+          ✦ 支3：「店面租約沒公證，你可能輸很慘」（鉤子：警告型）<br>
+          ✦ 結尾統一CTA：「有法律問題，Line搜@kl.legal找理鴻」
+        </div>
+      </div>
+
+      <!-- Step 8 每月循環 -->
+      <div style="background:var(--pu);border-radius:9px;overflow:hidden">
+        <div style="padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--pd)">Step 8｜每月W1-W4循環＋複盤</div>
+            <div style="font-size:10px;color:var(--pd);margin-top:2px">策劃→拍攝→剪輯→數據複盤→客戶報告</div>
+          </div>
+          <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+        </div>
+        <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--pd);line-height:1.7">
+          ✦ 成效判讀KPI：完播率（目標40%+）、收藏率（目標5%+）、詢問數（月增10%）<br>
+          ✦ 對應合作目標：信任層（05）→ 轉單品質（07）→ 個人IP（03）<br>
+          ✦ 3個月後數據好 → 升級全程代運營 NT$45K+
+        </div>
       </div>
     </div>
   </div>
