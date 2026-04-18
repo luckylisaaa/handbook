@@ -3419,9 +3419,12 @@ async function sendQ(){
   try{
     const resp=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
       body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
+        model:'claude-sonnet-4-5-20251022',
         max_tokens:800,
         messages:[{
           role:'user',
@@ -3632,6 +3635,26 @@ function runDiag(){
   const tcolors = {'01':'var(--yellow-d)','02':'var(--yellow-d)','03':'var(--blue-d)','04':'var(--blue-d)','05':'var(--green-d)','06':'var(--r2)','07':'var(--r2)','08':'var(--r2)','09':'var(--orange-d)'};
 
   const myNote = document.getElementById('diag-note') ? document.getElementById('diag-note').value.trim() : '';
+  
+  // 備注影響診斷：根據關鍵字調整
+  if(myNote){
+    const n = myNote.toLowerCase();
+    // 如果備注提到信任不確定，降低信任等級的影響
+    if(n.includes('不確定') || n.includes('不清楚') || n.includes('可能')){
+      if(goals.length>0) goals.push('05 建立專業信任感');
+    }
+    // 如果備注提到表面好但實際不確定
+    if(n.includes('表面') || n.includes('看起來')){
+      reason = '⚠️ 注意：你提到客戶狀況有不確定性。建議保守評估，先假設信任感需要建立。' + reason;
+    }
+    // 如果備注提到詢問不確定
+    if(n.includes('詢問不確定') || n.includes('不確定詢問')){
+      if(!goals.includes('06 增加詢問量')) goals.push('06 增加詢問量');
+    }
+    // 去重
+    goals = [...new Set(goals)];
+  }
+  
   res.innerHTML = `
     <div style="background:#1A1210;border-radius:9px;padding:12px">
       <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px;letter-spacing:.08em">🎯 診斷結果</div>
