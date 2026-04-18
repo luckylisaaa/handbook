@@ -3238,7 +3238,8 @@ function switchTab(idx,tab){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tpage').forEach(p=>p.classList.remove('active'));
   tab.classList.add('active');
-  document.getElementById('tp-'+idx).classList.add('active');
+  const pg=document.getElementById('tp-'+idx);
+  if(pg)pg.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3435,12 +3436,13 @@ function runDiag(){
   if(sp.includes('newbrand')) specialNotes.push('🆕 新品牌：前3個月只做曝光和記憶點，不急著推銷');
   const specialNote = specialNotes.length > 0 ? specialNotes.join('<br>') : '';
 
-  let shortTerm='', midTerm='', longTerm='';
+  let shortTerm='', midTerm='', longTerm='', hookTarget='hook-s1';
   if(r === 'low'){
     goals = ['01 增加品牌曝光', '02 提高品牌記憶點'];
     reason = '現在最缺的是「讓人看到你」。先衝觸及，其他都是後話。';
     script = '打破常識型或數字震驚型鉤子，15-30秒，每隔3天發一支，共10支。';
     shortTerm = '10支全做曝光型，測試哪種鉤子效果最好，不推銷';
+    hookTarget = 'hook-myth';
     midTerm = '找出2-3個高表現內容類型，開始做系列型建立記憶點';
     longTerm = '有穩定受眾後加入信任型內容，開始引導詢問';
   } else if(r === 'mid' && t === 'low'){
@@ -3448,6 +3450,7 @@ function runDiag(){
     reason = '有人看了但不相信你。現在要讓觀眾記住你是誰、覺得你很專業。';
     script = '故事開場型鉤子，分享真實案例（匿名），讓人感受到你的專業';
     shortTerm = '7支信任型+3支IP人設型，讓人記住你是誰';
+    hookTarget = 'hook-story';
     midTerm = '建立固定系列，每週同一個話題深化，形成品牌記憶點';
     longTerm = '信任建立後加入CTA，開始引導詢問和預約';
   } else if(r === 'mid' && t === 'mid' && q === 'low'){
@@ -3455,6 +3458,7 @@ function runDiag(){
     reason = '有流量有一點信任，但還沒有人主動詢問。CTA不夠強。';
     script = '迷思破解型鉤子，中段教學，結尾30秒專門說CTA';
     shortTerm = '5支信任型+5支帶CTA的詢問型，測試哪種CTA反應最好';
+    hookTarget = 'hook-pain';
     midTerm = '聚焦表現好的CTA格式，每支都帶清楚的下一步行動';
     longTerm = '詢問穩定後開始做07提升轉單品質，篩選精準客戶';
   } else if(r === 'high' && t === 'low'){
@@ -3462,6 +3466,7 @@ function runDiag(){
     reason = '很多人看但不信任你。這是危險信號，要馬上建立專業感。';
     script = '暫停娛樂型，改做教學型和案例型，讓人覺得你有真本事';
     shortTerm = '10支全做教學型，把現有流量轉化為信任';
+    hookTarget = 'hook-myth';
     midTerm = '信任建立後慢慢加入CTA，不要太急';
     longTerm = '受眾結構改善後才考慮帶業績';
   } else if(r === 'high' && t === 'high' && q === 'low'){
@@ -3469,6 +3474,7 @@ function runDiag(){
     reason = '你的CTA太弱了。有流量有信任但沒人問，代表觀眾不知道下一步怎麼找你。';
     script = '每支影片最後30秒專門強化CTA，說清楚聯繫方式和好處';
     shortTerm = '10支都要有強CTA，至少3種不同CTA版本做A/B測試';
+    hookTarget = 'hook-pain';
     midTerm = '找出轉換率最高的CTA格式，固定下來每支都用';
     longTerm = '詢問量穩定後做07提升轉單品質';
   } else if(q === 'high'){
@@ -3476,6 +3482,7 @@ function runDiag(){
     reason = '有詢問但成交率低。要篩選更精準的客戶，或強化成交環節。';
     script = '篩選型內容：說清楚你服務誰、不服務誰，讓對的人主動靠近';
     shortTerm = '6支篩選型+4支案例見證型，讓客戶品質提升';
+    hookTarget = 'hook-story';
     midTerm = '詢問品質改善後開始做08直接帶業績';
     longTerm = '建立穩定成交漏斗，詢問→諮詢→成交流程標準化';
   } else if(r === 'high' && t === 'high' && q === 'mid'){
@@ -3483,6 +3490,7 @@ function runDiag(){
     reason = '基礎很好，現在可以開始衝業績了！做見證型和限時型內容。';
     script = '見證型鉤子+限時緊迫感，CTA直接說「現在預約/購買」';
     shortTerm = '5支見證型+3支帶業績型+2支活動導流型';
+    hookTarget = 'hook-number';
     midTerm = '每季一次活動或促銷配合短影音集中推廣';
     longTerm = '穩定業績後考慮09活動導流或10招募合作夥伴';
   } else {
@@ -3490,6 +3498,7 @@ function runDiag(){
     reason = '先鞏固信任感，再推動詢問量，這是最穩的路徑。';
     script = '知識型腳本建立信任，結尾帶清楚的詢問CTA';
     shortTerm = '7支信任型+3支帶CTA詢問型';
+    hookTarget = 'hook-myth';
     midTerm = '根據前10支的數據調整，強化表現好的方向';
     longTerm = '信任和詢問都穩定後，開始做業績轉換';
   }
@@ -3525,7 +3534,7 @@ function runDiag(){
         <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">✏️ 第一批腳本方向（10支）</div>
         <div style="font-size:11px;color:#E8E3DA;line-height:1.6">${script}</div>
       </div>
-      <div onclick="window.jumpToHook('hook-s1')" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center">→ 去腳本系統看怎麼寫 ↗</div>
+      <div onclick="window.jumpToHook('${hookTarget}')" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center">→ 去看對應腳本類型 ↗</div>
     </div>
   `;
 }
@@ -3573,7 +3582,9 @@ window.jumpTab = function jumpTab(idx, scrollTop){
   tabs.forEach(t=>t.classList.remove('active'));
   pages.forEach(p=>p.classList.remove('active'));
   if(tabs[idx])tabs[idx].classList.add('active');
-  if(pages[idx])pages[idx].classList.add('active');
+  // 用id直接找，不用DOM順序
+  const targetPage=document.getElementById('tp-'+idx);
+  if(targetPage)targetPage.classList.add('active');
   if(scrollTop !== false) window.scrollTo({top:0,behavior:'smooth'});
 }
 
