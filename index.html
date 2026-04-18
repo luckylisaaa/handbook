@@ -1094,6 +1094,59 @@ const DOC_ID = 'baby_handbook';
 
 
 <div class="ch">
+  <div class="ch-ico" style="background:var(--r1)">🧭</div>
+  <div><div class="ch-title">目標診斷器</div><div class="ch-sub">告訴我客戶現在的狀態，AI幫你找下一步</div></div>
+</div>
+<div style="padding:0 12px 16px">
+  <div style="background:var(--w2);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+    
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:10px">客戶現在的狀態是？</div>
+    
+    <div style="display:grid;gap:8px;margin-bottom:12px">
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">① 曝光 / 觸及</div>
+        <div style="display:flex;gap:5px">
+          <button onclick="setDiag('reach','low')" id="d-reach-low" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">低<br><span style="font-size:9px;opacity:.7">幾乎沒人看</span></button>
+          <button onclick="setDiag('reach','mid')" id="d-reach-mid" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">普通<br><span style="font-size:9px;opacity:.7">剛起步</span></button>
+          <button onclick="setDiag('reach','high')" id="d-reach-high" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">高<br><span style="font-size:9px;opacity:.7">已有流量</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">② 信任感 / 專業形象</div>
+        <div style="display:flex;gap:5px">
+          <button onclick="setDiag('trust','low')" id="d-trust-low" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">低<br><span style="font-size:9px;opacity:.7">沒人相信</span></button>
+          <button onclick="setDiag('trust','mid')" id="d-trust-mid" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">普通<br><span style="font-size:9px;opacity:.7">在建立中</span></button>
+          <button onclick="setDiag('trust','high')" id="d-trust-high" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">高<br><span style="font-size:9px;opacity:.7">已有口碑</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">③ 詢問 / 轉換</div>
+        <div style="display:flex;gap:5px">
+          <button onclick="setDiag('inquiry','low')" id="d-inquiry-low" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">低<br><span style="font-size:9px;opacity:.7">沒人詢問</span></button>
+          <button onclick="setDiag('inquiry','mid')" id="d-inquiry-mid" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">普通<br><span style="font-size:9px;opacity:.7">偶有詢問</span></button>
+          <button onclick="setDiag('inquiry','high')" id="d-inquiry-high" style="flex:1;padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer">高<br><span style="font-size:9px;opacity:.7">詢問未成交</span></button>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">④ 特殊情境（選填）</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+          <button onclick="setDiag('special','controversy')" id="d-special-controversy" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">⚠️ 有爭議/負面新聞<br><span style="font-size:9px;opacity:.7">信任需要修復</span></button>
+          <button onclick="setDiag('special','newbrand')" id="d-special-newbrand" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🆕 全新品牌<br><span style="font-size:9px;opacity:.7">從零開始</span></button>
+          <button onclick="setDiag('special','b2b')" id="d-special-b2b" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🏢 B2B企業客戶<br><span style="font-size:9px;opacity:.7">決策慢/重信任</span></button>
+          <button onclick="setDiag('special','medical')" id="d-special-medical" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🏥 醫療/法規限制<br><span style="font-size:9px;opacity:.7">不能宣稱療效</span></button>
+          <button onclick="setDiag('special','highticket')" id="d-special-highticket" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">💰 高客單產品<br><span style="font-size:9px;opacity:.7">決策週期長</span></button>
+          <button onclick="setDiag('special','none')" id="d-special-none" style="padding:7px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">✓ 無特殊情境<br><span style="font-size:9px;opacity:.7">一般情況</span></button>
+        </div>
+      </div>
+    </div>
+
+    <button onclick="runDiag()" style="width:100%;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">🧭 診斷下一步目標</button>
+    <div id="diag-result" style="margin-top:10px"></div>
+  </div>
+</div>
+
+
+<div class="ch">
   <div class="ch-ico" style="background:var(--r1)">🔍</div>
   <div><div class="ch-title">快速搜尋合作目標</div><div class="ch-sub">輸入關鍵字，馬上找到對應目標與KPI</div></div>
 </div>
@@ -1160,49 +1213,211 @@ const DOC_ID = 'baby_handbook';
   </div>
   <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開10個目標完整說明</span><span>+</span></button>
   <div class="detail">
-    <div style="padding:12px 14px;display:grid;gap:8px">
-      <div style="background:var(--yellow);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--yellow-d)">01 增加品牌曝光</span><span style="font-size:9px;background:var(--yellow-d);color:#fff;padding:2px 6px;border-radius:10px">A認知</span></div>
-        <div style="font-size:11px;color:var(--yellow-d);line-height:1.7">KPI：觸及人數、觀看次數、分享數<br>內容：娛樂型、話題型、病毒型<br>成功判讀：曝光高 → 互動是否跟上</div>
+    <div style="padding:12px 14px;display:grid;gap:10px">
+
+      <!-- 01 增加品牌曝光 -->
+      <div id="goal-01" style="background:var(--yellow);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--yellow-d)">01 增加品牌曝光</span>
+          <span style="font-size:9px;background:var(--yellow-d);color:#fff;padding:2px 6px;border-radius:10px">A認知</span>
+        </div>
+        <div style="font-size:11px;color:var(--yellow-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>觸及人數、觀看次數、分享數<br>
+          <strong>主要CTA：</strong>追蹤、分享給朋友
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">📈 怎麼達到觸及數？</div>
+          <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">✦ 前3秒：打破常識型或數字震驚型鉤子（讓人停下來）<br>✦ 每天固定一個時段發布（演算法喜歡穩定）<br>✦ 發布後30分鐘主動回覆留言（觸發推播）<br>✦ 長度：15-30秒最佳，完播率高才能繼續推</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">⚠️ 判讀：曝光高但互動低怎麼辦？</div>
+          <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">代表鉤子夠強但內容不夠有共鳴 → 調整中段，加入更多受眾痛點</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看打破常識型鉤子怎麼寫 ↗</button>
       </div>
-      <div style="background:var(--yellow);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--yellow-d)">02 提高品牌記憶點</span><span style="font-size:9px;background:var(--yellow-d);color:#fff;padding:2px 6px;border-radius:10px">A認知</span></div>
-        <div style="font-size:11px;color:var(--yellow-d);line-height:1.7">KPI：回訪率、系列觀看率<br>內容：系列型、人設型、固定欄目型<br>成功判讀：留言開始出現固定印象詞</div>
+
+      <!-- 02 提高品牌記憶點 -->
+      <div id="goal-02" style="background:var(--yellow);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--yellow-d)">02 提高品牌記憶點</span>
+          <span style="font-size:9px;background:var(--yellow-d);color:#fff;padding:2px 6px;border-radius:10px">A認知</span>
+        </div>
+        <div style="font-size:11px;color:var(--yellow-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>回訪率、系列觀看率<br>
+          <strong>主要CTA：</strong>「追蹤我，每週XXX」「記住我的名字」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">📈 怎麼讓人記住你？</div>
+          <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">✦ 固定開場白或片尾口號（讓人聽到就知道是你）<br>✦ 系列型內容：「每週一個老闆必知法律」「每週一個健康知識」<br>✦ 固定封面風格、字體顏色（視覺記憶）<br>✦ 長度：30-60秒，有足夠時間建立印象</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">⚠️ 成功信號</div>
+          <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">留言出現「又是你！」「我就知道是你在說這個」→ 記憶點建立成功</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看固定人設型腳本怎麼設計 ↗</button>
       </div>
+
+      <!-- 03 建立個人IP -->
       <div id="goal-03" style="background:var(--blue);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--blue-d)">03 建立個人IP</span><span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span></div>
-        <div style="font-size:11px;color:var(--blue-d);line-height:1.7">KPI：粉絲成長率、互動率、系列回訪率<br>內容：故事型、觀點型、日常型<br>成功判讀：觀眾能描述你的風格與人格</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--blue-d)">03 建立個人IP</span>
+          <span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span>
+        </div>
+        <div style="font-size:11px;color:var(--blue-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>粉絲成長率、互動率、系列回訪率<br>
+          <strong>主要CTA：</strong>「追蹤我」「留言告訴我你的想法」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">📈 怎麼建立IP？</div>
+          <div style="font-size:10px;color:var(--blue-d);line-height:1.7">✦ 說出你的獨特觀點（不只給知識，給你的立場）<br>✦ 讓人看到你的生活/工作場景（真實感建立信任）<br>✦ 每支影片都讓人更了解你是誰<br>✦ 一天看50支同行短影音，找你的差異化</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">⚠️ 成功信號</div>
+          <div style="font-size:10px;color:var(--blue-d);line-height:1.7">觀眾能用一句話描述你 → IP建立成功</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看故事開場型腳本怎麼寫 ↗</button>
       </div>
+
+      <!-- 04 教育市場 -->
       <div id="goal-04" style="background:var(--blue);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--blue-d)">04 教育市場/改變認知</span><span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span></div>
-        <div style="font-size:11px;color:var(--blue-d);line-height:1.7">KPI：完播率、收藏率<br>內容：解說型、FAQ型、科普型<br>成功判讀：留言從「這是什麼」變成「怎麼買」</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--blue-d)">04 教育市場/改變認知</span>
+          <span style="font-size:9px;background:var(--blue-d);color:#fff;padding:2px 6px;border-radius:10px">B品牌</span>
+        </div>
+        <div style="font-size:11px;color:var(--blue-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>完播率、收藏率<br>
+          <strong>主要CTA：</strong>「儲存這支影片」「分享給需要的人」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">📈 怎麼讓人改變認知？</div>
+          <div style="font-size:10px;color:var(--blue-d);line-height:1.7">✦ 用最簡單的話說最難的事（說人話不說術語）<br>✦ 鉤子：「你可能誤解了XXX」「其實XXX比你想的簡單」<br>✦ 配合圖表或動畫說明，視覺化加速理解<br>✦ 長度：60-90秒，有時間解釋清楚</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">⚠️ 成功信號</div>
+          <div style="font-size:10px;color:var(--blue-d);line-height:1.7">留言從「這是什麼」變成「我要怎麼試試看」→ 認知改變成功</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看知識型腳本結構怎麼寫 ↗</button>
       </div>
+
+      <!-- 05 建立專業信任感 -->
       <div id="goal-05" style="background:var(--green);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--green-d)">05 建立專業信任感</span><span style="font-size:9px;background:var(--green-d);color:#fff;padding:2px 6px;border-radius:10px">C信任</span></div>
-        <div style="font-size:11px;color:var(--green-d);line-height:1.7">KPI：收藏率、完播率、預約率<br>內容：教學型、問答型、迷思破解型<br>成功判讀：收藏和預約率提升，比高觀看更有價值</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--green-d)">05 建立專業信任感</span>
+          <span style="font-size:9px;background:var(--green-d);color:#fff;padding:2px 6px;border-radius:10px">C信任</span>
+        </div>
+        <div style="font-size:11px;color:var(--green-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>收藏率5%+、完播率40%+、預約率<br>
+          <strong>主要CTA：</strong>「追蹤我學更多」「預約免費諮詢」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--green-d);margin-bottom:3px">📈 怎麼建立信任感？</div>
+          <div style="font-size:10px;color:var(--green-d);line-height:1.7">✦ 迷思破解型鉤子效果最強（讓人覺得你懂真相）<br>✦ 展示你的實際案例（匿名），不只說理論<br>✦ 說出市場上的錯誤做法，讓人覺得「你比別人誠實」<br>✦ 觀看數低但收藏率高的影片 → 繼續做這種</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--green-d);margin-bottom:3px">⚠️ 關鍵洞察</div>
+          <div style="font-size:10px;color:var(--green-d);line-height:1.7">觀看數不高但詢問量高 → 代表這支影片精準吸引到對的人，這才是成功</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--green-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看迷思破解型腳本怎麼寫 ↗</button>
       </div>
+
+      <!-- 06 增加詢問量 -->
       <div id="goal-06" style="background:var(--p1);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--r2)">06 增加詢問量</span><span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
-        <div style="font-size:11px;color:var(--r2);line-height:1.7">KPI：私訊數、表單數、CTA轉化率<br>內容：痛點型、需求喚醒型<br>成功判讀：觀看高但詢問低 = CTA太弱</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--r2)">06 增加詢問量</span>
+          <span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span>
+        </div>
+        <div style="font-size:11px;color:var(--r2);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>私訊數、表單數、CTA點擊率<br>
+          <strong>主要CTA：</strong>「有問題私訊我」「Line搜XXX免費諮詢」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">📈 怎麼增加詢問量？</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">✦ 痛點直擊型鉤子（讓人覺得「這在說我」）<br>✦ 影片最後30秒專門說CTA，不要夾在中間<br>✦ CTA要說清楚「做什麼」和「有什麼好處」<br>✦ 觀看高但詢問低 → CTA太弱或位置不對</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 重要觀念</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">觀看數高但詢問0 → 不是內容問題，是CTA問題。馬上改CTA文字</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看痛點型腳本和CTA設計 ↗</button>
       </div>
+
+      <!-- 07 提升轉單品質 -->
       <div id="goal-07" style="background:var(--p1);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--r2)">07 提升轉單品質</span><span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
-        <div style="font-size:11px;color:var(--r2);line-height:1.7">KPI：有效詢問數、預約率、成交率<br>內容：篩選型、案例型、前置教育型<br>成功判讀：詢問精準度提升就是進步</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--r2)">07 提升轉單品質</span>
+          <span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span>
+        </div>
+        <div style="font-size:11px;color:var(--r2);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>有效詢問數、預約率、成交率<br>
+          <strong>主要CTA：</strong>「適合XXX的人才需要」「如果你符合這三點才適合找我」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">📈 怎麼篩選對的客戶？</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">✦ 在影片裡說清楚「我服務的是誰」（篩選效果強）<br>✦ 說出你不接的客戶類型（反而提高信任）<br>✦ 展示你的客戶成果，吸引相似的人<br>✦ 詢問量下降但成交率提升 = 這個方向對了</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 關鍵洞察</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">觀看數不重要，詢問的「品質」才重要。寧可少問但每個都是對的人</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看篩選型腳本怎麼設計 ↗</button>
       </div>
-      <div style="background:var(--p1);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--r2)">08 直接帶業績</span><span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
-        <div style="font-size:11px;color:var(--r2);line-height:1.7">KPI：銷售額、訂單數、轉換率、ROAS<br>內容：見證型、比較型、限時型<br>成功判讀：點擊高但成交低 → 查商品頁和信任感</div>
+
+      <!-- 08 直接帶業績 -->
+      <div id="goal-08" style="background:var(--p1);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--r2)">08 直接帶業績</span>
+          <span style="font-size:9px;background:var(--r2);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span>
+        </div>
+        <div style="font-size:11px;color:var(--r2);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>ROAS、轉換率、點擊率<br>
+          <strong>主要CTA：</strong>「連結在主頁」「限時優惠倒數」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:5px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">📈 怎麼直接帶業績？</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">✦ 先有信任感才能帶業績，冷帳號硬賣沒用<br>✦ 見證型腳本效果最強（真實客戶說話）<br>✦ 製造緊迫感：限時、限量、只剩幾個名額<br>✦ 點擊高但成交低 → 查商品頁，不是影片問題</div>
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 重要前提</div>
+          <div style="font-size:10px;color:var(--r2);line-height:1.7">要先有05信任感 → 才能有效帶業績，順序不能跳</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看見證型和帶業績型腳本 ↗</button>
       </div>
-      <div style="background:var(--orange);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--orange-d)">09 活動導流/檔期轉化</span><span style="font-size:9px;background:var(--orange-d);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span></div>
-        <div style="font-size:11px;color:var(--orange-d);line-height:1.7">KPI：報名數、頁面點擊數<br>內容：倒數型、限時型、活動亮點型<br>成功判讀：前期聲量有但轉化低 = urgency不足</div>
+
+      <!-- 09 活動導流 -->
+      <div id="goal-09" style="background:var(--orange);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--orange-d)">09 活動導流</span>
+          <span style="font-size:9px;background:var(--orange-d);color:#fff;padding:2px 6px;border-radius:10px">D轉化</span>
+        </div>
+        <div style="font-size:11px;color:var(--orange-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>報名數、頁面點擊數<br>
+          <strong>主要CTA：</strong>「立即報名，連結在主頁」「只剩X個名額」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--orange-d);margin-bottom:3px">📈 怎麼做活動導流？</div>
+          <div style="font-size:10px;color:var(--orange-d);line-height:1.7">✦ 活動前3天集中發布相關影片<br>✦ 倒數計時製造緊迫感<br>✦ 前期聲量有但轉化低 = urgency不夠強<br>✦ 加上社會證明：「已有XX人報名」</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--orange-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看活動導流腳本怎麼設計 ↗</button>
       </div>
-      <div style="background:var(--purple);border-radius:9px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><span style="font-size:12px;font-weight:700;color:var(--purple-d)">10 招募人才/吸引合作</span><span style="font-size:9px;background:var(--purple-d);color:#fff;padding:2px 6px;border-radius:10px">E組織</span></div>
-        <div style="font-size:11px;color:var(--purple-d);line-height:1.7">KPI：履歷投遞數、商務詢問數<br>內容：團隊日常型、理念型、幕後型<br>成功判讀：互動不一定最高，但合作主動增加就是有效</div>
+
+      <!-- 10 招募人才 -->
+      <div id="goal-10" style="background:var(--purple);border-radius:9px;padding:10px 12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+          <span style="font-size:12px;font-weight:700;color:var(--purple-d)">10 招募人才/吸引合作</span>
+          <span style="font-size:9px;background:var(--purple-d);color:#fff;padding:2px 6px;border-radius:10px">E組織</span>
+        </div>
+        <div style="font-size:11px;color:var(--purple-d);line-height:1.7;margin-bottom:6px">
+          <strong>核心KPI：</strong>履歷投遞數、商務詢問數<br>
+          <strong>主要CTA：</strong>「加入我們的團隊」「想合作的商務合作歡迎私訊」
+        </div>
+        <div style="background:rgba(0,0,0,.06);border-radius:7px;padding:8px 10px;margin-bottom:6px">
+          <div style="font-size:10px;font-weight:700;color:var(--purple-d);margin-bottom:3px">📈 怎麼吸引對的人才/合作？</div>
+          <div style="font-size:10px;color:var(--purple-d);line-height:1.7">✦ 展示公司文化和日常（讓對的人想加入）<br>✦ 說出你的理念和做事方式<br>✦ 幕後型內容：讓人看到真實的你是怎麼工作的<br>✦ 商務詢問主動增加就是有效</div>
+        </div>
+        <button onclick="jumpTab(5)" style="width:100%;background:var(--purple-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看幕後日常型腳本怎麼設計 ↗</button>
       </div>
-    </div>
-  </div>
+
+    </div></div>
   <div class="cacts">
     <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
     <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
@@ -1223,19 +1438,89 @@ const DOC_ID = 'baby_handbook';
     <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
   </div>
   <div style="padding:0 14px 12px;overflow-x:auto">
-    <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:420px">
-      <tr style="background:var(--r1)"><th style="padding:7px 8px;color:#fff;text-align:left;font-weight:700">目標</th><th style="padding:7px 8px;color:#fff;font-weight:700">核心KPI</th><th style="padding:7px 8px;color:#fff;font-weight:700">主要CTA</th></tr>
-      <tr style="background:var(--yellow)"><td style="padding:7px 8px;color:var(--yellow-d);font-weight:700">增加品牌曝光</td><td style="padding:7px 8px;color:var(--yellow-d)">觸及數、觀看數、分享數</td><td style="padding:7px 8px;color:var(--yellow-d)">追蹤、留言</td></tr>
-      <tr style="background:#FFFAE8"><td style="padding:7px 8px;color:var(--yellow-d);font-weight:700">提高品牌記憶點</td><td style="padding:7px 8px;color:var(--yellow-d)">回訪率、系列觀看率</td><td style="padding:7px 8px;color:var(--yellow-d)">追蹤、留言</td></tr>
-      <tr style="background:var(--blue)"><td style="padding:7px 8px;color:var(--blue-d);font-weight:700">建立個人IP</td><td style="padding:7px 8px;color:var(--blue-d)">粉絲成長率、互動率</td><td style="padding:7px 8px;color:var(--blue-d)">追蹤、互動</td></tr>
-      <tr style="background:#EEF5FD"><td style="padding:7px 8px;color:var(--blue-d);font-weight:700">教育市場</td><td style="padding:7px 8px;color:var(--blue-d)">完播率、收藏率</td><td style="padding:7px 8px;color:var(--blue-d)">收藏、私訊</td></tr>
-      <tr style="background:var(--green)"><td style="padding:7px 8px;color:var(--green-d);font-weight:700">建立專業信任感</td><td style="padding:7px 8px;color:var(--green-d)">收藏率、預約率</td><td style="padding:7px 8px;color:var(--green-d)">預約、私訊</td></tr>
-      <tr style="background:var(--p1)"><td style="padding:7px 8px;color:var(--r2);font-weight:700">增加詢問量</td><td style="padding:7px 8px;color:var(--r2)">私訊數、表單數</td><td style="padding:7px 8px;color:var(--r2)">私訊、填表</td></tr>
-      <tr style="background:var(--p2)"><td style="padding:7px 8px;color:var(--r2);font-weight:700">提升轉單品質</td><td style="padding:7px 8px;color:var(--r2)">有效詢問數、成交率</td><td style="padding:7px 8px;color:var(--r2)">預約、填表</td></tr>
-      <tr style="background:var(--p1)"><td style="padding:7px 8px;color:var(--r2);font-weight:700">直接帶業績</td><td style="padding:7px 8px;color:var(--r2)">銷售額、ROAS</td><td style="padding:7px 8px;color:var(--r2)">立即購買</td></tr>
-      <tr style="background:var(--orange)"><td style="padding:7px 8px;color:var(--orange-d);font-weight:700">活動導流</td><td style="padding:7px 8px;color:var(--orange-d)">報名數、頁面點擊</td><td style="padding:7px 8px;color:var(--orange-d)">報名、預約</td></tr>
-      <tr style="background:var(--purple)"><td style="padding:7px 8px;color:var(--purple-d);font-weight:700">招募/合作</td><td style="padding:7px 8px;color:var(--purple-d)">履歷數、商務詢問</td><td style="padding:7px 8px;color:var(--purple-d)">投履歷、合作私訊</td></tr>
-    </table>
+    <div style="display:grid;gap:5px">
+  <div onclick="window.jumpToGoal('01')" style="background:var(--yellow);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--yellow-d);margin-bottom:2px">01 增加品牌曝光</div>
+      <div style="font-size:10px;color:var(--yellow-d);opacity:.85;line-height:1.5">KPI：觸及數、觀看數、分享數</div>
+      <div style="font-size:10px;color:var(--yellow-d);opacity:.85">CTA：追蹤、留言</div>
+    </div>
+    <div style="font-size:9px;background:var(--yellow-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('02')" style="background:var(--yellow);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--yellow-d);margin-bottom:2px">02 提高品牌記憶點</div>
+      <div style="font-size:10px;color:var(--yellow-d);opacity:.85;line-height:1.5">KPI：回訪率、系列觀看率</div>
+      <div style="font-size:10px;color:var(--yellow-d);opacity:.85">CTA：追蹤、分享</div>
+    </div>
+    <div style="font-size:9px;background:var(--yellow-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('03')" style="background:var(--blue);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--blue-d);margin-bottom:2px">03 建立個人IP</div>
+      <div style="font-size:10px;color:var(--blue-d);opacity:.85;line-height:1.5">KPI：粉絲成長率、互動率</div>
+      <div style="font-size:10px;color:var(--blue-d);opacity:.85">CTA：追蹤、互動</div>
+    </div>
+    <div style="font-size:9px;background:var(--blue-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('04')" style="background:#EEF5FD;border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--blue-d);margin-bottom:2px">04 教育市場/改變認知</div>
+      <div style="font-size:10px;color:var(--blue-d);opacity:.85;line-height:1.5">KPI：完播率、收藏率</div>
+      <div style="font-size:10px;color:var(--blue-d);opacity:.85">CTA：儲存、私訊</div>
+    </div>
+    <div style="font-size:9px;background:var(--blue-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('05')" style="background:var(--green);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--green-d);margin-bottom:2px">05 建立專業信任感</div>
+      <div style="font-size:10px;color:var(--green-d);opacity:.85;line-height:1.5">KPI：收藏率5%+、完播率40%+</div>
+      <div style="font-size:10px;color:var(--green-d);opacity:.85">CTA：預約、追蹤</div>
+    </div>
+    <div style="font-size:9px;background:var(--green-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('06')" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:2px">06 增加詢問量</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85;line-height:1.5">KPI：私訊數、表單數、CTA點擊</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85">CTA：私訊、填表</div>
+    </div>
+    <div style="font-size:9px;background:var(--r2);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('07')" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:2px">07 提升轉單品質</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85;line-height:1.5">KPI：有效詢問數、成交率</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85">CTA：預約、填表</div>
+    </div>
+    <div style="font-size:9px;background:var(--r2);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('08')" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:2px">08 直接帶業績</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85;line-height:1.5">KPI：銷售額、ROAS、轉換率</div>
+      <div style="font-size:10px;color:var(--r2);opacity:.85">CTA：立即購買、限時</div>
+    </div>
+    <div style="font-size:9px;background:var(--r2);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('09')" style="background:var(--orange);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--orange-d);margin-bottom:2px">09 活動導流</div>
+      <div style="font-size:10px;color:var(--orange-d);opacity:.85;line-height:1.5">KPI：報名數、頁面點擊數</div>
+      <div style="font-size:10px;color:var(--orange-d);opacity:.85">CTA：報名、預約</div>
+    </div>
+    <div style="font-size:9px;background:var(--orange-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+  <div onclick="window.jumpToGoal('10')" style="background:var(--purple);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
+    <div style="flex:1">
+      <div style="font-size:11px;font-weight:700;color:var(--purple-d);margin-bottom:2px">10 招募人才/吸引合作</div>
+      <div style="font-size:10px;color:var(--purple-d);opacity:.85;line-height:1.5">KPI：履歷數、商務詢問數</div>
+      <div style="font-size:10px;color:var(--purple-d);opacity:.85">CTA：投履歷、合作私訊</div>
+    </div>
+    <div style="font-size:9px;background:var(--purple-d);color:#fff;padding:3px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0">跳轉 ↓</div>
+  </div>
+</div>
+
   </div>
   <div class="cacts">
     <button class="abt" onclick="toggleNote(this.closest('.card'))">📝 筆記</button>
@@ -3059,7 +3344,123 @@ function nextCard(){
 
 
 
-function jumpToGoal(num){
+
+var diagState = {reach:'', trust:'', inquiry:'', special:''};
+
+function setDiag(key, val){
+  diagState[key] = val;
+  // 更新按鈕樣式
+  const options = key === 'special'
+    ? ['controversy','newbrand','b2b','medical','highticket','none']
+    : ['low','mid','high'];
+  options.forEach(v=>{
+    const btn = document.getElementById('d-'+key+'-'+v);
+    if(!btn) return;
+    if(v === val){
+      btn.style.background = 'var(--r1)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--r1)';
+    } else {
+      btn.style.background = 'var(--w2)';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--w3)';
+    }
+  });
+}
+
+function runDiag(){
+  const r = diagState.reach;
+  const t = diagState.trust;
+  const q = diagState.inquiry;
+  const res = document.getElementById('diag-result');
+  
+  const sp = diagState.special;
+  if(!r || !t || !q){
+    res.innerHTML = '<div style="background:var(--ye);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--yd)">⚠️ 請先選擇①②③三個狀態再診斷（④選填）</div>';
+    return;
+  }
+
+  let goals = [];
+  let reason = '';
+  let script = '';
+
+  // 特殊情境優先覆蓋
+  let specialNote = '';
+  if(sp === 'controversy'){
+    specialNote = '⚠️ 特殊注意：客戶有爭議負評，信任修復是首要任務。任何目標都要先做「05 建立信任感」墊底，不然其他都沒用。';
+  } else if(sp === 'b2b'){
+    specialNote = '🏢 B2B提醒：決策者不衝動購買，要先給他「說服自己老闆的理由」。教育型和信任型內容比直接帶業績更有效。';
+  } else if(sp === 'medical'){
+    specialNote = '🏥 醫療法規提醒：所有內容說「輔助」「儲存備用」「預防」，不說「治好」「根治」。這是你的差異化競爭優勢。';
+  } else if(sp === 'highticket'){
+    specialNote = '💰 高客單提醒：不要急著在影片裡賣，要先培養信任3-6個月，讓客戶自己主動詢問才容易成交。';
+  } else if(sp === 'newbrand'){
+    specialNote = '🆕 新品牌提醒：前3個月只做01曝光和02記憶點，不要急著賣，先讓人記住你是誰。';
+  }
+
+  if(r === 'low'){
+    goals = ['01 增加品牌曝光', '02 提高品牌記憶點'];
+    reason = '現在最缺的是「讓人看到你」。先衝觸及，其他都是後話。';
+    script = '用打破常識型或數字震驚型鉤子，長度15-30秒，每天固定發。';
+  } else if(r === 'mid' && t === 'low'){
+    goals = ['03 建立個人IP', '05 建立專業信任感'];
+    reason = '有人看了但不相信你。現在要讓觀眾記住你是誰、覺得你很專業。';
+    script = '用故事開場型鉤子，展示你的案例和觀點，不要急著推銷。';
+  } else if(r === 'mid' && t === 'mid' && q === 'low'){
+    goals = ['05 建立專業信任感', '06 增加詢問量'];
+    reason = '有流量有一點信任，但還沒有人主動詢問。CTA不夠強。';
+    script = '用迷思破解型鉤子，結尾加強CTA，說清楚「私訊我可以得到什麼」。';
+  } else if(r === 'high' && t === 'low'){
+    goals = ['05 建立專業信任感', '04 教育市場'];
+    reason = '很多人看但不信任你。這是危險信號，要馬上建立專業感。';
+    script = '暫停娛樂型內容，改用教學型和案例型，讓人覺得你有真本事。';
+  } else if(r === 'high' && t === 'high' && q === 'low'){
+    goals = ['06 增加詢問量', '07 提升轉單品質'];
+    reason = '你的CTA太弱了。有流量有信任但沒人問，代表觀眾不知道下一步怎麼找你。';
+    script = '每支影片最後30秒專門說CTA，說清楚「怎麼聯繫+能得到什麼」。';
+  } else if(q === 'high'){
+    goals = ['07 提升轉單品質', '08 直接帶業績'];
+    reason = '有詢問但成交率低。要篩選更精準的客戶，或強化成交環節。';
+    script = '做篩選型內容：說清楚你服務的是誰、不服務誰，反而讓對的人更想找你。';
+  } else if(r === 'high' && t === 'high' && q === 'mid'){
+    goals = ['08 直接帶業績', '09 活動導流'];
+    reason = '基礎很好，現在可以開始衝業績了！做見證型和限時型內容。';
+    script = '用見證型鉤子，製造緊迫感，CTA直接說「現在預約/購買」。';
+  } else {
+    goals = ['05 建立專業信任感', '06 增加詢問量'];
+    reason = '先鞏固信任感，再推動詢問量，這是最穩的路徑。';
+    script = '用知識型腳本建立信任，結尾加上清楚的詢問CTA。';
+  }
+
+  const colors = {'01':'var(--yellow)','02':'var(--yellow)','03':'var(--blue)','04':'var(--blue)','05':'var(--green)','06':'var(--p1)','07':'var(--p1)','08':'var(--p1)','09':'var(--orange)'};
+  const tcolors = {'01':'var(--yellow-d)','02':'var(--yellow-d)','03':'var(--blue-d)','04':'var(--blue-d)','05':'var(--green-d)','06':'var(--r2)','07':'var(--r2)','08':'var(--r2)','09':'var(--orange-d)'};
+
+  res.innerHTML = `
+    <div style="background:#1A1210;border-radius:9px;padding:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:8px;letter-spacing:.08em">🎯 診斷結果</div>
+      ${specialNote ? `<div style="background:rgba(255,200,0,.15);border-radius:7px;padding:8px 10px;margin-bottom:8px;font-size:10px;color:#FFD580;line-height:1.6">${specialNote}</div>` : ''}
+      <div style="font-size:11px;color:#E8E3DA;line-height:1.7;margin-bottom:10px">${reason}</div>
+      <div style="display:grid;gap:6px;margin-bottom:10px">
+        ${goals.map(g=>{
+          const num = g.split(' ')[0];
+          const bg = colors[num]||'var(--p1)';
+          const tc = tcolors[num]||'var(--r2)';
+          return `<div onclick="jumpToGoal('${num}')" style="background:${bg};border-radius:7px;padding:8px 10px;cursor:pointer">
+            <div style="font-size:11px;font-weight:700;color:${tc}">${g}</div>
+            <div style="font-size:9px;color:${tc};margin-top:2px;opacity:.8">點我跳轉到這個目標 ↓</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="background:rgba(255,255,255,.08);border-radius:7px;padding:9px 11px;margin-bottom:8px">
+        <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">✏️ 建議腳本方向</div>
+        <div style="font-size:11px;color:#E8E3DA;line-height:1.6">${script}</div>
+      </div>
+      <div onclick="window.jumpTab(5)" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center">→ 去腳本系統看怎麼寫 ↗</div>
+    </div>
+  `;
+}
+
+window.jumpToGoal = function jumpToGoal(num){
   jumpTab(6);
   setTimeout(()=>{
     const el=document.getElementById('goal-'+num);
@@ -3083,7 +3484,7 @@ function jumpToGoal(num){
   },400);
 }
 
-function jumpTab(idx){
+window.jumpTab = function jumpTab(idx){
   const tabs=document.querySelectorAll('.tab');
   const pages=document.querySelectorAll('.tpage');
   tabs.forEach(t=>t.classList.remove('active'));
