@@ -1438,6 +1438,22 @@ const DOC_ID = 'baby_handbook';
     <div class="ccheck" onclick="toggleCard(this.closest('.card'))"><div class="ck"></div></div>
   </div>
   <div style="padding:0 14px 12px;overflow-x:auto">
+    <div style="margin-bottom:10px;overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:11px;min-width:420px">
+      <tr style="background:var(--r1)"><th style="padding:7px 8px;color:#fff;text-align:left;font-weight:700">目標</th><th style="padding:7px 8px;color:#fff;font-weight:700">核心KPI</th><th style="padding:7px 8px;color:#fff;font-weight:700">主要CTA</th></tr>
+      <tr style="background:var(--yellow)"><td style="padding:7px 8px;color:var(--yellow-d);font-weight:700">01 增加品牌曝光</td><td style="padding:7px 8px;color:var(--yellow-d)">觸及數、觀看數、分享數</td><td style="padding:7px 8px;color:var(--yellow-d)">追蹤、留言</td></tr>
+      <tr style="background:#FFFAE8"><td style="padding:7px 8px;color:var(--yellow-d);font-weight:700">02 提高品牌記憶點</td><td style="padding:7px 8px;color:var(--yellow-d)">回訪率、系列觀看率</td><td style="padding:7px 8px;color:var(--yellow-d)">追蹤、留言</td></tr>
+      <tr style="background:var(--blue)"><td style="padding:7px 8px;color:var(--blue-d);font-weight:700">03 建立個人IP</td><td style="padding:7px 8px;color:var(--blue-d)">粉絲成長率、互動率</td><td style="padding:7px 8px;color:var(--blue-d)">追蹤、互動</td></tr>
+      <tr style="background:#EEF5FD"><td style="padding:7px 8px;color:var(--blue-d);font-weight:700">04 教育市場</td><td style="padding:7px 8px;color:var(--blue-d)">完播率、收藏率</td><td style="padding:7px 8px;color:var(--blue-d)">收藏、私訊</td></tr>
+      <tr style="background:var(--green)"><td style="padding:7px 8px;color:var(--green-d);font-weight:700">05 建立專業信任感</td><td style="padding:7px 8px;color:var(--green-d)">收藏率、預約率</td><td style="padding:7px 8px;color:var(--green-d)">預約、私訊</td></tr>
+      <tr style="background:var(--p1)"><td style="padding:7px 8px;color:var(--r2);font-weight:700">06 增加詢問量</td><td style="padding:7px 8px;color:var(--r2)">私訊數、表單數</td><td style="padding:7px 8px;color:var(--r2)">私訊、填表</td></tr>
+      <tr style="background:#FAE8EA"><td style="padding:7px 8px;color:var(--r2);font-weight:700">07 提升轉單品質</td><td style="padding:7px 8px;color:var(--r2)">有效詢問數、成交率</td><td style="padding:7px 8px;color:var(--r2)">預約、填表</td></tr>
+      <tr style="background:var(--p1)"><td style="padding:7px 8px;color:var(--r2);font-weight:700">08 直接帶業績</td><td style="padding:7px 8px;color:var(--r2)">銷售額、ROAS</td><td style="padding:7px 8px;color:var(--r2)">立即購買</td></tr>
+      <tr style="background:var(--orange)"><td style="padding:7px 8px;color:var(--orange-d);font-weight:700">09 活動導流</td><td style="padding:7px 8px;color:var(--orange-d)">報名數、頁面點擊</td><td style="padding:7px 8px;color:var(--orange-d)">報名、預約</td></tr>
+      <tr style="background:var(--purple)"><td style="padding:7px 8px;color:var(--purple-d);font-weight:700">10 招募/合作</td><td style="padding:7px 8px;color:var(--purple-d)">履歷數、商務詢問</td><td style="padding:7px 8px;color:var(--purple-d)">投履歷、合作私訊</td></tr>
+    </table>
+  </div>
+  <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px">點擊跳轉到對應目標說明：</div>
     <div style="display:grid;gap:5px">
   <div onclick="window.jumpToGoal('01')" style="background:var(--yellow);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:8px">
     <div style="flex:1">
@@ -1542,7 +1558,7 @@ const DOC_ID = 'baby_handbook';
 </div>
 
 <!-- 卡片A：腳本撰寫框架 -->
-<div class="card" data-id="30" data-title="腳本撰寫框架">
+<div id="hook-s1" class="card" data-id="30" data-title="腳本撰寫框架">
   <div class="card-top">
     <div class="cnum" style="background:var(--r1);color:var(--p1)">S1</div>
     <div class="cinfo"><div class="ctitle">腳本撰寫框架</div><div class="csub">前3秒鉤子→中段→結尾CTA，每個環節怎麼設計</div></div>
@@ -1554,19 +1570,19 @@ const DOC_ID = 'baby_handbook';
     <!-- 前3秒鉤子 -->
     <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em">⚡ 前3秒｜鉤子設計（決定要不要繼續看）</div>
     <div style="display:grid;gap:5px;margin-bottom:12px">
-      <div style="background:var(--r1);border-radius:8px;padding:9px 12px">
+      <div id="hook-myth" style="background:var(--r1);border-radius:8px;padding:9px 12px">
         <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:3px">① 打破常識型</div>
         <div style="font-size:10px;color:var(--p1);line-height:1.6">「你以為的XXX，其實是錯的」<br>「99%的人都不知道這件事」<br>→ 用反直覺製造好奇心</div>
       </div>
-      <div style="background:var(--r4);border-radius:8px;padding:9px 12px">
+      <div id="hook-pain" style="background:var(--r4);border-radius:8px;padding:9px 12px">
         <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:3px">② 痛點直擊型</div>
         <div style="font-size:10px;color:var(--r2);line-height:1.6">「如果你有這個問題，繼續看」<br>「老闆必看！這個錯誤很多人都在犯」<br>→ 讓受眾覺得「這在說我」</div>
       </div>
-      <div style="background:var(--or);border-radius:8px;padding:9px 12px">
+      <div id="hook-story" style="background:var(--or);border-radius:8px;padding:9px 12px">
         <div style="font-size:11px;font-weight:700;color:var(--od);margin-bottom:3px">③ 故事開場型</div>
         <div style="font-size:10px;color:var(--od);line-height:1.6">「上個月有個客戶找我，他說…」<br>「我第一次遇到這種情況，是在…」<br>→ 人天生對故事有好奇心</div>
       </div>
-      <div style="background:var(--ye);border-radius:8px;padding:9px 12px">
+      <div id="hook-number" style="background:var(--ye);border-radius:8px;padding:9px 12px">
         <div style="font-size:11px;font-weight:700;color:var(--yd);margin-bottom:3px">④ 數字震驚型</div>
         <div style="font-size:10px;color:var(--yd);line-height:1.6">「3個步驟讓你的詢問量翻倍」<br>「這個方法幫客戶省了50萬」<br>→ 具體數字製造可信度</div>
       </div>
@@ -3345,27 +3361,37 @@ function nextCard(){
 
 
 
-var diagState = {reach:'', trust:'', inquiry:'', special:''};
+var diagState = {reach:'', trust:'', inquiry:'', special:[]};
 
 function setDiag(key, val){
-  diagState[key] = val;
-  // 更新按鈕樣式
-  const options = key === 'special'
-    ? ['controversy','newbrand','b2b','medical','highticket','none']
-    : ['low','mid','high'];
-  options.forEach(v=>{
-    const btn = document.getElementById('d-'+key+'-'+v);
-    if(!btn) return;
-    if(v === val){
-      btn.style.background = 'var(--r1)';
-      btn.style.color = '#fff';
-      btn.style.borderColor = 'var(--r1)';
+  if(key === 'special'){
+    // 複選邏輯
+    const idx = diagState.special.indexOf(val);
+    if(val === 'none'){
+      diagState.special = ['none'];
     } else {
-      btn.style.background = 'var(--w2)';
-      btn.style.color = 'var(--muted)';
-      btn.style.borderColor = 'var(--w3)';
+      diagState.special = diagState.special.filter(v=>v!=='none');
+      if(idx > -1){ diagState.special.splice(idx,1); }
+      else { diagState.special.push(val); }
     }
-  });
+    ['controversy','newbrand','b2b','medical','highticket','none'].forEach(v=>{
+      const btn = document.getElementById('d-special-'+v);
+      if(!btn) return;
+      const selected = diagState.special.includes(v);
+      btn.style.background = selected ? 'var(--r1)' : 'var(--w2)';
+      btn.style.color = selected ? '#fff' : 'var(--muted)';
+      btn.style.borderColor = selected ? 'var(--r1)' : 'var(--w3)';
+    });
+  } else {
+    diagState[key] = val;
+    ['low','mid','high'].forEach(v=>{
+      const btn = document.getElementById('d-'+key+'-'+v);
+      if(!btn) return;
+      btn.style.background = (v===val) ? 'var(--r1)' : 'var(--w2)';
+      btn.style.color = (v===val) ? '#fff' : 'var(--muted)';
+      btn.style.borderColor = (v===val) ? 'var(--r1)' : 'var(--w3)';
+    });
+  }
 }
 
 function runDiag(){
@@ -3374,7 +3400,7 @@ function runDiag(){
   const q = diagState.inquiry;
   const res = document.getElementById('diag-result');
   
-  const sp = diagState.special;
+  const sp = diagState.special; // array
   if(!r || !t || !q){
     res.innerHTML = '<div style="background:var(--ye);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--yd)">⚠️ 請先選擇①②③三個狀態再診斷（④選填）</div>';
     return;
@@ -3385,51 +3411,71 @@ function runDiag(){
   let script = '';
 
   // 特殊情境優先覆蓋
-  let specialNote = '';
-  if(sp === 'controversy'){
-    specialNote = '⚠️ 特殊注意：客戶有爭議負評，信任修復是首要任務。任何目標都要先做「05 建立信任感」墊底，不然其他都沒用。';
-  } else if(sp === 'b2b'){
-    specialNote = '🏢 B2B提醒：決策者不衝動購買，要先給他「說服自己老闆的理由」。教育型和信任型內容比直接帶業績更有效。';
-  } else if(sp === 'medical'){
-    specialNote = '🏥 醫療法規提醒：所有內容說「輔助」「儲存備用」「預防」，不說「治好」「根治」。這是你的差異化競爭優勢。';
-  } else if(sp === 'highticket'){
-    specialNote = '💰 高客單提醒：不要急著在影片裡賣，要先培養信任3-6個月，讓客戶自己主動詢問才容易成交。';
-  } else if(sp === 'newbrand'){
-    specialNote = '🆕 新品牌提醒：前3個月只做01曝光和02記憶點，不要急著賣，先讓人記住你是誰。';
-  }
+  let specialNotes = [];
+  if(sp.includes('controversy')) specialNotes.push('⚠️ 有爭議負評：信任修復是首要任務，先做05再做其他');
+  if(sp.includes('b2b')) specialNotes.push('🏢 B2B：決策慢，教育型和信任型比直接賣更有效');
+  if(sp.includes('medical')) specialNotes.push('🏥 醫療法規：說「輔助/預防/儲存備用」，不說「治好/根治」');
+  if(sp.includes('highticket')) specialNotes.push('💰 高客單：先培養信任3-6個月，讓客戶自己主動詢問');
+  if(sp.includes('newbrand')) specialNotes.push('🆕 新品牌：前3個月只做曝光和記憶點，不急著推銷');
+  const specialNote = specialNotes.length > 0 ? specialNotes.join('<br>') : '';
 
+  let shortTerm='', midTerm='', longTerm='';
   if(r === 'low'){
     goals = ['01 增加品牌曝光', '02 提高品牌記憶點'];
     reason = '現在最缺的是「讓人看到你」。先衝觸及，其他都是後話。';
-    script = '用打破常識型或數字震驚型鉤子，長度15-30秒，每天固定發。';
+    script = '打破常識型或數字震驚型鉤子，15-30秒，每隔3天發一支，共10支。';
+    shortTerm = '10支全做曝光型，測試哪種鉤子效果最好，不推銷';
+    midTerm = '找出2-3個高表現內容類型，開始做系列型建立記憶點';
+    longTerm = '有穩定受眾後加入信任型內容，開始引導詢問';
   } else if(r === 'mid' && t === 'low'){
     goals = ['03 建立個人IP', '05 建立專業信任感'];
     reason = '有人看了但不相信你。現在要讓觀眾記住你是誰、覺得你很專業。';
-    script = '用故事開場型鉤子，展示你的案例和觀點，不要急著推銷。';
+    script = '故事開場型鉤子，分享真實案例（匿名），讓人感受到你的專業';
+    shortTerm = '7支信任型+3支IP人設型，讓人記住你是誰';
+    midTerm = '建立固定系列，每週同一個話題深化，形成品牌記憶點';
+    longTerm = '信任建立後加入CTA，開始引導詢問和預約';
   } else if(r === 'mid' && t === 'mid' && q === 'low'){
     goals = ['05 建立專業信任感', '06 增加詢問量'];
     reason = '有流量有一點信任，但還沒有人主動詢問。CTA不夠強。';
-    script = '用迷思破解型鉤子，結尾加強CTA，說清楚「私訊我可以得到什麼」。';
+    script = '迷思破解型鉤子，中段教學，結尾30秒專門說CTA';
+    shortTerm = '5支信任型+5支帶CTA的詢問型，測試哪種CTA反應最好';
+    midTerm = '聚焦表現好的CTA格式，每支都帶清楚的下一步行動';
+    longTerm = '詢問穩定後開始做07提升轉單品質，篩選精準客戶';
   } else if(r === 'high' && t === 'low'){
     goals = ['05 建立專業信任感', '04 教育市場'];
     reason = '很多人看但不信任你。這是危險信號，要馬上建立專業感。';
-    script = '暫停娛樂型內容，改用教學型和案例型，讓人覺得你有真本事。';
+    script = '暫停娛樂型，改做教學型和案例型，讓人覺得你有真本事';
+    shortTerm = '10支全做教學型，把現有流量轉化為信任';
+    midTerm = '信任建立後慢慢加入CTA，不要太急';
+    longTerm = '受眾結構改善後才考慮帶業績';
   } else if(r === 'high' && t === 'high' && q === 'low'){
     goals = ['06 增加詢問量', '07 提升轉單品質'];
     reason = '你的CTA太弱了。有流量有信任但沒人問，代表觀眾不知道下一步怎麼找你。';
-    script = '每支影片最後30秒專門說CTA，說清楚「怎麼聯繫+能得到什麼」。';
+    script = '每支影片最後30秒專門強化CTA，說清楚聯繫方式和好處';
+    shortTerm = '10支都要有強CTA，至少3種不同CTA版本做A/B測試';
+    midTerm = '找出轉換率最高的CTA格式，固定下來每支都用';
+    longTerm = '詢問量穩定後做07提升轉單品質';
   } else if(q === 'high'){
     goals = ['07 提升轉單品質', '08 直接帶業績'];
     reason = '有詢問但成交率低。要篩選更精準的客戶，或強化成交環節。';
-    script = '做篩選型內容：說清楚你服務的是誰、不服務誰，反而讓對的人更想找你。';
+    script = '篩選型內容：說清楚你服務誰、不服務誰，讓對的人主動靠近';
+    shortTerm = '6支篩選型+4支案例見證型，讓客戶品質提升';
+    midTerm = '詢問品質改善後開始做08直接帶業績';
+    longTerm = '建立穩定成交漏斗，詢問→諮詢→成交流程標準化';
   } else if(r === 'high' && t === 'high' && q === 'mid'){
     goals = ['08 直接帶業績', '09 活動導流'];
     reason = '基礎很好，現在可以開始衝業績了！做見證型和限時型內容。';
-    script = '用見證型鉤子，製造緊迫感，CTA直接說「現在預約/購買」。';
+    script = '見證型鉤子+限時緊迫感，CTA直接說「現在預約/購買」';
+    shortTerm = '5支見證型+3支帶業績型+2支活動導流型';
+    midTerm = '每季一次活動或促銷配合短影音集中推廣';
+    longTerm = '穩定業績後考慮09活動導流或10招募合作夥伴';
   } else {
     goals = ['05 建立專業信任感', '06 增加詢問量'];
     reason = '先鞏固信任感，再推動詢問量，這是最穩的路徑。';
-    script = '用知識型腳本建立信任，結尾加上清楚的詢問CTA。';
+    script = '知識型腳本建立信任，結尾帶清楚的詢問CTA';
+    shortTerm = '7支信任型+3支帶CTA詢問型';
+    midTerm = '根據前10支的數據調整，強化表現好的方向';
+    longTerm = '信任和詢問都穩定後，開始做業績轉換';
   }
 
   const colors = {'01':'var(--yellow)','02':'var(--yellow)','03':'var(--blue)','04':'var(--blue)','05':'var(--green)','06':'var(--p1)','07':'var(--p1)','08':'var(--p1)','09':'var(--orange)'};
@@ -3452,10 +3498,18 @@ function runDiag(){
         }).join('')}
       </div>
       <div style="background:rgba(255,255,255,.08);border-radius:7px;padding:9px 11px;margin-bottom:8px">
-        <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">✏️ 建議腳本方向</div>
+        <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:6px">📅 短中長期鋪陳方向</div>
+        <div style="display:grid;gap:4px">
+          <div style="background:rgba(255,255,255,.1);border-radius:5px;padding:6px 8px;font-size:10px;color:#E8E3DA;line-height:1.6"><span style="color:#FFD580;font-weight:700">短期（1個月/10支）：</span>${shortTerm}</div>
+          <div style="background:rgba(255,255,255,.1);border-radius:5px;padding:6px 8px;font-size:10px;color:#E8E3DA;line-height:1.6"><span style="color:#A8D8A8;font-weight:700">中期（3個月/30支）：</span>${midTerm}</div>
+          <div style="background:rgba(255,255,255,.1);border-radius:5px;padding:6px 8px;font-size:10px;color:#E8E3DA;line-height:1.6"><span style="color:#B3D4FF;font-weight:700">長期（6個月+）：</span>${longTerm}</div>
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,.08);border-radius:7px;padding:9px 11px;margin-bottom:8px">
+        <div style="font-size:10px;font-weight:700;color:var(--p1);margin-bottom:3px">✏️ 第一批腳本方向（10支）</div>
         <div style="font-size:11px;color:#E8E3DA;line-height:1.6">${script}</div>
       </div>
-      <div onclick="window.jumpTab(5)" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center">→ 去腳本系統看怎麼寫 ↗</div>
+      <div onclick="window.jumpToHook('hook-s1')" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center">→ 去腳本系統看怎麼寫 ↗</div>
     </div>
   `;
 }
@@ -3482,6 +3536,18 @@ window.jumpToGoal = function jumpToGoal(num){
       setTimeout(()=>{el.style.outline='';},3000);
     },350);
   },400);
+}
+
+window.jumpToHook = function jumpToHook(hookId){
+  window.jumpTab(5);
+  setTimeout(()=>{
+    const el = document.getElementById(hookId);
+    if(!el) return;
+    el.scrollIntoView({behavior:'smooth', block:'start'});
+    el.style.outline = '3px solid var(--r1)';
+    el.style.transition = 'outline .3s';
+    setTimeout(()=>{ el.style.outline=''; }, 3000);
+  }, 600);
 }
 
 window.jumpTab = function jumpTab(idx){
@@ -3531,27 +3597,8 @@ function searchGoals(q){
 }
 
 function scrollToGoal(name){
-  const tp5=document.getElementById('tp-5');
-  if(!tp5)return;
-  const num=name.split(' ')[0];
-  const detail=tp5.querySelector('.detail');
-  if(detail&&!detail.classList.contains('on')){
-    const btn=tp5.querySelector('.exbtn');
-    if(btn)btn.click();
-  }
-  setTimeout(()=>{
-    const allEls=tp5.querySelectorAll('[style*="font-size:12px"],[style*="font-size:11px"]');
-    let target=null;
-    allEls.forEach(el=>{
-      if(!target&&el.textContent.includes(num)&&el.textContent.length<50){target=el;}
-    });
-    if(target){
-      target.scrollIntoView({behavior:'smooth',block:'center'});
-      const box=target.closest('[style*="border-radius:9px"]')||target;
-      box.style.outline='3px solid var(--r1)';
-      setTimeout(()=>box.style.outline='',2000);
-    }
-  },300);
+  const num = name.split(' ')[0];
+  window.jumpToGoal(num);
 }
 
 function searchTerms(q){
@@ -3651,30 +3698,30 @@ function searchTerms(q){
 }
 
 function scrollToTerm(name){
-  const tp6=document.getElementById('tp-6');
-  if(!tp6)return;
-  const cards=tp6.querySelectorAll('.card');
-  let found=null;
-  cards.forEach(c=>{
-    const title=c.querySelector('.ctitle');
-    if(title&&(title.textContent.includes(name.split('/')[0].trim())||title.textContent.includes(name.split(' ')[0]))){
-      found=c;
-    }
-  });
-  if(!found){
-    // 找不到卡片，找頁面內任何包含該文字的元素
-    const allText=tp6.querySelectorAll('[style*="font-size:13px"],[style*="font-size:12px"]');
-    allText.forEach(el=>{
-      if(!found&&el.textContent.includes(name.split('/')[0].trim().substring(0,4))){
-        found=el.closest('.card')||el;
-      }
+  window.jumpTab(7);
+  setTimeout(()=>{
+    const tp7=document.getElementById('tp-7');
+    if(!tp7) return;
+    const cards=tp7.querySelectorAll('.card');
+    let found=null;
+    const searchName = name.split('/')[0].split('（')[0].trim().substring(0,6);
+    cards.forEach(c=>{
+      const title=c.querySelector('.ctitle');
+      if(!found && title && title.textContent.includes(searchName)) found=c;
     });
-  }
-  if(found){
-    found.scrollIntoView({behavior:'smooth',block:'center'});
-    found.style.outline='3px solid var(--r1)';
-    setTimeout(()=>found.style.outline='',2000);
-  }
+    if(!found){
+      const allEls=tp7.querySelectorAll('[style*="font-size:13px"],[style*="font-size:12px"]');
+      allEls.forEach(el=>{
+        if(!found && el.textContent.includes(searchName)) found=el.closest('.card')||el;
+      });
+    }
+    if(found){
+      found.scrollIntoView({behavior:'smooth',block:'center'});
+      found.style.outline='3px solid var(--r1)';
+      setTimeout(()=>found.style.outline='',2500);
+    }
+  }, 500);
+}
 }
 
 init();
