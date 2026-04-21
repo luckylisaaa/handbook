@@ -266,11 +266,12 @@ try {
   <div class="tab" onclick="switchTab(8,this)">🎯 合作目標</div>
   <div class="tab" onclick="switchTab(9,this)">📖 術語庫</div>
   <div class="tab" onclick="switchTab(10,this)">🛡️ 權責邊界</div>
-  <div class="tab" onclick="switchTab(11,this)">🏢 提案練習</div>
-  <div class="tab" onclick="switchTab(12,this)">🎨 品牌視覺</div>
-  <div class="tab" onclick="switchTab(13,this)">💎 我是誰</div>
-  <div class="tab" onclick="switchTab(14,this)">🤝 提案介紹</div>
-  <div class="tab" onclick="switchTab(15,this)">⚔️ 一人作戰</div>
+  <div class="tab" onclick="switchTab(11,this)">⚖️ 法律風險</div>
+  <div class="tab" onclick="switchTab(12,this)">🏢 提案練習</div>
+  <div class="tab" onclick="switchTab(13,this)">🎨 品牌視覺</div>
+  <div class="tab" onclick="switchTab(14,this)">💎 我是誰</div>
+  <div class="tab" onclick="switchTab(15,this)">🤝 提案介紹</div>
+  <div class="tab" onclick="switchTab(16,this)">⚔️ 一人作戰</div>
 
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
@@ -290,7 +291,7 @@ try {
       <div style="font-size:10px;color:var(--muted)">搞懂框架，建立全局觀</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(13)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">💎 我是誰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先認識自己的優勢，建立自信</div>
@@ -390,7 +391,7 @@ try {
       <div style="font-size:10px;color:var(--muted)">出去提案，準備好了</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(12)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🏢 提案練習</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用理鴻、喜躍做實戰模擬</div>
@@ -404,14 +405,21 @@ try {
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text)">⚖️ 法律風險</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:1px">35 條代營運法律地雷清單</div>
+        </div>
+        <div style="font-size:10px;color:var(--r1)">→</div>
+      </div>
+      <div onclick="window.jumpTab(15)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🤝 提案介紹</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">對外版自我介紹，打開給客戶看</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(15)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(16)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚔️ 一人作戰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">一人公司怎麼開工接案、時間分配</div>
@@ -429,15 +437,15 @@ try {
         <div style="font-size:10px;font-weight:700;color:var(--text)">📖 術語庫</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">不懂的詞直接搜</div>
       </div>
-      <div onclick="window.jumpTab(12)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(13)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🎨 品牌視覺</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">設計素材查這裡</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(15)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🚀 提案簡報</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案時的說話邏輯</div>
       </div>
-      <div onclick="window.jumpTab(13)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">💎 我是誰</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案前打氣用</div>
       </div>
@@ -2907,6 +2915,532 @@ try {
 
 
 
+<!-- ===== TAB 法律風險 ===== -->
+<div class="tpage" id="tp-legal">
+
+<div class="ch">
+  <div class="ch-ico" style="background:var(--r1);color:#fff">⚖️</div>
+  <div><div class="ch-title">法律風險</div><div class="ch-sub">35 條短影音代營運的法律地雷清單</div></div>
+</div>
+
+<div style="padding:0 14px 14px">
+  <div style="background:#FFF4E5;border-radius:9px;padding:10px 12px;border-left:3px solid #FF8F00">
+    <div style="font-size:11px;font-weight:700;color:#E65100;margin-bottom:3px">⚠️ 免責聲明</div>
+    <div style="font-size:10px;color:#5F4200;line-height:1.7">本清單整理自公開資料與新聞案例，僅供參考，<strong>不構成法律意見</strong>。實際合約條款、特定案件、違規判斷，請諮詢執業律師。</div>
+  </div>
+</div>
+
+<!-- ===== 現階段最優先處理 5 件事 ===== -->
+<div style="padding:0 14px 14px">
+  <div style="background:var(--r1);border-radius:10px;padding:12px 14px">
+    <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px">
+      <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em;text-transform:uppercase">⚡ 最優先處理</div>
+    </div>
+    <div style="font-size:13px;font-weight:700;color:#fff;font-family:'Noto Serif TC',serif;line-height:1.5;margin-bottom:8px">現階段最該先做的 5 件事</div>
+    <div style="display:grid;gap:6px">
+      <div style="background:rgba(255,255,255,.12);border-radius:7px;padding:8px 10px">
+        <div style="font-size:11px;font-weight:700;color:#fff">1. 辦好公司/行號登記</div>
+        <div style="font-size:10px;color:var(--p1);margin-top:2px;line-height:1.5">處理稅務、發票、公司帳戶</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:7px;padding:8px 10px">
+        <div style="font-size:11px;font-weight:700;color:#fff">2. 找律師做合約健檢</div>
+        <div style="font-size:10px;color:var(--p1);margin-top:2px;line-height:1.5">費用約 NT$1.5–3 萬，把草稿變正式合約</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:7px;padding:8px 10px">
+        <div style="font-size:11px;font-weight:700;color:#fff">3. 買商業責任險</div>
+        <div style="font-size:10px;color:var(--p1);margin-top:2px;line-height:1.5">一年約 1–2 萬，涵蓋著作權爭議、第三人損害</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:7px;padding:8px 10px">
+        <div style="font-size:11px;font-weight:700;color:#fff">4. 建立三份基本模板</div>
+        <div style="font-size:10px;color:var(--p1);margin-top:2px;line-height:1.5">肖像同意書、外包承攬合約、NDA</div>
+      </div>
+      <div style="background:rgba(255,255,255,.12);border-radius:7px;padding:8px 10px">
+        <div style="font-size:11px;font-weight:700;color:#fff">5. 做「客戶產業違禁詞清單」</div>
+        <div style="font-size:10px;color:var(--p1);margin-top:2px;line-height:1.5">食品、化妝品、醫療、律師各自紅線字</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 風險等級圖例 ===== -->
+<div style="padding:0 14px 10px">
+  <div style="font-size:10px;color:var(--muted);margin-bottom:6px">風險等級</div>
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:4px;background:#FFEBEE;border-radius:12px;padding:3px 9px">
+      <span style="font-size:10px">🔴</span><span style="font-size:10px;font-weight:700;color:#B71C1C">高｜刑事/重罰</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;background:#FFF3E0;border-radius:12px;padding:3px 9px">
+      <span style="font-size:10px">🟠</span><span style="font-size:10px;font-weight:700;color:#E65100">中｜行政罰</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:4px;background:#FFFDE7;border-radius:12px;padding:3px 9px">
+      <span style="font-size:10px">🟡</span><span style="font-size:10px;font-weight:700;color:#8D6E00">低｜合約糾紛</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 一、跟客戶之間（合約面）===== -->
+<div class="card" data-id="legal-1" data-title="一、跟客戶之間（合約面）">
+  <div style="padding:12px 14px;background:linear-gradient(135deg,#FFF8F9 0%,#FFEEEF 100%);display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:7px;background:var(--r1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px">🤝</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--r2)">一、跟客戶之間・合約面</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:1px">8 條</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開 8 條條款糾紛</span><span>+</span></button>
+  <div class="detail">
+
+    <div style="padding:10px 14px;display:grid;gap:8px">
+
+      <!-- #1 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#1</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">成效糾紛（最常見翻臉點）</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶誤以為花錢就會爆。合約白紙黑字寫：<strong style="color:var(--r1)">交付的是內容，不是業績</strong>。可參考手冊「不保證銷量」三個版本話術。</div>
+      </div>
+
+      <!-- #2 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#2</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">修改次數爭議</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶事後耍賴說「沒看到這條」。每次交片用 Email 或書面訊息確認「<strong style="color:var(--r1)">這是第 X 次修改</strong>」，留下紀錄。</div>
+      </div>
+
+      <!-- #3 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#3</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">素材交付與版權歸屬</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">成片 vs 專案檔的定義要明確：原始素材（raw footage）、字幕檔、配樂音軌、腳本文字檔，各算誰的？<strong style="color:var(--r1)">合約列清楚</strong>。</div>
+      </div>
+
+      <!-- #4 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#4</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">付款拖延、尾款跳票</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">合約要有違約金條款、停權條款、利息計算方式。<strong style="color:var(--r1)">逾期停權後素材是否釋出</strong>也要寫。</div>
+      </div>
+
+      <!-- #5 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#5</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">終止合約與帳號移交</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">最容易走訴訟的一條。合約加「<strong style="color:var(--r1)">終止後 X 天內完成素材交付、雙方帳號權限歸零</strong>」。</div>
+      </div>
+
+      <!-- #6 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#6</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">保密義務違反</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶提供的商業資訊、名單、未公開商品，若團隊或外包外流你要負連帶。<strong style="color:var(--r1)">雙向保密條款</strong> + 跟外包剪輯師也要簽 NDA。</div>
+      </div>
+
+      <!-- #7 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#7</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">競業與獨家爭議</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">「不能接同行」的定義要明確：<strong style="color:var(--r1)">同一細分市場、同一地區、年營收 X 以上</strong>，否則你會被綁死。</div>
+      </div>
+
+      <!-- #8 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#8</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">決策人與聯絡人不一致</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">這在法律上叫代理權問題。合約寫明「<strong style="color:var(--r1)">X 姓 X 名為本合約授權對口，其書面回覆視為客戶確認</strong>」。</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== 二、跟客戶之間（內容面）===== -->
+<div class="card" data-id="legal-2" data-title="二、跟客戶之間（內容面）">
+  <div style="padding:12px 14px;background:linear-gradient(135deg,#FFF8F9 0%,#FFEEEF 100%);display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:7px;background:var(--r1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px">🎬</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--r2)">二、跟客戶之間・內容面</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:1px">12 條｜廣告法規、著作權、肖像權</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開 12 條內容違規</span><span>+</span></button>
+  <div class="detail">
+
+    <div style="padding:10px 14px;display:grid;gap:8px">
+
+      <!-- #9 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#9</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">食品/保健品療效違規</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">《食安法》第 28 條：<strong>代謝茶案罰 4 萬、養髮膠囊案罰 20 萬</strong>。《健康食品管理法》未經認證而廣告為健康食品，一年內再犯罰鍰 9–90 萬元，<strong style="color:var(--r1)">造成人體危害可處 3 年以下有期徒刑</strong>。</div>
+        <div style="margin-top:6px;padding:6px 8px;background:#FFEBEE;border-radius:6px;font-size:10px;color:#B71C1C;line-height:1.6"><strong>🚨 腳本禁用：</strong>改善/預防/舒緩某症狀</div>
+      </div>
+
+      <!-- #10 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#10</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">化妝品療效違規</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">《化妝品衛生安全管理法》：不得為醫療效能之標示、宣傳或廣告，違反可處 <strong>4–20 萬</strong>；<strong style="color:var(--r1)">涉及虛偽誇大最高 500 萬元罰鍰</strong>。</div>
+      </div>
+
+      <!-- #11 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#11</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">醫療廣告違規（醫師客戶）</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7"><strong>醫療廣告需事前審查核准</strong>，擅自變更核准內容可處 5–25 萬罰鍰；情節嚴重併處 1 個月至 1 年停業，<strong style="color:var(--r1)">甚至吊銷醫師證書 1 年</strong>。短影音只要宣傳醫療業務招徠患者就算醫療廣告。</div>
+      </div>
+
+      <!-- #12 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#12</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">律師業務推展規範（律師客戶）</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">律師公會對短影音業配、團購、成效分潤有嚴格限制。幫律師做 CTA 時特別小心，<strong style="color:var(--r1)">不能變「花錢買案源」</strong>。過去法易通、呼叫律師 APP 都因此消失。</div>
+      </div>
+
+      <!-- #13 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#13</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">薦證廣告未揭露業配（公平法）</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">公平會 112 年修正：網紅等社群用戶納入規範，廣告不實可罰 <strong style="color:var(--r1)">5 萬至 2,500 萬元</strong>。薦證者與廣告主有非一般大眾可合理預期之利益關係，必須揭露（<strong>#廣告/合作/贊助</strong>）。</div>
+      </div>
+
+      <!-- #14 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#14</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">一般商品廣告不實</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">公平會網路廣告案件處理原則：<strong>價格/數量/品質不得與事實不符</strong>；活動變動需即時揭露；贈品限制要明示；<strong style="color:var(--r1)">不得使人誤認已獲政府機關證明</strong>。</div>
+      </div>
+
+      <!-- #15 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#15</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">背景音樂 / BGM 侵權</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7"><strong style="color:var(--r1)">代營運最常被抓的雷。</strong>剪映內建音樂、抖音熱門 BGM 搬到 IG/FB 極度危險——抖音音樂授權通常只限抖音平台。著作權法第 92 條：擅自公開播送者處 <strong>3 年以下有期徒刑或併科 75 萬元以下罰金</strong>。</div>
+        <div style="margin-top:6px;padding:6px 8px;background:#E8F5E9;border-radius:6px;font-size:10px;color:#1B5E20;line-height:1.6"><strong>✓ 建議：</strong>固定使用已付費的商用音樂庫（Epidemic Sound、Artlist 等）</div>
+      </div>
+
+      <!-- #16 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#16</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">影片/圖片素材侵權</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">網路梗圖、新聞片段、電影片段、名人照片<strong style="color:var(--r1)">全部地雷</strong>。不管有無營利，要取得著作財產權人同意。</div>
+      </div>
+
+      <!-- #17 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#17</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">路人肖像權 / 個資法</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">拍攝時入鏡的路人、客戶店裡的其他消費者、員工，未經同意擅自公開即侵害肖像權。個資法第 29 條損害賠償、<strong style="color:var(--r1)">著作權法第 88 條最高 500 萬</strong>。合約要約定「拍攝時所有入鏡人員的肖像同意書由客戶負責取得」。</div>
+      </div>
+
+      <!-- #18 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#18</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">員工入鏡後離職的肖像授權</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">拍攝現場務必簽肖像同意書，寫明<strong style="color:var(--r1)">授權範圍、期間、使用方式、是否允許離職後繼續使用</strong>。</div>
+      </div>
+
+      <!-- #19 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#19</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">誹謗、妨害名譽</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7"><strong>爭議型/觀點型腳本</strong>批評同業、前客戶、產業亂象的「雷」具體指<strong style="color:var(--r1)">妨害名譽罪與民事侵權</strong>。</div>
+      </div>
+
+      <!-- #20 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#20</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">虛假案例、假見證</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">保健品的「見證型內容」、「客戶見證」如果<strong style="color:var(--r1)">找假客戶或改編過頭</strong>，就是薦證廣告不實。</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== 三、你自己（代營運公司）===== -->
+<div class="card" data-id="legal-3" data-title="三、你自己（代營運公司）">
+  <div style="padding:12px 14px;background:linear-gradient(135deg,#FFF8F9 0%,#FFEEEF 100%);display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:7px;background:var(--r1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px">🏢</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:var(--r2)">三、你自己・代營運公司</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:1px">15 條｜公司、稅務、勞務、著作權、個資</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開 15 條公司經營</span><span>+</span></button>
+  <div class="detail">
+
+    <div style="padding:10px 14px;display:grid;gap:8px">
+
+      <!-- #21 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#21</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">公司登記</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">未登記即以公司名義營業：<strong style="color:var(--r1)">1 年以上 5 年以下有期徒刑，併科 50–250 萬罰金</strong>。行號依《商業登記法》處罰鍰。接案前先辦好，否則開發票都有問題。</div>
+      </div>
+
+      <!-- #22 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#22</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">營業項目未涵蓋</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">登記時要包含<strong>廣告業、設計業、影音製作</strong>相關代碼，否則國稅局查帳會被認定超出營業範圍。建議加 <strong style="color:var(--r1)">ZZ99999</strong>。</div>
+      </div>
+
+      <!-- #23 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#23</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">稅務風險</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶匯到私人帳戶又不要發票，短期省事但國稅局用金流反查，<strong style="color:var(--r1)">補稅加罰鍰會很痛</strong>。所有收入走公司帳戶、開發票。</div>
+      </div>
+
+      <!-- #24 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#24</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">外包剪輯師 / 攝影師的勞務認定</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">長期用同一個外包、每月固定發案、指揮監督，可能被認定為<strong style="color:var(--r1)">僱傭而非承攬</strong>，要補繳勞健保、加班費。合約寫明<strong>承攬關係、按案計酬、無固定工時</strong>。</div>
+      </div>
+
+      <!-- #25 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#25</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">助理 / 實習生勞雇關係</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">把學生當免費勞動力<strong style="color:var(--r1)">違反勞基法</strong>。實習也要簽實習合約、付薪資。</div>
+      </div>
+
+      <!-- #26 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#26</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">員工 / 外包的著作權歸屬</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">著作權法第 37 條：約定不明推定為未授權。<strong style="color:var(--r1)">外包剪輯師交付作品後著作權默認屬於剪輯師，不是你</strong>。外包合約必須寫明「著作財產權讓與乙方（你）」，否則你交給客戶的影片你自己沒有權利授權。</div>
+      </div>
+
+      <!-- #27 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#27</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">AI 生成內容的著作權</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">AI 生成內容在台灣目前<strong style="color:var(--r1)">不受著作權法保護</strong>（無「人的創作」）。合約若宣稱「擁有完整著作權並授權給客戶」可能是虛偽陳述。建議改寫成「<strong>本公司就所交付之影像製作成果授權客戶使用</strong>」。</div>
+      </div>
+
+      <!-- #28 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#28</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">個資法——客戶名單、受眾資料</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">Notion 存的初診表單、Persona、聯絡方式——你是<strong style="color:var(--r1)">個資蒐集者</strong>，有告知義務、安全維護義務。外流或被勒索時要通報且可能被裁罰。</div>
+      </div>
+
+      <!-- #29 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#29</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">平台帳號封禁的違約責任</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶 IG 因你上傳內容被封即要求賠償。合約要有<strong style="color:var(--r1)">平台風險免責條款</strong>：內容由雙方共同確認後發布，因平台政策、演算法、第三方檢舉造成限流或封禁，代營運方不負賠償責任。</div>
+      </div>
+
+      <!-- #30 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#30</span>
+          <span style="font-size:10px">🔴</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">連帶責任——客戶違法你也被拖下水</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">保健品客戶被衛生局告發，會說「這是代操公司做的」。實務上<strong style="color:var(--r1)">代理人/製作人可能被共同列為行政處分對象</strong>。合約加「客戶應確保提供資訊合法，因此產生之行政或刑事責任由客戶自負」。</div>
+      </div>
+
+      <!-- #31 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#31</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">拍攝職災</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">拍攝時跌倒、設備傷到人、出外景車禍。<strong style="color:var(--r1)">要有公司責任險/商業綜合責任險</strong>。</div>
+      </div>
+
+      <!-- #32 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#32</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">影像資料的保存與刪除</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">客戶終止後你手上還有原始素材，多久後刪除？客戶要求立刻全刪時舊備份怎麼處理？合約寫<strong style="color:var(--r1)">保存期限</strong>（例如合約結束後 1 年刪除）。</div>
+      </div>
+
+      <!-- #33 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#33</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">跨境客戶 / 跨境平台</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">香港、馬來西亞客戶，或影片主要投放 TikTok 中國版，<strong style="color:var(--r1)">適用法律、訴訟管轄地</strong>要在合約寫清楚。</div>
+      </div>
+
+      <!-- #34 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#34</span>
+          <span style="font-size:10px">🟡</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">與平台方的關係</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">代操 FB/IG 廣告投放可能觸及 Meta 商業使用條款、廣告政策。<strong style="color:var(--r1)">帳號被 Meta 封停你是否對客戶負責</strong>？</div>
+      </div>
+
+      <!-- #35 -->
+      <div style="background:#fff;border-radius:8px;padding:10px 12px;border:1px solid var(--w3)">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+          <span style="font-size:9px;font-weight:700;color:var(--muted);background:var(--w2);padding:2px 6px;border-radius:10px">#35</span>
+          <span style="font-size:10px">🟠</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">用客戶作品當作品集——最容易忽略</span>
+        </div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">沒寫這條，客戶可主張你侵害他們的著作權（即使你是做出來的人，著作權已讓與客戶）。合約<strong style="color:var(--r1)">列清楚作品集授權範圍</strong>。</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== 四、延伸與補充（空，可自行新增）===== -->
+<div class="card" data-id="legal-4" data-title="四、延伸與補充">
+  <div style="padding:12px 14px;background:linear-gradient(135deg,#F5F0ED 0%,#EAE1DB 100%);display:flex;align-items:center;justify-content:space-between">
+    <div style="display:flex;align-items:center;gap:8px">
+      <div style="width:28px;height:28px;border-radius:7px;background:#7A5A5E;color:#fff;display:flex;align-items:center;justify-content:center;font-size:14px">✦</div>
+      <div>
+        <div style="font-size:12px;font-weight:700;color:#5F4A4E">四、延伸與補充</div>
+        <div style="font-size:10px;color:var(--muted);margin-top:1px">之後新學到的法律內容放這裡</div>
+      </div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開延伸區</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+      <div style="background:#FAF6F2;border-radius:8px;padding:12px;border:1px dashed #C9B6AD;text-align:center">
+        <div style="font-size:11px;font-weight:700;color:#5F4A4E;margin-bottom:4px">📝 這區塊先空著</div>
+        <div style="font-size:10px;color:var(--muted);line-height:1.7">之後你學到新的法律知識、踩到新地雷、或有律師給的建議，<br>可以在這裡繼續堆疊累積。</div>
+      </div>
+
+      <div style="margin-top:12px;padding:10px 12px;background:#FFF9E6;border-radius:8px;border-left:3px solid #FFC107">
+        <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:3px">💡 建議收集方向</div>
+        <div style="font-size:10px;color:#5F4A4E;line-height:1.8">
+          • 最新公平會/衛福部裁罰案例<br>
+          • 產業特有的違禁詞（不同客戶類型的紅線字整理）<br>
+          • 你實際踩過/聽過的真實案例<br>
+          • 律師給你的具體建議<br>
+          • 商業保險的理賠範圍與申請流程
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 底部提醒 -->
+<div style="padding:14px;margin-top:6px">
+  <div style="background:var(--w2);border-radius:9px;padding:10px 12px;border:1px solid var(--w3)">
+    <div style="font-size:10px;color:var(--muted);line-height:1.8">
+      <strong style="color:var(--r1)">⚠️ 再次提醒</strong><br>
+      本清單整理自公開資料與新聞案例，僅供參考，不構成法律意見。實際合約條款、特定案件、違規判斷，請諮詢執業律師。
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+
 <!-- ===== TAB 8: 提案練習 ===== -->
 <div class="tpage" id="tp-9">
 
@@ -4813,7 +5347,7 @@ try {
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:6,9:7,10:8,11:9,12:11,13:12,14:13,15:15};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:6,9:7,10:8,11:"tp-legal",12:9,13:11,14:12,15:13,16:15};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
