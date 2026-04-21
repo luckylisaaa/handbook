@@ -252,30 +252,30 @@ try {
 </div>
 
 <div class="tabs">
+  <div class="tab active" onclick="switchTab(0,this)">🗺️ 開始</div>
   <div class="tab-label">⚡ 執行引擎</div>
-  <div class="tab active" onclick="switchTab(0,this)">📋 客戶流程</div>
-  <div class="tab" onclick="switchTab(1,this)">🎯 IP定位</div>
-  <div class="tab" onclick="switchTab(2,this)">⚡ AI工具</div>
-  <div class="tab" onclick="switchTab(3,this)">💰 報價合約</div>
-  <div class="tab" onclick="switchTab(4,this)">📱 拍攝執行</div>
-  <div class="tab" onclick="switchTab(5,this)">🔄 每月執行</div>
-  <div class="tab" onclick="switchTab(6,this)">🎬 腳本系統</div>
+  <div class="tab" onclick="switchTab(1,this)">📋 客戶流程</div>
+  <div class="tab" onclick="switchTab(2,this)">🎯 IP定位</div>
+  <div class="tab" onclick="switchTab(3,this)">⚡ AI工具</div>
+  <div class="tab" onclick="switchTab(4,this)">💰 報價合約</div>
+  <div class="tab" onclick="switchTab(5,this)">📱 拍攝執行</div>
+  <div class="tab" onclick="switchTab(6,this)">🔄 每月執行</div>
+  <div class="tab" onclick="switchTab(7,this)">🎬 腳本系統</div>
   <div class="tab-divider"></div>
   <div class="tab-label">✦ 底氣區</div>
-  <div class="tab" onclick="switchTab(7,this)">🎯 合作目標</div>
-  <div class="tab" onclick="switchTab(8,this)">📖 術語庫</div>
-  <div class="tab" onclick="switchTab(9,this)">🛡️ 權責邊界</div>
-  <div class="tab" onclick="switchTab(10,this)">🏢 提案練習</div>
-  <div class="tab" onclick="switchTab(11,this)">🚀 提案簡報</div>
+  <div class="tab" onclick="switchTab(8,this)">🎯 合作目標</div>
+  <div class="tab" onclick="switchTab(9,this)">📖 術語庫</div>
+  <div class="tab" onclick="switchTab(10,this)">🛡️ 權責邊界</div>
+  <div class="tab" onclick="switchTab(11,this)">🏢 提案練習</div>
   <div class="tab" onclick="switchTab(12,this)">🎨 品牌視覺</div>
   <div class="tab" onclick="switchTab(13,this)">💎 我是誰</div>
   <div class="tab" onclick="switchTab(14,this)">🤝 提案介紹</div>
+  <div class="tab" onclick="switchTab(15,this)">⚔️ 一人作戰</div>
 
 </div>
-<!-- ===== TAB 0 ===== -->
-<div class="tpage active" id="tp-0">
+<!-- ===== TAB 0: 學習路徑 ===== -->
+<div class="tpage active" id="tp-start">
 
-<!-- 學習路徑導覽 -->
 <div style="background:var(--r1);padding:16px 14px 14px;margin-bottom:0">
   <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px">你的學習路徑</div>
   <div style="font-size:13px;font-weight:700;color:#fff;font-family:'Noto Serif TC',serif;line-height:1.4">從這裡開始，照順序走</div>
@@ -290,21 +290,21 @@ try {
       <div style="font-size:10px;color:var(--muted)">搞懂框架，建立全局觀</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(13)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">💎 我是誰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先認識自己的優勢，建立自信</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(8)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🎯 合作目標</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用診斷器理解10個目標的邏輯</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(9)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">📖 術語庫</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先把KPI、CTA、ROAS這些搞懂</div>
@@ -321,21 +321,21 @@ try {
       <div style="font-size:10px;color:var(--muted)">學流程，準備接第一個客戶</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(0)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(1)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">📋 客戶流程</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">五步驟接洽流程＋客戶診斷器</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(1)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(2)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🎯 IP定位</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">幫客戶找到定位的四個階段</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(3)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(4)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">💰 報價合約</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">三個方案報價＋合約範本</div>
@@ -352,28 +352,28 @@ try {
       <div style="font-size:10px;color:var(--muted)">學執行，把內容做出來</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(6)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(7)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🎬 腳本系統</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">五種鉤子＋腳本框架，學會寫腳本</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(2)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(3)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚡ AI工具</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">AI分工系統＋提示詞庫</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-<div onclick="window.jumpTab(4)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+<div onclick="window.jumpTab(5)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">📱 拍攝執行</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">燈光手機設定＋剪映快速上手</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(5)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(6)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🔄 每月執行</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">W1-W4循環SOP，月度複盤</div>
@@ -390,14 +390,14 @@ try {
       <div style="font-size:10px;color:var(--muted)">出去提案，準備好了</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(14)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🏢 提案練習</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用理鴻、喜躍做實戰模擬</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(10)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🛡️ 權責邊界</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">客戶吵架怎麼說，哪些不能接</div>
@@ -411,6 +411,13 @@ try {
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
+      <div onclick="window.jumpTab(15)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text)">⚔️ 一人作戰</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:1px">一人公司怎麼開工接案、時間分配</div>
+        </div>
+        <div style="font-size:10px;color:var(--r1)">→</div>
+      </div>
     </div>
   </div>
 
@@ -418,11 +425,11 @@ try {
   <div style="background:#FAE8EA;border-radius:10px;padding:12px 14px;margin-bottom:6px">
     <div style="font-size:10px;font-weight:700;color:var(--r1);margin-bottom:6px">✦ 隨時都可以查</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(9)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">📖 術語庫</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">不懂的詞直接搜</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(12)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🎨 品牌視覺</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">設計素材查這裡</div>
       </div>
@@ -430,7 +437,7 @@ try {
         <div style="font-size:10px;font-weight:700;color:var(--text)">🚀 提案簡報</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案時的說話邏輯</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(13)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">💎 我是誰</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案前打氣用</div>
       </div>
@@ -438,6 +445,13 @@ try {
   </div>
 
 </div>
+
+
+
+</div>
+
+<!-- ===== TAB 0 ===== -->
+<div class="tpage" id="tp-0">
 
 
 
@@ -1845,7 +1859,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">⚠️ 判讀：曝光高但互動低怎麼辦？</div>
           <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">代表鉤子夠強但內容不夠有共鳴 → 調整中段，加入更多受眾痛點</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看打破常識型鉤子怎麼寫 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看打破常識型鉤子怎麼寫 ↗</button>
       </div>
 
       <!-- 02 提高品牌記憶點 -->
@@ -1866,7 +1880,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--yellow-d);margin-bottom:3px">⚠️ 成功信號</div>
           <div style="font-size:10px;color:var(--yellow-d);line-height:1.7">留言出現「又是你！」「我就知道是你在說這個」→ 記憶點建立成功</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看固定人設型腳本怎麼設計 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--yellow-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看固定人設型腳本怎麼設計 ↗</button>
       </div>
 
       <!-- 03 建立個人IP -->
@@ -1887,7 +1901,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">⚠️ 成功信號</div>
           <div style="font-size:10px;color:var(--blue-d);line-height:1.7">觀眾能用一句話描述你 → IP建立成功</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看故事開場型腳本怎麼寫 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看故事開場型腳本怎麼寫 ↗</button>
       </div>
 
       <!-- 04 教育市場 -->
@@ -1908,7 +1922,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--blue-d);margin-bottom:3px">⚠️ 成功信號</div>
           <div style="font-size:10px;color:var(--blue-d);line-height:1.7">留言從「這是什麼」變成「我要怎麼試試看」→ 認知改變成功</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看知識型腳本結構怎麼寫 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--blue-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看知識型腳本結構怎麼寫 ↗</button>
       </div>
 
       <!-- 05 建立專業信任感 -->
@@ -1929,7 +1943,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--green-d);margin-bottom:3px">⚠️ 關鍵洞察</div>
           <div style="font-size:10px;color:var(--green-d);line-height:1.7">觀看數不高但詢問量高 → 代表這支影片精準吸引到對的人，這才是成功</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--green-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看迷思破解型腳本怎麼寫 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--green-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看迷思破解型腳本怎麼寫 ↗</button>
       </div>
 
       <!-- 06 增加詢問量 -->
@@ -1950,7 +1964,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 重要觀念</div>
           <div style="font-size:10px;color:var(--r2);line-height:1.7">觀看數高但詢問0 → 不是內容問題，是CTA問題。馬上改CTA文字</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看痛點型腳本和CTA設計 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看痛點型腳本和CTA設計 ↗</button>
       </div>
 
       <!-- 07 提升轉單品質 -->
@@ -1971,7 +1985,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 關鍵洞察</div>
           <div style="font-size:10px;color:var(--r2);line-height:1.7">觀看數不重要，詢問的「品質」才重要。寧可少問但每個都是對的人</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看篩選型腳本怎麼設計 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看篩選型腳本怎麼設計 ↗</button>
       </div>
 
       <!-- 08 直接帶業績 -->
@@ -1992,7 +2006,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--r2);margin-bottom:3px">⚠️ 重要前提</div>
           <div style="font-size:10px;color:var(--r2);line-height:1.7">要先有05信任感 → 才能有效帶業績，順序不能跳</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看見證型和帶業績型腳本 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--r2);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看見證型和帶業績型腳本 ↗</button>
       </div>
 
       <!-- 09 活動導流 -->
@@ -2009,7 +2023,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--orange-d);margin-bottom:3px">📈 怎麼做活動導流？</div>
           <div style="font-size:10px;color:var(--orange-d);line-height:1.7">✦ 活動前3天集中發布相關影片<br>✦ 倒數計時製造緊迫感<br>✦ 前期聲量有但轉化低 = urgency不夠強<br>✦ 加上社會證明：「已有XX人報名」</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--orange-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看活動導流腳本怎麼設計 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--orange-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看活動導流腳本怎麼設計 ↗</button>
       </div>
 
       <!-- 10 招募人才 -->
@@ -2026,7 +2040,7 @@ try {
           <div style="font-size:10px;font-weight:700;color:var(--purple-d);margin-bottom:3px">📈 怎麼吸引對的人才/合作？</div>
           <div style="font-size:10px;color:var(--purple-d);line-height:1.7">✦ 展示公司文化和日常（讓對的人想加入）<br>✦ 說出你的理念和做事方式<br>✦ 幕後型內容：讓人看到真實的你是怎麼工作的<br>✦ 商務詢問主動增加就是有效</div>
         </div>
-        <button onclick="jumpTab(5)" style="width:100%;background:var(--purple-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看幕後日常型腳本怎麼設計 ↗</button>
+        <button onclick="jumpTab(7)" style="width:100%;background:var(--purple-d);border:none;border-radius:6px;padding:6px;font-size:10px;font-weight:700;color:#fff;cursor:pointer">→ 腳本系統：看幕後日常型腳本怎麼設計 ↗</button>
       </div>
 
     </div></div>
@@ -2357,7 +2371,7 @@ try {
       <div style="font-size:10px;color:var(--p1);line-height:1.7">鉤子：數字型「限時優惠剩3天」或見證型<br>中段：展示成果、比較、解決疑慮（抗拒點）<br>CTA：「連結在主頁，立即預約/購買」<br>核心KPI：ROAS、轉換率、點擊率</div>
     </div>
     <div style="margin-top:4px">
-      <button onclick="jumpTab(6)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
+      <button onclick="jumpTab(8)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
     </div>
   </div>
 
@@ -2986,7 +3000,7 @@ try {
         </div>
       </div>
     </div>
-    <button onclick="jumpTab(1)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd)">→ 跳到「IP定位」分頁看完整流程 ↗</button>
+    <button onclick="jumpTab(2)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd)">→ 跳到「IP定位」分頁看完整流程 ↗</button>
   </div>
 
 <!-- 競品分析 + 市場定位四宮格 -->
@@ -3067,7 +3081,7 @@ try {
         </div>
       </div>
     </div>
-    <button onclick="jumpTab(1)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd);margin-bottom:6px">→ 跳到「IP定位」分頁，照流程幫他做完整版 ↗</button>
+    <button onclick="jumpTab(2)" style="width:100%;background:var(--pu);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--pd);margin-bottom:6px">→ 跳到「IP定位」分頁，照流程幫他做完整版 ↗</button>
   </div>
 
   <!-- 完整SOP流程 -->
@@ -3089,7 +3103,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:#fff">Step 1｜初診分析（自行開發，AI預填）</div>
             <div style="font-size:10px;color:var(--p1);margin-top:2px">因為是自己主動開發，AI幫你把這份初診填完</div>
           </div>
-          <button onclick="jumpTab(0)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">客戶流程 →</button>
+          <button onclick="jumpTab(1)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">客戶流程 →</button>
         </div>
         <div style="background:rgba(0,0,0,.2);padding:8px 12px;font-size:10px;color:var(--p1);line-height:1.7">
           ✦ 目標：建立個人IP，讓中小企業主和房東房客找到他們<br>
@@ -3106,7 +3120,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 2｜AI五維度分析結果</div>
             <div style="font-size:10px;color:var(--r2);margin-top:2px">合作意願度：8/10｜潛力高，但需處理形象問題</div>
           </div>
-          <button onclick="jumpTab(2)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
+          <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
           ✦ 優質潛力股：有現成受眾、有專業內容素材、有預算空間<br>
@@ -3122,7 +3136,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 3｜20分鐘諮詢重點</div>
             <div style="font-size:10px;color:var(--r2);margin-top:2px">確認分析，展現你懂他們</div>
           </div>
-          <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">流程 →</button>
+          <button onclick="jumpTab(1)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">流程 →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
           ✦ 開場：「我看到你們最近在寫房屋租賃系列，這個話題很熱，有很多房東在找這類資訊」<br>
@@ -3138,7 +3152,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--r2)">Step 4｜提案內容（24小時內發）</div>
             <div style="font-size:10px;color:var(--r2);margin-top:2px">包含IP定位初稿＋腳本範例＋報價</div>
           </div>
-          <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價合約 →</button>
+          <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價合約 →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--r2);line-height:1.7">
           ✦ IP定位：「幫台灣房東房客和企業主看懂法律的務實律師」<br>
@@ -3154,7 +3168,7 @@ try {
           <div style="font-size:11px;font-weight:700;color:var(--text)">Step 5｜簽約＋50%訂金才開始</div>
           <div style="font-size:10px;color:var(--muted);margin-top:2px">不管是律師還是朋友，這條線不能破</div>
         </div>
-        <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">合約 →</button>
+        <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">合約 →</button>
       </div>
 
       <!-- Step 6 -->
@@ -3164,7 +3178,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--gd)">Step 6｜首月7天啟動</div>
             <div style="font-size:10px;color:var(--gd);margin-top:2px">Persona問卷→IP診斷書→第一批腳本</div>
           </div>
-          <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
+          <button onclick="jumpTab(1)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--gd);line-height:1.7">
           ✦ D1：訂金入帳，歡迎訊息，建Notion客戶卡片<br>
@@ -3182,7 +3196,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--bd)">Step 7｜腳本撰寫方向</div>
             <div style="font-size:10px;color:var(--bd);margin-top:2px">針對理鴻的第一批腳本框架</div>
           </div>
-          <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+          <button onclick="jumpTab(6)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--bd);line-height:1.8">
           ✦ 支1：「房東必看！押金可以直接扣房租嗎？」（鉤子：打破常識）<br>
@@ -3199,7 +3213,7 @@ try {
             <div style="font-size:11px;font-weight:700;color:var(--pd)">Step 8｜每月W1-W4循環＋複盤</div>
             <div style="font-size:10px;color:var(--pd);margin-top:2px">策劃→拍攝→剪輯→數據複盤→客戶報告</div>
           </div>
-          <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+          <button onclick="jumpTab(6)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
         </div>
         <div style="background:rgba(0,0,0,.05);padding:8px 12px;font-size:10px;color:var(--pd);line-height:1.7">
           ✦ 成效判讀KPI：完播率（目標40%+）、收藏率（目標5%+）、詢問數（月增10%）<br>
@@ -3312,19 +3326,19 @@ try {
   <div style="padding:0 14px 14px">
     <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔗 對照學習跳轉</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-      <button onclick="jumpTab(0)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">📋 客戶接洽流程</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼約初次諮詢</div>
       </button>
-      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(2)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼幫律師找定位</div>
       </button>
-      <button onclick="jumpTab(6)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(8)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
-      <button onclick="jumpTab(3)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(4)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">💰 報價合約</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認報價細節</div>
       </button>
@@ -3426,7 +3440,7 @@ try {
         </div>
       </div>
     </div>
-    <button onclick="jumpTab(1)" style="width:100%;background:var(--te);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--td)">
+    <button onclick="jumpTab(2)" style="width:100%;background:var(--te);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--td)">
       → 跳到「IP定位」分頁看完整流程 ↗
     </button>
   </div>
@@ -3525,7 +3539,7 @@ try {
         </div>
       </div>
     </div>
-    <button onclick="jumpTab(1)" style="width:100%;background:var(--te);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--td);margin-bottom:6px">→ 跳到「IP定位」分頁，照流程幫他做完整版 ↗</button>
+    <button onclick="jumpTab(2)" style="width:100%;background:var(--te);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--td);margin-bottom:6px">→ 跳到「IP定位」分頁，照流程幫他做完整版 ↗</button>
   </div>
 
   <!-- SOP流程對照 -->
@@ -3534,31 +3548,31 @@ try {
     <div style="display:grid;gap:5px">
       <div style="background:var(--r1);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:#fff">Step 1｜發初診表單</div><div style="font-size:10px;color:var(--p1);margin-top:2px">收到詢問後，不報價，先了解需求</div></div>
-        <button onclick="jumpTab(0)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
+        <button onclick="jumpTab(1)" style="background:rgba(255,255,255,.2);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
       </div>
       <div style="background:var(--r4);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 2｜AI分析＋注意醫療法規</div><div style="font-size:10px;color:var(--r2);margin-top:2px">分析時特別標注「不能宣稱療效」的內容邊界</div></div>
-        <button onclick="jumpTab(2)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
+        <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">AI工具 →</button>
       </div>
       <div style="background:var(--p1);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 3｜20分鐘諮詢</div><div style="font-size:10px;color:var(--r2);margin-top:2px">強調你懂醫療法規，這是你的差異化</div></div>
-        <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
+        <button onclick="jumpTab(1)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">看流程 →</button>
       </div>
       <div style="background:var(--r5);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:var(--r2)">Step 4｜24小時內發提案</div><div style="font-size:10px;color:var(--r2);margin-top:2px">建議全程代運營 NT$45K-80K</div></div>
-        <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價表 →</button>
+        <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">報價表 →</button>
       </div>
       <div style="background:var(--w2);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;border:1px solid var(--w3)">
         <div><div style="font-size:11px;font-weight:700;color:var(--text)">Step 5｜簽約＋訂金入帳才開始</div><div style="font-size:10px;color:var(--muted);margin-top:2px">50%訂金入帳後才執行</div></div>
-        <button onclick="jumpTab(3)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">合約 →</button>
+        <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">合約 →</button>
       </div>
       <div style="background:var(--gr);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:var(--gd)">Step 6｜首月7天啟動</div><div style="font-size:10px;color:var(--gd);margin-top:2px">Persona問卷→IP診斷書→確認法規邊界→拍攝</div></div>
-        <button onclick="jumpTab(0)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
+        <button onclick="jumpTab(1)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">啟動清單 →</button>
       </div>
       <div style="background:var(--bl);border-radius:8px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between">
         <div><div style="font-size:11px;font-weight:700;color:var(--bd)">Step 7｜每月W1-W4循環</div><div style="font-size:10px;color:var(--bd);margin-top:2px">策劃→拍攝→剪輯→複盤</div></div>
-        <button onclick="jumpTab(4)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
+        <button onclick="jumpTab(6)" style="background:var(--r1);border:none;border-radius:6px;padding:4px 8px;font-size:10px;color:#fff;cursor:pointer;white-space:nowrap">每月SOP →</button>
       </div>
     </div>
   </div>
@@ -3665,19 +3679,19 @@ try {
   <div style="padding:0 14px 14px">
     <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.08em">🔗 對照學習跳轉</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-      <button onclick="jumpTab(0)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">📋 客戶接洽流程</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼約初次諮詢</div>
       </button>
-      <button onclick="jumpTab(1)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(2)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 幫生技公司找定位</div>
       </button>
-      <button onclick="jumpTab(6)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(8)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
-      <button onclick="jumpTab(3)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(4)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">💰 報價合約</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認報價細節</div>
       </button>
@@ -3695,233 +3709,6 @@ try {
     <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
   </div>
   <div class="npanel"></div>
-</div>
-
-</div>
-
-<!-- ===== TAB 10: 提案簡報 ===== -->
-<div class="tpage" id="tp-10">
-
-<div class="ch">
-  <div class="ch-ico" style="background:var(--r1)">🚀</div>
-  <div><div class="ch-title">提案簡報</div><div class="ch-sub">介紹我是誰、短影音的威力、為什麼要選我</div></div>
-</div>
-
-<!-- 封面 -->
-<div style="margin:0 12px 12px;background:var(--r1);border-radius:14px;padding:28px 20px;text-align:center;position:relative;overflow:hidden">
-  <div style="position:absolute;top:-20px;right:-20px;width:120px;height:120px;background:rgba(255,255,255,.06);border-radius:50%"></div>
-  <div style="position:absolute;bottom:-30px;left:-10px;width:80px;height:80px;background:rgba(255,255,255,.04);border-radius:50%"></div>
-  <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.2em;margin-bottom:10px">SHORT VIDEO AGENCY</div>
-  <div style="font-size:26px;font-weight:900;color:#fff;line-height:1.2;margin-bottom:6px">短影音代理營運</div>
-  <div style="font-size:14px;color:var(--p1);margin-bottom:16px">讓你的品牌被看見、被記住、被選擇</div>
-  <div style="display:inline-block;background:rgba(255,255,255,.15);border-radius:20px;padding:6px 16px;font-size:11px;color:#fff">Baby｜短影音策略顧問</div>
-</div>
-
-<!-- Slide 1：我是誰 -->
-<div style="margin:0 12px 10px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 01</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">我是誰</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:8px">
-      <div style="background:var(--p1);border-radius:8px;padding:10px 12px;border-left:3px solid var(--r1)">
-        <div style="font-size:12px;font-weight:700;color:var(--r2);margin-bottom:3px">👤 Baby</div>
-        <div style="font-size:11px;color:var(--r2);line-height:1.7">短影音策略顧問｜前公眾人物｜自媒體經營者<br>擁有真實的鏡頭前後雙重視角</div>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <div style="background:var(--gr);border-radius:8px;padding:10px">
-          <div style="font-size:11px;font-weight:700;color:var(--gd);margin-bottom:4px">🎬 站在鏡頭前</div>
-          <div style="font-size:10px;color:var(--gd);line-height:1.6">知道觀眾在想什麼<br>知道什麼讓人停下來看<br>知道什麼讓人想追蹤</div>
-        </div>
-        <div style="background:var(--bl);border-radius:8px;padding:10px">
-          <div style="font-size:11px;font-weight:700;color:var(--bd);margin-bottom:4px">📊 站在幕後</div>
-          <div style="font-size:10px;color:var(--bd);line-height:1.6">懂IP定位策略<br>懂內容系統建立<br>懂數據複盤優化</div>
-        </div>
-      </div>
-      <div style="background:#1A1210;border-radius:8px;padding:10px 12px">
-        <div style="font-size:10px;color:var(--p1);line-height:1.7">💬 「我不只幫你拍影片，我幫你<strong style="color:#FFD580">建立一個會持續產生詢問的內容系統</strong>」</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 2：市場看頭 -->
-<div style="margin:0 12px 10px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 02</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">短影音市場：現在不做，就晚了</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:7px">
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
-        <div style="background:var(--r1);border-radius:8px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:900;color:#fff">73%</div>
-          <div style="font-size:9px;color:var(--p1);margin-top:2px;line-height:1.4">台灣用戶每天<br>看短影音</div>
-        </div>
-        <div style="background:var(--or);border-radius:8px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:900;color:var(--od)">3x</div>
-          <div style="font-size:9px;color:var(--od);margin-top:2px;line-height:1.4">短影音帶來的<br>詢問轉換率</div>
-        </div>
-        <div style="background:var(--ye);border-radius:8px;padding:10px;text-align:center">
-          <div style="font-size:20px;font-weight:900;color:var(--yd)">60s</div>
-          <div style="font-size:9px;color:var(--yd);margin-top:2px;line-height:1.4">建立品牌印象<br>的黃金時間</div>
-        </div>
-      </div>
-      <div style="background:var(--p1);border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:5px">🔥 現在的趨勢</div>
-        <div style="display:grid;gap:4px">
-          <div style="font-size:10px;color:var(--r2);line-height:1.6">✦ IG Reels、TikTok、YouTube Shorts 演算法全面推短影音</div>
-          <div style="font-size:10px;color:var(--r2);line-height:1.6">✦ 圖文觸及率持續下降，短影音觸及率是圖文的 <strong>5-8倍</strong></div>
-          <div style="font-size:10px;color:var(--r2);line-height:1.6">✦ 台灣 B2B、專業服務業的短影音還是 <strong>藍海</strong>，現在切入最有利</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 3：能帶來什麼 -->
-<div style="margin:0 12px 10px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 03</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">短影音能帶來什麼？</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:7px">
-      <div style="display:grid;gap:5px">
-        <div style="background:var(--gr);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
-          <div style="font-size:20px;flex-shrink:0">👁️</div>
-          <div>
-            <div style="font-size:12px;font-weight:700;color:var(--gd)">曝光 × 觸及</div>
-            <div style="font-size:10px;color:var(--gd);line-height:1.6;margin-top:2px">讓完全不認識你的人，開始知道你是誰。演算法幫你免費推播給精準受眾。</div>
-          </div>
-        </div>
-        <div style="background:var(--bl);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
-          <div style="font-size:20px;flex-shrink:0">🧠</div>
-          <div>
-            <div style="font-size:12px;font-weight:700;color:var(--bd)">信任 × 專業感</div>
-            <div style="font-size:10px;color:var(--bd);line-height:1.6;margin-top:2px">讓看過你影片的人，在還沒聯繫你之前，就已經信任你了。這是文字做不到的。</div>
-          </div>
-        </div>
-        <div style="background:var(--p1);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
-          <div style="font-size:20px;flex-shrink:0">💬</div>
-          <div>
-            <div style="font-size:12px;font-weight:700;color:var(--r2)">詢問 × 轉換</div>
-            <div style="font-size:10px;color:var(--r2);line-height:1.6;margin-top:2px">每支影片結尾的CTA，讓有需求的人主動找你。不是硬推銷，是吸引對的人。</div>
-          </div>
-        </div>
-        <div style="background:var(--ye);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
-          <div style="font-size:20px;flex-shrink:0">🔄</div>
-          <div>
-            <div style="font-size:12px;font-weight:700;color:var(--yd)">長期資產累積</div>
-            <div style="font-size:10px;color:var(--yd);line-height:1.6;margin-top:2px">每支影片都是永久存在的內容資產。第一個月發的影片，3年後還在幫你帶客。</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 4：為什麼選我 -->
-<div style="margin:0 12px 10px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 04</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">為什麼是我，不是別人？</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:7px">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-        <div style="background:var(--pu);border-radius:8px;padding:10px">
-          <div style="font-size:20px;margin-bottom:4px">🎭</div>
-          <div style="font-size:11px;font-weight:700;color:var(--pd);margin-bottom:3px">雙重視角</div>
-          <div style="font-size:10px;color:var(--pd);line-height:1.5">我站過鏡頭前，懂觀眾心理；也懂幕後策略，兩個一般行銷公司都不懂</div>
-        </div>
-        <div style="background:var(--gr);border-radius:8px;padding:10px">
-          <div style="font-size:20px;margin-bottom:4px">🎯</div>
-          <div style="font-size:11px;font-weight:700;color:var(--gd);margin-bottom:3px">策略優先</div>
-          <div style="font-size:10px;color:var(--gd);line-height:1.5">不只拍片，先幫你定位IP、設計內容系統，每支影片都有策略目的</div>
-        </div>
-        <div style="background:var(--or);border-radius:8px;padding:10px">
-          <div style="font-size:20px;margin-bottom:4px">📊</div>
-          <div style="font-size:11px;font-weight:700;color:var(--od);margin-bottom:3px">數據驅動</div>
-          <div style="font-size:10px;color:var(--od);line-height:1.5">每月複盤數據，每支影片有KPI，成效透明可追蹤</div>
-        </div>
-        <div style="background:var(--bl);border-radius:8px;padding:10px">
-          <div style="font-size:20px;margin-bottom:4px">🤝</div>
-          <div style="font-size:11px;font-weight:700;color:var(--bd);margin-bottom:3px">你省力我全包</div>
-          <div style="font-size:10px;color:var(--bd);line-height:1.5">你只需要確認方向、偶爾出鏡，其他策略腳本剪輯發布全交給我</div>
-        </div>
-      </div>
-      <div style="background:#1A1210;border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;color:var(--p1);line-height:1.7">💬 「我的客戶不是買影片，他們買的是<strong style="color:#FFD580">一個會持續帶來詢問的系統</strong>。」</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 5：合作方案 -->
-<div style="margin:0 12px 10px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 05</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">合作方式</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:7px">
-      <div style="background:var(--r4);border-radius:8px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <div style="font-size:12px;font-weight:700;color:var(--r2)">🧠 策略顧問包</div>
-          <div style="font-size:11px;font-weight:700;color:var(--r1)">NT$18K-28K/月</div>
-        </div>
-        <div style="font-size:10px;color:var(--r2);line-height:1.6">IP定位 + 內容策略 + 腳本框架 + 月報分析</div>
-      </div>
-      <div style="background:var(--p1);border-radius:8px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <div style="font-size:12px;font-weight:700;color:var(--r2)">✂️ 腳本+製作包</div>
-          <div style="font-size:11px;font-weight:700;color:var(--r1)">NT$28K-45K/月</div>
-        </div>
-        <div style="font-size:10px;color:var(--r2);line-height:1.6">腳本撰寫 + 剪輯製作 + 發布排程，10支/月</div>
-      </div>
-      <div style="background:var(--r1);border-radius:8px;padding:10px 12px">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-          <div style="font-size:12px;font-weight:700;color:#fff">🚀 全程代運營</div>
-          <div style="font-size:11px;font-weight:700;color:#FFD580">NT$45K-80K/月</div>
-        </div>
-        <div style="font-size:10px;color:var(--p1);line-height:1.6">策略+腳本+拍攝+剪輯+發布+複盤，全部交給我</div>
-      </div>
-      <div style="background:var(--gr);border-radius:8px;padding:10px 12px;text-align:center">
-        <div style="font-size:11px;font-weight:700;color:var(--gd);margin-bottom:3px">🎁 下一步：免費30分鐘診斷諮詢</div>
-        <div style="font-size:10px;color:var(--gd)">我幫你分析現在的帳號狀況，給出具體建議，不收費</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Slide 6：常見問題 -->
-<div style="margin:0 12px 12px">
-  <div style="background:var(--r1);border-radius:10px 10px 0 0;padding:8px 14px">
-    <div style="font-size:10px;font-weight:700;color:rgba(255,255,255,.7);letter-spacing:.12em">SLIDE 06</div>
-    <div style="font-size:14px;font-weight:700;color:#fff">你可能在想的問題</div>
-  </div>
-  <div style="background:var(--w2);border-radius:0 0 10px 10px;padding:14px;border:1px solid var(--w3);border-top:none">
-    <div style="display:grid;gap:7px">
-      <div style="background:var(--te);border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;font-weight:700;color:var(--td);margin-bottom:4px">Q：我很忙，沒時間配合怎麼辦？</div>
-        <div style="font-size:10px;color:var(--td);line-height:1.6">A：我的服務設計就是讓你最省力。你只需要每月確認一次方向，其他的全部我來。</div>
-      </div>
-      <div style="background:#DDF3EF;border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;font-weight:700;color:var(--td);margin-bottom:4px">Q：多久會有成效？</div>
-        <div style="font-size:10px;color:var(--td);line-height:1.6">A：通常3個月建立基礎，6個月開始有穩定詢問。我不承諾業績，但我承諾幫你把帳號做對方向。</div>
-      </div>
-      <div style="background:var(--te);border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;font-weight:700;color:var(--td);margin-bottom:4px">Q：我要出鏡嗎？</div>
-        <div style="font-size:10px;color:var(--td);line-height:1.6">A：信任型產業建議出鏡，但我會讓你輕鬆自然，不是對著鏡頭背稿。</div>
-      </div>
-      <div style="background:#DDF3EF;border-radius:8px;padding:10px 12px">
-        <div style="font-size:11px;font-weight:700;color:var(--td);margin-bottom:4px">Q：跟一般行銷公司有什麼不同？</div>
-        <div style="font-size:10px;color:var(--td);line-height:1.6">A：一般公司幫你「做內容」，我幫你「建系統」。差別是：系統會持續運作，做內容做完就沒了。</div>
-      </div>
-    </div>
-  </div>
 </div>
 
 </div>
@@ -4494,6 +4281,77 @@ try {
   </div>
 </div>
 
+<!-- 市場數據 -->
+<div style="padding:24px 20px;border-bottom:1px solid #E8E3DA;background:#FDFBF8">
+  <div style="font-size:8px;font-weight:700;color:var(--r1);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px">短影音市場</div>
+  <div style="display:grid;gap:7px">
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px">
+      <div style="background:var(--r1);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:#fff">73%</div>
+        <div style="font-size:9px;color:var(--p1);margin-top:2px;line-height:1.4">台灣用戶每天<br>看短影音</div>
+      </div>
+      <div style="background:var(--or);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--orange-d)">3x</div>
+        <div style="font-size:9px;color:var(--orange-d);margin-top:2px;line-height:1.4">短影音帶來的<br>詢問轉換率</div>
+      </div>
+      <div style="background:var(--ye);border-radius:8px;padding:10px;text-align:center">
+        <div style="font-size:20px;font-weight:900;color:var(--yellow-d)">藍海</div>
+        <div style="font-size:9px;color:var(--yellow-d);margin-top:2px;line-height:1.4">台灣B2B<br>現在切入最佳</div>
+      </div>
+    </div>
+    <div style="background:var(--p1);border-radius:8px;padding:10px 12px">
+      <div style="font-size:10px;color:var(--r2);line-height:1.7">✦ 圖文觸及率持續下降，短影音觸及率是圖文的 <strong>5-8倍</strong><br>✦ IG Reels、TikTok、YouTube Shorts 演算法全面推短影音<br>✦ 台灣專業服務業的短影音還是藍海，現在切入最有利</div>
+    </div>
+  </div>
+</div>
+
+<!-- 短影音能帶來什麼 -->
+<div style="padding:24px 20px;border-bottom:1px solid #E8E3DA">
+  <div style="font-size:8px;font-weight:700;color:var(--r1);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px">短影音能帶來什麼</div>
+  <div style="display:grid;gap:6px">
+    <div style="background:var(--gr);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
+      <div style="font-size:18px;flex-shrink:0">👁️</div>
+      <div><div style="font-size:11px;font-weight:700;color:var(--green-d);margin-bottom:2px">曝光 × 觸及</div><div style="font-size:10px;color:var(--green-d);line-height:1.6">讓完全不認識你的人，開始知道你是誰。演算法幫你免費推播給精準受眾。</div></div>
+    </div>
+    <div style="background:var(--bl);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
+      <div style="font-size:18px;flex-shrink:0">🧠</div>
+      <div><div style="font-size:11px;font-weight:700;color:var(--blue-d);margin-bottom:2px">信任 × 專業感</div><div style="font-size:10px;color:var(--blue-d);line-height:1.6">讓看過你影片的人，在還沒聯繫你之前，就已經信任你了。</div></div>
+    </div>
+    <div style="background:var(--p1);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
+      <div style="font-size:18px;flex-shrink:0">💬</div>
+      <div><div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:2px">詢問 × 轉換</div><div style="font-size:10px;color:var(--r2);line-height:1.6">每支影片結尾的CTA，讓有需求的人主動找你。不是硬推銷，是吸引對的人。</div></div>
+    </div>
+    <div style="background:var(--ye);border-radius:8px;padding:10px 12px;display:flex;gap:10px;align-items:flex-start">
+      <div style="font-size:18px;flex-shrink:0">🔄</div>
+      <div><div style="font-size:11px;font-weight:700;color:var(--yellow-d);margin-bottom:2px">長期資產累積</div><div style="font-size:10px;color:var(--yellow-d);line-height:1.6">每支影片都是永久存在的內容資產。第一個月發的影片，3年後還在幫你帶客。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 常見問題 -->
+<div style="padding:24px 20px;border-bottom:1px solid #E8E3DA;background:#FDFBF8">
+  <div style="font-size:8px;font-weight:700;color:var(--r1);letter-spacing:.22em;text-transform:uppercase;margin-bottom:16px">FAQ</div>
+  <div style="display:grid;gap:7px">
+    <div style="background:var(--teal);border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:4px">Q：我很忙，沒時間配合怎麼辦？</div>
+      <div style="font-size:10px;color:var(--teal-d);line-height:1.6">A：我的服務設計就是讓你最省力。你只需要每月確認一次方向，其他的全部我來。</div>
+    </div>
+    <div style="background:#DDF3EF;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:4px">Q：多久會有成效？</div>
+      <div style="font-size:10px;color:var(--teal-d);line-height:1.6">A：通常3個月建立基礎，6個月開始有穩定詢問。我承諾幫你把帳號做對方向。</div>
+    </div>
+    <div style="background:var(--teal);border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:4px">Q：要出鏡嗎？</div>
+      <div style="font-size:10px;color:var(--teal-d);line-height:1.6">A：信任型產業建議出鏡，但我會讓你輕鬆自然，不是對著鏡頭背稿。</div>
+    </div>
+    <div style="background:#DDF3EF;border-radius:8px;padding:10px 12px">
+      <div style="font-size:11px;font-weight:700;color:var(--teal-d);margin-bottom:4px">Q：跟一般行銷公司有什麼不同？</div>
+      <div style="font-size:10px;color:var(--teal-d);line-height:1.6">A：一般公司幫你「做內容」，我幫你「建系統」。系統會持續運作，做內容做完就沒了。</div>
+    </div>
+  </div>
+</div>
+
+
 <!-- CTA -->
 <div style="padding:24px 20px 32px">
   <div style="background:var(--r1);border-radius:12px;padding:20px 18px;text-align:center">
@@ -4955,7 +4813,7 @@ try {
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:0,1:1,2:2,3:3,4:14,5:4,6:5,7:6,8:7,9:8,10:9,11:10,12:11,13:12,14:13,15:15};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:6,9:7,10:8,11:9,12:11,13:12,14:13,15:15};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
@@ -5101,7 +4959,8 @@ function switchTab(idx,tab){
   document.querySelectorAll('.tpage').forEach(p=>p.classList.remove('active'));
   tab.classList.add('active');
   const tpId = TAB_MAP[idx] !== undefined ? TAB_MAP[idx] : idx;
-  const pg=document.getElementById('tp-'+tpId);
+  const pageId = typeof tpId === 'string' ? tpId : 'tp-'+tpId;
+  const pg=document.getElementById(pageId);
   if(pg)pg.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -5481,7 +5340,7 @@ function runDiag(){
 }
 
 window.jumpToGoal = function jumpToGoal(num){
-  jumpTab(7, false);
+  jumpTab(8, false);
   setTimeout(()=>{
     const el=document.getElementById('goal-'+num);
     if(!el)return;
@@ -5505,7 +5364,7 @@ window.jumpToGoal = function jumpToGoal(num){
 }
 
 window.jumpToHook = function jumpToHook(hookId){
-  window.jumpTab(6, false);
+  window.jumpTab(7, false);
   window.scrollTo({top:0});
   setTimeout(()=>{
     const el = document.getElementById(hookId);
@@ -5523,7 +5382,8 @@ window.jumpTab = function jumpTab(idx, scrollTop){
   document.querySelectorAll('.tpage').forEach(p=>p.classList.remove('active'));
   if(tabs[idx])tabs[idx].classList.add('active');
   const tpId = TAB_MAP[idx] !== undefined ? TAB_MAP[idx] : idx;
-  const targetPage=document.getElementById('tp-'+tpId);
+  const pageId = typeof tpId === 'string' ? tpId : 'tp-'+tpId;
+  const targetPage=document.getElementById(pageId);
   if(targetPage)targetPage.classList.add('active');
   if(scrollTop !== false) window.scrollTo({top:0,behavior:'smooth'});
 }
@@ -5666,7 +5526,7 @@ function searchTerms(q){
 }
 
 function scrollToTerm(name){
-  window.jumpTab(8, false);
+  window.jumpTab(9, false);
   window.scrollTo({top:0});
   setTimeout(()=>{
     const tp7=document.getElementById('tp-7');
@@ -5746,7 +5606,7 @@ function runIPDiag(){
           <div style="font-size:11px;color:#E8E3DA">${diff}</div>
         </div>
       </div>
-      <div onclick="window.jumpTab(5)" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center;margin-top:8px">→ 去腳本系統看對應鉤子怎麼寫 ↗</div>
+      <div onclick="window.jumpTab(7)" style="width:100%;background:var(--r1);border-radius:7px;padding:8px;font-size:11px;font-weight:700;color:#fff;cursor:pointer;text-align:center;margin-top:8px">→ 去腳本系統看對應鉤子怎麼寫 ↗</div>
     </div>`;
 }
 
