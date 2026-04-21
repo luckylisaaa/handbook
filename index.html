@@ -261,17 +261,18 @@ try {
   <div class="tab" onclick="switchTab(5,this)">📱 拍攝執行</div>
   <div class="tab" onclick="switchTab(6,this)">🔄 每月執行</div>
   <div class="tab" onclick="switchTab(7,this)">🎬 腳本系統</div>
+  <div class="tab" onclick="switchTab(8,this)">🚪 交付閘門</div>
   <div class="tab-divider"></div>
   <div class="tab-label">✦ 底氣區</div>
-  <div class="tab" onclick="switchTab(8,this)">🎯 合作目標</div>
-  <div class="tab" onclick="switchTab(9,this)">📖 術語庫</div>
-  <div class="tab" onclick="switchTab(10,this)">🛡️ 權責邊界</div>
-  <div class="tab" onclick="switchTab(11,this)">⚖️ 法律風險</div>
-  <div class="tab" onclick="switchTab(12,this)">🏢 提案練習</div>
-  <div class="tab" onclick="switchTab(13,this)">🎨 品牌視覺</div>
-  <div class="tab" onclick="switchTab(14,this)">💎 我是誰</div>
-  <div class="tab" onclick="switchTab(15,this)">🤝 提案介紹</div>
-  <div class="tab" onclick="switchTab(16,this)">⚔️ 一人作戰</div>
+  <div class="tab" onclick="switchTab(9,this)">🎯 合作目標</div>
+  <div class="tab" onclick="switchTab(10,this)">📖 術語庫</div>
+  <div class="tab" onclick="switchTab(11,this)">🛡️ 權責邊界</div>
+  <div class="tab" onclick="switchTab(12,this)">⚖️ 法律風險</div>
+  <div class="tab" onclick="switchTab(13,this)">🏢 提案練習</div>
+  <div class="tab" onclick="switchTab(14,this)">🎨 品牌視覺</div>
+  <div class="tab" onclick="switchTab(15,this)">💎 我是誰</div>
+  <div class="tab" onclick="switchTab(16,this)">🤝 提案介紹</div>
+  <div class="tab" onclick="switchTab(17,this)">⚔️ 一人作戰</div>
 
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
@@ -291,21 +292,21 @@ try {
       <div style="font-size:10px;color:var(--muted)">搞懂框架，建立全局觀</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(14)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(15)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">💎 我是誰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先認識自己的優勢，建立自信</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(8)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(9)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🎯 合作目標</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用診斷器理解10個目標的邏輯</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(9)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(10)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">📖 術語庫</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先把KPI、CTA、ROAS這些搞懂</div>
@@ -381,6 +382,13 @@ try {
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
+      <div onclick="window.jumpTab(8)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--r2)">🚪 交付閘門</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:1px">三道閘門 + 理鴻分鏡實戰示範</div>
+        </div>
+        <div style="font-size:10px;color:var(--r1)">→</div>
+      </div>
     </div>
   </div>
 
@@ -391,35 +399,35 @@ try {
       <div style="font-size:10px;color:var(--muted)">出去提案，準備好了</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(12)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(13)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🏢 提案練習</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用理鴻、喜躍做實戰模擬</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(10)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🛡️ 權責邊界</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">客戶吵架怎麼說，哪些不能接</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(12)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚖️ 法律風險</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">35 條代營運法律地雷清單</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(15)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(16)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🤝 提案介紹</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">對外版自我介紹，打開給客戶看</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(16)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(17)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚔️ 一人作戰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">一人公司怎麼開工接案、時間分配</div>
@@ -433,19 +441,19 @@ try {
   <div style="background:#FAE8EA;border-radius:10px;padding:12px 14px;margin-bottom:6px">
     <div style="font-size:10px;font-weight:700;color:var(--r1);margin-bottom:6px">✦ 隨時都可以查</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-      <div onclick="window.jumpTab(9)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(10)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">📖 術語庫</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">不懂的詞直接搜</div>
       </div>
-      <div onclick="window.jumpTab(13)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🎨 品牌視覺</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">設計素材查這裡</div>
       </div>
-      <div onclick="window.jumpTab(15)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(16)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🚀 提案簡報</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案時的說話邏輯</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(15)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">💎 我是誰</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案前打氣用</div>
       </div>
@@ -2379,7 +2387,7 @@ try {
       <div style="font-size:10px;color:var(--p1);line-height:1.7">鉤子：數字型「限時優惠剩3天」或見證型<br>中段：展示成果、比較、解決疑慮（抗拒點）<br>CTA：「連結在主頁，立即預約/購買」<br>核心KPI：ROAS、轉換率、點擊率</div>
     </div>
     <div style="margin-top:4px">
-      <button onclick="jumpTab(8)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
+      <button onclick="jumpTab(9)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
     </div>
   </div>
 
@@ -2710,6 +2718,1074 @@ try {
 </div>
 
 </div>
+
+<!-- ===== TAB 交付閘門 ===== -->
+<div class="tpage" id="tp-delivery">
+
+<div class="ch">
+  <div class="ch-ico" style="background:var(--pu);color:var(--pd)">🚪</div>
+  <div><div class="ch-title">交付閘門</div><div class="ch-sub">讓客戶從「看結果」變成「陪做過程」的五把鑰匙</div></div>
+</div>
+
+<div style="padding:0 14px 12px">
+  <div style="background:var(--pu);border-radius:9px;padding:10px 12px">
+    <div style="font-size:11px;font-weight:700;color:var(--pd);margin-bottom:4px">為什麼這個分頁重要</div>
+    <div style="font-size:10px;color:var(--pd);line-height:1.7">
+      拍好片 ≠ 客戶滿意 ≠ 客戶續約。真正決定這三件事的，是<strong>「交付過程」有沒有讓客戶建立信任</strong>。
+      這一頁是從「簽約定級」到「交付後 30 天」的完整流程，五個主題加上一個完整的理鴻實戰示範。
+    </div>
+  </div>
+</div>
+
+<!-- ===== 五主題速查 ===== -->
+<div style="padding:0 14px 14px">
+  <div style="font-size:10px;color:var(--muted);margin-bottom:6px">本頁 5 大主題</div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--pd)">① 產出分級</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">ABC 三級差異化</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--pd)">② 分鏡視覺化</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">你的差異化武器</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--pd)">③ 三道閘門 ⭐</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">不簽回不往下走</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--pd)">④ 上架策略包</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">續約武器</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px;grid-column:1/-1">
+      <div style="font-size:10px;font-weight:700;color:var(--pd)">⑤ 交付後 30 天關係維護</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">Day 7 / Day 14 / Day 21 三個主動聯絡時機</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ ① ABC 產出分級表 ═══════════ -->
+<div class="card" data-id="dlv-abc" data-title="ABC 產出分級表">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--pu);color:var(--pd)">①</div>
+    <div class="cinfo">
+      <div class="ctitle">ABC 產出分級表</div>
+      <div class="csub">不同預算，交付不同品質。客戶嫌貴時——降級不降價</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開分級表 + 使用時機話術</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <div style="background:var(--pu);border-radius:8px;padding:9px 11px;margin-bottom:10px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:3px">📌 為什麼要有這張表</div>
+        <div style="font-size:10px;color:var(--pd);line-height:1.7">報價分頁有「試用 vs 主力」的區分，但沒說清楚<strong>「不同預算買到什麼不同品質」</strong>。客戶說「太貴」時，你要能<strong>降級不降價</strong>——拿這張表讓他自己選。</div>
+      </div>
+
+      <!-- 表格 -->
+      <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden;margin-bottom:10px">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;background:var(--w2)">
+          <div style="padding:7px 8px;font-size:9px;font-weight:700;color:var(--muted)">項目</div>
+          <div style="padding:7px 8px;font-size:9px;font-weight:700;color:#7A5190;border-left:1px solid var(--w3)">A 級</div>
+          <div style="padding:7px 8px;font-size:9px;font-weight:700;color:var(--r1);border-left:1px solid var(--w3);background:rgba(184,66,77,.08)">B 級 ★主打</div>
+          <div style="padding:7px 8px;font-size:9px;font-weight:700;color:var(--gd);border-left:1px solid var(--w3)">C 級</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">月預算</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3)">6 萬 +</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);background:rgba(184,66,77,.04)">3–5 萬</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3)">1.5–3 萬</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">腳本</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">客製訪談+精寫</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5;background:rgba(184,66,77,.04)">CAIO+人工優化</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">模板化+AI 快產</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">拍攝</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">專業+打燈+收音</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5;background:rgba(184,66,77,.04)">單機+基礎打燈</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">手機 / AI 畫面</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">剪輯</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">精修+動態字幕</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5;background:rgba(184,66,77,.04)">模板+標準字幕</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">套版+自動字幕</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">分鏡確認</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">靜態+關鍵動態</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5;background:rgba(184,66,77,.04)">AI 靜態圖</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">文字+連結</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">修改次數</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3)">每支 3 次</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);background:rgba(184,66,77,.04)">每支 2 次</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3)">每支 1 次</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr 1.1fr 1fr;border-top:1px solid var(--w3)">
+          <div style="padding:6px 8px;font-size:9px;font-weight:700;color:var(--text)">上架策略包</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">完整+廣告建議</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5;background:rgba(184,66,77,.04)">標準版</div>
+          <div style="padding:6px 8px;font-size:9px;color:var(--text);border-left:1px solid var(--w3);line-height:1.5">簡化版</div>
+        </div>
+      </div>
+
+      <!-- 使用時機話術 -->
+      <div style="background:linear-gradient(135deg,var(--pu) 0%,#EDE8FC 100%);border-radius:8px;padding:10px 12px">
+        <div style="font-size:11px;font-weight:700;color:var(--pd);margin-bottom:6px">💬 客戶嫌貴時的話術（逐字稿）</div>
+        <div style="background:#fff;border-radius:7px;padding:9px 11px;font-size:10px;color:var(--text);line-height:1.8">
+          我們有三個等級的差別——<br>
+          <span style="color:#7A5190;font-weight:700">A 級</span>是因為 <span style="color:var(--muted)">[具體差異：攝影團隊、動態字幕、關鍵鏡頭動畫]</span>。<br>
+          如果你的預算在 <span style="color:var(--r1);font-weight:700">3–5 萬區間，B 級是我們的主打</span>，大部分客戶選這個。<br>
+          你想看 B 級的<strong>詳細交付規格</strong>嗎？
+        </div>
+        <div style="margin-top:8px;padding:7px 9px;background:rgba(122,81,144,.15);border-radius:6px;font-size:9px;color:var(--pd);line-height:1.6">
+          ✦ 這句話讓你從「拍片的人」變成「<strong>有服務體系的代理商</strong>」。客戶會覺得你做過很多案子才有這種分級。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════ ② 分鏡視覺化工作流 ═══════════ -->
+<div class="card" data-id="dlv-storyboard" data-title="分鏡視覺化工作流">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--pu);color:var(--pd)">②</div>
+    <div class="cinfo">
+      <div class="ctitle">分鏡視覺化工作流</div>
+      <div class="csub">你的差異化武器：讓客戶在拍攝前就看到畫面</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開四步驟 + 工具 + 三組 Prompt</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <div style="background:var(--pu);border-radius:8px;padding:9px 11px;margin-bottom:10px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:3px">📌 為什麼這是差異化</div>
+        <div style="font-size:10px;color:var(--pd);line-height:1.7">腳本系統教的是「怎麼寫腳本」，但沒教「<strong>怎麼把腳本變成客戶看得懂的視覺</strong>」。這是你跟其他代理的最大差異——<strong>客戶在拍攝前就能看到畫面</strong>，而不是拍完說「不是我要的」。</div>
+      </div>
+
+      <!-- 四步驟視覺流 -->
+      <div style="margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">🎯 核心四步驟</div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:12px 10px;display:flex;align-items:center;justify-content:space-between;gap:4px">
+          <div style="text-align:center;flex:1">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--w2);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:15px">📝</div>
+            <div style="font-size:9px;font-weight:700;color:var(--text)">腳本</div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">→</div>
+          <div style="text-align:center;flex:1">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--w2);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:15px">📋</div>
+            <div style="font-size:9px;font-weight:700;color:var(--text)">拆分鏡</div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">→</div>
+          <div style="text-align:center;flex:1">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--pu);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:15px">🎨</div>
+            <div style="font-size:9px;font-weight:700;color:var(--pd)">AI 生圖</div>
+          </div>
+          <div style="color:var(--muted);font-size:12px">→</div>
+          <div style="text-align:center;flex:1">
+            <div style="width:32px;height:32px;border-radius:50%;background:var(--gr);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:15px">✅</div>
+            <div style="font-size:9px;font-weight:700;color:var(--gd)">客戶確認</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABC 級對應工具 -->
+      <div style="margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">📊 各級客戶用什麼工具</div>
+        <div style="display:grid;gap:6px">
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:8px 10px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="background:#7A5190;color:#fff;border-radius:4px;padding:1px 6px;font-size:9px;font-weight:700">A 級</span>
+              <span style="font-size:10px;color:var(--text);font-weight:700">Claude + Midjourney + Runway / Kling</span>
+            </div>
+            <div style="font-size:9px;color:var(--muted);line-height:1.6">產出：靜態分鏡 + 關鍵鏡頭 5–10 秒動態｜時間：4–6 小時 / 月</div>
+          </div>
+          <div style="background:#fff;border:1.5px solid var(--r1);border-radius:7px;padding:8px 10px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="background:var(--r1);color:#fff;border-radius:4px;padding:1px 6px;font-size:9px;font-weight:700">B 級 ★</span>
+              <span style="font-size:10px;color:var(--text);font-weight:700">Claude + Midjourney 或 Nano Banana Pro</span>
+            </div>
+            <div style="font-size:9px;color:var(--muted);line-height:1.6">產出：靜態分鏡完整版｜時間：2–3 小時 / 月</div>
+          </div>
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:8px 10px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="background:var(--gd);color:#fff;border-radius:4px;padding:1px 6px;font-size:9px;font-weight:700">C 級</span>
+              <span style="font-size:10px;color:var(--text);font-weight:700">Claude + 文字分鏡 + 參考連結</span>
+            </div>
+            <div style="font-size:9px;color:var(--muted);line-height:1.6">產出：文字描述 + 情緒板｜時間：1 小時 / 月</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 工具階段 -->
+      <div style="background:#FFFBF0;border-left:3px solid #FFC107;border-radius:7px;padding:9px 11px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:5px">🛠 工具階段性（不用全學）</div>
+        <div style="font-size:10px;color:#5F4200;line-height:1.8">
+          <strong>第一階段（這週上手）：</strong>Midjourney 或 Gemini 3 Pro Image (Nano Banana Pro)，USD 0.05–0.2 / 張｜Canva 組成 PDF<br>
+          <strong>第二階段（客戶跑順後）：</strong>Kling 2.1 / Runway Gen-4，月費 USD 20–100<br>
+          <strong>第三階段（規模化才考慮）：</strong>ComfyUI + API──<span style="color:#B71C1C;font-weight:700">現階段完全不用碰</span>
+        </div>
+      </div>
+
+      <!-- 三組提示詞 -->
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">🤖 三組核心提示詞</div>
+
+      <div style="display:grid;gap:8px">
+        <!-- Prompt 1 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:var(--w2);padding:7px 11px;font-size:10px;font-weight:700;color:var(--text)">提示詞 1｜腳本拆分鏡</div>
+          <div style="padding:9px 11px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;background:#FAF8F5;border-top:1px solid var(--w3)">你是廣告分鏡導演。以下是一支 [X] 秒的短影音腳本，拆成完整分鏡表：
+
+① 每 3-5 秒一個鏡頭，編號 S01, S02...
+② 每鏡提供：中文畫面描述、英文 prompt（給 Midjourney 用）、
+   運鏡方式、時長、台詞
+③ 整體風格參數統一（光線、色調、場景連續感）
+④ 輸出表格格式
+
+【腳本】</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)"><button onclick="copyText(this,`你是廣告分鏡導演。以下是一支 [X] 秒的短影音腳本，拆成完整分鏡表：\n\n① 每 3-5 秒一個鏡頭，編號 S01, S02...\n② 每鏡提供：中文畫面描述、英文 prompt（給 Midjourney 用）、運鏡方式、時長、台詞\n③ 整體風格參數統一（光線、色調、場景連續感）\n④ 輸出表格格式\n\n【腳本】`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製</button></div>
+        </div>
+
+        <!-- Prompt 2 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:var(--w2);padding:7px 11px;font-size:10px;font-weight:700;color:var(--text)">提示詞 2｜一次產 5 組視覺 Prompt</div>
+          <div style="padding:9px 11px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;background:#FAF8F5;border-top:1px solid var(--w3)">品牌：[品牌名]
+風格：[例：溫暖自然光 / 乾淨專業 / 生活感]
+場景：[例：辦公室 / 咖啡廳 / 律師事務所]
+主角：[例：40 歲男性律師，專業但親切]
+鏡頭：[例：中景 / 特寫 / 俯拍]
+
+請給我 5 個變體 prompt（英文），風格一致但構圖略有不同。
+每個 prompt 包含：主體、光線、構圖、情緒、鏡頭焦段、色調。</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)"><button onclick="copyText(this,`品牌：[品牌名]\n風格：[例：溫暖自然光 / 乾淨專業 / 生活感]\n場景：[例：辦公室 / 咖啡廳 / 律師事務所]\n主角：[例：40 歲男性律師，專業但親切]\n鏡頭：[例：中景 / 特寫 / 俯拍]\n\n請給我 5 個變體 prompt（英文），風格一致但構圖略有不同。\n每個 prompt 包含：主體、光線、構圖、情緒、鏡頭焦段、色調。`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製</button></div>
+        </div>
+
+        <!-- Prompt 3 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:var(--w2);padding:7px 11px;font-size:10px;font-weight:700;color:var(--text)">提示詞 3｜產出客戶版分鏡文件</div>
+          <div style="padding:9px 11px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;background:#FAF8F5;border-top:1px solid var(--w3)">請把以下分鏡表整理成給客戶審閱的 PDF 內容：
+
+① 封面（客戶品牌 + 月份 + 影片數量總覽）
+② 每支影片一頁：主題 + 九宮格縮圖 + 關鍵鏡頭放大 + 3 個確認問題
+③ 結尾確認書簽名欄
+
+語氣：專業但看得懂，不是技術文件。
+
+【分鏡表 + 圖像描述】</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)"><button onclick="copyText(this,`請把以下分鏡表整理成給客戶審閱的 PDF 內容：\n\n① 封面（客戶品牌 + 月份 + 影片數量總覽）\n② 每支影片一頁：主題 + 九宮格縮圖 + 關鍵鏡頭放大 + 3 個確認問題\n③ 結尾確認書簽名欄\n\n語氣：專業但看得懂，不是技術文件。\n\n【分鏡表 + 圖像描述】`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製</button></div>
+        </div>
+
+      </div>
+
+      <!-- 關鍵提醒 -->
+      <div style="margin-top:12px;background:var(--gr);border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:4px">💡 關鍵提醒</div>
+        <div style="font-size:10px;color:var(--gd);line-height:1.7">
+          ✦ 第一次做會卡、會慢、會改好幾輪——<strong>這是正常的</strong><br>
+          ✦ 跑過 2–3 次後會建立自己的風格庫，之後就快了<br>
+          ✦ 同一客戶 / 同一主角，記得<strong>存 Seed / 風格參考圖</strong>，下次延續
+        </div>
+      </div>
+
+      <!-- 跳到理鴻示範 -->
+      <div style="margin-top:12px;background:linear-gradient(135deg,var(--pu) 0%,var(--r1) 100%);border-radius:8px;padding:10px 12px">
+        <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:4px">🎬 看實戰示範</div>
+        <div style="font-size:10px;color:#fff;line-height:1.7;margin-bottom:8px;opacity:.95">下方有完整的理鴻法律事務所實戰示範，用「員工離職帶走客戶名單」這個主題，從腳本到 9 鏡頭分鏡到 AI Prompt 一次跑完。</div>
+        <div style="font-size:9px;color:#fff;opacity:.8">↓ 往下滑，或點擊下一張卡「③ 理鴻分鏡實戰示範」</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ ③ 理鴻分鏡實戰示範 ═══════════ -->
+<div class="card" data-id="dlv-demo" data-title="理鴻分鏡實戰示範">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--r1);color:#fff">★</div>
+    <div class="cinfo">
+      <div class="ctitle">理鴻分鏡實戰示範</div>
+      <div class="csub">用「員工離職帶走客戶名單」跑完整 9 鏡頭分鏡流程</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開完整 6 步驟示範（約 45 秒影片）</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <!-- 設定 -->
+      <div style="background:linear-gradient(135deg,#EDE8FC 0%,#FBEAE9 100%);border-radius:8px;padding:10px 12px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);letter-spacing:.08em;margin-bottom:6px">🎯 假想案例設定</div>
+        <div style="display:grid;gap:4px;font-size:10px;color:var(--text);line-height:1.7">
+          <div><strong>客戶：</strong>理鴻法律事務所（郭柏鴻律師）</div>
+          <div><strong>核心身份：</strong>幫中小企業老闆處理商業糾紛、勞資爭議的商務律師</div>
+          <div><strong>合作目標：</strong>05 建立專業信任感 + 06 增加詢問量</div>
+          <div><strong>平台：</strong>IG Reels 為主</div>
+          <div><strong>本次主題：</strong>員工離職帶走客戶名單，老闆能告嗎？</div>
+          <div><strong>長度：</strong>45 秒</div>
+        </div>
+      </div>
+
+      <!-- Step 1 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 1</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">原始腳本（從 CAIO 產出）</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:10px 12px;font-size:10px;color:var(--text);line-height:1.8">
+          <div style="color:var(--r1);font-weight:700;margin-bottom:3px">【鉤子 0-3 秒】</div>
+          「員工離職帶走你的客戶名單——<br>
+          老闆你知道可以告嗎？90% 老闆都不知道。」<br><br>
+
+          <div style="color:var(--pd);font-weight:700;margin-bottom:3px">【中段 3-35 秒】</div>
+          我是郭柏鴻律師，專打商業糾紛 15 年。<br>
+          上週有個老闆來找我，發現前業務把 300 個客戶名單帶去對手公司。<br><br>
+
+          重點是——<strong>客戶名單在台灣被認定為「營業秘密」</strong>，<br>
+          只要符合三個條件：秘密性、經濟價值、合理保護措施。<br><br>
+
+          舉例：如果你有簽 <strong>NDA</strong>、有<strong>加密權限</strong>、<strong>員工要簽離職聲明</strong>——<br>
+          這就符合「合理保護」。<br><br>
+
+          但這裡面有個關鍵時間點：<strong>離職後 6 個月</strong>。<br>
+          過了這個期限，訴訟證據力會下降。<br><br>
+
+          <div style="color:var(--gd);font-weight:700;margin-bottom:3px">【CTA 35-45 秒】</div>
+          如果你公司正遇到這件事——<br>
+          Line 搜 <strong>@kl.legal</strong> 找理鴻，<br>
+          我們 30 分鐘免費評估你的狀況。<br>
+          追蹤我，每週一個老闆該懂的法律。
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 2</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">丟給 Claude 拆分鏡的提示詞</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="padding:10px 12px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;background:#FAF8F5">你是廣告分鏡導演。以下是一支 45 秒的短影音腳本，幫我拆分鏡：
+
+① 每 3-5 秒一個鏡頭，編號 S01, S02...
+② 每鏡給出：中文畫面、英文 prompt、運鏡、時長、台詞
+③ 風格統一：溫暖專業，律師事務所，自然光為主，
+   略帶暖色調，不要冰冷
+④ 第一鏡（鉤子）和最後一鏡（CTA）要特別強
+⑤ 輸出表格
+
+【貼上腳本】</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)">
+            <button onclick="copyText(this,`你是廣告分鏡導演。以下是一支 45 秒的短影音腳本，幫我拆分鏡：\n\n① 每 3-5 秒一個鏡頭，編號 S01, S02...\n② 每鏡給出：中文畫面、英文 prompt、運鏡、時長、台詞\n③ 風格統一：溫暖專業，律師事務所，自然光為主，略帶暖色調，不要冰冷\n④ 第一鏡（鉤子）和最後一鏡（CTA）要特別強\n⑤ 輸出表格\n\n【貼上腳本】`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製提示詞</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3: 分鏡表 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 3</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">Claude 產出的 9 鏡頭分鏡表</span>
+        </div>
+        <div style="font-size:9px;color:var(--muted);margin-bottom:6px">這就是你要給理鴻看的核心文件。9 個鏡頭展開在下：</div>
+
+        <div style="display:grid;gap:6px">
+
+          <!-- S01 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--r1);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S01｜鉤子 · 0-3s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">正面特寫 + 微推鏡</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「員工離職帶走你的客戶名單，老闆你知道可以告嗎？」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>郭律師坐在會議桌前，直視鏡頭，表情嚴肅但親切，背後有法律書架與事務所 logo 虛化</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer, 45 years old, sitting at modern conference table, looking directly at camera with serious but warm expression, law books and firm logo blurred in background, warm natural light from left window, medium close-up, 85mm, professional law firm aesthetic, shallow depth of field, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S02 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--pd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S02｜衝擊數字 · 3-6s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">手勢特寫</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「90% 的老闆都不知道。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師手部特寫，食指指向鏡頭，桌上有法律文件</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">close-up shot of Asian male hand pointing toward camera, finger gesture indicating emphasis, legal documents on conference table in soft focus, warm natural lighting, 9:16 vertical, shallow depth of field, cinematic</div>
+            </div>
+          </div>
+
+          <!-- S03 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--pd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S03｜自我介紹 · 6-10s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">側 45 度中景</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「我是郭柏鴻律師，專打商業糾紛 15 年。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師在事務所走動，手上拿著文件，背後有 KAL Attorneys logo</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer walking in modern law office, holding legal documents, professional dark suit, law firm logo on wall blurred behind, warm natural window light, medium shot 3/4 angle, 35mm, cinematic, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S04 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--pd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S04｜情境重現 · 10-16s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">遠景 + 客戶側影</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「上週有個老闆來找我，發現前業務把 300 個客戶名單帶去對手公司。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>50 歲男性老闆側影，表情焦慮，律師在對面聆聽，桌上有客戶名單文件</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian businessman in his 50s sitting across from lawyer, worried frustrated expression, side profile silhouette, customer list documents visible on table, lawyer listening attentively, warm afternoon light, documentary style, wide shot, 35mm, 9:16 vertical, tense atmosphere</div>
+            </div>
+          </div>
+
+          <!-- S05 知識高潮 -->
+          <div style="background:#fff;border:2px solid var(--r1);border-radius:7px;overflow:hidden">
+            <div style="background:var(--r1);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S05 ⭐｜知識高潮 · 16-22s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">白板圖解</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「客戶名單在台灣被認定為營業秘密，要符合三個條件：秘密性、經濟價值、合理保護措施。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師在白板前用馬克筆畫三個條件，手指白板</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer explaining at white board with marker, drawing simple diagram showing "3 conditions for trade secret", professional gesture, educational style, warm office lighting, mid-shot, 50mm, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S06 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--pd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S06｜實例化 · 22-30s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">文件特寫 + 重點框</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「如果你有簽 NDA、有加密權限、員工要簽離職聲明——這就符合合理保護。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>桌上 NDA 合約特寫，手指輕點簽名欄，旁邊有筆電顯示權限管理介面</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">close-up of NDA agreement document on wooden desk, Asian male hand pointing at signature field, laptop showing access control interface beside it, warm desk lamp light, top-down angle, macro lens feel, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S07 緊迫感 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:#E65100;padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S07｜緊迫感 · 30-35s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">正面特寫 + 身體前傾</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「但有個關鍵時間點：離職後 6 個月。過了證據力會下降。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師微微前傾，表情認真，背後時鐘虛化，桌上月曆標示 6 個月</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer leaning slightly forward at desk, serious concerned expression, wall clock blurred in background, calendar showing 6-month timeline on desk, warm dramatic lighting, close-up, 85mm, sense of urgency, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S08 CTA -->
+          <div style="background:#fff;border:2px solid var(--gd);border-radius:7px;overflow:hidden">
+            <div style="background:var(--gd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S08 ⭐｜CTA · 35-42s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">正面中景 + 邀請姿勢</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「如果你公司正遇到這件事，Line 搜 @kl.legal，30 分鐘免費評估。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師微笑，手自然伸出像邀請姿勢，桌上 Line QR code 和 @kl.legal 字卡</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer at desk, warm inviting smile, hand gesture open and welcoming, Line QR code visible on desk, @kl.legal text card on table, warm natural window light, professional but approachable, medium shot, 50mm, 9:16 vertical</div>
+            </div>
+          </div>
+
+          <!-- S09 -->
+          <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+            <div style="background:var(--pd);padding:6px 10px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:10px;font-weight:700;color:#fff">S09｜片尾 · 42-45s</span>
+              <span style="font-size:9px;color:#fff;opacity:.8">定格 + 字幕卡</span>
+            </div>
+            <div style="padding:8px 11px">
+              <div style="font-size:10px;color:var(--text);line-height:1.6;margin-bottom:5px"><strong>台詞：</strong>「追蹤我，每週一個老闆該懂的法律。」</div>
+              <div style="font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:5px"><strong>畫面：</strong>律師正面定格微笑，下方字幕「郭柏鴻律師｜理鴻法律事務所｜@kl.legal」</div>
+              <div style="background:#FAF8F5;padding:6px 8px;border-radius:5px;font-size:9px;color:#555;font-family:'SF Mono',Monaco,monospace;line-height:1.6">Asian male lawyer facing camera, warm confident smile, static final shot, clean composition, law firm background blurred, brand text overlay area at bottom third, warm professional lighting, medium close-up, 85mm, 9:16 vertical</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 4</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">把 Prompt 丟進 Midjourney / Nano Banana Pro</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:10px 12px">
+          <div style="font-size:10px;color:var(--text);line-height:1.9">
+            ① 打開 Midjourney（Discord）或 Gemini 3 Pro Image<br>
+            ② 複製 S01 的英文 prompt 貼進去<br>
+            ③ 生成 4 張圖，選一張最接近的<br>
+            ④ 如果律師每張長得不同——<strong>用參考圖功能</strong>：<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Midjourney：<code style="background:#F5F0E8;padding:1px 4px;border-radius:3px;font-size:9px">--cref [圖片URL]</code>（Character Reference）<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;• Gemini：「以此人物為主角」<br>
+            ⑤ 重複 S02 到 S09
+          </div>
+          <div style="margin-top:8px;padding:6px 8px;background:var(--gr);border-radius:5px;font-size:10px;color:var(--gd);line-height:1.5">
+            ⏱️ <strong>實際生成時間：</strong>9 鏡頭 × 每鏡 2 分鐘 = <strong>約 20 分鐘產完整套分鏡</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 5</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">組成客戶版分鏡確認文件</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="padding:10px 12px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;background:#FAF8F5">請把以上分鏡表整理成給郭律師審閱的分鏡確認 PDF：
+
+① 封面：郭柏鴻律師 | 2026 年 [月份] | 本月 4 支影片
+② 本支影片頁：
+   - 主題：員工離職帶走客戶名單
+   - 秒數：45 秒
+   - 九宮格分鏡縮圖（S01-S09，客戶自己貼圖）
+   - 關鍵鏡頭放大：S01 鉤子、S05 知識高潮、S08 CTA
+   - 3 個確認問題：
+     a. 白板畫圖這段（S05）的表現方式 OK 嗎？
+        還是希望用動畫而不是實拍？
+     b. S04 的情境重現是否需要找演員，
+        還是用客戶匿名側影處理？
+     c. 整體溫暖感是否符合理鴻事務所調性？
+③ 結尾：確認書簽名欄
+
+語氣：專業但看得懂，讓客戶覺得「哇原來這麼細緻」。</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)">
+            <button onclick="copyText(this,`請把以上分鏡表整理成給郭律師審閱的分鏡確認 PDF：\n\n① 封面：郭柏鴻律師 | 2026 年 [月份] | 本月 4 支影片\n② 本支影片頁：\n   - 主題：員工離職帶走客戶名單\n   - 秒數：45 秒\n   - 九宮格分鏡縮圖（S01-S09，客戶自己貼圖）\n   - 關鍵鏡頭放大：S01 鉤子、S05 知識高潮、S08 CTA\n   - 3 個確認問題：\n     a. 白板畫圖這段（S05）的表現方式 OK 嗎？還是希望用動畫而不是實拍？\n     b. S04 的情境重現是否需要找演員，還是用客戶匿名側影處理？\n     c. 整體溫暖感是否符合理鴻事務所調性？\n③ 結尾：確認書簽名欄\n\n語氣：專業但看得懂，讓客戶覺得「哇原來這麼細緻」。`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製提示詞</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div style="margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+          <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:9px;font-weight:700">Step 6</span>
+          <span style="font-size:11px;font-weight:700;color:var(--text)">發給理鴻的訊息範本</span>
+        </div>
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="padding:10px 12px;font-size:10px;color:var(--text);line-height:1.8;white-space:pre-wrap;background:#FDFBF7">郭律師您好：
+
+本月第一支影片「員工離職帶走客戶名單」的分鏡視覺已完成。
+附件是 9 個鏡頭的 AI 模擬圖，讓您先看到實際拍攝後的畫面感。
+
+✦ 請在 [日期] 前回覆確認，三件事：
+1. 整體視覺風格是否符合理鴻事務所調性？
+2. S04 情境重現段落，演員是否能接受？
+3. 有沒有哪個鏡頭感覺不對，需要調整？
+
+✦ 這是拍攝前最後一次調整畫面的機會，
+  確認後進入拍攝執行。
+
+Line 回覆「確認」即可，或指出需要修改的鏡頭編號。
+
+謝謝！</div>
+          <div style="padding:6px 11px;background:var(--w2);border-top:1px solid var(--w3)">
+            <button onclick="copyText(this,`郭律師您好：\n\n本月第一支影片「員工離職帶走客戶名單」的分鏡視覺已完成。\n附件是 9 個鏡頭的 AI 模擬圖，讓您先看到實際拍攝後的畫面感。\n\n✦ 請在 [日期] 前回覆確認，三件事：\n1. 整體視覺風格是否符合理鴻事務所調性？\n2. S04 情境重現段落，演員是否能接受？\n3. 有沒有哪個鏡頭感覺不對，需要調整？\n\n✦ 這是拍攝前最後一次調整畫面的機會，\n  確認後進入拍攝執行。\n\nLine 回覆「確認」即可，或指出需要修改的鏡頭編號。\n\n謝謝！`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer">📋 複製訊息</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 時間成本 -->
+      <div style="background:linear-gradient(135deg,var(--gr) 0%,#D4E8DF 100%);border-radius:8px;padding:10px 12px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:6px">⏱ 實際時間成本（一支 45 秒影片）</div>
+        <div style="display:grid;gap:4px;font-size:10px;color:var(--gd);line-height:1.6">
+          <div>▸ Claude 拆分鏡：5 分鐘</div>
+          <div>▸ Midjourney 生成 9 張：20 分鐘</div>
+          <div>▸ 整理成客戶版文件：15 分鐘</div>
+          <div style="background:#fff;border-radius:5px;padding:5px 8px;margin-top:3px"><strong>B 級總計：約 40 分鐘 / 支</strong></div>
+          <div style="background:#fff;border-radius:5px;padding:5px 8px"><strong>A 級總計：約 70 分鐘 / 支</strong>（加 3 鏡關鍵動畫 +30 分鐘）</div>
+        </div>
+      </div>
+
+      <!-- 三個坑 -->
+      <div style="background:#FFEBEE;border-left:3px solid var(--r1);border-radius:7px;padding:10px 12px">
+        <div style="font-size:10px;font-weight:700;color:#B71C1C;margin-bottom:6px">🚫 三個新手常踩的坑</div>
+        <div style="display:grid;gap:8px;font-size:10px;color:#5F1E20;line-height:1.7">
+          <div>
+            <strong>坑 1｜AI 畫的律師每張長得不一樣</strong><br>
+            <span style="color:var(--gd)">✓ 解法：第一張滿意的存 URL，後面都用 <code style="background:#fff;padding:1px 4px;border-radius:3px">--cref [URL]</code></span>
+          </div>
+          <div>
+            <strong>坑 2｜客戶說「這看起來太像西方人」</strong><br>
+            <span style="color:var(--gd)">✓ 解法：prompt 明確寫 <code style="background:#fff;padding:1px 4px;border-radius:3px">Asian male / Taiwanese male</code></span>
+          </div>
+          <div>
+            <strong>坑 3｜同一部影片的鏡頭色調不一致</strong><br>
+            <span style="color:var(--gd)">✓ 解法：所有 prompt 加同組風格詞 <code style="background:#fff;padding:1px 4px;border-radius:3px">warm natural lighting, shallow depth of field, cinematic</code>，或用 <code style="background:#fff;padding:1px 4px;border-radius:3px">--sref</code></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+<!-- ═══════════ ④ 三道確認閘門 ═══════════ -->
+<div class="card" data-id="dlv-gates" data-title="三道確認閘門">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--r1);color:#fff">⭐</div>
+    <div class="cinfo">
+      <div class="ctitle">三道確認閘門</div>
+      <div class="csub">修改不吵架、方向不偏移、責任說得清——沒簽回不往下走</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開總覽流程 + 三道閘門完整 SOP</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <!-- 總覽流程 -->
+      <div style="background:linear-gradient(135deg,#FFF5EF 0%,#FFE8D9 100%);border-radius:8px;padding:12px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:#B85A2B;margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">🎯 三道閘門整體邏輯</div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
+          <div style="text-align:center;flex:1">
+            <div style="width:36px;height:36px;border-radius:50%;background:#fff;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:17px;border:1.5px solid var(--w3)">📝</div>
+            <div style="font-size:9px;font-weight:700;color:var(--text)">閘門 1</div>
+            <div style="font-size:9px;color:var(--r1);font-weight:700">腳本定稿</div>
+            <div style="font-size:8px;color:var(--muted);margin-top:2px">W1 Day 5</div>
+          </div>
+          <div style="color:var(--muted);font-size:14px">→</div>
+          <div style="text-align:center;flex:1">
+            <div style="width:36px;height:36px;border-radius:50%;background:var(--r1);margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:17px;border:1.5px solid var(--r2);box-shadow:0 0 0 3px rgba(184,66,77,.2)">🎨</div>
+            <div style="font-size:9px;font-weight:700;color:var(--text)">閘門 2 ⭐</div>
+            <div style="font-size:9px;color:var(--r1);font-weight:700">分鏡視覺</div>
+            <div style="font-size:8px;color:var(--muted);margin-top:2px">W2 Day 8-9</div>
+          </div>
+          <div style="color:var(--muted);font-size:14px">→</div>
+          <div style="text-align:center;flex:1">
+            <div style="width:36px;height:36px;border-radius:50%;background:#fff;margin:0 auto 4px;display:flex;align-items:center;justify-content:center;font-size:17px;border:1.5px solid var(--w3)">✂️</div>
+            <div style="font-size:9px;font-weight:700;color:var(--text)">閘門 3</div>
+            <div style="font-size:9px;color:var(--r1);font-weight:700">初剪確認</div>
+            <div style="font-size:8px;color:var(--muted);margin-top:2px">W3 Day 18</div>
+          </div>
+        </div>
+        <div style="margin-top:10px;padding:7px 9px;background:rgba(255,255,255,.7);border-radius:6px;font-size:9px;color:#8D4F28;line-height:1.6">
+          <strong>三道閘門的核心原則：</strong>每一道都要客戶<strong>書面簽回</strong>（Line 回覆「確認」即可）才往下一階段走。這不是官僚，是<strong>保護雙方</strong>——客戶不會事後改，你不會做白工。
+        </div>
+      </div>
+
+      <!-- 閘門 1 -->
+      <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden;margin-bottom:10px">
+        <div style="background:linear-gradient(90deg,var(--w2) 0%,#fff 100%);padding:10px 12px;border-bottom:1px solid var(--w3)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+            <span style="background:var(--pd);color:#fff;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700">閘門 1</span>
+            <span style="font-size:11px;font-weight:700;color:var(--text)">📝 腳本定稿</span>
+          </div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">W1 Day 5｜確認 4 支影片的題目、鉤子、CTA</div>
+        </div>
+        <div style="padding:10px 12px">
+          <!-- SOP -->
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:5px">📋 SOP 三步</div>
+            <div style="display:grid;gap:5px;font-size:10px;color:var(--text);line-height:1.6">
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>① 產出：</strong>CAIO 產出 + 人工優化，4 支腳本各一頁</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>② 送審：</strong>Line 傳 PDF，提 <strong>3 個確認問題</strong>（題目方向 OK？鉤子夠有力？CTA 明確？）</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>③ 簽回：</strong>客戶 Line 回「確認」即視為通過，進入分鏡</div>
+            </div>
+          </div>
+
+          <!-- 話術 -->
+          <div style="background:var(--gr);border-radius:6px;padding:8px 10px;margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:4px">💬 送腳本時的話術</div>
+            <div style="font-size:10px;color:var(--gd);line-height:1.7">「附件是本月 4 支影片的腳本定稿版。三件事想請您確認：<strong>①</strong>題目方向符合你想傳達的？<strong>②</strong>前 3 秒的鉤子夠不夠抓？<strong>③</strong>CTA 符合你的業務目標嗎？<br>Line 回覆「確認」後，我們進入分鏡視覺化。有修改建議也直接告訴我，這是我們調整的最好時機。」</div>
+          </div>
+
+          <!-- 簽回書 -->
+          <div style="background:#FFFDE7;border-left:3px solid #FFC107;border-radius:6px;padding:8px 10px">
+            <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:3px">📝 簽回書格式（客戶 Line 收到的）</div>
+            <div style="font-size:9px;color:#5F4200;line-height:1.7;background:#fff;padding:7px 9px;border-radius:5px;margin-top:4px">
+              ✦ <strong>本月腳本定稿確認書</strong>｜[客戶名] [月份]<br>
+              ・影片 1：[題目] ☐<br>
+              ・影片 2：[題目] ☐<br>
+              ・影片 3：[題目] ☐<br>
+              ・影片 4：[題目] ☐<br><br>
+              全部 OK → 回「全部確認」<br>
+              部分修改 → 指出影片編號和修改點
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 閘門 2 -->
+      <div style="background:#fff;border:2px solid var(--r1);border-radius:8px;overflow:hidden;margin-bottom:10px">
+        <div style="background:linear-gradient(90deg,rgba(184,66,77,.12) 0%,#fff 100%);padding:10px 12px;border-bottom:1px solid var(--w3)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+            <span style="background:var(--r1);color:#fff;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700">閘門 2 ⭐</span>
+            <span style="font-size:11px;font-weight:700;color:var(--text)">🎨 分鏡視覺確認</span>
+          </div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">W2 Day 8-9｜<strong style="color:var(--r1)">你最重要的差異化武器</strong></div>
+        </div>
+        <div style="padding:10px 12px">
+          <div style="background:var(--r1);color:#fff;border-radius:6px;padding:7px 9px;font-size:10px;line-height:1.7;margin-bottom:10px">
+            <strong>⚡ 為什麼這是差異化武器</strong><br>
+            90% 的代理商都跳過這步，直接從腳本到拍攝。你多這一步，客戶就<strong>感受到細緻</strong>，也降低「拍完不是我要的」的風險。
+          </div>
+
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:5px">📋 SOP 三步</div>
+            <div style="display:grid;gap:5px;font-size:10px;color:var(--text);line-height:1.6">
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>① 拆分鏡：</strong>用 Claude 把 4 支腳本各自拆 9 鏡頭（參考上方理鴻實戰示範）</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>② AI 生圖：</strong>Midjourney 生成 36 張（4 支 × 9 鏡），整合成客戶版 PDF</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>③ 簽回：</strong>Line 傳 PDF，提 3 個確認問題，客戶簽回才開拍</div>
+            </div>
+          </div>
+
+          <div style="background:var(--gr);border-radius:6px;padding:8px 10px;margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:4px">💬 送分鏡時的話術</div>
+            <div style="font-size:10px;color:var(--gd);line-height:1.7">「附件是 4 支影片 × 9 鏡頭的 AI 模擬視覺。<strong>這是拍攝前最後一次調整畫面的機會。</strong><br>三件事請確認：①整體視覺風格符合你的品牌調性？②有沒有哪個鏡頭感覺不對？③特殊場景（白板/情境重現）的處理方式 OK 嗎？<br>Line 回「確認」後進入拍攝執行。」</div>
+          </div>
+
+          <div style="background:#FFFDE7;border-left:3px solid #FFC107;border-radius:6px;padding:8px 10px">
+            <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:3px">📝 簽回書格式</div>
+            <div style="font-size:9px;color:#5F4200;line-height:1.7;background:#fff;padding:7px 9px;border-radius:5px;margin-top:4px">
+              ✦ <strong>本月分鏡視覺確認書</strong>｜[客戶名] [月份]<br>
+              ・影片 1：9 鏡分鏡 ☐<br>
+              ・影片 2：9 鏡分鏡 ☐<br>
+              ・影片 3：9 鏡分鏡 ☐<br>
+              ・影片 4：9 鏡分鏡 ☐<br><br>
+              全部 OK → 回「分鏡全部確認」<br>
+              部分修改 → 指出影片編號 + 鏡頭編號 + 修改點
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 閘門 3 -->
+      <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+        <div style="background:linear-gradient(90deg,var(--w2) 0%,#fff 100%);padding:10px 12px;border-bottom:1px solid var(--w3)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:2px">
+            <span style="background:var(--pd);color:#fff;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700">閘門 3</span>
+            <span style="font-size:11px;font-weight:700;color:var(--text)">✂️ 初剪確認</span>
+          </div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px">W3 Day 18｜收斂修改範圍、保護最終交付</div>
+        </div>
+        <div style="padding:10px 12px">
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:5px">📋 SOP 三步</div>
+            <div style="display:grid;gap:5px;font-size:10px;color:var(--text);line-height:1.6">
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>① 初剪交付：</strong>4 支影片的初剪版（含字幕、配樂）</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>② 修改回饋表：</strong>客戶用你提供的表格逐鏡頭寫修改點（不能只說「感覺怪怪的」）</div>
+              <div style="padding:6px 8px;background:#FAF8F5;border-radius:5px"><strong>③ 禁改清單：</strong>明確告知哪些不在修改範圍內</div>
+            </div>
+          </div>
+
+          <!-- 禁改清單 -->
+          <div style="background:#FFEBEE;border-left:3px solid var(--r1);border-radius:6px;padding:8px 10px;margin-bottom:10px">
+            <div style="font-size:10px;font-weight:700;color:#B71C1C;margin-bottom:5px">🚫 初剪階段的禁改清單（合約內）</div>
+            <div style="font-size:10px;color:#5F1E20;line-height:1.8">
+              ✗ 重新寫腳本 → 請回到閘門 1<br>
+              ✗ 重新拍攝 → 不在本月服務範圍<br>
+              ✗ 更換主角或場景 → 同上<br>
+              ✗ 「整個感覺要更有氣勢」 → 請提供具體修改點<br><br>
+              <span style="color:var(--gd);font-weight:700">✓ 本階段可改：字幕文字、配樂調整、剪接節奏、畫面順序微調</span>
+            </div>
+          </div>
+
+          <!-- 修改回饋表 -->
+          <div style="background:#FFFDE7;border-left:3px solid #FFC107;border-radius:6px;padding:8px 10px">
+            <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:3px">📝 修改回饋表格式</div>
+            <div style="font-size:9px;color:#5F4200;line-height:1.7;background:#fff;padding:7px 9px;border-radius:5px;margin-top:4px">
+              ✦ <strong>本月初剪修改回饋</strong>｜[客戶名] [月份]<br>
+              ・影片 [編號]｜時間點 [00:12]｜問題：[具體描述]｜建議：[具體做法]<br>
+              ・重複填寫……<br><br>
+              <strong>每支影片修改上限：</strong>A 級 3 次｜B 級 2 次｜C 級 1 次
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ ⑤ 上架策略包 ═══════════ -->
+<div class="card" data-id="dlv-launch" data-title="上架策略包">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--pu);color:var(--pd)">④</div>
+    <div class="cinfo">
+      <div class="ctitle">上架策略包（交付武器）</div>
+      <div class="csub">別的代理不會給——多做這一步，客戶續約率立刻拉高</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開五元件 + 提示詞</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <div style="background:var(--pu);border-radius:8px;padding:9px 11px;margin-bottom:10px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:3px">📌 為什麼要做</div>
+        <div style="font-size:10px;color:var(--pd);line-height:1.7">W4 只有「發布→收數據→複盤」就結束了，但客戶真正記得你的不是複盤報告，是<strong>上架後到底怎麼用這些影片</strong>。這是續約武器。</div>
+      </div>
+
+      <!-- 5 元件 -->
+      <div style="display:grid;gap:8px">
+
+        <!-- ① 九宮格版面 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:10px 12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+            <span style="background:var(--pd);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">①</span>
+            <span style="font-size:11px;font-weight:700;color:var(--text)">IG 九宮格版面預覽</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.7;margin-left:26px">
+            ▸ Canva 做母版（客戶頭貼 + Bio + 未來 9 篇預覽）<br>
+            ▸ 本月 9 支影片的封面排進去，讓客戶看到<strong style="color:var(--text)">整體感</strong><br>
+            ▸ 附上未來 3 個月節奏預告，<strong style="color:var(--r1)">種下續約想像</strong>
+          </div>
+        </div>
+
+        <!-- ② 30 天節奏表 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+          <div style="padding:10px 12px 8px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="background:var(--pd);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">②</span>
+              <span style="font-size:11px;font-weight:700;color:var(--text)">30 天發文節奏表</span>
+            </div>
+          </div>
+          <div style="padding:0 12px 10px">
+            <div style="background:#FAF8F5;padding:9px 11px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;border-radius:5px">為客戶 [品牌名] 規劃下月 30 天發文節奏：
+
+背景：
+- 本月 [X] 支影片：[主題列表]
+- 主受眾：[Persona]
+- 目標：[主 + 副目標]
+- 平台：[FB / IG / TikTok]
+
+產出：
+① 30 天行事曆（日期 / 平台 / 影片編號 / 時間 / 文案）
+② 每支 3 版 A/B 測試文案
+③ Hashtag 組（核心 5 + 擴散 10）
+④ 限動搭配建議
+⑤ 跨平台差異建議</div>
+            <button onclick="copyText(this,`為客戶 [品牌名] 規劃下月 30 天發文節奏：\n\n背景：\n- 本月 [X] 支影片：[主題列表]\n- 主受眾：[Persona]\n- 目標：[主 + 副目標]\n- 平台：[FB / IG / TikTok]\n\n產出：\n① 30 天行事曆（日期 / 平台 / 影片編號 / 時間 / 文案）\n② 每支 3 版 A/B 測試文案\n③ Hashtag 組（核心 5 + 擴散 10）\n④ 限動搭配建議\n⑤ 跨平台差異建議`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer;margin-top:6px">📋 複製提示詞</button>
+          </div>
+        </div>
+
+        <!-- ③ Bio 優化 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;overflow:hidden">
+          <div style="padding:10px 12px 8px">
+            <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px">
+              <span style="background:var(--pd);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">③</span>
+              <span style="font-size:11px;font-weight:700;color:var(--text)">IG Bio 優化（3 版讓客戶選）</span>
+            </div>
+          </div>
+          <div style="padding:0 12px 10px">
+            <div style="background:#FAF8F5;padding:9px 11px;font-size:9px;color:var(--muted);line-height:1.7;font-family:'SF Mono',Monaco,monospace;white-space:pre-wrap;border-radius:5px">為客戶優化 IG Bio：
+① 三行內
+② 核心身份 + 服務對象 + CTA
+③ 1-2 個 emoji
+④ 符合 IP 定位：[貼上定位一句話]
+
+輸出 3 版。</div>
+            <button onclick="copyText(this,`為客戶優化 IG Bio：\n① 三行內\n② 核心身份 + 服務對象 + CTA\n③ 1-2 個 emoji\n④ 符合 IP 定位：[貼上定位一句話]\n\n輸出 3 版。`)" style="background:var(--pd);color:#fff;border:none;border-radius:5px;padding:4px 10px;font-size:9px;font-weight:700;cursor:pointer;margin-top:6px">📋 複製提示詞</button>
+          </div>
+        </div>
+
+        <!-- ④ 互動回應劇本 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:10px 12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="background:var(--pd);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">④</span>
+            <span style="font-size:11px;font-weight:700;color:var(--text)">互動回應劇本</span>
+            <span style="font-size:9px;color:var(--r1);background:#FFEBEE;padding:1px 6px;border-radius:10px">客戶最需要但最不會寫</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.8;margin-left:26px">
+            <strong style="color:var(--text)">五種情境應對，每種附 2 版範例話術：</strong><br>
+            ▸ <strong>正面留言：</strong>感謝 + 延伸話題 + 引導追蹤<br>
+            ▸ <strong>詢問型：</strong>歡迎 + 引導私訊（避免公開談價）<br>
+            ▸ <strong>挑戰型：</strong>尊重 + 補充說明 + 不爭論<br>
+            ▸ <strong>離題廣告：</strong>不回應或隱藏<br>
+            ▸ <strong>負面攻擊：</strong>不公開回覆 + 截圖存證
+          </div>
+        </div>
+
+        <!-- ⑤ 下月預告（續約鉤子） -->
+        <div style="background:linear-gradient(135deg,var(--pu) 0%,#F5EDFC 100%);border:1.5px solid var(--pd);border-radius:7px;padding:10px 12px">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+            <span style="background:var(--r1);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">⑤</span>
+            <span style="font-size:11px;font-weight:700;color:var(--pd)">下月預告（續約鉤子）</span>
+          </div>
+          <div style="font-size:10px;color:var(--pd);line-height:1.7;margin-left:26px">
+            <strong>策略包最後一頁放這段：</strong>
+          </div>
+          <div style="background:#fff;border-radius:6px;padding:9px 11px;margin-top:8px;font-size:10px;color:var(--text);line-height:1.8">
+            <strong style="color:var(--r1)">✨ 下個月我們可以做什麼</strong><br><br>
+            基於本月數據，下月建議方向：<br>
+            ① [根據 KPI 預測的優化方向]<br>
+            ② [新主題建議 3 個]<br>
+            ③ [可加購：IG 廣告投放 / 跨平台擴張]<br><br>
+            如果你想延續合作，我們可以在 [日期] 前開下月策劃會議。
+          </div>
+          <div style="margin-top:8px;padding:6px 9px;background:rgba(184,66,77,.1);border-radius:5px;font-size:9px;color:var(--r2);line-height:1.5">
+            💡 <strong>這段話不是等月底才說，是交付當下就種下續約種子。</strong>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════ ⑥ 交付後 30 天關係維護 ═══════════ -->
+<div class="card" data-id="dlv-relation" data-title="交付後 30 天關係維護">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--pu);color:var(--pd)">⑤</div>
+    <div class="cinfo">
+      <div class="ctitle">交付後 30 天關係維護</div>
+      <div class="csub">發片 ≠ 結束。續約前這 30 天，你要主動出現 3 次</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開 Day 7 / Day 14 / Day 21 SOP</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:10px 14px 14px">
+
+      <div style="background:var(--pu);border-radius:8px;padding:9px 11px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--pd);margin-bottom:3px">📌 為什麼這 30 天很關鍵</div>
+        <div style="font-size:10px;color:var(--pd);line-height:1.7">你的流程在「交片+複盤」就結束，但<strong>交付到續約前這 30 天，才是續約率的關鍵</strong>。不主動聯絡 = 客戶慢慢忘了你。</div>
+      </div>
+
+      <!-- 三個時間點 -->
+      <div style="display:grid;gap:10px;margin-bottom:12px">
+
+        <!-- Day 7 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:linear-gradient(90deg,var(--gr) 0%,#fff 100%);padding:9px 12px;display:flex;align-items:center;gap:8px">
+            <div style="background:var(--gd);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">D7</div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--text)">Day 7｜追蹤互動表現</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:1px">用數據說話，讓客戶感受到你在盯</div>
+            </div>
+          </div>
+          <div style="padding:10px 12px">
+            <div style="background:#FFFDE7;border-left:3px solid #FFC107;border-radius:5px;padding:7px 9px;font-size:10px;color:#5F4200;line-height:1.7;margin-bottom:8px">
+              <strong>⚠️ 關鍵原則：</strong>
+              <strong style="color:#B71C1C">不要問「你覺得怎樣」</strong>——客戶會想「我哪知道」<br>
+              <strong style="color:var(--gd)">要說「我看到什麼」</strong>——用數據說話
+            </div>
+            <div style="background:var(--gr);border-radius:6px;padding:8px 10px;font-size:10px;color:var(--gd);line-height:1.7">
+              <strong>💬 範例訊息：</strong><br>
+              「上週的第 X 支互動不錯，粉絲留言集中在 [話題]，這對下月選題有啟發。」
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 14 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:linear-gradient(90deg,var(--bl) 0%,#fff 100%);padding:9px 12px;display:flex;align-items:center;gap:8px">
+            <div style="background:var(--bd);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">D14</div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--text)">Day 14｜主動 call-in</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:1px">不等客戶找你，讓他感受到你是夥伴</div>
+            </div>
+          </div>
+          <div style="padding:10px 12px">
+            <div style="font-size:10px;color:var(--text);line-height:1.8;margin-bottom:8px">
+              一通 <strong>15 分鐘的電話</strong>（或長語音訊息）——<br>
+              「聊一下這兩週的表現，順便問你有沒有想聊的方向」
+            </div>
+            <div style="background:var(--bl);border-radius:6px;padding:8px 10px;font-size:10px;color:var(--bd);line-height:1.7">
+              <strong>🎯 目的：</strong>讓客戶感受到你不是「收錢做事的乙方」，是<strong>「在意他成長的夥伴」</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Day 21 -->
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden">
+          <div style="background:linear-gradient(90deg,#FFF5EF 0%,#fff 100%);padding:9px 12px;display:flex;align-items:center;gap:8px">
+            <div style="background:var(--r1);color:#fff;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">D21</div>
+            <div>
+              <div style="font-size:11px;font-weight:700;color:var(--text)">Day 21｜提下月方向初稿</div>
+              <div style="font-size:9px;color:var(--muted);margin-top:1px">把續約從「要不要繼續」變成「自然延續」</div>
+            </div>
+          </div>
+          <div style="padding:10px 12px">
+            <div style="background:#FFEBEE;border-left:3px solid var(--r1);border-radius:5px;padding:7px 9px;font-size:10px;color:#5F1E20;line-height:1.7;margin-bottom:8px">
+              <strong style="color:#B71C1C">✗ 不要說：</strong>「合約要到期了要續嗎」<br>
+              <strong style="color:var(--gd)">✓ 要說：</strong>「下個月我想試這個方向，你覺得呢？」
+            </div>
+            <div style="background:linear-gradient(135deg,var(--r1) 0%,var(--r2) 100%);border-radius:6px;padding:8px 10px;font-size:10px;color:#fff;line-height:1.7">
+              <strong>🎯 效果：</strong>當客戶開始回應「這方向不錯」，續約就不需要談判——他已經自己答應了。
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 合約到期前 7 天 -->
+      <div style="background:#fff;border:2px dashed var(--pd);border-radius:8px;padding:10px 12px;margin-bottom:12px">
+        <div style="display:flex;align-items:center;gap:6px;margin-bottom:5px">
+          <span style="background:var(--pd);color:#fff;border-radius:5px;padding:2px 8px;font-size:10px;font-weight:700">合約到期前 7 天</span>
+        </div>
+        <div style="font-size:10px;color:var(--text);line-height:1.7">
+          正式提續約方案。用手冊已有的「<strong>續約提案文案</strong>」提示詞產出（在客戶流程 Step 5）。
+        </div>
+      </div>
+
+      <!-- 核心心法 -->
+      <div style="background:linear-gradient(135deg,var(--pu) 0%,var(--r1) 100%);border-radius:8px;padding:12px">
+        <div style="font-size:11px;font-weight:700;color:#fff;margin-bottom:6px;letter-spacing:.08em">💡 核心心法</div>
+        <div style="font-size:11px;color:#fff;font-weight:700;line-height:1.7;margin-bottom:8px">
+          「不要讓客戶覺得你每個月都在推銷。」
+        </div>
+        <div style="background:rgba(255,255,255,.15);border-radius:6px;padding:8px 10px;font-size:10px;color:#fff;line-height:1.8">
+          ▸ <strong>前 21 天是「我在幫你看」</strong>——你是觀察者<br>
+          ▸ <strong>Day 22 之後才是「我們可以繼續做」</strong>——你是推進者<br><br>
+          <span style="color:#FFCDD2">順序不能反。反了就變成業務纏客戶。</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 底部：執行順序建議 -->
+<div style="padding:14px">
+  <div style="background:var(--w2);border-radius:9px;padding:12px 14px;border:1px solid var(--w3)">
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:8px">🎯 執行順序建議（不要一次全上線）</div>
+    <div style="display:grid;gap:6px;font-size:10px;color:var(--muted);line-height:1.7">
+      <div style="padding:6px 8px;background:#fff;border-radius:6px"><strong style="color:var(--r1)">這週：</strong>把 ABC 分級表背熟，下次報價拿出來用</div>
+      <div style="padding:6px 8px;background:#fff;border-radius:6px"><strong style="color:var(--r1)">下週：</strong>找真實客戶跑一次分鏡實戰示範（照理鴻範例做）</div>
+      <div style="padding:6px 8px;background:#fff;border-radius:6px"><strong style="color:var(--r1)">第一個客戶：</strong>從閘門 1 開始跑三道閘門</div>
+      <div style="padding:6px 8px;background:#fff;border-radius:6px"><strong style="color:var(--r1)">第一次交付時：</strong>套用上架策略包</div>
+      <div style="padding:6px 8px;background:#fff;border-radius:6px"><strong style="color:var(--r1)">交付完第一個月：</strong>跑 Day 7 / 14 / 21 關係維護</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
 
 <!-- ===== TAB 7: 權責邊界 ===== -->
 <div class="tpage" id="tp-8">
@@ -3868,7 +4944,7 @@ try {
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼幫律師找定位</div>
       </button>
-      <button onclick="jumpTab(8)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(9)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
@@ -4221,7 +5297,7 @@ try {
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 幫生技公司找定位</div>
       </button>
-      <button onclick="jumpTab(8)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(9)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
@@ -5347,7 +6423,7 @@ try {
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:6,9:7,10:8,11:"tp-legal",12:9,13:11,14:12,15:13,16:15};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-delivery",9:6,10:7,11:8,12:"tp-legal",13:9,14:11,15:12,16:13,17:15};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
@@ -5655,6 +6731,14 @@ function copyP(btn){
     setTimeout(()=>{btn.textContent=o;btn.style.background='';},1500);
   }).catch(()=>alert('請手動複製'));
 }
+
+function copyText(btn,text){
+  navigator.clipboard.writeText(text).then(()=>{
+    const o=btn.textContent;btn.textContent='✓ 已複製';btn.style.background='var(--gd)';
+    setTimeout(()=>{btn.textContent=o;btn.style.background='';},1500);
+  }).catch(()=>alert('請手動複製'));
+}
+window.copyText=copyText;
 
 function updateBar(){
   const n=S.c.length;
