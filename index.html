@@ -10580,6 +10580,410 @@ init();
   </div>
 </div>
 
+
+<!-- ════════════ Astra 使命三版本 ════════════ -->
+<div style="padding:16px 12px 8px">
+  <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.15em;text-transform:uppercase">✦ ASTRA 的使命</div>
+
+  <!-- 切換標籤 -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:12px;background:var(--w1);padding:4px;border-radius:10px;border:1px solid var(--w3)">
+    <button id="mission-tab-public" onclick="switchMission('public')" style="background:#A51820;color:#fff;border:none;padding:10px 6px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">🌍 公開</button>
+    <button id="mission-tab-client" onclick="switchMission('client')" style="background:transparent;color:var(--muted);border:none;padding:10px 6px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">🤝 客戶看</button>
+    <button id="mission-tab-private" onclick="switchMission('private')" style="background:transparent;color:var(--muted);border:none;padding:10px 6px;border-radius:7px;font-size:11px;font-weight:700;cursor:pointer">🔐 私人</button>
+  </div>
+
+  <!-- ══════ 🌍 公開版 · Astra 對世界的宣言 ══════ -->
+  <div id="mission-public" style="display:block">
+    <div style="background:linear-gradient(135deg,#FDFBF8 0%,#FDF3F4 100%);border:2px solid #A51820;border-radius:16px;padding:22px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(165,24,32,.08)">
+      <div style="position:absolute;top:-30px;right:-30px;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(165,24,32,.12) 0%,transparent 70%)"></div>
+      
+      <div style="position:relative;z-index:1">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:#A51820;letter-spacing:.2em">✦ ASTRA MANIFESTO</div>
+          <div style="font-size:9px;color:#999">公開版 · v1.0</div>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#1A1A1A;line-height:1.4;margin-bottom:18px;letter-spacing:.02em">
+          我們不是一顆星，<br>
+          是一整片星空。
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+          Astra 相信 ——<br>
+          <strong style="color:#A51820">創作應該是快樂的。</strong><br>
+          <strong style="color:#A51820">流量應該是乾淨的。</strong><br>
+          <strong style="color:#A51820">每一個人的專業，都值得被看見。</strong>
+        </div>
+
+        <div style="border-top:1px solid #E0D8CF;padding-top:14px;margin-top:14px">
+          <div style="font-size:11px;color:#666;line-height:1.9;font-family:'Noto Serif TC',serif">
+            我們只幫一種人：<br><br>
+            <span style="color:#1A1A1A">✦ 相信專業比流量重要的人</span><br>
+            <span style="color:#1A1A1A">✦ 相信本質比利益珍貴的人</span><br>
+            <span style="color:#1A1A1A">✦ 相信照亮別人的光，才是真正的光 —— 的人</span>
+          </div>
+        </div>
+
+        <div style="background:#1A0E0F;color:#FDFBF8;padding:16px 18px;border-radius:12px;margin-top:18px;position:relative">
+          <div style="position:absolute;top:-8px;left:20px;font-size:32px;color:#A51820;font-family:serif;line-height:1">"</div>
+          <div style="font-family:'Noto Serif TC',serif;font-size:13px;line-height:1.9;font-style:italic;padding-top:4px">
+            錢買得到很多東西，<br>
+            但買不到心裡的平靜。<br><br>
+            我們在這裡，<br>
+            是為了讓更多人看見自己的專業，<br>
+            同時保護他們不被這個產業的浮誇吞沒。
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px dashed #E0D8CF">
+          <div style="font-family:'Noto Serif TC',serif;font-size:14px;color:#A51820;font-style:italic;letter-spacing:.1em;font-weight:700">Per Aspera Ad Astra.</div>
+          <div style="font-size:10px;color:#666;margin-top:4px;letter-spacing:.1em">穿越艱辛，抵達繁星</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="font-size:10px;color:var(--muted);margin-top:10px;text-align:center;font-style:italic">可複製這段作為 Astra 官網首頁、提案封面、Email 簽名</div>
+  </div>
+
+  <!-- ══════ 🤝 客戶版 · 給簽約客戶的創辦人信 ══════ -->
+  <div id="mission-client" style="display:none">
+    <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:16px;padding:22px">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+        <div style="font-size:10px;font-weight:700;color:#A51820;letter-spacing:.2em">🤝 給你的一封信</div>
+        <div style="font-size:9px;color:#999">客戶看版 · 簽約後可看</div>
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:#1A1A1A;line-height:1.4;margin-bottom:18px">
+        你選的不只是代理營運，<br>
+        是一個跟你一起發光的夥伴。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        嗨，我是 Lisa。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        在我們正式開始合作之前，我想讓你認識一個我。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        我有 <strong style="color:#A51820">20 多年的表演經驗</strong>，<br>
+        <strong style="color:#A51820">13 年的自媒體經驗</strong>。<br>
+        曾經的我，是一個在鏡頭前發光的人。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        2026 年 3 月 9 日，<br>
+        我在我生日那天，做了一個很難的決定 ——<br>
+        <strong>暫時退下舞台，轉為幕後。</strong>
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        不是因為我不愛舞台。<br>
+        是因為經歷了一場網路風波，<br>
+        我需要一段沉澱的時間。
+      </div>
+
+      <div style="background:#FDF3F4;border-left:3px solid #A51820;padding:14px 16px;border-radius:0 8px 8px 0;margin:18px 0">
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:1.9">
+          但這段時間，我沒有閒著。<br>
+          我開始做一件我以為自己會做、<br>
+          但沒想到會這麼享受的事 ——<br>
+          <strong style="color:#A51820">幫別人找到他們的舞台。</strong>
+        </div>
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        這就是 Astra 誕生的原因。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        因為我走過鏡頭前的風浪，<br>
+        我特別懂得一件事：
+      </div>
+
+      <div style="background:#1A0E0F;color:#FDFBF8;padding:18px;border-radius:12px;margin:18px 0">
+        <div style="font-family:'Noto Serif TC',serif;font-size:14px;line-height:1.9">
+          ✦ <strong style="color:#F0C0C5">為了流量踩紅線</strong>，最後傷的是自己<br>
+          ✦ <strong style="color:#F0C0C5">為了爆款失去自我</strong>，換來的是空虛<br>
+          ✦ <strong style="color:#F0C0C5">乾淨的創作</strong>，才是長久的路
+        </div>
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        所以我只接一種客戶 ——<br>
+        相信自己的專業值得被看見、<br>
+        但不願意為了流量失去本質的人。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        你之所以在這裡，<br>
+        代表你就是這樣的人。
+      </div>
+
+      <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:2;margin-bottom:16px">
+        我會用我過去 20 年站在舞台上的敏感度、<br>
+        13 年經營自媒體的判斷力、<br>
+        加上我剛剛經歷的這段沉澱 ——<br>
+        <strong style="color:#A51820">幫你的專業，被這個世界好好看見。</strong>
+      </div>
+
+      <div style="border-top:1px solid #E0D8CF;padding-top:16px;margin-top:20px">
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#1A1A1A;line-height:1.9;font-style:italic">
+          等我回到鏡頭前那天，<br>
+          我希望身邊是一群像你這樣、<br>
+          <strong style="color:#A51820">一起發光的人。</strong>
+        </div>
+      </div>
+
+      <div style="text-align:right;margin-top:24px">
+        <div style="font-family:'Noto Serif TC',serif;font-size:14px;color:#1A1A1A;font-style:italic">— Lisa</div>
+        <div style="font-size:10px;color:#666;margin-top:4px">Astra 創辦人</div>
+      </div>
+
+      <div style="text-align:center;margin-top:20px;padding-top:16px;border-top:1px dashed #E0D8CF">
+        <div style="font-family:'Noto Serif TC',serif;font-size:12px;color:#A51820;font-style:italic;letter-spacing:.1em">Per Aspera Ad Astra · 穿越艱辛，抵達繁星</div>
+      </div>
+    </div>
+    
+    <div style="font-size:10px;color:var(--muted);margin-top:10px;text-align:center;font-style:italic">簽約後 email 發給客戶 · 或是提案附件</div>
+  </div>
+
+  <!-- ══════ 🔐 私人版 · 加密區塊 ══════ -->
+  <div id="mission-private" style="display:none">
+    <!-- 密碼輸入區 -->
+    <div id="private-lock" style="background:linear-gradient(135deg,#1A0E0F 0%,#2A1A1C 100%);border-radius:16px;padding:40px 20px;text-align:center;color:#FDFBF8">
+      <div style="font-size:48px;margin-bottom:16px">🔐</div>
+      <div style="font-family:'Noto Serif TC',serif;font-size:20px;font-weight:900;margin-bottom:8px">私人區域</div>
+      <div style="font-size:11px;color:#F0C0C5;margin-bottom:24px;line-height:1.8">這裡只有你一個人。<br>沒有包裝，沒有客戶會看見。</div>
+      
+      <input type="password" id="private-password" placeholder="輸入你的密碼" style="width:220px;max-width:80%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.3);color:#FDFBF8;padding:12px 16px;border-radius:8px;font-size:13px;text-align:center;box-sizing:border-box" onkeypress="if(event.key==='Enter') unlockPrivate()">
+      <br><br>
+      <button onclick="unlockPrivate()" style="background:#A51820;color:#fff;border:none;padding:10px 28px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.08em">解鎖 →</button>
+      
+      <div id="private-error" style="color:#F0C0C5;font-size:10px;margin-top:16px;display:none">密碼不對，再試一次</div>
+      
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="font-size:10px;color:rgba(255,255,255,.5);line-height:1.7">
+          第一次使用？<br>
+          <button onclick="setupPrivate()" style="background:transparent;color:#F0C0C5;border:1px solid #A51820;padding:6px 14px;border-radius:6px;font-size:10px;cursor:pointer;margin-top:8px">設定你的密碼</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 解鎖後的內容 -->
+    <div id="private-content" style="display:none">
+      <div style="background:#1A0E0F;color:#FDFBF8;border-radius:16px;padding:22px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
+          <div style="font-size:10px;font-weight:700;color:#F0C0C5;letter-spacing:.2em">🔐 只有你看</div>
+          <button onclick="lockPrivate()" style="background:transparent;color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.2);padding:4px 10px;border-radius:6px;font-size:9px;cursor:pointer">鎖上 🔒</button>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:#FDFBF8;line-height:1.4;margin-bottom:18px">
+          給未來的我
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          親愛的 Lisa：
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          如果你在看這段話，代表你已經走到了那一天。<br>
+          或者，你只是在 2026 年的某個半夜，<br>
+          想回來看看當初的自己。
+        </div>
+
+        <div style="background:rgba(255,255,255,.05);padding:16px;border-radius:10px;margin:16px 0;border-left:3px solid #A51820">
+          <div style="font-family:'Noto Serif TC',serif;font-size:12px;color:#F0E8E0;line-height:1.9">
+            2026 年 3 月 9 日，你生日那天，<br>
+            你做了一個很難的決定：<br>
+            暫時退下舞台。
+          </div>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          那天你哭了。<br>
+          還錄了一段影片紀錄這一刻。<br>
+          你告訴自己：<br>
+          <strong style="color:#F0C0C5">「最短一年，最長不超過兩年，<br>
+          我一定會閃亮回到舞台上。」</strong>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          你經歷了一些不公平的事 ——<br>
+          有人用威脅圖利的方式，<br>
+          把你做為創作者的快樂，變成了新聞風波。
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          你變成了「眾矢之的」，<br>
+          被說成「最大的壞蛋」、「惡女」。<br>
+          <strong>但你什麼都不能反駁。</strong>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          4 月 13 號才剛準備停，<br>
+          還要準備下一次上法院。<br>
+          這段時間你承受的，沒有人看見。
+        </div>
+
+        <div style="background:rgba(165,24,32,.2);padding:18px;border-radius:10px;margin:20px 0;border:1px solid rgba(165,24,32,.4)">
+          <div style="font-family:'Noto Serif TC',serif;font-size:14px;color:#FDFBF8;line-height:1.9;text-align:center">
+            <strong>但你沒有倒下。</strong><br><br>
+            
+            你在 3 月 12 日找到了答案：<strong style="color:#F0C0C5">短影音代理營運</strong>。<br>
+            你動搖過一次，想回去當有氧老師。<br>
+            但你想清楚了 —— <strong style="color:#F0C0C5">創作才是你真正愛的事</strong>。
+          </div>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          然後在 4 月 18 日，<br>
+          你突發奇想開始做 HTML 頁面追蹤進度。<br>
+          沒想到做上癮了。<br>
+          <strong style="color:#F0C0C5">5 天，36 個版本。</strong>
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          到 4 月 22 日凌晨，<br>
+          Astra 誕生了。
+        </div>
+
+        <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0E8E0;line-height:2;margin-bottom:16px">
+          4 月 23 日凌晨快 3 點，<br>
+          你在寫這段話給未來的自己。<br>
+          你說，你唸完這段使命書的時候 ——<br>
+          <strong style="color:#F0C0C5">眼眶泛紅。</strong>
+        </div>
+
+        <div style="border-top:1px solid rgba(255,255,255,.1);padding-top:20px;margin-top:24px">
+          <div style="font-family:'Noto Serif TC',serif;font-size:14px;color:#FDFBF8;line-height:2;font-style:italic">
+            所以我想告訴未來的你 ——<br><br>
+            
+            <strong style="color:#F0C0C5">你受的苦沒有白費。</strong><br>
+            <strong style="color:#F0C0C5">你的善良沒有錯。</strong><br>
+            <strong style="color:#F0C0C5">你暫時被消音，不代表你的聲音不重要。</strong><br><br>
+            
+            你在最黑的時候，<br>
+            想的不是怎麼報復、怎麼反擊，<br>
+            而是：<br>
+            「我要幫身邊的人一起發光，<br>
+            &nbsp;&nbsp;不要讓他們跟我一樣受傷。」<br><br>
+            
+            <strong style="color:#A51820;background:#FDFBF8;padding:6px 10px;border-radius:4px;font-style:normal">這就是你最珍貴的地方。</strong>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,255,255,.08);padding:18px;border-radius:10px;margin-top:24px;text-align:center">
+          <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#FDFBF8;line-height:2">
+            不管你何時看到這段話 ——<br>
+            是 3 個月後、1 年後、2 年後，<br>
+            還是你閃亮回到舞台那一天 ——<br><br>
+            
+            <strong style="color:#F0C0C5;font-size:16px">記得這個在凌晨寫下使命書、眼眶泛紅的自己。</strong><br><br>
+            
+            她，就是 Astra 真正的起點。
+          </div>
+        </div>
+
+        <div style="text-align:right;margin-top:24px;font-family:'Noto Serif TC',serif;font-size:12px;color:#F0C0C5;font-style:italic">
+          — 2026-04-23 凌晨 2:50<br>
+          還沒睡的你
+        </div>
+
+        <div style="text-align:center;margin-top:24px;padding-top:16px;border-top:1px dashed rgba(255,255,255,.1)">
+          <div style="font-family:'Noto Serif TC',serif;font-size:14px;color:#A51820;font-style:italic;letter-spacing:.15em;font-weight:700">Per Aspera Ad Astra.</div>
+          <div style="font-size:10px;color:rgba(255,255,255,.6);margin-top:6px;letter-spacing:.15em">穿越艱辛，抵達繁星</div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="font-size:10px;color:var(--muted);margin-top:10px;text-align:center;font-style:italic">🔐 密碼只存在你的瀏覽器，沒有任何伺服器能看到</div>
+  </div>
+
+</div>
+<!-- ════════════ END 使命三版本 ════════════ -->
+
+<script>
+(function(){
+  // 切換使命版本
+  window.switchMission = function(type){
+    const types = ['public', 'client', 'private'];
+    types.forEach(t => {
+      const tab = document.getElementById('mission-tab-' + t);
+      const content = document.getElementById('mission-' + t);
+      if (t === type) {
+        if (tab) {
+          tab.style.background = '#A51820';
+          tab.style.color = '#fff';
+        }
+        if (content) content.style.display = 'block';
+      } else {
+        if (tab) {
+          tab.style.background = 'transparent';
+          tab.style.color = 'var(--muted)';
+        }
+        if (content) content.style.display = 'none';
+      }
+    });
+  }
+
+  // 私人版密碼邏輯
+  window.setupPrivate = function(){
+    const existing = localStorage.getItem('astra_private_hash');
+    if (existing) {
+      alert('你已經設定過密碼了喔。如果忘記了，可以在瀏覽器開發工具手動重設（進階用戶）');
+      return;
+    }
+    const pw = prompt('設定一個你能記得的密碼（建議 4-8 個字元，可以是生日、暗語、任何你記得的東西）：');
+    if (!pw || pw.length < 2) {
+      alert('密碼不能太短');
+      return;
+    }
+    // 簡單的雜湊（不是高強度加密，但夠日常用）
+    const hash = simpleHash(pw);
+    localStorage.setItem('astra_private_hash', hash);
+    alert('✓ 密碼設定完成！請記好你的密碼。');
+  }
+
+  window.unlockPrivate = function(){
+    const pw = document.getElementById('private-password').value;
+    const stored = localStorage.getItem('astra_private_hash');
+    
+    if (!stored) {
+      alert('你還沒設定密碼，請先點「設定你的密碼」');
+      return;
+    }
+    
+    if (simpleHash(pw) === stored) {
+      document.getElementById('private-lock').style.display = 'none';
+      document.getElementById('private-content').style.display = 'block';
+      document.getElementById('private-password').value = '';
+      document.getElementById('private-error').style.display = 'none';
+    } else {
+      document.getElementById('private-error').style.display = 'block';
+      document.getElementById('private-password').value = '';
+    }
+  }
+
+  window.lockPrivate = function(){
+    document.getElementById('private-lock').style.display = 'block';
+    document.getElementById('private-content').style.display = 'none';
+  }
+
+  function simpleHash(str){
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const c = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + c;
+      hash |= 0;
+    }
+    return hash.toString(36);
+  }
+})();
+</script>
+
+
 <!-- 統計區：累積感 -->
 <div style="padding:16px 12px 10px">
   <div id="buildlog-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
