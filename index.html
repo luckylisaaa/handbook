@@ -394,6 +394,11 @@ try {
 <circle cx="19" cy="19" r="1.2" fill="currentColor"/>
 <circle cx="5" cy="19" r="1.2" fill="currentColor"/>
   </g></svg><span style="margin-left:5px">Astra 系統</span></div>
+  <div class="tab" onclick="switchTab(20,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="2.2" fill="none"/>
+    <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="17" cy="16" r="2.2" fill="currentColor"/></svg><span style="margin-left:5px">Build Log</span></div>
   <div class="tab" onclick="switchTab(16,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
@@ -10557,5 +10562,772 @@ function runPricingDiag(){
 
 init();
 </script>
+
+
+<!-- ===== TAB 20: Build Log · Astra 創業檔案館 ===== -->
+<div class="tpage" id="tp-20">
+
+<!-- Hero 區：紅色檔案館氣氛 -->
+<div style="background:linear-gradient(135deg,#A51820 0%,#6b0f15 100%);padding:44px 20px 32px;position:relative;overflow:hidden">
+  <!-- 裝飾光暈 -->
+  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15) 0%,transparent 70%)"></div>
+  <div style="position:absolute;bottom:-20px;left:-20px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%)"></div>
+  <div style="position:relative;z-index:1">
+    <div style="font-size:10px;font-weight:700;color:#F0C0C5;letter-spacing:.25em;margin-bottom:8px">✦ BUILD LOG v1.0</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:36px;font-weight:900;color:#fff;line-height:1;margin-bottom:6px;letter-spacing:.02em">創業檔案館</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0C0C5;font-style:italic;letter-spacing:.08em;margin-bottom:14px">從幕前走到幕後 · Per Aspera Ad Astra.</div>
+    <div style="font-size:11px;color:rgba(255,255,255,.85);line-height:1.7">這段時間不是離開，是為了更閃亮的回歸。<br>每一天都在建造地基，等著那一天，重回舞台的光。</div>
+  </div>
+</div>
+
+<!-- 統計區：累積感 -->
+<div style="padding:16px 12px 10px">
+  <div id="buildlog-stats" style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">
+    <div style="background:var(--w1);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--w3)">
+      <div id="stat-days" style="font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:#A51820">1</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px">天建造中</div>
+    </div>
+    <div style="background:var(--w1);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--w3)">
+      <div id="stat-entries" style="font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:#A51820">0</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px">篇日誌</div>
+    </div>
+    <div style="background:var(--w1);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--w3)">
+      <div id="stat-milestones" style="font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:#A51820">12</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px">里程碑</div>
+    </div>
+  </div>
+</div>
+
+<!-- 今天的記錄區 -->
+<div style="padding:10px 12px">
+  <div style="background:linear-gradient(135deg,#1A0E0F 0%,#3a1a28 100%);border-radius:14px;padding:18px;position:relative;overflow:hidden">
+    <div style="position:absolute;top:-20px;right:-20px;width:80px;height:80px;border-radius:50%;background:radial-gradient(circle,rgba(165,24,32,.4) 0%,transparent 70%)"></div>
+    
+    <div style="position:relative;z-index:1">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div>
+          <div style="font-size:10px;font-weight:700;color:#F0C0C5;letter-spacing:.15em">✦ 今天 · <span id="today-date">載入中</span></div>
+          <div style="font-family:'Noto Serif TC',serif;font-size:20px;font-weight:900;color:#fff;margin-top:4px">寫一筆日誌</div>
+        </div>
+        <!-- 模式切換按鈕 -->
+        <div style="display:flex;gap:4px;background:rgba(255,255,255,.1);border-radius:8px;padding:3px">
+          <button id="mode-quick" onclick="switchLogMode('quick')" style="background:#A51820;color:#fff;border:none;padding:6px 12px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">⚡ 快速</button>
+          <button id="mode-ai" onclick="switchLogMode('ai')" style="background:transparent;color:rgba(255,255,255,.6);border:none;padding:6px 12px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">🤖 AI引導</button>
+        </div>
+      </div>
+
+      <!-- 快速模式 -->
+      <div id="mode-quick-ui">
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:10px">
+          <button onclick="setLogTag(this,'event')" data-tag="event" class="log-tag-btn" style="background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 4px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">📌事件</button>
+          <button onclick="setLogTag(this,'learn')" data-tag="learn" class="log-tag-btn" style="background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 4px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">💡學到</button>
+          <button onclick="setLogTag(this,'client')" data-tag="client" class="log-tag-btn" style="background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 4px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">👤客戶</button>
+          <button onclick="setLogTag(this,'money')" data-tag="money" class="log-tag-btn" style="background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 4px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">💰錢</button>
+          <button onclick="setLogTag(this,'mood')" data-tag="mood" class="log-tag-btn" style="background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px 4px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">💭心情</button>
+        </div>
+        <textarea id="log-text" placeholder="一句話就好..." style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);color:#fff;padding:12px;border-radius:8px;font-size:13px;resize:none;box-sizing:border-box;font-family:inherit" rows="3"></textarea>
+        <!-- 心情分數（只有選心情才出現） -->
+        <div id="mood-scale" style="display:none;margin-top:10px">
+          <div style="font-size:10px;color:rgba(255,255,255,.7);margin-bottom:6px">今天心情分數（1-10）</div>
+          <div style="display:flex;gap:4px">
+            <button onclick="setMood(1)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">1</button>
+            <button onclick="setMood(2)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">2</button>
+            <button onclick="setMood(3)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">3</button>
+            <button onclick="setMood(4)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">4</button>
+            <button onclick="setMood(5)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">5</button>
+            <button onclick="setMood(6)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">6</button>
+            <button onclick="setMood(7)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">7</button>
+            <button onclick="setMood(8)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">8</button>
+            <button onclick="setMood(9)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">9</button>
+            <button onclick="setMood(10)" class="mood-btn" style="flex:1;background:rgba(255,255,255,.1);color:#fff;border:none;padding:8px;border-radius:4px;font-size:11px;cursor:pointer">10</button>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <div style="font-size:10px;color:rgba(255,255,255,.5)">💡 提示：先點上面標籤再寫</div>
+          <button onclick="saveLog()" style="background:#A51820;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.05em">記錄 ✓</button>
+        </div>
+      </div>
+
+      <!-- AI 引導模式 -->
+      <div id="mode-ai-ui" style="display:none">
+        <div id="ai-question-area" style="background:rgba(255,255,255,.05);border-radius:10px;padding:14px;margin-bottom:10px">
+          <div style="font-size:10px;color:#F0C0C5;margin-bottom:6px">🤖 Claude 問你</div>
+          <div id="ai-question" style="font-size:15px;color:#fff;line-height:1.5;font-family:'Noto Serif TC',serif">今天跟客戶或工作有什麼進展？</div>
+          <div id="ai-progress" style="font-size:9px;color:rgba(255,255,255,.5);margin-top:8px">第 1 題 / 共 3 題</div>
+        </div>
+        <textarea id="ai-answer" placeholder="隨意回答，不用寫長..." style="width:100%;background:rgba(0,0,0,.3);border:1px solid rgba(255,255,255,.1);color:#fff;padding:12px;border-radius:8px;font-size:13px;resize:none;box-sizing:border-box;font-family:inherit" rows="3"></textarea>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+          <button onclick="skipQuestion()" style="background:transparent;color:rgba(255,255,255,.5);border:none;padding:10px 16px;border-radius:8px;font-size:11px;cursor:pointer">跳過這題 →</button>
+          <button onclick="answerQuestion()" style="background:#A51820;color:#fff;border:none;padding:10px 20px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">下一題 →</button>
+        </div>
+      </div>
+
+      <!-- 成功訊息 -->
+      <div id="save-success" style="display:none;padding:12px;background:rgba(46,125,50,.3);border:1px solid rgba(46,125,50,.6);border-radius:8px;color:#fff;font-size:12px;text-align:center">
+        ✓ 已記錄！今天又推進了一步 🚀
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 提醒設定 -->
+<div style="padding:10px 12px">
+  <div style="background:var(--w1);border-radius:10px;padding:12px;border:1px solid var(--w3);display:flex;align-items:center;justify-content:space-between">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--text)">🌙 每晚提醒記錄</div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px" id="reminder-status">未啟用（建議晚上 10:00）</div>
+    </div>
+    <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer">
+      <input type="checkbox" id="reminder-toggle" onchange="toggleReminder()" style="opacity:0;width:0;height:0">
+      <span id="reminder-slider" style="position:absolute;top:0;left:0;right:0;bottom:0;background:#ccc;border-radius:24px;transition:.2s">
+        <span style="position:absolute;content:'';height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.2s"></span>
+      </span>
+    </label>
+  </div>
+</div>
+
+<!-- 時間軸 -->
+<div style="padding:16px 12px 10px">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:14px">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.08em;text-transform:uppercase">📜 時間軸</div>
+      <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:var(--text);margin-top:2px">從創業第一天到現在</div>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button onclick="filterTimeline('all')" class="filter-btn active" data-filter="all" style="background:#A51820;color:#fff;border:none;padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">全部</button>
+      <button onclick="filterTimeline('milestone')" class="filter-btn" data-filter="milestone" style="background:var(--w2);color:var(--text);border:1px solid var(--w3);padding:6px 10px;border-radius:6px;font-size:10px;font-weight:700;cursor:pointer">里程碑</button>
+    </div>
+  </div>
+
+  <!-- 時間軸內容 -->
+  <div style="position:relative;padding-left:30px">
+    <!-- 垂直線 -->
+    <div style="position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,#A51820 0%,#E0D8CF 100%)"></div>
+
+    <!-- 今天 · 2026-04-23 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-28px;top:10px;width:18px;height:18px;border-radius:50%;background:#A51820;box-shadow:0 0 0 4px rgba(165,24,32,.2)"></div>
+      <div style="background:#FDFBF8;border:2px solid #A51820;border-radius:12px;padding:14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(165,24,32,.1)">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+          <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em">2026-04-23</div>
+          <div style="background:#A51820;color:#fff;padding:2px 8px;border-radius:10px;font-size:9px;font-weight:700">TODAY</div>
+        </div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">✨ v2.2 Icon 系統完成</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">21 個專屬分頁 icon · 每個獨一無二 · 手冊進入頂級設計系統等級</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🎨 設計</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-22 凌晨 · Astra 誕生 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-22 凌晨 1:00</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🌌 Astra 品牌宇宙誕生</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">從 Atelier 進化成 Astra · Per Aspera Ad Astra · 穿越艱辛，抵達繁星</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 展開當時的想法</summary>
+          <div style="font-size:11px;color:#666;line-height:1.7;padding:8px 0 0;font-family:'Noto Serif TC',serif;font-style:italic">
+            「工作室」格局太小。<br>我想要的是宇宙無邊無際、自由、烏托邦、科技感。<br>Astra 是拉丁文「繁星」—— 未來還會有 Arc、Axis、Aurora、Arsenal、Anthem...<br>這不是一間公司，是一個宇宙。
+          </div>
+        </details>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🌌 品牌</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-22 · Design System v1.0 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-22</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">📚 Design System v1.0 上線</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">145 個檔案 · 6 大工具 icon · 涵蓋網站/文件/影片/社群/印刷所有場景</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🎨 設計</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-20 · Arc 腳本產生器 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-20</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">⚡ Arc 腳本產生器 V3 上線</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">客戶從此不用再求別人寫腳本 · 13 步驟流程 · 10 組腳本範本</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">⚡ 工具</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-20 · 手冊首次上線 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-20</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🚀 手冊首次上線 GitHub</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">luckylisaaa.github.io/handbook · 26 個主題 · 從 Google Doc 搬到獨立網站</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">📚 系統</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════ 真實起源故事 ══════ -->
+    
+    <!-- 2026-04-18 ~ 04-22 · HTML 築城期 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-18 ~ 04-22 · 5 天爆速建造期</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🔥 做上癮了</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">本來只是想追進度，結果一發不可收拾。HTML 卡片越做越多，從進度表→流程圖→學習手冊→品牌系統。**看得清楚，就知道哪裡要改、哪裡要加。**</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 看檔名就知道多拼命</summary>
+          <div style="font-size:10px;color:#666;line-height:1.7;padding:8px 0 0;font-family:monospace">
+            0418_1730 → 0418_1800 → 0418_1830 →<br>
+            0418_1930 → 0418_2000 → 0418_2030 →<br>
+            0418_2040 → 0418_2100 → 0418_2110 →<br>
+            0418_2120 → 0418_2130 → 0419_0200 →<br>
+            0419_0230 → 0419_0240 → 0419_0250 →<br>
+            0419_0255 → 0419_0300 → 0419_0305 →<br>
+            0419_0310 → 0419_0320 → 0419_0330 →<br>
+            0419_0335 → 0419_0340 → 0419_0350 →<br>
+            0419_0410 → 0419_0425 → 0419_0430 →<br>
+            0419_0500 → 0419_0530 → 0421_1030 →<br>
+            0421_1100 → 0421_1600 → 0423_0130 →<br>
+            0423_0200 → 0423_0220<br><br>
+            <span style="color:#A51820;font-weight:700">36 個版本。幾乎每小時一個。</span>
+          </div>
+        </details>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🔥 爆速</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-18 · 突發奇想 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-04-18 · 關鍵轉折日</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">💡 突發奇想改用 HTML</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">Notion 操作上很複雜，我常常忘記。而且我喜歡視覺操作頁面。<br>那天突發奇想：**「我自己寫個 HTML 頁面來追蹤進度好了。」**</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 這個決定為什麼改變一切</summary>
+          <div style="font-size:11px;color:#666;line-height:1.7;padding:8px 0 0;font-family:'Noto Serif TC',serif;font-style:italic">
+            現在回頭看，這一刻就是 Astra 的真正起點。<br><br>
+            不是「我要建立品牌」，<br>
+            是「我只是想找個看得清楚的方式」。<br><br>
+            但視覺化 = 讓你看到哪裡可以改<br>
+            看到 = 忍不住要改<br>
+            改了 = 越來越像一個系統<br>
+            系統 = 變成了品牌<br><br>
+            <span style="color:#A51820;font-weight:700">所有偉大的創造，都是從「我只是想…」開始的。</span>
+          </div>
+        </details>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">💡 頓悟</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-04-18 之前 · Notion 試錯期 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-24px;top:10px;width:10px;height:10px;border-radius:50%;background:#999"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px;opacity:.85">
+        <div style="font-size:9px;font-weight:700;color:#666;letter-spacing:.08em;margin-bottom:6px">2026-03 至 04 初 · 試錯期</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">📝 在 Notion 上卡住</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">試著用 Notion 建立工作系統。但操作很複雜，常常忘記怎麼用。<strong>我喜歡視覺操作頁面，不喜歡一層一層點開看。</strong>那時候還不知道答案在哪。</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#F5F2EE;color:#666;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🔧 嘗試</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-03-15 前後 · 動搖期 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-24px;top:10px;width:10px;height:10px;border-radius:50%;background:#C68;border:2px solid #FDFBF8;box-shadow:0 0 0 1px #C68"></div>
+      <div style="background:#FDFBF8;border:1px solid #F0C0C5;border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-03 中下旬 · 動搖期</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🌊 要不要回去當有氧老師？</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">確定目標之後沒多久，內心又開始動搖：<br>「要不要乾脆回去當有氧老師就好？」</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 看我怎麼想清楚的</summary>
+          <div style="font-size:11px;color:#1A1A1A;line-height:1.8;padding:10px 0 0;font-family:'Noto Serif TC',serif">
+            我靜下來問自己三個問題：<br><br>
+            <strong style="color:#A51820">Q1：我愛挑物嗎？</strong><br>
+            愛。但我更享受創作。<br><br>
+            <strong style="color:#A51820">Q2：金錢報酬呢？</strong><br>
+            創作的價值和報酬相對高很多。<br><br>
+            <strong style="color:#A51820">Q3：這算離開舞台嗎？</strong><br>
+            不。這是**專注原本的舞台**，只是轉為幕後，<br>
+            把產業脈絡地基建立更深。<br><br>
+            <span style="background:#FDF3F4;padding:6px 10px;border-radius:6px;display:inline-block;margin-top:4px;color:#A51820;font-weight:700;font-style:normal">三個問題想通了。我沒有動搖，我只是需要確認。</span>
+          </div>
+        </details>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🌊 動搖</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">💎 重要</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-03-12 · 確定目標 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-26px;top:10px;width:14px;height:14px;border-radius:50%;background:#A51820"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px">
+        <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:6px">2026-03-12 · 找到答案了</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🎯 確定：短影音代理營運</div>
+        <div style="font-size:11px;color:#666;line-height:1.6">尋找三天之後，終於找到答案。<br>不是因為短影音最紅，是因為這是**最適合我的場域**：<br>專業對口、報酬夠高、我真的擅長、市場真的需要。</div>
+        <details style="margin-top:8px">
+          <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 為什麼是「代理營運」</summary>
+          <div style="font-size:11px;color:#1A1A1A;line-height:1.8;padding:10px 0 0;font-family:'Noto Serif TC',serif">
+            因為這是少數我真的擅長、而且市場真的需要的事。<br><br>
+            我過去在鏡頭前跳過、帶過、表演過，<br>
+            我知道什麼會紅、什麼不會，<br>
+            什麼是「看起來會成功」和「真的會成功」的差距。<br><br>
+            <span style="color:#A51820;font-weight:700">我不是從零開始，我是從最深處開始。</span>
+          </div>
+        </details>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🎯 定位</span>
+          <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🚀 里程碑</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2026-03-09~12 · 尋找期 -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-24px;top:10px;width:10px;height:10px;border-radius:50%;background:#999"></div>
+      <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:14px;margin-bottom:14px;opacity:.85">
+        <div style="font-size:9px;font-weight:700;color:#666;letter-spacing:.08em;margin-bottom:6px">2026-03-09 ~ 03-12 · 迷惘 3 天</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#1A1A1A;margin-bottom:4px">🌫️ 尋找自己要什麼</div>
+        <div style="font-size:11px;color:#666;line-height:1.6;font-style:italic">「我要什麼？」<br>「我要怎麼賺錢過生活？」<br>三天的黑暗，摸索著往前走。</div>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <span style="background:#F5F2EE;color:#666;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">🌫️ 迷惘</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ 最重要的起點 ══════════ -->
+    <div class="timeline-item" data-type="milestone">
+      <div style="position:absolute;left:-28px;top:10px;width:18px;height:18px;border-radius:50%;background:#A51820;box-shadow:0 0 0 4px rgba(165,24,32,.2)"></div>
+      <div style="background:linear-gradient(135deg,#FDFBF8 0%,#FDF3F4 100%);border:2px solid #A51820;border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 8px 24px rgba(165,24,32,.15);position:relative;overflow:hidden">
+        <div style="position:absolute;top:-20px;right:-20px;width:100px;height:100px;border-radius:50%;background:radial-gradient(circle,rgba(165,24,32,.1) 0%,transparent 70%)"></div>
+        
+        <div style="position:relative;z-index:1">
+          <!-- 時間 + ORIGIN 標籤 -->
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+            <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.1em">2026-03-09 · 生日那天</div>
+            <div style="background:#A51820;color:#fff;padding:3px 10px;border-radius:12px;font-size:9px;font-weight:700;letter-spacing:.08em">✦ ORIGIN</div>
+          </div>
+          
+          <div style="font-family:'Noto Serif TC',serif;font-size:19px;font-weight:900;color:#1A1A1A;margin-bottom:8px;line-height:1.4">🎂 暫時退出幕前，轉為幕後</div>
+          
+          <div style="font-size:12px;color:#1A1A1A;line-height:1.7;font-family:'Noto Serif TC',serif">
+            在生日那天做了一個<strong>很難的決定</strong>。<br>
+            很難過。<br>
+            還錄了一段影片紀錄這一刻。
+          </div>
+          
+          <div style="background:#1A0E0F;color:#FDFBF8;padding:14px 16px;border-radius:10px;margin-top:12px;position:relative">
+            <div style="position:absolute;top:-6px;left:16px;font-size:24px;color:#A51820;font-family:serif">"</div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:13px;line-height:1.8;font-style:italic">
+              最短一年，最長不超過兩年，<br>
+              我一定會<span style="color:#F0C0C5;font-weight:700;font-style:normal">閃亮回到舞台上</span>。
+            </div>
+          </div>
+          
+          <details style="margin-top:12px">
+            <summary style="font-size:10px;color:#A51820;cursor:pointer;font-weight:700">▸ 這不是放棄，是為了更閃亮的回歸</summary>
+            <div style="font-size:12px;color:#1A1A1A;line-height:1.9;padding:12px 0 0;font-family:'Noto Serif TC',serif">
+              我沒有離開這個產業。<br><br>
+              
+              我只是從<strong>幕前</strong>，<br>
+              走到<strong>幕後</strong>。<br><br>
+              
+              同一個舞台。<br>
+              不同的位置。<br><br>
+              
+              這段時間，我會：<br>
+              ✦ 把產業脈絡地基建立更深<br>
+              ✦ 學會如何幫別人打開舞台<br>
+              ✦ 累積自己的系統和品牌<br><br>
+              
+              <span style="background:#A51820;color:#fff;padding:10px 16px;border-radius:8px;display:inline-block;font-weight:700;font-style:normal;letter-spacing:.02em">
+                等我回來的時候，<br>
+                會比離開時更耀眼。
+              </span>
+            </div>
+          </details>
+          
+          <div style="display:flex;gap:6px;margin-top:12px">
+            <span style="background:#A51820;color:#fff;padding:4px 10px;border-radius:8px;font-size:9px;font-weight:700">🎂 生日</span>
+            <span style="background:#A51820;color:#fff;padding:4px 10px;border-radius:8px;font-size:9px;font-weight:700">✦ ORIGIN</span>
+            <span style="background:#A51820;color:#fff;padding:4px 10px;border-radius:8px;font-size:9px;font-weight:700">💎 北極星</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 日誌條目會由 JS 動態插入 -->
+    <div id="user-logs"></div>
+  </div>
+</div>
+
+<!-- 每週回顧提醒 -->
+<div style="padding:10px 12px 20px">
+  <div style="background:linear-gradient(135deg,#2A1A1C 0%,#1A0E0F 100%);border-radius:12px;padding:16px;color:#FDFBF8">
+    <div style="font-size:10px;font-weight:700;color:#F0C0C5;letter-spacing:.15em;margin-bottom:6px">📊 WEEKLY REVIEW</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;margin-bottom:6px">每週日晚上 · AI 週報</div>
+    <div style="font-size:11px;opacity:.8;line-height:1.6;margin-bottom:12px">AI 會把你這週的日誌整理成週報，幫你看清楚：完成了什麼、學到什麼、下週該聚焦哪裡</div>
+    <button onclick="generateWeeklyReview()" style="background:#A51820;color:#fff;border:none;padding:8px 16px;border-radius:8px;font-size:11px;font-weight:700;cursor:pointer">產生本週回顧 →</button>
+  </div>
+</div>
+
+<!-- 結尾 slogan -->
+<div style="padding:0 12px 30px;text-align:center">
+  <div style="font-family:'Noto Serif TC',serif;font-size:12px;color:var(--muted);font-style:italic;letter-spacing:.15em">✦ 每天建造一點點，終有一天繁星滿天 ✦</div>
+</div>
+
+</div>
+
+<!-- ============ Build Log 的 JavaScript ============ -->
+<script>
+(function(){
+  // ── 初始化 ──
+  function initBuildLog(){
+    updateTodayDate();
+    loadLogs();
+    updateStats();
+    checkReminderStatus();
+  }
+  
+  function updateTodayDate(){
+    const d = new Date();
+    const el = document.getElementById('today-date');
+    if(el) el.textContent = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  }
+
+  // ── 模式切換 ──
+  window.switchLogMode = function(mode){
+    const qBtn = document.getElementById('mode-quick');
+    const aBtn = document.getElementById('mode-ai');
+    const qUI = document.getElementById('mode-quick-ui');
+    const aUI = document.getElementById('mode-ai-ui');
+    
+    if(mode === 'quick'){
+      qBtn.style.background = '#A51820';
+      qBtn.style.color = '#fff';
+      aBtn.style.background = 'transparent';
+      aBtn.style.color = 'rgba(255,255,255,.6)';
+      qUI.style.display = 'block';
+      aUI.style.display = 'none';
+    } else {
+      aBtn.style.background = '#A51820';
+      aBtn.style.color = '#fff';
+      qBtn.style.background = 'transparent';
+      qBtn.style.color = 'rgba(255,255,255,.6)';
+      qUI.style.display = 'none';
+      aUI.style.display = 'block';
+      startAISession();
+    }
+  }
+
+  // ── 標籤選擇 ──
+  let currentTag = null;
+  let currentMood = null;
+  window.setLogTag = function(btn, tag){
+    document.querySelectorAll('.log-tag-btn').forEach(b=>{
+      b.style.background = 'rgba(255,255,255,.1)';
+    });
+    btn.style.background = '#A51820';
+    currentTag = tag;
+    
+    // 如果選心情，顯示分數
+    const moodScale = document.getElementById('mood-scale');
+    if(tag === 'mood'){
+      moodScale.style.display = 'block';
+    } else {
+      moodScale.style.display = 'none';
+    }
+  }
+  
+  window.setMood = function(score){
+    currentMood = score;
+    document.querySelectorAll('.mood-btn').forEach((b,i)=>{
+      if(i+1 <= score){
+        b.style.background = '#A51820';
+      } else {
+        b.style.background = 'rgba(255,255,255,.1)';
+      }
+    });
+  }
+
+  // ── 儲存日誌 ──
+  window.saveLog = function(){
+    const text = document.getElementById('log-text').value.trim();
+    if(!text){ alert('寫一句話就好 🙂'); return; }
+    
+    const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
+    const now = new Date();
+    logs.unshift({
+      id: Date.now(),
+      date: now.toISOString().split('T')[0],
+      time: now.toTimeString().substring(0,5),
+      text: text,
+      tag: currentTag || 'event',
+      mood: currentMood
+    });
+    localStorage.setItem('astra_buildlogs', JSON.stringify(logs));
+    
+    // 重置
+    document.getElementById('log-text').value = '';
+    currentTag = null;
+    currentMood = null;
+    document.querySelectorAll('.log-tag-btn').forEach(b=>{ b.style.background = 'rgba(255,255,255,.1)'; });
+    document.querySelectorAll('.mood-btn').forEach(b=>{ b.style.background = 'rgba(255,255,255,.1)'; });
+    document.getElementById('mood-scale').style.display = 'none';
+    
+    // 顯示成功
+    const success = document.getElementById('save-success');
+    success.style.display = 'block';
+    setTimeout(()=>{ success.style.display = 'none'; }, 3000);
+    
+    loadLogs();
+    updateStats();
+  }
+
+  // ── AI 引導模式 ──
+  const aiQuestions = [
+    { q: '今天跟客戶或工作有什麼進展？', tag: 'event' },
+    { q: '今天最有感覺的一件事是什麼？（大小都算）', tag: 'learn' },
+    { q: '今天的心情 1-10 分？為什麼？', tag: 'mood' }
+  ];
+  let aiStep = 0;
+  let aiAnswers = [];
+  
+  function startAISession(){
+    aiStep = 0;
+    aiAnswers = [];
+    showQuestion();
+  }
+  
+  function showQuestion(){
+    if(aiStep >= aiQuestions.length){
+      saveAISession();
+      return;
+    }
+    document.getElementById('ai-question').textContent = aiQuestions[aiStep].q;
+    document.getElementById('ai-progress').textContent = `第 ${aiStep + 1} 題 / 共 ${aiQuestions.length} 題`;
+    document.getElementById('ai-answer').value = '';
+  }
+  
+  window.answerQuestion = function(){
+    const ans = document.getElementById('ai-answer').value.trim();
+    if(ans){
+      aiAnswers.push({ q: aiQuestions[aiStep].q, a: ans, tag: aiQuestions[aiStep].tag });
+    }
+    aiStep++;
+    showQuestion();
+  }
+  
+  window.skipQuestion = function(){
+    aiStep++;
+    showQuestion();
+  }
+  
+  function saveAISession(){
+    if(aiAnswers.length === 0){
+      document.getElementById('ai-question').textContent = '沒有答題也沒關係，明天再寫 ✦';
+      return;
+    }
+    const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
+    const now = new Date();
+    aiAnswers.forEach(a => {
+      logs.unshift({
+        id: Date.now() + Math.random(),
+        date: now.toISOString().split('T')[0],
+        time: now.toTimeString().substring(0,5),
+        text: a.a,
+        tag: a.tag,
+        source: 'ai-guided',
+        question: a.q
+      });
+    });
+    localStorage.setItem('astra_buildlogs', JSON.stringify(logs));
+    
+    document.getElementById('ai-question').textContent = `✓ 太好了，今天記錄了 ${aiAnswers.length} 件事`;
+    document.getElementById('ai-progress').textContent = '✦ AI 會在週日幫你整理成週報';
+    
+    setTimeout(()=>{
+      loadLogs();
+      updateStats();
+    }, 500);
+  }
+
+  // ── 顯示使用者日誌 ──
+  function loadLogs(){
+    const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
+    const container = document.getElementById('user-logs');
+    if(!container) return;
+    
+    const tagIcons = {
+      'event': '📌', 'learn': '💡', 'client': '👤', 
+      'money': '💰', 'mood': '💭'
+    };
+    const tagNames = {
+      'event': '事件', 'learn': '學到', 'client': '客戶',
+      'money': '錢', 'mood': '心情'
+    };
+    
+    // 按日期分組
+    const grouped = {};
+    logs.forEach(log => {
+      if(!grouped[log.date]) grouped[log.date] = [];
+      grouped[log.date].push(log);
+    });
+    
+    let html = '';
+    Object.keys(grouped).sort().reverse().forEach(date => {
+      grouped[date].forEach(log => {
+        const mood = log.mood ? ` · 心情 ${log.mood}/10` : '';
+        html += `
+        <div class="timeline-item" data-type="log">
+          <div style="position:absolute;left:-24px;top:10px;width:10px;height:10px;border-radius:50%;background:#A51820"></div>
+          <div style="background:#FDFBF8;border:1px solid var(--w3);border-radius:12px;padding:12px;margin-bottom:10px">
+            <div style="font-size:9px;font-weight:700;color:#A51820;letter-spacing:.08em;margin-bottom:4px">${log.date} · ${log.time}${mood}</div>
+            <div style="font-size:13px;color:#1A1A1A;line-height:1.6;margin-bottom:6px">${log.text}</div>
+            <span style="background:#FDF3F4;color:#A51820;padding:3px 8px;border-radius:6px;font-size:9px;font-weight:700">${tagIcons[log.tag] || '📌'} ${tagNames[log.tag] || '記錄'}</span>
+          </div>
+        </div>
+        `;
+      });
+    });
+    container.innerHTML = html;
+  }
+
+  // ── 統計 ──
+  function updateStats(){
+    const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
+    document.getElementById('stat-entries').textContent = logs.length;
+    
+    // 計算天數（從 2026-03-09 生日那天做決定算起）
+    const start = new Date('2026-03-09');
+    const now = new Date();
+    const days = Math.floor((now - start) / (1000 * 60 * 60 * 24));
+    document.getElementById('stat-days').textContent = days;
+  }
+
+  // ── 篩選時間軸 ──
+  window.filterTimeline = function(type){
+    document.querySelectorAll('.filter-btn').forEach(b=>{
+      if(b.dataset.filter === type){
+        b.style.background = '#A51820';
+        b.style.color = '#fff';
+        b.style.border = 'none';
+      } else {
+        b.style.background = 'var(--w2)';
+        b.style.color = 'var(--text)';
+        b.style.border = '1px solid var(--w3)';
+      }
+    });
+    document.querySelectorAll('.timeline-item').forEach(item => {
+      if(type === 'all' || item.dataset.type === type){
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  // ── 晚上提醒 ──
+  window.toggleReminder = function(){
+    const toggle = document.getElementById('reminder-toggle');
+    const slider = document.getElementById('reminder-slider');
+    const status = document.getElementById('reminder-status');
+    
+    if(toggle.checked){
+      slider.style.background = '#A51820';
+      slider.children[0].style.left = '23px';
+      status.textContent = '✓ 已啟用（每晚 10:00 提醒）';
+      localStorage.setItem('astra_reminder', 'on');
+      
+      // 請求通知權限
+      if('Notification' in window && Notification.permission !== 'granted'){
+        Notification.requestPermission();
+      }
+    } else {
+      slider.style.background = '#ccc';
+      slider.children[0].style.left = '3px';
+      status.textContent = '未啟用（建議晚上 10:00）';
+      localStorage.setItem('astra_reminder', 'off');
+    }
+  }
+  
+  function checkReminderStatus(){
+    const status = localStorage.getItem('astra_reminder') === 'on';
+    const toggle = document.getElementById('reminder-toggle');
+    if(toggle && status){
+      toggle.checked = true;
+      toggleReminder();
+    }
+  }
+
+  // ── 每週回顧 ──
+  window.generateWeeklyReview = function(){
+    const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
+    const now = new Date();
+    const weekAgo = new Date(now - 7*24*60*60*1000);
+    const weekLogs = logs.filter(l => new Date(l.date) >= weekAgo);
+    
+    if(weekLogs.length === 0){
+      alert('這週還沒有任何日誌 —— 先寫一筆再產生週報吧！');
+      return;
+    }
+    
+    let review = `✦ 本週回顧（${weekAgo.toISOString().split('T')[0]} ~ ${now.toISOString().split('T')[0]}）\n\n`;
+    review += `📊 總共記錄 ${weekLogs.length} 篇日誌\n\n`;
+    
+    const byTag = {};
+    weekLogs.forEach(l => {
+      if(!byTag[l.tag]) byTag[l.tag] = [];
+      byTag[l.tag].push(l.text);
+    });
+    
+    const names = {'event':'📌 重要事件','learn':'💡 學到的事','client':'👤 客戶互動','money':'💰 錢的事','mood':'💭 心情記錄'};
+    Object.keys(byTag).forEach(tag => {
+      review += `${names[tag] || tag}（${byTag[tag].length}）\n`;
+      byTag[tag].forEach(t => { review += `  · ${t}\n`; });
+      review += '\n';
+    });
+    
+    alert(review);
+  }
+
+  // 初始化
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initBuildLog);
+  } else {
+    initBuildLog();
+  }
+})();
+</script>
+
+
+
 </body>
 </html>
