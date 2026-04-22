@@ -4,6 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>短影音代理營運｜完整學習手冊</title>
+
+<!-- ========== Favicon / App Icon ========== -->
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="學習手冊">
+<meta name="application-name" content="學習手冊">
+<meta name="theme-color" content="#A51820">
+
+<!-- ========== SEO / 分享用 Meta ========== -->
+<meta name="description" content="短影音代理營運完整學習手冊。從 IP 定位、客戶流程、腳本系統到交付閘門，32 個主題涵蓋一人作戰所需的全部藍圖。">
+<meta property="og:title" content="短影音代理營運｜完整學習手冊">
+<meta property="og:description" content="32 個主題 × 視覺 + 文字完整版。一人代營運的完整操作藍圖。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="apple-touch-icon.png">
+
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -7522,6 +7539,133 @@ B 地區：【填你的客戶所在地，例如：馬來西亞 PDPA / 歐盟 GDP
 
   </div>
 </div>
+
+<!-- ═══════════ 工具 Icon 系統（Claude 新增區塊）═══════════ -->
+<div style="padding:0 12px 10px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">工具 Icon 系統 Tool Icons</div>
+  
+  <!-- 預覽區 -->
+  <div style="background:#F7F0E8;border-radius:12px;padding:20px 12px;text-align:center">
+    <div style="display:flex;gap:16px;justify-content:center;margin-bottom:14px">
+      <!-- handbook icon -->
+      <div>
+        <img src="data:image/png;base64,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" alt="學習手冊 icon" style="width:88px;height:88px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,.08);display:block">
+        <div style="font-size:10px;font-weight:700;color:var(--text);margin-top:8px">學習手冊</div>
+        <div style="font-size:9px;color:var(--muted)">handbook.github.io</div>
+      </div>
+      <!-- generator icon -->
+      <div>
+        <img src="data:image/png;base64,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" alt="腳本產生器 icon" style="width:88px;height:88px;border-radius:18px;box-shadow:0 2px 10px rgba(0,0,0,.08);display:block">
+        <div style="font-size:10px;font-weight:700;color:var(--text);margin-top:8px">腳本產生器</div>
+        <div style="font-size:9px;color:var(--muted)">script-generator</div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--muted);line-height:1.5;max-width:280px;margin:0 auto">暖米底 × 正紅方塊 × 米白符號<br>同構圖家族感，符號區分功能</div>
+  </div>
+</div>
+
+<!-- 符號系統表 -->
+<div style="padding:0 12px 10px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">符號規則 Symbol System</div>
+  <div style="background:var(--w1);border-radius:10px;overflow:hidden;border:1px solid var(--w3)">
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;background:var(--w2);border-bottom:1px solid var(--w3);font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.05em">
+      <div style="width:32px">符號</div>
+      <div>工具類型</div>
+      <div>意義</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;border-bottom:1px solid var(--w3);font-size:11px;align-items:center">
+      <div style="width:32px;font-size:16px">📖</div>
+      <div style="font-weight:700;color:var(--text)">學習手冊</div>
+      <div style="color:var(--muted);font-size:10px">三條橫線 · 結構 · 閱讀</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;border-bottom:1px solid var(--w3);font-size:11px;align-items:center">
+      <div style="width:32px;font-size:16px">⚡</div>
+      <div style="font-weight:700;color:var(--text)">腳本產生器</div>
+      <div style="color:var(--muted);font-size:10px">閃電 · 快速 · 生成</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;border-bottom:1px solid var(--w3);font-size:11px;align-items:center;opacity:.55">
+      <div style="width:32px;font-size:16px">🎯</div>
+      <div style="font-weight:700;color:var(--text)">診斷器（未來）</div>
+      <div style="color:var(--muted);font-size:10px">靶心 · 精準 · 聚焦</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;border-bottom:1px solid var(--w3);font-size:11px;align-items:center;opacity:.55">
+      <div style="width:32px;font-size:16px">📊</div>
+      <div style="font-weight:700;color:var(--text)">複盤器（未來）</div>
+      <div style="color:var(--muted);font-size:10px">長條 · 數據 · 趨勢</div>
+    </div>
+    <div style="display:grid;grid-template-columns:auto 1fr 1fr;gap:8px;padding:10px 12px;font-size:11px;align-items:center;opacity:.55">
+      <div style="width:32px;font-size:16px">💰</div>
+      <div style="font-weight:700;color:var(--text)">報價表（未來）</div>
+      <div style="color:var(--muted);font-size:10px">圓點 · 選項 · 條列</div>
+    </div>
+  </div>
+</div>
+
+<!-- Icon 規格 -->
+<div style="padding:0 12px 10px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">Icon 規格 Specs</div>
+  <div style="background:var(--w1);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+    <div style="display:grid;gap:6px;font-size:10px;line-height:1.7">
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">背景色（暖米）</span><span style="font-family:monospace;font-weight:700;color:var(--text)">#F7F0E8</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">主色（品牌紅）</span><span style="font-family:monospace;font-weight:700;color:var(--text)">#A51820</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">符號（米白）</span><span style="font-family:monospace;font-weight:700;color:var(--text)">#FDFBF8</span></div>
+      <div style="display:flex;justify-content:space-between;padding-top:6px;border-top:1px dashed var(--w3);margin-top:4px"><span style="color:var(--muted)">外框圓角</span><span style="font-weight:700;color:var(--text)">22%</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">中央方塊</span><span style="font-weight:700;color:var(--text)">佔畫面 42%</span></div>
+      <div style="display:flex;justify-content:space-between"><span style="color:var(--muted)">方塊圓角</span><span style="font-weight:700;color:var(--text)">8%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- 輸出檔案規格 -->
+<div style="padding:0 12px 10px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">每個工具 6 個檔案 Export Files</div>
+  <div style="background:var(--w1);border-radius:10px;overflow:hidden;border:1px solid var(--w3)">
+    <div style="padding:9px 12px;border-bottom:1px solid var(--w3);font-size:10px">
+      <div style="font-family:monospace;font-weight:700;color:var(--text)">favicon.ico</div>
+      <div style="color:var(--muted);margin-top:2px">多尺寸整合（16/32/48/64）· 舊瀏覽器</div>
+    </div>
+    <div style="padding:9px 12px;border-bottom:1px solid var(--w3);font-size:10px">
+      <div style="font-family:monospace;font-weight:700;color:var(--text)">favicon-16x16.png · favicon-32x32.png</div>
+      <div style="color:var(--muted);margin-top:2px">桌機瀏覽器分頁圖示</div>
+    </div>
+    <div style="padding:9px 12px;border-bottom:1px solid var(--w3);font-size:10px;background:#FFF9F0">
+      <div style="font-family:monospace;font-weight:700;color:#A51820">apple-touch-icon.png (180×180) ⭐</div>
+      <div style="color:var(--muted);margin-top:2px">iPhone Safari 書籤 · 加入主畫面（最重要）</div>
+    </div>
+    <div style="padding:9px 12px;font-size:10px">
+      <div style="font-family:monospace;font-weight:700;color:var(--text)">android-chrome-192/512.png</div>
+      <div style="color:var(--muted);margin-top:2px">Android Chrome · PWA · 高解析裝置</div>
+    </div>
+  </div>
+</div>
+
+<!-- 下載素材包 -->
+<div style="padding:0 12px 10px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">素材包 Assets</div>
+  <a href="網站圖示.zip" download style="display:block;background:linear-gradient(135deg,#A51820 0%,#7A1018 100%);border-radius:12px;padding:16px;text-decoration:none;box-shadow:0 4px 14px rgba(165,24,32,.25)">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:48px;height:48px;border-radius:12px;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0">📦</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:2px">下載完整素材包</div>
+        <div style="font-size:10px;color:rgba(255,255,255,.75);line-height:1.4">兩款 icon × 6 種尺寸 + HTML 片段<br>+ 設計規格備忘 + 色票</div>
+      </div>
+      <div style="color:#fff;font-size:20px;flex-shrink:0">⬇</div>
+    </div>
+  </a>
+  <div style="font-size:10px;color:var(--muted);margin-top:8px;line-height:1.5">💡 解壓縮後按資料夾分類：<br>&nbsp;&nbsp;&nbsp;01_腳本產生器 ／ 02_學習手冊 ／ 99_設計備忘</div>
+</div>
+
+<!-- 使用規範 -->
+<div style="padding:0 12px 16px">
+  <div style="font-size:11px;font-weight:700;color:var(--muted);margin-bottom:8px;letter-spacing:.08em;text-transform:uppercase">核心原則 Principles</div>
+  <div style="background:#FDF3F4;border-left:3px solid #A51820;border-radius:8px;padding:12px 14px">
+    <div style="font-size:11px;font-weight:700;color:var(--text);margin-bottom:6px">暖米底 + 正紅方塊 + 米白符號</div>
+    <div style="font-size:10px;color:var(--muted);line-height:1.7">✦ 不同工具只換「中央符號」，背景和主色不變<br>✦ 符號保持幾何化、極簡化（避免寫實插圖）<br>✦ 未來做 10 個工具都會像同一系列</div>
+  </div>
+</div>
+
+<!-- ═══════════ END 工具 Icon 系統 ═══════════ -->
+
 
 </div>
 
