@@ -14,6 +14,14 @@
 <meta name="application-name" content="Astra">
 <meta name="theme-color" content="#A51820">
 
+<!-- ========== PWA 強化：iOS 全螢幕 + 狀態列 ========== -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- ========== PWA Manifest（Android / Chrome）========== -->
+<link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Astra%20%E5%89%B5%E6%A5%AD%E6%93%8D%E7%9B%A4%E6%89%8B%E5%86%8A%22%2C%22short_name%22%3A%22Astra%22%2C%22description%22%3A%22Per%20Aspera%20Ad%20Astra%20%C2%B7%20%E7%A9%BF%E8%B6%8A%E8%89%B1%E8%BE%9B%EF%BC%8C%E6%8A%B5%E9%81%94%E7%B9%81%E6%98%9F%22%2C%22start_url%22%3A%22%2Fhandbook%2F%22%2C%22scope%22%3A%22%2Fhandbook%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%23F7F0E8%22%2C%22theme_color%22%3A%22%23A51820%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22android-chrome-192x192.png%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%2C%7B%22src%22%3A%22android-chrome-512x512.png%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fpng%22%2C%22purpose%22%3A%22any%20maskable%22%7D%5D%7D">
+
 <!-- ========== SEO / 分享用 Meta ========== -->
 <meta name="description" content="短影音代理營運完整學習手冊。從 IP 定位、客戶流程、腳本系統到交付閘門，32 個主題涵蓋一人作戰所需的全部藍圖。">
 <meta property="og:title" content="短影音代理營運｜完整學習手冊">
@@ -11732,6 +11740,201 @@ init();
 </script>
 
 
+
+<!-- ════════ PWA 強化：Service Worker + 晚間提醒 + 安裝提示 ════════ -->
+<script>
+(function(){
+  // ═══ 1. Service Worker 註冊（離線支援）═══
+  if ('serviceWorker' in navigator) {
+    // 動態產生 SW（避免另外上傳檔案）
+    const swCode = `
+      const CACHE_NAME = 'astra-v2-2';
+      const urlsToCache = [
+        './',
+        './index.html',
+        './favicon.ico',
+        './apple-touch-icon.png',
+        './android-chrome-192x192.png',
+        './android-chrome-512x512.png'
+      ];
+      
+      self.addEventListener('install', event => {
+        event.waitUntil(
+          caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
+        );
+        self.skipWaiting();
+      });
+      
+      self.addEventListener('activate', event => {
+        event.waitUntil(
+          caches.keys().then(keys => {
+            return Promise.all(
+              keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+            );
+          })
+        );
+        self.clients.claim();
+      });
+      
+      self.addEventListener('fetch', event => {
+        event.respondWith(
+          caches.match(event.request).then(response => {
+            return response || fetch(event.request).then(fetchResponse => {
+              return caches.open(CACHE_NAME).then(cache => {
+                if (event.request.method === 'GET' && fetchResponse.status === 200) {
+                  cache.put(event.request, fetchResponse.clone());
+                }
+                return fetchResponse;
+              });
+            }).catch(() => caches.match('./index.html'));
+          })
+        );
+      });
+      
+      // 推播通知
+      self.addEventListener('notificationclick', event => {
+        event.notification.close();
+        event.waitUntil(
+          clients.matchAll({ type: 'window' }).then(clientList => {
+            for (const client of clientList) {
+              if (client.url.includes('handbook') && 'focus' in client) {
+                return client.focus();
+              }
+            }
+            if (clients.openWindow) return clients.openWindow('./');
+          })
+        );
+      });
+    `;
+    
+    const swBlob = new Blob([swCode], { type: 'text/javascript' });
+    const swUrl = URL.createObjectURL(swBlob);
+    
+    // 因為 GitHub Pages 路徑問題，我們嘗試兩種方式
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register(swUrl, { scope: './' })
+        .then(reg => console.log('[PWA] Astra 離線支援已啟用 ✓'))
+        .catch(err => console.log('[PWA] SW 註冊略過:', err.message));
+    });
+  }
+
+  // ═══ 2. 每晚 10 點提醒寫日誌 ═══
+  function scheduleNightReminder() {
+    if (!('Notification' in window)) return;
+    if (localStorage.getItem('astra_reminder') !== 'on') return;
+    if (Notification.permission !== 'granted') return;
+    
+    // 計算到晚上 10 點的毫秒數
+    const now = new Date();
+    const target = new Date();
+    target.setHours(22, 0, 0, 0);
+    if (target <= now) target.setDate(target.getDate() + 1);
+    
+    const msUntilTarget = target - now;
+    
+    setTimeout(() => {
+      new Notification('🌙 Astra · 寫一筆今天的日誌', {
+        body: '今天做了什麼？學到什麼？記錄下來，3 個月後回頭看會嚇到 ✨',
+        icon: './apple-touch-icon.png',
+        badge: './favicon-32x32.png',
+        tag: 'astra-nightly',
+        requireInteraction: false
+      });
+      // 遞迴設下一次
+      scheduleNightReminder();
+    }, msUntilTarget);
+  }
+  
+  // 頁面載入後啟動
+  if (document.readyState === 'complete') {
+    scheduleNightReminder();
+  } else {
+    window.addEventListener('load', scheduleNightReminder);
+  }
+
+  // ═══ 3. 首次訪問：提示加入主畫面 ═══
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    
+    // 檢查是否已經顯示過
+    if (localStorage.getItem('astra_install_shown') === 'yes') return;
+    
+    // 3 秒後顯示自訂提示
+    setTimeout(() => {
+      if (!deferredPrompt) return;
+      showInstallBanner();
+    }, 3000);
+  });
+  
+  function showInstallBanner() {
+    const banner = document.createElement('div');
+    banner.id = 'astra-install-banner';
+    banner.style.cssText = `
+      position: fixed; bottom: 20px; left: 20px; right: 20px;
+      background: linear-gradient(135deg, #A51820 0%, #6b0f15 100%);
+      color: #fff; padding: 16px 18px; border-radius: 14px;
+      box-shadow: 0 8px 24px rgba(165,24,32,0.4);
+      z-index: 9999; display: flex; align-items: center; gap: 12px;
+      animation: slideUp 0.4s ease-out;
+      font-family: 'Noto Sans TC', sans-serif;
+    `;
+    banner.innerHTML = `
+      <div style="font-size:32px">✦</div>
+      <div style="flex:1">
+        <div style="font-size:13px;font-weight:700;margin-bottom:2px">把 Astra 加到主畫面</div>
+        <div style="font-size:11px;color:#F0C0C5">像 App 一樣一鍵打開</div>
+      </div>
+      <button id="astra-install-yes" style="background:#fff;color:#A51820;border:none;padding:8px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer">安裝</button>
+      <button id="astra-install-no" style="background:transparent;color:rgba(255,255,255,.6);border:none;padding:8px 6px;font-size:14px;cursor:pointer">✕</button>
+    `;
+    document.body.appendChild(banner);
+    
+    document.getElementById('astra-install-yes').onclick = async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const result = await deferredPrompt.userChoice;
+        console.log('[PWA] 安裝結果:', result.outcome);
+        deferredPrompt = null;
+      }
+      banner.remove();
+      localStorage.setItem('astra_install_shown', 'yes');
+    };
+    
+    document.getElementById('astra-install-no').onclick = () => {
+      banner.remove();
+      localStorage.setItem('astra_install_shown', 'yes');
+    };
+  }
+  
+  // ═══ 4. 加一個 CSS 動畫 ═══
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    /* PWA 全螢幕模式專用樣式 */
+    @media all and (display-mode: standalone) {
+      body::before {
+        content: '';
+        position: fixed; top: 0; left: 0; right: 0;
+        height: env(safe-area-inset-top);
+        background: #A51820;
+        z-index: 10000;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // ═══ 5. 歡迎訊息（已加入主畫面的使用者）═══
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('%c✦ Astra · Standalone Mode', 'color:#A51820;font-size:14px;font-weight:bold');
+    console.log('%cPer Aspera Ad Astra', 'color:#666;font-style:italic');
+  }
+})();
+</script>
 
 </body>
 </html>
