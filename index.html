@@ -4589,6 +4589,88 @@ Line 回覆「確認」即可，或指出需要修改的鏡頭編號。
 </div>
 
 
+
+<!-- ═══════════════════════════════════════ 風險自檢診斷器 ═══════════════════════════════════════ -->
+<div class="ch" style="margin-top:8px">
+  <div class="ch-ico" style="background:var(--r1);color:#fff">🔍</div>
+  <div><div class="ch-title">風險自檢 5 問</div><div class="ch-sub">選客戶條件，自動產出你這案要注意的法律紅線</div></div>
+</div>
+
+<div style="padding:0 12px 16px">
+  <div style="background:var(--w2);border-radius:10px;padding:12px;border:1px solid var(--w3)">
+
+    <!-- Q1 客戶產業（單選） -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">① 客戶產業（單選）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <button onclick="setLegalDiag('industry','medical')" id="lg-industry-medical" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🏥 醫療/保健/生技<br><span style="font-size:9px;opacity:.7">診所、健康食品、醫美</span></button>
+        <button onclick="setLegalDiag('industry','legal')" id="lg-industry-legal" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">⚖️ 法律/金融<br><span style="font-size:9px;opacity:.7">律師、會計、投資顧問</span></button>
+        <button onclick="setLegalDiag('industry','food')" id="lg-industry-food" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🧴 食品/化妝/美妝<br><span style="font-size:9px;opacity:.7">保養品、零食、美容</span></button>
+        <button onclick="setLegalDiag('industry','brand')" id="lg-industry-brand" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🛍 一般品牌/電商<br><span style="font-size:9px;opacity:.7">餐飲、零售、服務業</span></button>
+        <button onclick="setLegalDiag('industry','ip')" id="lg-industry-ip" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left;grid-column:1/-1">✨ 個人 IP（教練、講師、KOL）<br><span style="font-size:9px;opacity:.7">專業個人品牌</span></button>
+      </div>
+    </div>
+
+    <!-- Q2 拍攝對象（多選） -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">② 拍攝對象（多選）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <button onclick="toggleLegalMulti('subject','boss')" id="lg-subject-boss" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 老闆本人</button>
+        <button onclick="toggleLegalMulti('subject','staff')" id="lg-subject-staff" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 員工</button>
+        <button onclick="toggleLegalMulti('subject','passer')" id="lg-subject-passer" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 路人/素人</button>
+        <button onclick="toggleLegalMulti('subject','actor')" id="lg-subject-actor" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 演員</button>
+        <button onclick="toggleLegalMulti('subject','customer')" id="lg-subject-customer" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left;grid-column:1/-1">☐ 真實客戶見證</button>
+      </div>
+    </div>
+
+    <!-- Q3 素材來源（多選） -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">③ 素材來源（多選）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <button onclick="toggleLegalMulti('source','ai')" id="lg-source-ai" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ AI 生成<br><span style="font-size:9px;opacity:.7">Midjourney/Runway</span></button>
+        <button onclick="toggleLegalMulti('source','paid')" id="lg-source-paid" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 付費圖庫<br><span style="font-size:9px;opacity:.7">Shutterstock、Artlist</span></button>
+        <button onclick="toggleLegalMulti('source','client')" id="lg-source-client" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 客戶提供<br><span style="font-size:9px;opacity:.7">產品、Logo、字體</span></button>
+        <button onclick="toggleLegalMulti('source','shoot')" id="lg-source-shoot" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 自行拍攝</button>
+        <button onclick="toggleLegalMulti('source','grab')" id="lg-source-grab" style="padding:8px;border-radius:7px;border:2px solid #FFCDD2;background:#FFEBEE;font-size:10px;color:#B71C1C;cursor:pointer;text-align:left;grid-column:1/-1">☐ 網路抓圖 / 梗圖<br><span style="font-size:9px;opacity:.85">⚠️ 高風險，強烈建議避免</span></button>
+      </div>
+    </div>
+
+    <!-- Q4 服務範圍（多選） -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">④ 服務範圍（多選）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <button onclick="toggleLegalMulti('service','brand')" id="lg-service-brand" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 純品牌形象</button>
+        <button onclick="toggleLegalMulti('service','ad')" id="lg-service-ad" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 廣告投放素材</button>
+        <button onclick="toggleLegalMulti('service','testimonial')" id="lg-service-testimonial" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 客戶見證</button>
+        <button onclick="toggleLegalMulti('service','compare')" id="lg-service-compare" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 比較性內容</button>
+        <button onclick="toggleLegalMulti('service','live')" id="lg-service-live" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 直播/團購</button>
+        <button onclick="toggleLegalMulti('service','event')" id="lg-service-event" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">☐ 活動導流</button>
+      </div>
+    </div>
+
+    <!-- Q5 跨境（單選） -->
+    <div style="margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:5px">⑤ 跨境與否（單選）</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
+        <button onclick="setLegalDiag('region','tw')" id="lg-region-tw" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🇹🇼 純台灣</button>
+        <button onclick="setLegalDiag('region','my')" id="lg-region-my" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🇲🇾 含馬來西亞</button>
+        <button onclick="setLegalDiag('region','hk')" id="lg-region-hk" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🇭🇰 含香港</button>
+        <button onclick="setLegalDiag('region','multi')" id="lg-region-multi" style="padding:8px;border-radius:7px;border:2px solid var(--w3);background:var(--w2);font-size:10px;color:var(--muted);cursor:pointer;text-align:left">🌏 多國/含大陸</button>
+      </div>
+    </div>
+
+    <!-- Action buttons -->
+    <div style="display:flex;gap:6px">
+      <button onclick="runLegalDiag()" style="flex:1;background:var(--r1);border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;color:#fff;cursor:pointer">🔍 產出我的風險清單</button>
+      <button onclick="resetLegalDiag()" style="background:var(--w2);border:1.5px solid var(--w3);border-radius:8px;padding:10px 14px;font-size:11px;color:var(--muted);cursor:pointer">重置</button>
+    </div>
+
+    <div id="legal-result" style="margin-top:10px"></div>
+  </div>
+</div>
+
+
+
 <!-- ═══════════════════════════════════════ A 類｜合約與合作關係 ═══════════════════════════════════════ -->
 <div class="card" data-id="legal-a" data-title="A 類｜合約與合作關係">
   <div style="padding:12px 14px;background:linear-gradient(135deg,#FFF8F9 0%,#FFEEEF 100%);display:flex;align-items:center;justify-content:space-between">
@@ -8144,6 +8226,299 @@ function copyText(btn,text){
   }).catch(()=>alert('請手動複製'));
 }
 window.copyText=copyText;
+
+// ========== 風險自檢診斷器（階段 2）==========
+var legalState = {
+  industry: '',       // 單選
+  subject: [],        // 多選
+  source: [],         // 多選
+  service: [],        // 多選
+  region: ''          // 單選
+};
+
+// 風險條目資料庫（代號→內容）
+var LEGAL_ITEMS = {
+  // A 類
+  'A1': {cat:'A', lvl:'🚨', title:'服務範圍定義模糊', avoid:'合約列清楚「包含 / 不包含」兩欄'},
+  'A3': {cat:'A', lvl:'🚨', title:'成效糾紛（客戶以為花錢就會爆）', avoid:'白紙黑字寫「交付的是內容，不是業績」'},
+  'A10': {cat:'A', lvl:'🚨', title:'客戶要求不開發票、匯個人帳戶', avoid:'堅守走公司帳戶 + 開發票，拒接想避稅的客戶'},
+  'A12': {cat:'A', lvl:'⚠️', title:'外部協作者勞務關係界定', avoid:'承攬合約寫明按案計酬、無固定工時、自備工具'},
+
+  // B 類
+  'B1': {cat:'B', lvl:'🚨', title:'成片 vs 專案檔歸屬', avoid:'合約明列成片授權、專案檔歸你'},
+  'B2': {cat:'B', lvl:'🚨', title:'外包剪輯師著作權默認歸他', avoid:'外包合約務必寫「著作財產權全部讓與」+「人格權不行使」'},
+  'B3': {cat:'B', lvl:'⚠️', title:'AI 生成內容著作權（台灣不保護）', avoid:'合約寫「授權使用」不宣稱「著作權」'},
+  'B4': {cat:'B', lvl:'🚨', title:'BGM 侵權（最常被抓）', avoid:'用 Epidemic Sound / Artlist 等付費商用音樂'},
+  'B5': {cat:'B', lvl:'🚨', title:'影片 / 圖片素材侵權', avoid:'禁用網路梗圖、新聞片段、電影片段'},
+  'B7': {cat:'B', lvl:'⚠️', title:'Midjourney 商用授權', avoid:'訂閱 Standard 方案（月 30 美金）以上才有商用權'},
+  'B8': {cat:'B', lvl:'⚠️', title:'Runway / Kling 商用授權', avoid:'付費版才含商用權，保留發票作證明'},
+  'B9': {cat:'B', lvl:'⚠️', title:'Claude / ChatGPT 商用條款', avoid:'付費訂閱，輸出人工編輯後再交付'},
+  'B10': {cat:'B', lvl:'⚠️', title:'字體授權（客戶給的可能沒買商用）', avoid:'改用思源黑體等免費商用字體'},
+
+  // C 類
+  'C1': {cat:'C', lvl:'🚨', title:'食品 / 保健品療效違規', avoid:'禁用「改善/治療/預防」，改用「日常補充/保健」'},
+  'C2': {cat:'C', lvl:'🚨', title:'化妝品療效違規', avoid:'可說「維持水潤/均勻膚色」，不可「治療/根治」'},
+  'C3': {cat:'C', lvl:'🚨', title:'醫療廣告違規', avoid:'純衛教 vs 醫療廣告分開做，後者要衛生局送審'},
+  'C4': {cat:'C', lvl:'⚠️', title:'律師業務推展規範', avoid:'走衛教路線，CTA「諮詢」不保證結果，不做分潤'},
+  'C5': {cat:'C', lvl:'🚨', title:'薦證廣告未揭露（公平法）', avoid:'KOL 付費合作必標 #廣告 / #合作'},
+  'C7': {cat:'C', lvl:'🚨', title:'誹謗 / 妨害名譽', avoid:'批評「現象」不批「個人」，匿名案例 + 備證據'},
+  'C8': {cat:'C', lvl:'🚨', title:'虛假案例 / 假見證', avoid:'真客戶真話，簽見證同意書，不叫朋友演'},
+  'C9': {cat:'C', lvl:'⚠️', title:'比較性廣告（直接點名競品）', avoid:'改成「市面常見的 OO 類產品」不點名'},
+  'C10': {cat:'C', lvl:'🚨', title:'金融投資類內容', avoid:'備註「投資有風險」，不說「保證獲利」'},
+  'C11': {cat:'C', lvl:'⚠️', title:'兒童 / 未成年入鏡', avoid:'父母雙方同意書、不露學校 / 地址'},
+  'C12': {cat:'C', lvl:'⚠️', title:'健康食品 vs 一般食品用詞', avoid:'沒小綠人標章不得稱「健康食品」'},
+
+  // D 類
+  'D1': {cat:'D', lvl:'🚨', title:'路人肖像權 / 個資法', avoid:'肖像同意書 + 現場貼公告 + 路人打碼'},
+  'D2': {cat:'D', lvl:'🚨', title:'員工入鏡後離職的肖像授權', avoid:'簽肖像同意書，載明授權期間 / 範圍 / 離職後'},
+  'D4': {cat:'D', lvl:'🚨', title:'客戶社群帳號密碼保管責任', avoid:'用 Meta BM 授權，不要拿密碼；要拿就用密碼管理器 + 雙因素'},
+  'D5': {cat:'D', lvl:'🚨', title:'拍攝現場的肖像同意書', avoid:'必含 8 項要素，現場拍攝前簽，不事後補'},
+  'D6': {cat:'D', lvl:'🚨', title:'客戶內部資料外流', avoid:'場勘 + 遮蔽敏感白板 / 螢幕 + 逐格檢查'},
+  'D7': {cat:'D', lvl:'🚨', title:'影片裡出現真實顧客', avoid:'拍攝時清場 / 只拍背影手部 / 貼公告'},
+  'D9': {cat:'D', lvl:'⚠️', title:'跨境個資法差異', avoid:'合約註明適用法律，歐盟受眾注意 GDPR'},
+
+  // E 類
+  'E4': {cat:'E', lvl:'🚨', title:'外包勞務認定（僱傭 vs 承攬）', avoid:'合約寫承攬關係、按案計酬，分散外包不固定一人'},
+  'E8': {cat:'E', lvl:'⚠️', title:'二代健保補充保費', avoid:'單次給付超過 2 萬的稿費 / 承攬，扣 2.11%'},
+  'E11': {cat:'E', lvl:'⚠️', title:'外包發票 / 扣繳憑單', avoid:'公司外包要發票、個人外包扣繳 10%，存 3 年'},
+  'E12': {cat:'E', lvl:'⚠️', title:'員工離職著作權收回', avoid:'簽離職聲明：著作權歸公司 + 資料歸還 + 競業'},
+
+  // F 類
+  'F1': {cat:'F', lvl:'⚠️', title:'跨境適用法律與管轄', avoid:'合約寫清楚適用法律 + 訴訟管轄地'},
+  'F4': {cat:'F', lvl:'🚨', title:'連帶責任｜客戶違法你被拖下水', avoid:'合約加「客戶保證資訊合法，責任由客戶自負」'},
+  'F5': {cat:'F', lvl:'⚠️', title:'馬來西亞客戶稅務', avoid:'外銷服務零稅率，保留收款證明；報價加匯率緩衝'},
+  'F6': {cat:'F', lvl:'🚨', title:'香港客戶：國安法與金融監管', avoid:'政治議題不接，金融客戶需 SFC 牌照證明'},
+  'F7': {cat:'F', lvl:'⚠️', title:'Meta 廣告政策紅線', avoid:'醫療/金融/加密類先完成 Meta 身份驗證'},
+  'F8': {cat:'F', lvl:'⚠️', title:'TikTok 音樂 / 特效商用', avoid:'商業帳號用 TikTok Commercial Music Library'},
+  'F10': {cat:'F', lvl:'🚨', title:'創辦人個人責任（有限公司 vs 行號）', avoid:'有風險業務開有限公司，資本額 NT$1 即可'}
+};
+
+// 選項觸發條目對應表
+var LEGAL_TRIGGERS = {
+  // Q1 產業（單選）
+  industry: {
+    medical: ['C1','C3','C12','F7','B4'],
+    legal: ['C4','C7','A3','F6'],
+    food: ['C1','C2','C12','C5','F7'],
+    brand: ['C5','C6'],
+    ip: ['C8','D2','B6']
+  },
+  // Q2 拍攝對象（多選）
+  subject: {
+    boss: ['D5'],
+    staff: ['D2','D5','E12'],
+    passer: ['D1','D5'],
+    actor: ['D5'],
+    customer: ['C8','D7','D5']
+  },
+  // Q3 素材來源（多選）
+  source: {
+    ai: ['B3','B7','B8','B9'],
+    paid: [],  // 付費圖庫是合規的，不觸發警告
+    client: ['D6','B10','B12'],
+    shoot: ['D1'],
+    grab: ['B5','B4']  // 網路抓圖最高風險
+  },
+  // Q4 服務範圍（多選）
+  service: {
+    brand: [],
+    ad: ['F7','C5','C6','F3'],
+    testimonial: ['C8','D7'],
+    compare: ['C9','C7'],
+    live: ['C5','F8'],
+    event: ['C6','F3']
+  },
+  // Q5 跨境（單選）
+  region: {
+    tw: [],
+    my: ['F5','D9','F1'],
+    hk: ['F6','F1','D9'],
+    multi: ['F1','D9','F5','F6']
+  }
+};
+
+// 設單選
+function setLegalDiag(key, val){
+  legalState[key] = val;
+  const opts = {
+    industry: ['medical','legal','food','brand','ip'],
+    region: ['tw','my','hk','multi']
+  };
+  (opts[key] || []).forEach(v => {
+    const btn = document.getElementById('lg-' + key + '-' + v);
+    if(!btn) return;
+    if(v === val){
+      btn.style.background = 'var(--r1)';
+      btn.style.color = '#fff';
+      btn.style.borderColor = 'var(--r1)';
+      btn.querySelectorAll('span').forEach(s => s.style.color = 'rgba(255,255,255,.85)');
+    } else {
+      btn.style.background = 'var(--w2)';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--w3)';
+      btn.querySelectorAll('span').forEach(s => s.style.color = '');
+    }
+  });
+}
+
+// 切多選
+function toggleLegalMulti(key, val){
+  if(!Array.isArray(legalState[key])) legalState[key] = [];
+  const arr = legalState[key];
+  const idx = arr.indexOf(val);
+  if(idx >= 0) arr.splice(idx, 1);
+  else arr.push(val);
+  const btn = document.getElementById('lg-' + key + '-' + val);
+  if(!btn) return;
+  const on = arr.indexOf(val) >= 0;
+  // 特殊：網路抓圖保留紅色視覺
+  const isDanger = (key === 'source' && val === 'grab');
+  if(on){
+    btn.style.background = isDanger ? '#B71C1C' : 'var(--r1)';
+    btn.style.color = '#fff';
+    btn.style.borderColor = isDanger ? '#B71C1C' : 'var(--r1)';
+    btn.innerHTML = btn.innerHTML.replace('☐', '☑');
+    btn.querySelectorAll('span').forEach(s => s.style.color = 'rgba(255,255,255,.85)');
+  } else {
+    btn.style.background = isDanger ? '#FFEBEE' : 'var(--w2)';
+    btn.style.color = isDanger ? '#B71C1C' : 'var(--muted)';
+    btn.style.borderColor = isDanger ? '#FFCDD2' : 'var(--w3)';
+    btn.innerHTML = btn.innerHTML.replace('☑', '☐');
+    btn.querySelectorAll('span').forEach(s => s.style.color = '');
+  }
+}
+
+// 產出診斷結果
+function runLegalDiag(){
+  const res = document.getElementById('legal-result');
+  
+  // 驗證必填
+  if(!legalState.industry){
+    res.innerHTML = '<div style="background:#FFF3E0;border-radius:8px;padding:10px 12px;font-size:11px;color:#E65100;margin-top:8px">⚠️ 請先選擇「①客戶產業」</div>';
+    return;
+  }
+  if(!legalState.region){
+    res.innerHTML = '<div style="background:#FFF3E0;border-radius:8px;padding:10px 12px;font-size:11px;color:#E65100;margin-top:8px">⚠️ 請先選擇「⑤跨境與否」</div>';
+    return;
+  }
+
+  // 收集所有觸發的條目代號
+  var triggered = new Set();
+  
+  // 單選 industry
+  (LEGAL_TRIGGERS.industry[legalState.industry] || []).forEach(c => triggered.add(c));
+  // 單選 region
+  (LEGAL_TRIGGERS.region[legalState.region] || []).forEach(c => triggered.add(c));
+  // 多選 subject
+  legalState.subject.forEach(v => {
+    (LEGAL_TRIGGERS.subject[v] || []).forEach(c => triggered.add(c));
+  });
+  // 多選 source
+  legalState.source.forEach(v => {
+    (LEGAL_TRIGGERS.source[v] || []).forEach(c => triggered.add(c));
+  });
+  // 多選 service
+  legalState.service.forEach(v => {
+    (LEGAL_TRIGGERS.service[v] || []).forEach(c => triggered.add(c));
+  });
+
+  // 排序：高（🚨）> 中（⚠️）> 低（💡）
+  var lvlOrder = {'🚨': 0, '⚠️': 1, '💡': 2};
+  var items = Array.from(triggered)
+    .filter(c => LEGAL_ITEMS[c])
+    .map(c => ({code: c, ...LEGAL_ITEMS[c]}))
+    .sort((a, b) => {
+      var d = lvlOrder[a.lvl] - lvlOrder[b.lvl];
+      if(d !== 0) return d;
+      return a.code.localeCompare(b.code);
+    });
+
+  // 上限 8 條
+  items = items.slice(0, 8);
+
+  if(items.length === 0){
+    res.innerHTML = '<div style="background:var(--gr);border-radius:8px;padding:10px 12px;font-size:11px;color:var(--gd);margin-top:8px">✅ 目前選項沒有特別高風險的情境，但仍建議瀏覽下方 6 大分類以掌握全貌。</div>';
+    return;
+  }
+
+  // 渲染結果
+  var html = '<div style="background:linear-gradient(135deg,#FFF8F9 0%,#FFEEEF 100%);border:1.5px solid var(--r1);border-radius:10px;padding:12px;margin-top:10px">';
+  html += '<div style="font-size:11px;font-weight:700;color:var(--r2);margin-bottom:4px">🎯 根據你的選擇，本案要特別注意：</div>';
+  html += '<div style="font-size:10px;color:var(--muted);margin-bottom:10px">共 ' + items.length + ' 條（依重要度排序）</div>';
+  html += '<div style="display:grid;gap:6px">';
+  
+  items.forEach(function(it){
+    html += '<div style="background:#fff;border-radius:7px;padding:8px 10px;border-left:3px solid var(--r1)">';
+    html += '<div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;flex-wrap:wrap">';
+    html += '<span style="font-size:9px;font-weight:700;color:#fff;background:var(--r1);padding:2px 7px;border-radius:10px">' + it.code + '</span>';
+    html += '<span style="font-size:10px">' + it.lvl + '</span>';
+    html += '<span style="font-size:11px;font-weight:700;color:var(--text)">' + it.title + '</span>';
+    html += '</div>';
+    html += '<div style="font-size:10px;color:var(--muted);line-height:1.6;padding-left:2px"><strong style="color:var(--gd)">避雷：</strong>' + it.avoid + '</div>';
+    html += '</div>';
+  });
+  
+  html += '</div>';
+  html += '<div style="margin-top:10px;padding:7px 9px;background:#FFFDE7;border-radius:6px;font-size:10px;color:#5F4200;line-height:1.6;border-left:2px solid #FFC107">';
+  html += '💡 完整條文 / 紅線話術請往下看 <strong>6 大分類手風琴</strong>，找對應代號即可。';
+  html += '</div>';
+  html += '</div>';
+  
+  res.innerHTML = html;
+  
+  // 滾動到結果
+  setTimeout(function(){
+    res.scrollIntoView({behavior:'smooth', block:'start'});
+  }, 100);
+}
+
+// 重置
+function resetLegalDiag(){
+  legalState = {industry:'', subject:[], source:[], service:[], region:''};
+  
+  // 重置單選按鈕
+  ['industry','region'].forEach(function(key){
+    var opts = {
+      industry: ['medical','legal','food','brand','ip'],
+      region: ['tw','my','hk','multi']
+    };
+    (opts[key] || []).forEach(function(v){
+      var btn = document.getElementById('lg-' + key + '-' + v);
+      if(!btn) return;
+      btn.style.background = 'var(--w2)';
+      btn.style.color = 'var(--muted)';
+      btn.style.borderColor = 'var(--w3)';
+      btn.querySelectorAll('span').forEach(function(s){ s.style.color = ''; });
+    });
+  });
+  
+  // 重置多選按鈕
+  ['subject','source','service'].forEach(function(key){
+    var opts = {
+      subject: ['boss','staff','passer','actor','customer'],
+      source: ['ai','paid','client','shoot','grab'],
+      service: ['brand','ad','testimonial','compare','live','event']
+    };
+    (opts[key] || []).forEach(function(v){
+      var btn = document.getElementById('lg-' + key + '-' + v);
+      if(!btn) return;
+      var isDanger = (key === 'source' && v === 'grab');
+      btn.style.background = isDanger ? '#FFEBEE' : 'var(--w2)';
+      btn.style.color = isDanger ? '#B71C1C' : 'var(--muted)';
+      btn.style.borderColor = isDanger ? '#FFCDD2' : 'var(--w3)';
+      btn.innerHTML = btn.innerHTML.replace('☑', '☐');
+      btn.querySelectorAll('span').forEach(function(s){ s.style.color = ''; });
+    });
+  });
+  
+  document.getElementById('legal-result').innerHTML = '';
+}
+
+window.setLegalDiag = setLegalDiag;
+window.toggleLegalMulti = toggleLegalMulti;
+window.runLegalDiag = runLegalDiag;
+window.resetLegalDiag = resetLegalDiag;
+
 
 function updateBar(){
   const n=S.c.length;
