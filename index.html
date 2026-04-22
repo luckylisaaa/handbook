@@ -261,22 +261,56 @@ try {
   <div class="tab" onclick="switchTab(5,this)">📱 拍攝執行</div>
   <div class="tab" onclick="switchTab(6,this)">🔄 每月執行</div>
   <div class="tab" onclick="switchTab(7,this)">🎬 腳本系統</div>
-  <div class="tab" onclick="switchTab(8,this)">🚪 交付閘門</div>
+  <div class="tab" onclick="switchTab(8,this)">📚 靈感餵養</div>
+  <div class="tab" onclick="switchTab(9,this)">🚪 交付閘門</div>
   <div class="tab-divider"></div>
   <div class="tab-label">✦ 底氣區</div>
-  <div class="tab" onclick="switchTab(9,this)">🎯 合作目標</div>
-  <div class="tab" onclick="switchTab(10,this)">📖 術語庫</div>
-  <div class="tab" onclick="switchTab(11,this)">🛡️ 權責邊界</div>
-  <div class="tab" onclick="switchTab(12,this)">⚖️ 法律風險</div>
-  <div class="tab" onclick="switchTab(13,this)">🏢 提案練習</div>
-  <div class="tab" onclick="switchTab(14,this)">🎨 品牌視覺</div>
-  <div class="tab" onclick="switchTab(15,this)">💎 我是誰</div>
-  <div class="tab" onclick="switchTab(16,this)">🤝 提案介紹</div>
-  <div class="tab" onclick="switchTab(17,this)">⚔️ 一人作戰</div>
+  <div class="tab" onclick="switchTab(10,this)">🎯 合作目標</div>
+  <div class="tab" onclick="switchTab(11,this)">📖 術語庫</div>
+  <div class="tab" onclick="switchTab(12,this)">🛡️ 權責邊界</div>
+  <div class="tab" onclick="switchTab(13,this)">⚖️ 法律風險</div>
+  <div class="tab" onclick="switchTab(14,this)">🏢 提案練習</div>
+  <div class="tab" onclick="switchTab(15,this)">🎨 品牌視覺</div>
+  <div class="tab" onclick="switchTab(16,this)">💎 我是誰</div>
+  <div class="tab" onclick="switchTab(17,this)">🤝 提案介紹</div>
+  <div class="tab" onclick="switchTab(18,this)">⚔️ 一人作戰</div>
 
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
 <div class="tpage active" id="tp-start">
+
+<!-- 工具箱入口 -->
+<div style="background:linear-gradient(135deg,#FAE8EA 0%,#F4F1EC 100%);padding:14px 14px 12px;border-bottom:1px solid var(--w3)">
+  <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    <div style="width:30px;height:30px;border-radius:7px;background:var(--r1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px">🛠</div>
+    <div>
+      <div style="font-size:12px;font-weight:700;color:var(--r2);font-family:'Noto Serif TC',serif">我的工具箱</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">戰略看手冊，執行用工具</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank" style="background:#fff;padding:10px 11px;border-radius:8px;text-decoration:none;border:1px solid var(--w3);display:block">
+      <div style="font-size:18px;margin-bottom:3px">🎬</div>
+      <div style="font-size:11px;font-weight:700;color:var(--r1)">腳本產生器</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">13 步流程 · 10 組腳本</div>
+    </a>
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank" style="background:#fff;padding:10px 11px;border-radius:8px;text-decoration:none;border:1px solid var(--w3);display:block">
+      <div style="font-size:18px;margin-bottom:3px">📚</div>
+      <div style="font-size:11px;font-weight:700;color:var(--r1)">餵養庫</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">市場爆款累積</div>
+    </a>
+    <div style="background:#fff;padding:10px 11px;border-radius:8px;border:1px dashed var(--w3);opacity:.6">
+      <div style="font-size:18px;margin-bottom:3px">📡</div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted)">趨勢雷達</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">即將整合</div>
+    </div>
+    <div style="background:#fff;padding:10px 11px;border-radius:8px;border:1px dashed var(--w3);opacity:.6">
+      <div style="font-size:18px;margin-bottom:3px">📊</div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted)">客戶儀表板</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.4">開發中</div>
+    </div>
+  </div>
+</div>
 
 <div style="background:var(--r1);padding:16px 14px 14px;margin-bottom:0">
   <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px">你的學習路徑</div>
@@ -292,21 +326,21 @@ try {
       <div style="font-size:10px;color:var(--muted)">搞懂框架，建立全局觀</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(15)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(16)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">💎 我是誰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先認識自己的優勢，建立自信</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(9)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(10)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🎯 合作目標</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用診斷器理解10個目標的邏輯</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(10)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(11)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">📖 術語庫</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">先把KPI、CTA、ROAS這些搞懂</div>
@@ -361,6 +395,13 @@ try {
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
+      <div onclick="window.jumpTab(8)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+        <div>
+          <div style="font-size:11px;font-weight:700;color:var(--text)">📚 靈感餵養</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:1px">雙 AI 拆爆款，累積市場資產</div>
+        </div>
+        <div style="font-size:10px;color:var(--r1)">→</div>
+      </div>
       <div onclick="window.jumpTab(3)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚡ AI工具</div>
@@ -399,35 +440,35 @@ try {
       <div style="font-size:10px;color:var(--muted)">出去提案，準備好了</div>
     </div>
     <div style="display:grid;gap:5px">
-      <div onclick="window.jumpTab(13)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(14)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🏢 提案練習</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">用理鴻、喜躍做實戰模擬</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(11)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(12)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">🛡️ 權責邊界</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">客戶吵架怎麼說，哪些不能接</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(12)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(13)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚖️ 法律風險</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">35 條代營運法律地雷清單</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(16)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
+      <div onclick="window.jumpTab(17)" style="background:var(--p1);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--r5)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--r2)">🤝 提案介紹</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">對外版自我介紹，打開給客戶看</div>
         </div>
         <div style="font-size:10px;color:var(--r1)">→</div>
       </div>
-      <div onclick="window.jumpTab(17)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
+      <div onclick="window.jumpTab(18)" style="background:var(--w2);border-radius:8px;padding:9px 12px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;border:1px solid var(--w3)">
         <div>
           <div style="font-size:11px;font-weight:700;color:var(--text)">⚔️ 一人作戰</div>
           <div style="font-size:9px;color:var(--muted);margin-top:1px">一人公司怎麼開工接案、時間分配</div>
@@ -441,19 +482,19 @@ try {
   <div style="background:#FAE8EA;border-radius:10px;padding:12px 14px;margin-bottom:6px">
     <div style="font-size:10px;font-weight:700;color:var(--r1);margin-bottom:6px">✦ 隨時都可以查</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:5px">
-      <div onclick="window.jumpTab(10)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(11)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">📖 術語庫</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">不懂的詞直接搜</div>
       </div>
-      <div onclick="window.jumpTab(14)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(15)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🎨 品牌視覺</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">設計素材查這裡</div>
       </div>
-      <div onclick="window.jumpTab(16)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(17)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">🚀 提案簡報</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案時的說話邏輯</div>
       </div>
-      <div onclick="window.jumpTab(15)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
+      <div onclick="window.jumpTab(16)" style="background:#fff;border-radius:7px;padding:7px 10px;cursor:pointer;border:1px solid #E8E3DA">
         <div style="font-size:10px;font-weight:700;color:var(--text)">💎 我是誰</div>
         <div style="font-size:9px;color:var(--muted);margin-top:1px">提案前打氣用</div>
       </div>
@@ -2387,7 +2428,7 @@ try {
       <div style="font-size:10px;color:var(--p1);line-height:1.7">鉤子：數字型「限時優惠剩3天」或見證型<br>中段：展示成果、比較、解決疑慮（抗拒點）<br>CTA：「連結在主頁，立即預約/購買」<br>核心KPI：ROAS、轉換率、點擊率</div>
     </div>
     <div style="margin-top:4px">
-      <button onclick="jumpTab(9)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
+      <button onclick="jumpTab(10)" style="width:100%;background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;font-size:11px;font-weight:700;color:var(--r2)">→ 跳到「合作目標」分頁看完整KPI說明 ↗</button>
     </div>
   </div>
 
@@ -2396,6 +2437,42 @@ try {
     <button class="abt" onclick="openAsk(this.closest('.card'))">❓ 問 Claude</button>
   </div>
   <div class="npanel"></div>
+</div>
+
+<!-- 腳本產生器入口卡片 -->
+<div style="padding:14px">
+  <div style="background:linear-gradient(135deg,var(--r1) 0%,var(--r2) 100%);border-radius:12px;padding:16px;box-shadow:0 4px 14px rgba(184,66,77,.25)">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="font-size:28px">🚀</div>
+      <div>
+        <div style="font-size:9px;letter-spacing:.18em;color:rgba(255,255,255,.7);text-transform:uppercase;margin-bottom:2px">EXECUTION LAYER</div>
+        <div style="font-size:14px;font-weight:700;color:#fff;font-family:'Noto Serif TC',serif">立即使用腳本產生器</div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;color:#fff;opacity:.95;line-height:1.8;margin-bottom:12px">
+      把上面學到的<strong>鉤子邏輯、中段結構、CTA 設計</strong>，直接在這個工具實際跑一次。系統會依據你填的客戶資料、IP 人格、受眾洞察，<strong>產出 10 組可用腳本</strong>。
+    </div>
+
+    <div style="background:rgba(255,255,255,.12);border-radius:8px;padding:10px 12px;margin-bottom:12px">
+      <div style="font-size:10px;font-weight:700;color:#fff;margin-bottom:6px">🎯 這個工具能做什麼</div>
+      <div style="font-size:10px;color:#fff;opacity:.95;line-height:1.9">
+        ▸ 13 步完整流程（客戶定位 × IP 人格 × 受眾洞察 × 策略 × 腳本）<br>
+        ▸ 7 維度 IP 人格深度分析（核心性格、優勢、盲點、興趣⋯）<br>
+        ▸ AI 依產業推薦受眾痛點與解法<br>
+        ▸ 雲端同步餵養庫，手機電腦互通<br>
+        ▸ 一次產出 10 組腳本 + 可匯出 PPT 簡報
+      </div>
+    </div>
+
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank" style="display:inline-block;background:#fff;color:var(--r1);padding:10px 22px;border-radius:25px;font-size:12px;font-weight:700;text-decoration:none;box-shadow:0 3px 10px rgba(0,0,0,.12)">
+      🎬 打開腳本產生器 →
+    </a>
+
+    <div style="margin-top:10px;font-size:9px;color:rgba(255,255,255,.7);line-height:1.6">
+      💡 搭配 Handbook 使用：先在這裡學框架 → 用工具實作 → 回來看複盤建議
+    </div>
+  </div>
 </div>
 
 </div>
@@ -2718,6 +2795,435 @@ try {
 </div>
 
 </div>
+
+<!-- ===== TAB 靈感餵養 ===== -->
+<div class="tpage" id="tp-feed">
+
+<div class="ch">
+  <div class="ch-ico" style="background:var(--bd);color:#fff">📚</div>
+  <div><div class="ch-title">靈感餵養系統</div><div class="ch-sub">累積市場資產，建立對客戶提案的底氣</div></div>
+</div>
+
+<div style="padding:0 14px 12px">
+  <div style="background:var(--bl);border-radius:9px;padding:10px 12px">
+    <div style="font-size:11px;font-weight:700;color:var(--bd);margin-bottom:4px">為什麼這個分頁重要</div>
+    <div style="font-size:10px;color:var(--bd);line-height:1.7">
+      你是一個人公司，但你要做百人公司才能做的事——<strong>用市場上 400–2000 筆真實爆款，當你的隱形團隊</strong>。這一章教你怎麼有系統地累積素材，讓你面對客戶時句句有料。
+    </div>
+  </div>
+</div>
+
+<!-- 六主題速查 -->
+<div style="padding:0 14px 14px">
+  <div style="font-size:10px;color:var(--muted);margin-bottom:6px">本頁 6 大主題</div>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F1 為什麼需要</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">有 vs 沒有的差別</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F2 餵養目標</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">4 平台 × 400–2000 筆</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F3 雙 AI 工作流</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">Gemini + Claude 分工</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F4 拆解 Prompt</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">可直接複製</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F5 結構化欄位</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">存入餵養庫</div>
+    </div>
+    <div style="background:#fff;border:1px solid var(--w3);border-radius:7px;padding:7px 9px">
+      <div style="font-size:10px;font-weight:700;color:var(--bd)">F6 累積里程碑</div>
+      <div style="font-size:9px;color:var(--muted);margin-top:1px">50 / 100 / 300 / 500</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- F1 -->
+<div class="card" data-id="feed-1" data-title="F1 為什麼需要餵養系統">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F1</div>
+    <div class="cinfo">
+      <div class="ctitle">為什麼需要餵養系統？</div>
+      <div class="csub">有沒有素材庫，決定你面對客戶時講得出講不出真實案例</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：有 vs 沒有餵養系統的差別</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <div style="background:linear-gradient(135deg,var(--bl) 0%,#fff 100%);border-radius:8px;padding:12px 14px;margin-bottom:12px;border-left:3px solid var(--bd)">
+        <div style="font-size:11px;color:var(--bd);line-height:1.8;font-family:'Noto Serif TC',serif">
+          「我是一個人公司，但我要做百人公司才能做的事——<br><strong>用市場上 400–2000 筆真實爆款，當我的隱形團隊。</strong>」
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+        <div style="background:#FFEBEE;border-radius:8px;padding:10px 11px;border-left:3px solid var(--r1)">
+          <div style="font-size:10px;font-weight:700;color:#B71C1C;margin-bottom:6px">❌ 沒有餵養系統</div>
+          <div style="font-size:10px;color:#5F1E20;line-height:1.9">
+            ▸ 提案只能講理論<br>
+            ▸ 被客戶問細節會慌<br>
+            ▸ 腳本產出憑直覺<br>
+            ▸ 沒有差異化
+          </div>
+        </div>
+        <div style="background:var(--gr);border-radius:8px;padding:10px 11px;border-left:3px solid var(--gd)">
+          <div style="font-size:10px;font-weight:700;color:var(--gd);margin-bottom:6px">✅ 有餵養系統</div>
+          <div style="font-size:10px;color:var(--gd);line-height:1.9">
+            ▸ 提案句句有真實案例<br>
+            ▸ 隨時能拿同產業爆款對比<br>
+            ▸ 腳本產生器自動參考<br>
+            ▸ 資料庫 = 你的智慧財產
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- F2 -->
+<div class="card" data-id="feed-2" data-title="F2 餵養目標">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F2</div>
+    <div class="cinfo">
+      <div class="ctitle">餵養目標：400–2000 筆，跨 4 大平台</div>
+      <div class="csub">每天 5–15 筆，2–3 個月累積超過 500 筆</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：4 平台目標表 + 起手建議</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <!-- 表格 -->
+      <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;overflow:hidden;margin-bottom:10px">
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1.5fr;background:var(--w2)">
+          <div style="padding:7px 9px;font-size:9px;font-weight:700;color:var(--muted)">平台</div>
+          <div style="padding:7px 9px;font-size:9px;font-weight:700;color:var(--muted);border-left:1px solid var(--w3)">目標筆數</div>
+          <div style="padding:7px 9px;font-size:9px;font-weight:700;color:var(--muted);border-left:1px solid var(--w3)">重點關注</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1.5fr;border-top:1px solid var(--w3)">
+          <div style="padding:7px 9px;font-size:10px;font-weight:700;color:var(--text)">📷 Instagram</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--text);border-left:1px solid var(--w3)">100–500 筆</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--muted);border-left:1px solid var(--w3);line-height:1.5">視覺風格、鉤子文案、短文圖文</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1.5fr;border-top:1px solid var(--w3)">
+          <div style="padding:7px 9px;font-size:10px;font-weight:700;color:var(--text)">🎵 TikTok</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--text);border-left:1px solid var(--w3)">100–500 筆</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--muted);border-left:1px solid var(--w3);line-height:1.5">前 3 秒鉤子、節奏剪輯、特效</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1.5fr;border-top:1px solid var(--w3)">
+          <div style="padding:7px 9px;font-size:10px;font-weight:700;color:var(--text)">📺 YT Shorts</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--text);border-left:1px solid var(--w3)">100–500 筆</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--muted);border-left:1px solid var(--w3);line-height:1.5">標題、封面、內容結構</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1.1fr 1fr 1.5fr;border-top:1px solid var(--w3)">
+          <div style="padding:7px 9px;font-size:10px;font-weight:700;color:var(--text)">👥 FB Reels</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--text);border-left:1px solid var(--w3)">100–500 筆</div>
+          <div style="padding:7px 9px;font-size:10px;color:var(--muted);border-left:1px solid var(--w3);line-height:1.5">熟齡受眾、字幕設計、情感共鳴</div>
+        </div>
+      </div>
+
+      <div style="background:#FFFDE7;border-left:3px solid #FFC107;border-radius:7px;padding:9px 11px">
+        <div style="font-size:10px;font-weight:700;color:#8D6E00;margin-bottom:3px">💡 起手建議</div>
+        <div style="font-size:10px;color:#5F4200;line-height:1.7">
+          <strong>不用一次衝完。</strong>每天 5–15 筆，2–3 個月就累積超過 500 筆。<br>
+          <strong>前 50 筆先跑 IG</strong>，看自己的手感和偏好，再擴大到其他平台。
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- F3 -->
+<div class="card" data-id="feed-3" data-title="F3 雙 AI 協作工作流">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F3</div>
+    <div class="cinfo">
+      <div class="ctitle">雙 AI 協作工作流</div>
+      <div class="csub">Gemini 看畫面 + Claude 做策略，四步完整拆解</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：四步驟流程圖 + 為什麼要雙 AI</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <div style="background:var(--bl);border-radius:8px;padding:9px 11px;margin-bottom:12px">
+        <div style="font-size:10px;font-weight:700;color:var(--bd);margin-bottom:3px">📌 為什麼要雙 AI</div>
+        <div style="font-size:10px;color:var(--bd);line-height:1.7">Instagram 禁止機器人讀取影片，<strong>無法一鍵分析</strong>。但用「<strong>Gemini 看畫面 + Claude 做策略</strong>」的雙 AI 協作，就能把每一筆爆款深度拆解。</div>
+      </div>
+
+      <!-- 四步驟流程 -->
+      <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:12px 10px">
+        <div style="display:grid;gap:8px">
+
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--bd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</div>
+            <div style="flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text)">你在滑 IG</div>
+              <div style="font-size:10px;color:var(--muted);line-height:1.6;margin-top:2px">看到一支覺得會紅的影片，螢幕錄製起來</div>
+            </div>
+          </div>
+
+          <div style="margin-left:14px;padding-left:10px;border-left:2px dashed var(--w3);padding-bottom:2px;font-size:10px;color:var(--muted)">↓</div>
+
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--bd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</div>
+            <div style="flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text)">丟 Gemini 做逐幀分析</div>
+              <div style="font-size:10px;color:var(--muted);line-height:1.6;margin-top:2px">Gemini 可以看影片畫面，拆解鉤子、中段、CTA</div>
+            </div>
+          </div>
+
+          <div style="margin-left:14px;padding-left:10px;border-left:2px dashed var(--w3);padding-bottom:2px;font-size:10px;color:var(--muted)">↓</div>
+
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--bd);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</div>
+            <div style="flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--text)">丟 Claude 做策略拆解</div>
+              <div style="font-size:10px;color:var(--muted);line-height:1.6;margin-top:2px">Claude 做爆紅邏輯、可複製框架、應用建議</div>
+            </div>
+          </div>
+
+          <div style="margin-left:14px;padding-left:10px;border-left:2px dashed var(--w3);padding-bottom:2px;font-size:10px;color:var(--muted)">↓</div>
+
+          <div style="display:flex;align-items:flex-start;gap:10px">
+            <div style="width:28px;height:28px;border-radius:50%;background:var(--r1);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">4</div>
+            <div style="flex:1">
+              <div style="font-size:11px;font-weight:700;color:var(--r2)">存進腳本產生器餵養庫</div>
+              <div style="font-size:10px;color:var(--muted);line-height:1.6;margin-top:2px">結構化存檔，未來產客戶腳本時自動被調用</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- F4 -->
+<div class="card" data-id="feed-4" data-title="F4 Gemini 影片拆解 Prompt">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F4</div>
+    <div class="cinfo">
+      <div class="ctitle">Gemini 影片拆解 Prompt</div>
+      <div class="csub">可直接複製，把影片丟進 Gemini 用</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：完整 Prompt + 複製按鈕</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <div class="pbox">
+        <div class="phdr">
+          <span class="plabel">Gemini 影片拆解｜完整版</span>
+          <button class="cbtn" onclick="copyP(this)">複製</button>
+        </div>
+        <div class="ptext">我正在做短影音代理營運，需要拆解一支 IG Reel 的爆紅結構。
+請你用專業分析師的角度，詳細描述這支影片，格式如下：
+
+【基本資訊】
+- 平台 / 帳號 / 產業類別
+- 影片總長幾秒
+- 語言、主角性別年齡
+
+【鉤子段（前 3 秒）】
+- 畫面發生什麼
+- 口白逐字稿
+- 背景音樂風格
+- 字幕樣式
+
+【中段內容（3-25 秒）】
+- 按時間軸逐段描述畫面
+- 口白逐字稿
+- 運鏡變化、剪輯節奏
+
+【結尾 CTA（最後 3-5 秒）】
+- 口白逐字稿
+- 畫面怎麼收
+- CTA 強度
+
+【視覺風格】
+【情緒曲線】
+【觀察數據】
+
+請用白話文事實性描述，不要用「很有吸引力」這種虛詞。</div>
+      </div>
+
+      <div style="margin-top:10px;background:var(--gr);border-radius:7px;padding:9px 11px;font-size:10px;color:var(--gd);line-height:1.7">
+        💡 <strong>Gemini 拆完後，把結果複製貼給 Claude</strong>，讓 Claude 做第二層策略拆解（爆紅邏輯、可複製框架、應用建議），再一起存進餵養庫。
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- F5 -->
+<div class="card" data-id="feed-5" data-title="F5 結構化餵養欄位">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F5</div>
+    <div class="cinfo">
+      <div class="ctitle">結構化餵養欄位</div>
+      <div class="csub">總共 90 秒，拆成三組 30 秒，不會累</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：三組必填欄位</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <div style="display:grid;gap:8px">
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;border-left:3px solid var(--r1)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:13px">⚡</span>
+            <span style="font-size:11px;font-weight:700;color:var(--r2)">快速必填</span>
+            <span style="font-size:9px;color:var(--muted);background:var(--w2);padding:1px 7px;border-radius:10px">30 秒</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.9">
+            ▸ 連結 URL<br>
+            ▸ 平台<br>
+            ▸ 產業分類<br>
+            ▸ <strong style="color:var(--r1)">鉤子前 3 秒逐字稿（最重要！）</strong>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;border-left:3px solid var(--bd)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:13px">📊</span>
+            <span style="font-size:11px;font-weight:700;color:var(--bd)">數據量化</span>
+            <span style="font-size:9px;color:var(--muted);background:var(--w2);padding:1px 7px;border-radius:10px">30 秒，可跳過</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.9">
+            ▸ 觀看數、按讚、留言、分享<br>
+            ▸ 成效等級（爆款 / 熱門 / 穩定 / 小眾）
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;border-left:3px solid var(--gd)">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px">
+            <span style="font-size:13px">🧠</span>
+            <span style="font-size:11px;font-weight:700;color:var(--gd)">洞察（你的附加值）</span>
+            <span style="font-size:9px;color:var(--muted);background:var(--w2);padding:1px 7px;border-radius:10px">30 秒</span>
+          </div>
+          <div style="font-size:10px;color:var(--muted);line-height:1.9">
+            ▸ 為什麼紅的假設<br>
+            ▸ 可複製要素<br>
+            ▸ 能應用到哪個產業 / 客戶
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- F6 -->
+<div class="card" data-id="feed-6" data-title="F6 累積里程碑">
+  <div class="card-top">
+    <div class="cnum" style="background:var(--bl);color:var(--bd)">F6</div>
+    <div class="cinfo">
+      <div class="ctitle">累積里程碑</div>
+      <div class="csub">50 → 100 → 300 → 500，每一關你會多拿到一個能力</div>
+    </div>
+  </div>
+
+  <button class="exbtn" onclick="toggleDetail(this)"><span>▸ 展開：四個里程碑解鎖什麼</span><span>+</span></button>
+  <div class="detail">
+    <div style="padding:12px 14px">
+
+      <div style="display:grid;gap:8px">
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;display:flex;gap:12px;align-items:center">
+          <div style="background:var(--w2);border-radius:8px;padding:7px 10px;text-align:center;flex-shrink:0;min-width:52px">
+            <div style="font-size:16px;font-weight:700;color:var(--muted);font-family:'Noto Serif TC',serif">50</div>
+            <div style="font-size:8px;color:var(--muted)">筆</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text)">自我校準期</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;line-height:1.6">確認自己的手感、偏好的鉤子類型、要調整什麼欄位</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;display:flex;gap:12px;align-items:center">
+          <div style="background:var(--bl);border-radius:8px;padding:7px 10px;text-align:center;flex-shrink:0;min-width:52px">
+            <div style="font-size:16px;font-weight:700;color:var(--bd);font-family:'Noto Serif TC',serif">100</div>
+            <div style="font-size:8px;color:var(--bd)">筆</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text)">儀表板啟用</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;line-height:1.6">自動統計出你的產業熱度、鉤子偏好、成效分布</div>
+          </div>
+        </div>
+
+        <div style="background:#fff;border:1px solid var(--w3);border-radius:8px;padding:10px 12px;display:flex;gap:12px;align-items:center">
+          <div style="background:var(--gr);border-radius:8px;padding:7px 10px;text-align:center;flex-shrink:0;min-width:52px">
+            <div style="font-size:16px;font-weight:700;color:var(--gd);font-family:'Noto Serif TC',serif">300</div>
+            <div style="font-size:8px;color:var(--gd)">筆</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--text)">提案底氣建立</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px;line-height:1.6">能面對任何產業客戶，隨時拿出 10+ 筆同類爆款對照</div>
+          </div>
+        </div>
+
+        <div style="background:linear-gradient(135deg,var(--p1) 0%,#FFF 100%);border:2px solid var(--r1);border-radius:8px;padding:10px 12px;display:flex;gap:12px;align-items:center">
+          <div style="background:var(--r1);border-radius:8px;padding:7px 10px;text-align:center;flex-shrink:0;min-width:52px">
+            <div style="font-size:16px;font-weight:700;color:#fff;font-family:'Noto Serif TC',serif">500</div>
+            <div style="font-size:8px;color:#fff">筆</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;color:var(--r2)">✨ 智慧資產成型</div>
+            <div style="font-size:10px;color:var(--r2);margin-top:2px;line-height:1.6">你的資料庫可以包裝成課程、出版、商業授權</div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 立即開始 CTA -->
+<div style="padding:14px">
+  <div style="background:linear-gradient(135deg,var(--r1) 0%,var(--r2) 100%);border-radius:10px;padding:14px">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+      <span style="font-size:18px">🚀</span>
+      <div style="font-size:12px;font-weight:700;color:#fff;font-family:'Noto Serif TC',serif">立即開始餵養</div>
+    </div>
+    <div style="font-size:10px;color:#fff;opacity:.95;line-height:1.7;margin-bottom:10px">
+      你的餵養庫已經準備好了，在腳本產生器右下角有 📚 按鈕。看到好內容就存，<strong>不用等完美，先累積</strong>。
+    </div>
+    <a href="https://luckylisaaa.github.io/script-generator/" target="_blank" style="display:inline-block;background:#fff;color:var(--r1);padding:8px 18px;border-radius:20px;font-size:11px;font-weight:700;text-decoration:none">
+      開啟餵養庫 →
+    </a>
+  </div>
+</div>
+
+</div>
+
+
 
 <!-- ===== TAB 交付閘門 ===== -->
 <div class="tpage" id="tp-delivery">
@@ -4944,7 +5450,7 @@ Line 回覆「確認」即可，或指出需要修改的鏡頭編號。
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 怎麼幫律師找定位</div>
       </button>
-      <button onclick="jumpTab(9)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(10)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
@@ -5297,7 +5803,7 @@ Line 回覆「確認」即可，或指出需要修改的鏡頭編號。
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 IP定位方法</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 幫生技公司找定位</div>
       </button>
-      <button onclick="jumpTab(9)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
+      <button onclick="jumpTab(10)" style="background:var(--p1);border:none;border-radius:8px;padding:9px;cursor:pointer;text-align:left">
         <div style="font-size:10px;font-weight:700;color:var(--r2)">🎯 合作目標對應</div>
         <div style="font-size:10px;color:var(--r1);margin-top:2px">→ 確認KPI設定方式</div>
       </button>
@@ -6423,7 +6929,7 @@ Line 回覆「確認」即可，或指出需要修改的鏡頭編號。
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-delivery",9:6,10:7,11:8,12:"tp-legal",13:9,14:11,15:12,16:13,17:15};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-feed",9:"tp-delivery",10:6,11:7,12:8,13:"tp-legal",14:9,15:11,16:12,17:13,18:15};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
