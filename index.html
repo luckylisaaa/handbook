@@ -407,6 +407,12 @@ try {
     <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
     <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
     <circle cx="17" cy="16" r="2.2" fill="currentColor"/></svg><span style="margin-left:5px">Build Log</span></div>
+  <div class="tab" onclick="switchTab(21,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  
+  <g>
+    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
+<path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M4.9 4.9 L7.8 7.8 M16.2 16.2 L19.1 19.1 M4.9 19.1 L7.8 16.2 M16.2 7.8 L19.1 4.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+  </g></svg><span style="margin-left:5px">系統架設</span></div>
   <div class="tab" onclick="switchTab(16,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
@@ -9320,7 +9326,7 @@ B 地區：【填你的客戶所在地，例如：馬來西亞 PDPA / 歐盟 GDP
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-feed",9:"tp-delivery",10:6,11:7,12:8,13:"tp-legal",14:9,15:11,16:12,17:13,18:15};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-feed",9:"tp-delivery",10:6,11:7,12:8,13:"tp-legal",14:9,15:11,16:12,17:13,18:15,19:19,20:20,21:"system"};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
@@ -12025,55 +12031,791 @@ init();
 })();
 </script>
 
-<!-- ═══ ICS Navigation Widget ═══ -->
-<style>
-.ics-nav-widget{position:fixed;bottom:20px;right:20px;z-index:9998;font-family:"Noto Sans TC",-apple-system,sans-serif}
-.ics-nav-trigger{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border:none;font-family:"Noto Serif TC",serif;font-size:22px;font-weight:900;cursor:pointer;box-shadow:0 8px 24px rgba(165,24,32,.35);transition:all .3s;display:flex;align-items:center;justify-content:center}
-.ics-nav-trigger:hover{transform:scale(1.08)}
-.ics-nav-trigger.active{transform:rotate(45deg);background:#2A1A1C}
-.ics-nav-menu{position:absolute;bottom:72px;right:0;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:16px;min-width:260px;box-shadow:0 16px 48px rgba(42,26,28,.15);opacity:0;transform:translateY(10px);pointer-events:none;transition:all .3s}
-.ics-nav-menu.open{opacity:1;transform:translateY(0);pointer-events:auto}
-.ics-nav-header{font-family:"Noto Serif TC",serif;color:#A51820;font-weight:900;font-size:14px;letter-spacing:2px;margin-bottom:4px;text-align:center}
-.ics-nav-tagline{color:#7A5A5E;font-size:11px;text-align:center;margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid #E8E3DA;font-style:italic}
-.ics-nav-list{display:flex;flex-direction:column;gap:4px}
-.ics-nav-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:4px;text-decoration:none;color:#2A1A1C;transition:background .2s;border:1px solid transparent}
-.ics-nav-item:hover{background:#FDF3F4;border-color:#FAE8EA}
-.ics-nav-item.current{background:#FAE8EA;border-color:#A51820;pointer-events:none}
-.ics-nav-icon{width:36px;height:36px;border-radius:8px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;font-family:"Noto Serif TC",serif;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.ics-nav-text{flex:1}
-.ics-nav-name{font-family:"Noto Serif TC",serif;font-weight:700;font-size:14px;color:#2A1A1C}
-.ics-nav-desc{font-size:11px;color:#7A5A5E;margin-top:2px}
-.ics-nav-current-badge{background:#A51820;color:#fff;padding:2px 6px;border-radius:2px;font-size:9px;letter-spacing:1px;margin-left:4px}
-.ics-nav-footer{text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid #E8E3DA;font-size:10px;color:#B09498;letter-spacing:1px}
-</style>
-<div class="ics-nav-widget" id="icsNavWidget">
-<div class="ics-nav-menu" id="icsNavMenu">
-<div class="ics-nav-header">ICS 工具系統</div>
-<div class="ics-nav-tagline">Inspire · Create · Shine</div>
-<div class="ics-nav-list">
-<a href="https://luckylisaaa.github.io/" class="ics-nav-item" data-site="root"><div class="ics-nav-icon">ICS</div><div class="ics-nav-text"><div class="ics-nav-name">首頁</div><div class="ics-nav-desc">Home · 總入口</div></div></a>
-<a href="https://luckylisaaa.github.io/handbook/" class="ics-nav-item" data-site="handbook"><div class="ics-nav-icon">H</div><div class="ics-nav-text"><div class="ics-nav-name">Handbook</div><div class="ics-nav-desc">完整學習手冊</div></div></a>
-<a href="https://luckylisaaa.github.io/matrix/" class="ics-nav-item" data-site="matrix"><div class="ics-nav-icon">M</div><div class="ics-nav-text"><div class="ics-nav-name">Matrix</div><div class="ics-nav-desc">選題作戰矩陣</div></div></a>
-<a href="https://luckylisaaa.github.io/script-generator/" class="ics-nav-item" data-site="scripts"><div class="ics-nav-icon">S</div><div class="ics-nav-text"><div class="ics-nav-name">Scripts</div><div class="ics-nav-desc">腳本產生器 V3</div></div></a>
-<a href="https://luckylisaaa.github.io/brand-guidelines/" class="ics-nav-item" data-site="brand"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺規範</div></div></a>
-<a href="https://luckylisaaa.github.io/tasks/" class="ics-nav-item" data-site="tasks"><div class="ics-nav-icon">T</div><div class="ics-nav-text"><div class="ics-nav-name">Tasks</div><div class="ics-nav-desc">執行清單</div></div></a>
+<!-- ===== TAB 21: ⚙️ 系統架設｜給 10 次後就會懂的自己 ===== -->
+<div class="tpage" id="tp-system">
+
+<!-- Hero 區：深紅 + 科技感 -->
+<div style="background:linear-gradient(135deg,#A51820 0%,#6b0f15 100%);padding:44px 20px 32px;position:relative;overflow:hidden">
+  <div style="position:absolute;top:-40px;right:-40px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.15) 0%,transparent 70%)"></div>
+  <div style="position:absolute;bottom:-20px;left:-20px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%)"></div>
+  <div style="position:relative;z-index:1">
+    <div style="font-size:10px;font-weight:700;color:#F0C0C5;letter-spacing:.25em;margin-bottom:8px">SYSTEM SETUP · v1.0</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:32px;font-weight:900;color:#fff;line-height:1.15;margin-bottom:8px;letter-spacing:.02em">⚙️ 系統架設</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:13px;color:#F0C0C5;font-style:italic;letter-spacing:.06em;margin-bottom:14px">Technical knowledge for non-tech founder</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.9);line-height:1.8">這一頁是為「現在看不懂但願意學 10 次」的自己寫的。<br>遇到問題就翻這裡，每個步驟都有安慰「看不懂沒關係」。<br>未來新學到的技術都會加進來，這個分頁會跟著你一起長大。</div>
+  </div>
 </div>
-<div class="ics-nav-footer">Finding beauty. Making it move.</div>
+
+<!-- 7 章節導覽 -->
+<div style="padding:24px 16px 8px;background:#FDFBF8">
+  <div style="font-family:'Noto Serif TC',serif;font-size:11px;font-weight:900;color:#A51820;letter-spacing:.2em;margin-bottom:12px;text-align:center">本頁 7 大章節</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:480px;margin:0 auto">
+    <a href="#ch-urls" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📚 Ch1 網址速查表</a>
+    <a href="#ch-concept" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🧠 Ch2 基礎概念</a>
+    <a href="#ch-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📋 Ch3 常用 SOP</a>
+    <a href="#ch-commit" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">⚡ Ch4 Commit 格式</a>
+    <a href="#ch-folder" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📁 Ch5 資料夾系統</a>
+    <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🆘 Ch6 問題排解</a>
+    <a href="#ch-advanced" style="grid-column:1/-1;padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🎓 Ch7 進階知識（以後再學）</a>
+  </div>
 </div>
-<button class="ics-nav-trigger" id="icsNavTrigger">+</button>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 1 章：網址速查表 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-urls" style="padding:32px 16px 20px;background:#fff;margin-top:8px;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 01</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">📚 網址速查表</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">所有 ICS 相關網址一次看完·存起來永遠不會迷路</div>
+
+  <!-- 核心口訣 -->
+  <div style="background:linear-gradient(135deg,#FDF3F4,#FAE8EA);border-left:4px solid #A51820;padding:16px 18px;border-radius:0 6px 6px 0;margin-bottom:24px">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.15em;margin-bottom:8px">💡 核心記憶口訣</div>
+    <div style="font-size:14px;color:#2A1A1C;line-height:1.8">
+      <div style="margin-bottom:6px"><strong style="color:#A51820">看網站</strong> → <code style="background:#fff;padding:2px 8px;border-radius:3px;font-family:monospace">luckylisaaa.github.io/xxx/</code></div>
+      <div><strong style="color:#A51820">改檔案</strong> → <code style="background:#fff;padding:2px 8px;border-radius:3px;font-family:monospace">github.com/luckylisaaa/xxx</code></div>
+    </div>
+    <div style="font-size:11px;color:#7A5A5E;margin-top:10px;line-height:1.6">兩個網址永遠不變，記住就好！前者給外面的人看、後者只有你一個人改東西用。</div>
+  </div>
+
+  <!-- 對外網站 -->
+  <div style="margin-bottom:20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">🌐 對外網站（給人看、打開看效果）</div>
+    <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:6px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:80px 1fr;gap:0;font-size:12px">
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">總入口</div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/</div>
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Handbook</div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/handbook/</div>
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Matrix</div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/matrix/</div>
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Scripts</div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/script-generator/</div>
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Brand</div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/brand-guidelines/</div>
+        <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820">Tasks</div>
+        <div style="padding:10px 12px;font-family:monospace;font-size:11px;color:#2A1A1C">luckylisaaa.github.io/tasks/</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GitHub 後台 -->
+  <div style="margin-bottom:20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">🔧 GitHub 後台（改檔案、Commit 用）</div>
+    <div style="background:#2A1A1C;color:#fff;border-radius:6px;overflow:hidden;font-size:11px">
+      <div style="padding:10px 14px;background:#A51820;font-weight:900;letter-spacing:.1em;font-size:10px">💻 一次看所有 repo：</div>
+      <div style="padding:12px 14px;font-family:monospace">github.com/luckylisaaa?tab=repositories</div>
+      <div style="padding:10px 14px;background:#1a1011;border-top:1px solid #3a2020;font-family:monospace;line-height:2">
+        github.com/luckylisaaa/luckylisaaa.github.io<br>
+        github.com/luckylisaaa/handbook<br>
+        github.com/luckylisaaa/matrix<br>
+        github.com/luckylisaaa/script-generator<br>
+        github.com/luckylisaaa/brand-guidelines<br>
+        github.com/luckylisaaa/tasks
+      </div>
+    </div>
+  </div>
+
+  <!-- 從網站浮動導覽跳轉 -->
+  <div style="background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;padding:14px 16px;margin-bottom:8px">
+    <div style="font-size:11px;font-weight:900;color:#A51820;letter-spacing:.1em;margin-bottom:6px">🔗 最快方式</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.7">任一網站的右下角都有<strong style="color:#A51820">紅色 + 浮動按鈕</strong>，點開就能跳到其他工具。</div>
+  </div>
 </div>
-<script>
-(function(){
-var t=document.getElementById('icsNavTrigger'),m=document.getElementById('icsNavMenu');
-var p=window.location.pathname;
-document.querySelectorAll('.ics-nav-item').forEach(function(i){
-var s=i.getAttribute('data-site');
-var mark=(s==='root'&&(p==='/'||p==='/index.html'))||(s==='handbook'&&p.indexOf('/handbook')!==-1)||(s==='matrix'&&p.indexOf('/matrix')!==-1)||(s==='scripts'&&p.indexOf('/script-generator')!==-1)||(s==='brand'&&p.indexOf('/brand-guidelines')!==-1)||(s==='tasks'&&p.indexOf('/tasks')!==-1);
-if(mark){i.classList.add('current');var b=document.createElement('span');b.className='ics-nav-current-badge';b.textContent='目前';i.querySelector('.ics-nav-text').appendChild(b)}
-});
-t.addEventListener('click',function(e){e.stopPropagation();m.classList.toggle('open');t.classList.toggle('active')});
-document.addEventListener('click',function(e){if(!document.getElementById('icsNavWidget').contains(e.target)){m.classList.remove('open');t.classList.remove('active')}});
-})();
-</script>
-<!-- ═══ End ICS Nav Widget ═══ --></body>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 2 章：基礎概念（比喻式教學） -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-concept" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 02</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🧠 基礎概念</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">用比喻的方式講技術·看 10 次一定懂</div>
+
+  <!-- 看不懂沒關係提示 -->
+  <div style="background:#FDF3F4;border:1px dashed #A51820;border-radius:6px;padding:12px 14px;margin-bottom:20px;font-size:11px;color:#A51820;line-height:1.6">
+    💝 <strong>給自己的話</strong>：這一章的概念第一次看不懂很正常。記得 —— <strong>看懂時機會來</strong>，不是現在。先讀過一遍，下次遇到同樣問題時再來翻，每次都會更懂一點。
+  </div>
+
+  <!-- 2.1 GitHub -->
+  <div style="margin-bottom:24px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(165,24,32,.04)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.1</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C">GitHub 是什麼？</div>
+        <div style="font-size:11px;color:#7A5A5E">A 永遠不會壞的時光機</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">比喻：</strong>GitHub 就是一個「永遠不會壞的時光機」。
+      </div>
+      <div style="margin-bottom:10px"><strong>想像你在寫一本書：</strong></div>
+      <ul style="padding-left:20px;margin-bottom:12px;line-height:2">
+        <li>週一寫完第 1 章 → 存一個版本叫「第一版」</li>
+        <li>週二改了 → 存「第二版」</li>
+        <li>週三又改了 → 存「第三版」</li>
+        <li>週四突然想回到週一版本 → GitHub 一鍵回去！</li>
+      </ul>
+      <div style="background:#F4F1EC;padding:12px 14px;border-radius:6px;font-size:12px;line-height:2">
+        <strong style="color:#A51820">對應術語：</strong><br>
+        📝「存一個版本」= <strong>Commit</strong><br>
+        📚「每個版本的紀錄」= <strong>Commits 歷史</strong><br>
+        📦「一本書」= <strong>Repo</strong>（倉庫）<br>
+        🏛️「整個書架」= <strong>你的 GitHub 帳號</strong>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.2 Repo -->
+  <div style="margin-bottom:24px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(165,24,32,.04)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.2</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C">Repo 是什麼？</div>
+        <div style="font-size:11px;color:#7A5A5E">Repository 的縮寫·等於「專案資料夾」</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">比喻：</strong>Repo 就是 GitHub 上的「一個專案資料夾」。每個 repo 可以變成一個網站。
+      </div>
+      <div><strong>你目前有 6 個 repo = 6 個網站：</strong></div>
+      <div style="background:#F4F1EC;padding:12px 14px;border-radius:6px;margin-top:10px;font-size:12px;line-height:2">
+        📦 <strong>luckylisaaa.github.io</strong> → 總入口頁（特殊名稱 = 根網址）<br>
+        📦 <strong>handbook</strong> → 你的指揮中心<br>
+        📦 <strong>matrix</strong> → 選題矩陣<br>
+        📦 <strong>script-generator</strong> → 腳本產生器<br>
+        📦 <strong>brand-guidelines</strong> → 品牌規範書<br>
+        📦 <strong>tasks</strong> → 執行清單
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.3 Commit -->
+  <div style="margin-bottom:24px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(165,24,32,.04)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.3</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C">Commit 是什麼？</div>
+        <div style="font-size:11px;color:#7A5A5E">存檔點·自動備份一個版本</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">比喻：</strong>Commit 就像打電動的「存檔點」，每次存檔後都能從這裡讀取。
+      </div>
+      <div style="margin-bottom:10px">每次你上傳檔案、點綠色 Commit 按鈕，GitHub 就幫你：</div>
+      <ul style="padding-left:20px;margin-bottom:12px;line-height:2">
+        <li>自動記錄這個時間點的所有檔案</li>
+        <li>保留「你寫的訊息」（commit message）</li>
+        <li>永久儲存 → 以後都可以回來</li>
+      </ul>
+      <div style="background:#F4F1EC;padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.8">
+        <strong style="color:#A51820">重要：</strong>你<strong>不用手動備份</strong>舊版本到電腦。每個 Commit 就是一個備份，都在 GitHub 上永遠保存。
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.4 GitHub Pages -->
+  <div style="margin-bottom:24px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(165,24,32,.04)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.4</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C">GitHub Pages 是什麼？</div>
+        <div style="font-size:11px;color:#7A5A5E">把 repo 變成給大家看的網站</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">比喻：</strong>Repo 原本只有你自己看得到（像私人書櫃）。啟動 GitHub Pages 後，就變成「公開圖書館」任何人輸入網址都能打開。
+      </div>
+      <div style="margin-bottom:10px"><strong>對應關係：</strong></div>
+      <div style="background:#F4F1EC;padding:12px 14px;border-radius:6px;font-size:12px;line-height:2">
+        📦 Repo <code style="background:#fff;padding:2px 6px;border-radius:3px">handbook</code><br>
+        ↓ 啟動 Pages<br>
+        🌐 網站 <code style="background:#fff;padding:2px 6px;border-radius:3px">luckylisaaa.github.io/handbook/</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.5 PWA -->
+  <div style="margin-bottom:24px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px;box-shadow:0 2px 8px rgba(165,24,32,.04)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.5</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C">PWA 是什麼？</div>
+        <div style="font-size:11px;color:#7A5A5E">Progressive Web App·網頁變 App</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">比喻：</strong>PWA 讓你的「網頁」可以「加到手機桌面」像 App 一樣用。不用寫真正的 App 就能有 App 體驗。
+      </div>
+      <div style="margin-bottom:10px"><strong>你已經擁有 PWA 的網站：</strong></div>
+      <ul style="padding-left:20px;margin-bottom:12px;line-height:2">
+        <li>✅ Matrix（M icon 在手機桌面）</li>
+        <li>✅ Tasks（T icon 在手機桌面）</li>
+      </ul>
+      <div style="background:#F4F1EC;padding:12px 14px;border-radius:6px;font-size:12px;line-height:1.8">
+        <strong style="color:#A51820">怎麼加到桌面：</strong>手機 Safari 打開網址 → 分享鍵 → 「加入主畫面」→ 桌面多一個 icon。
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.6 本地開啟空白 -->
+  <div style="margin-bottom:8px;background:#fff;border:2px solid #A51820;border-radius:8px;padding:20px;box-shadow:0 4px 12px rgba(165,24,32,.08)">
+    <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:12px">
+      <div style="width:32px;height:32px;background:#A51820;color:#fff;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-weight:900;font-size:14px;flex-shrink:0">2.6</div>
+      <div style="flex:1">
+        <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#A51820">⚠️ 為什麼本地 index.html 打開是空白？</div>
+        <div style="font-size:11px;color:#7A5A5E">超常見迷思·必讀</div>
+      </div>
+    </div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.9">
+      <div style="background:#FDF3F4;padding:12px 14px;border-radius:6px;margin-bottom:12px">
+        <strong style="color:#A51820">狀況：</strong>你雙擊電腦上的 index.html，Chrome 打開是<strong>一片空白</strong>。
+      </div>
+      <div style="margin-bottom:10px"><strong>原因：</strong></div>
+      <ul style="padding-left:20px;margin-bottom:12px;line-height:2">
+        <li>網頁有「<strong>PWA 功能</strong>」需要伺服器環境</li>
+        <li><strong>manifest.json</strong> 需要伺服器讀取</li>
+        <li><strong>Service Worker</strong> 必須跑在 HTTPS</li>
+        <li>本地雙擊開啟只會看到空白</li>
+      </ul>
+      <div style="background:linear-gradient(135deg,#FDF3F4,#FAE8EA);padding:14px 16px;border-radius:6px;border-left:3px solid #A51820">
+        <strong style="color:#A51820">解法：不要在本地預覽。</strong><br>
+        <span style="font-size:12px;line-height:1.8">你的預覽方式就是「上傳 GitHub → 打開網址」。直接在 <code style="background:#fff;padding:2px 6px;border-radius:3px">luckylisaaa.github.io/xxx/</code> 看效果。</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 3 章：常用 SOP 照抄就好 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-sop" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 03</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">📋 常用 SOP</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">五個最常用的操作·照抄就對</div>
+
+  <!-- SOP A: 更新網站內容 -->
+  <div style="margin-bottom:24px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;overflow:hidden">
+    <div style="background:#A51820;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px">
+      <span style="background:#fff;color:#A51820;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">A</span>
+      <span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:15px">更新網站內容（上傳新 ZIP）</span>
+    </div>
+    <div style="padding:18px 20px;font-size:13px;line-height:1.9;color:#2A1A1C">
+      <div style="margin-bottom:6px"><strong>情境：</strong>Claude 給你一個新的 ZIP，要覆蓋現有網站</div>
+      <div style="margin:12px 0 6px"><strong>步驟：</strong></div>
+      <ol style="padding-left:24px;line-height:2">
+        <li>下載 ZIP 到電腦「下載項目」</li>
+        <li>備份舊版到 <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">01_重大里程碑備份/</code>（剪下整個 Site 資料夾內容貼進去）</li>
+        <li>雙擊解壓 ZIP → 得到新資料夾</li>
+        <li>新資料夾裡的檔案全選剪下 → 貼到對應的 Site 資料夾</li>
+        <li>刪除空的解壓資料夾</li>
+        <li>ZIP 原檔搬到 <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">02_原始素材/</code></li>
+        <li>打開對應 GitHub repo → Add file → Upload files</li>
+        <li>把 Site 資料夾裡的檔案全部拖進去（遇到「已存在」選 Replace）</li>
+        <li>Commit message 寫清楚</li>
+        <li>點綠色 Commit changes ✅</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SOP B: 建新 repo -->
+  <div style="margin-bottom:24px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;overflow:hidden">
+    <div style="background:#A51820;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px">
+      <span style="background:#fff;color:#A51820;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">B</span>
+      <span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:15px">建立新的 GitHub repo</span>
+    </div>
+    <div style="padding:18px 20px;font-size:13px;line-height:1.9;color:#2A1A1C">
+      <div style="margin-bottom:6px"><strong>情境：</strong>要建立一個新的網站（例如新工具）</div>
+      <div style="margin:12px 0 6px"><strong>步驟：</strong></div>
+      <ol style="padding-left:24px;line-height:2">
+        <li>打開 github.com → 右上角「+」→ New repository</li>
+        <li>Repository name 填名稱（建議小寫 + 連字號）</li>
+        <li>Description 填簡短描述</li>
+        <li>選 Public + 勾 Add a README file</li>
+        <li>點綠色 Create repository</li>
+        <li>進 repo → Add file → Upload files → 拖檔案上傳</li>
+        <li>Commit changes</li>
+        <li>Settings → Pages → main / root → Save</li>
+        <li>等 1-2 分鐘 → 拿到網址</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- SOP C: 編輯網頁貼 code（今日重點） -->
+  <div style="margin-bottom:24px;background:linear-gradient(135deg,#FDF3F4,#fff);border:2px solid #A51820;border-radius:8px;overflow:hidden;box-shadow:0 4px 16px rgba(165,24,32,.08)">
+    <div style="background:#A51820;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px">
+      <span style="background:#fff;color:#A51820;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">C</span>
+      <span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:15px">直接編輯網頁貼 code ⭐ 進階</span>
+    </div>
+    <div style="padding:18px 20px;font-size:13px;line-height:1.9;color:#2A1A1C">
+      <div style="margin-bottom:6px"><strong>情境：</strong>要把一段 code 插入現有網頁（例如浮動導覽）</div>
+
+      <div style="margin:16px 0 8px;font-weight:700;color:#A51820">📍 Step 1：進入編輯模式</div>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-bottom:12px">
+        ① 打開該 repo 的 index.html 頁面<br>
+        ② 畫面右上角找到<strong>鉛筆 ✏️ icon</strong>（叫 Edit）<br>
+        ③ 點它 → 進入編輯模式<br>
+        ✅ 右上角會變成 [Cancel changes] [Commit changes...]
+      </div>
+
+      <div style="margin:16px 0 8px;font-weight:700;color:#A51820">🔍 Step 2：搜尋目標位置</div>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-bottom:12px">
+        ① 按 <strong>Cmd + F</strong>（Mac）叫出搜尋框<br>
+        ② 輸入 <code style="background:#fff;padding:2px 6px;border-radius:3px">&lt;/body&gt;</code> 按 Enter<br>
+        ✅ 畫面會跳到 &lt;/body&gt; 這行並反白
+      </div>
+
+      <div style="margin:16px 0 8px;font-weight:700;color:#A51820">📝 Step 3：在 &lt;/body&gt; 「前面」貼 code</div>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-bottom:12px">
+        ⚠️ <strong>重點：是「前面」不是後面！</strong><br>
+        ① 把游標放到 &lt;/body&gt; 這行的最左邊<br>
+        ② 按 <strong>Enter</strong> 新增一行空白<br>
+        ③ 複製要插入的 code<br>
+        ④ 按 <strong>Cmd + V</strong> 貼上
+      </div>
+
+      <div style="margin:16px 0 8px;font-weight:700;color:#A51820">💾 Step 4：Commit changes</div>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-bottom:12px">
+        ① 點右上角綠色 <strong>Commit changes...</strong><br>
+        ② 標題：<code style="background:#fff;padding:2px 6px;border-radius:3px">[FEAT] 加入XX功能</code><br>
+        ③ 描述：英文簡短說明<br>
+        ④ 選 Commit directly to main<br>
+        ⑤ 點綠色 <strong>Commit changes</strong> ✅
+      </div>
+
+      <div style="margin:16px 0 8px;font-weight:700;color:#A51820">✅ Step 5：等 1-2 分鐘看效果</div>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-bottom:12px">
+        打開對應網址看新功能是否出現
+      </div>
+
+      <div style="background:#FDF3F4;border-left:3px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0;margin-top:12px;font-size:11px;color:#7A1018;line-height:1.7">
+        💎 <strong>心得：</strong>這個 SOP 是你 2026/04/23 第一次學會的技能，之前只會上傳 ZIP，這次學會直接改網頁 code。未來新增功能、修錯字都用這個方式。
+      </div>
+    </div>
+  </div>
+
+  <!-- SOP D: 啟動 Pages -->
+  <div style="margin-bottom:24px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;overflow:hidden">
+    <div style="background:#A51820;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px">
+      <span style="background:#fff;color:#A51820;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">D</span>
+      <span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:15px">啟動 GitHub Pages</span>
+    </div>
+    <div style="padding:18px 20px;font-size:13px;line-height:1.9;color:#2A1A1C">
+      <div style="margin-bottom:6px"><strong>情境：</strong>建完 repo 後要讓它變成對外網站</div>
+      <div style="margin:12px 0 6px"><strong>步驟：</strong></div>
+      <ol style="padding-left:24px;line-height:2">
+        <li>進 repo 主頁</li>
+        <li>上方選單點 <strong>Settings</strong></li>
+        <li>左側選單往下找 <strong>Pages</strong></li>
+        <li>Source：Deploy from a branch</li>
+        <li>Branch：main / (root)</li>
+        <li>點 <strong>Save</strong></li>
+        <li>等 1-2 分鐘</li>
+        <li>頁面最上方會顯示 Your site is live at XXX ✅</li>
+      </ol>
+      <div style="background:#F4F1EC;padding:10px 14px;border-radius:4px;font-size:12px;line-height:1.8;margin-top:12px">
+        💡 <strong>特例：</strong>如果 repo 名稱叫 <code style="background:#fff;padding:2px 6px;border-radius:3px">luckylisaaa.github.io</code>，Pages 會自動啟動，不用額外設定。
+      </div>
+    </div>
+  </div>
+
+  <!-- SOP E: 更新 BUILD_LOG -->
+  <div style="margin-bottom:8px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;overflow:hidden">
+    <div style="background:#A51820;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:10px">
+      <span style="background:#fff;color:#A51820;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:13px">E</span>
+      <span style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:15px">更新 BUILD_LOG.md</span>
+    </div>
+    <div style="padding:18px 20px;font-size:13px;line-height:1.9;color:#2A1A1C">
+      <div style="margin-bottom:6px"><strong>情境：</strong>完成重大里程碑要記錄下來</div>
+      <div style="margin:12px 0 6px"><strong>步驟：</strong></div>
+      <ol style="padding-left:24px;line-height:2">
+        <li>進 github.com/luckylisaaa/handbook</li>
+        <li>點 BUILD_LOG.md 檔案</li>
+        <li>點右上角鉛筆 ✏️ 進入編輯模式</li>
+        <li>在<strong>最上面</strong>新增新紀錄（最新的在最上面）</li>
+        <li>遵循既有格式：日期標題 + 4 個區塊（做了什麼 / 學到什麼 / 下一步 / 心得）</li>
+        <li>Commit message：<code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">[DOCS] 更新Build Log YYYYMMDD</code></li>
+      </ol>
+    </div>
+  </div>
+</div>
+<!-- ═════════════════════════════════════ -->
+<!-- 第 4 章：Commit Message 公式 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-commit" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 04</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">⚡ Commit Message 公式</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">每次上傳檔案都要寫的訊息·未來的自己會感謝你</div>
+
+  <!-- 標準公式 -->
+  <div style="background:linear-gradient(135deg,#A51820,#6b0f15);color:#fff;padding:20px;border-radius:8px;margin-bottom:20px;text-align:center">
+    <div style="font-size:11px;font-weight:900;letter-spacing:.2em;color:#F0C0C5;margin-bottom:10px">⚡ 標準公式</div>
+    <div style="font-family:monospace;font-size:15px;font-weight:700;line-height:1.8;background:rgba(0,0,0,.2);padding:14px;border-radius:6px">
+      [類別] 中文描述｜English description
+    </div>
+    <div style="font-size:11px;color:#F0C0C5;margin-top:10px;line-height:1.7">中文給自己看<br>英文讓未來 AI 能更精準協作</div>
+  </div>
+
+  <!-- 5 類別 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">📌 5 種類別·什麼時候用？</div>
+    <div style="display:grid;gap:10px">
+      <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0">
+        <div style="font-family:monospace;font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">[FEAT]</div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7"><strong>新增功能：</strong>新頁面、新 tab、新內容、新 icon、新網站</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0">
+        <div style="font-family:monospace;font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">[FIX]</div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7"><strong>修正 Bug：</strong>改錯字、修壞掉的連結、修對不齊的版面</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0">
+        <div style="font-family:monospace;font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">[STYLE]</div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7"><strong>樣式調整：</strong>改顏色、改字體、改間距、改圓角（功能沒變）</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0">
+        <div style="font-family:monospace;font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">[DOCS]</div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7"><strong>文件更新：</strong>README、BUILD_LOG、SOP、決策日誌</div>
+      </div>
+      <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:12px 14px;border-radius:0 6px 6px 0">
+        <div style="font-family:monospace;font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">[REFACTOR]</div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7"><strong>重構：</strong>把代碼重新整理（功能一樣，但寫法更好）</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 實戰範例 -->
+  <div style="margin-bottom:8px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">📖 10 個實戰範例（直接照抄）</div>
+    <div style="background:#2A1A1C;color:#fff;border-radius:8px;padding:16px 18px;font-family:monospace;font-size:11px;line-height:2">
+      <div style="color:#F0C0C5">// 矩陣內容擴充</div>
+      <div>[FEAT] 新增容器④教知識14格｜Add container 4 Teaching (14 cards)</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 品牌規範書升級</div>
+      <div>[FEAT] 品牌規範書V3加入錨點導覽｜Brand guidelines V3 with anchor nav</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 浮動導覽加入</div>
+      <div>[FEAT] 加入ICS浮動導覽｜Add ICS floating nav</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 建新網站</div>
+      <div>[FEAT] 建立ICS品牌總入口頁｜Create ICS brand portal homepage</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 改錯字</div>
+      <div>[FIX] 修正L9提示詞錯別字｜Fix typo in L9 prompt template</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 改顏色</div>
+      <div>[STYLE] 主色調整為深玫瑰紅｜Update primary color to deep rose red</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 改字體大小</div>
+      <div>[STYLE] 標題字級加大符合規範｜Increase title font-size</div>
+      <div style="margin-top:8px;color:#F0C0C5">// Build Log 更新</div>
+      <div>[DOCS] 更新Build Log 20260423｜Update Build Log 2026/04/23</div>
+      <div style="margin-top:8px;color:#F0C0C5">// SOP 更新</div>
+      <div>[DOCS] 新增系統架設分頁｜Add system setup chapter</div>
+      <div style="margin-top:8px;color:#F0C0C5">// 程式碼整理</div>
+      <div>[REFACTOR] 整理CSS樣式分類｜Refactor CSS organization</div>
+    </div>
+  </div>
+
+  <!-- 為什麼要寫 -->
+  <div style="background:#FDF3F4;border-left:4px solid #A51820;padding:16px 18px;border-radius:0 6px 6px 0;margin-top:20px">
+    <div style="font-size:11px;font-weight:900;color:#A51820;letter-spacing:.1em;margin-bottom:8px">💎 為什麼要認真寫 Commit？</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.9">
+      1. <strong>一秒回憶</strong>：三個月後看到「[FEAT] 新增容器③選立場14格」就知道當時做了什麼<br>
+      2. <strong>可搜尋</strong>：在 GitHub 歷史上搜尋「[FEAT]」就看到所有新功能<br>
+      3. <strong>專業形象</strong>：未來合作夥伴 / 工程師看到你的 repo 會肅然起敬<br>
+      4. <strong>跨事業複製</strong>：下次開新事業，照著 commit 歷史就知道步驟
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 5 章：電腦資料夾系統 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-folder" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 05</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">📁 電腦資料夾系統</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">六大架構·什麼該放哪·備份怎麼做</div>
+
+  <!-- 六大資料夾樹狀圖 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">🏗️ 六大架構總覽</div>
+    <div style="background:#2A1A1C;color:#fff;border-radius:8px;padding:18px 20px;font-family:monospace;font-size:11px;line-height:1.9;overflow-x:auto">
+<pre style="margin:0;white-space:pre;color:#fff">📁 ICS 品牌專案/（放在 iCloud Drive）
+│
+├── 📁 00_網站上線檔/  ★核心★
+│   ├── 📁 Site_1_Handbook_學習手冊/
+│   ├── 📁 Site_2_Scripts_腳本產生器/
+│   ├── 📁 Site_3_Matrix_選題矩陣/
+│   ├── 📁 Site_4_Brand_品牌規範書/
+│   ├── 📁 Site_5_Home_總入口頁/
+│   ├── 📁 Site_6_Tasks_執行清單/
+│   └── 📁 Shared_共用素材/
+│       ├── Icons_圖示/
+│       ├── Colors_色票/
+│       ├── Logos_標誌/
+│       └── ICS浮動按鈕.html
+│
+├── 📁 00B_Astra個人軌資產/  ← 分開管理
+│
+├── 📁 01_重大里程碑備份/
+│   └── 20260423_V1_建立完整架構/
+│       └── (舊版歸檔)
+│
+├── 📁 02_原始素材/
+│   └── 從Claude下載_20260423/
+│       └── (所有 ZIP 原檔)
+│
+├── 📁 03_決策日誌/
+│   └── DECISIONS.md
+│
+└── 📁 04_創業SOP手冊/
+    └── STARTUP_SOP.md</pre>
+    </div>
+  </div>
+
+  <!-- 什麼該放哪 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">📂 什麼該放哪？</div>
+    <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:130px 1fr;gap:0;font-size:12px">
+        <div style="padding:12px;background:#A51820;color:#fff;font-weight:700;font-family:'Noto Serif TC',serif;letter-spacing:.05em">資料夾</div>
+        <div style="padding:12px;background:#A51820;color:#fff;font-weight:700;font-family:'Noto Serif TC',serif;letter-spacing:.05em">放什麼</div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">00_網站上線檔</div>
+        <div style="padding:12px;border-bottom:1px solid #E8E3DA;line-height:1.7">目前正在跑的網站檔案（最新版）<br><em style="color:#7A5A5E;font-size:11px">每個 Site 對應一個 GitHub repo</em></div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">00B_Astra</div>
+        <div style="padding:12px;border-bottom:1px solid #E8E3DA;line-height:1.7">Astra 個人品牌的所有檔案<br><em style="color:#7A5A5E;font-size:11px">跟 ICS 分開管理</em></div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">01_里程碑備份</div>
+        <div style="padding:12px;border-bottom:1px solid #E8E3DA;line-height:1.7">重大版本的紀念備份<br><em style="color:#7A5A5E;font-size:11px">GitHub 有自動歷史，這裡只放值得紀念的</em></div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">02_原始素材</div>
+        <div style="padding:12px;border-bottom:1px solid #E8E3DA;line-height:1.7">Claude 給的 ZIP 原檔、下載的設計素材</div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">03_決策日誌</div>
+        <div style="padding:12px;border-bottom:1px solid #E8E3DA;line-height:1.7">DECISIONS.md 重大決策的前因後果</div>
+
+        <div style="padding:12px;background:#F4F1EC;font-weight:700;color:#A51820">04_創業SOP</div>
+        <div style="padding:12px;line-height:1.7">STARTUP_SOP.md 可複製的創業流程</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 備份三階段 -->
+  <div style="margin-bottom:8px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:12px">💾 備份策略（三階段）</div>
+    <div style="display:grid;gap:10px">
+      <div style="background:#FDF3F4;border:1px solid #FAE8EA;border-radius:8px;padding:14px 16px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span style="background:#A51820;color:#fff;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:900;letter-spacing:.1em">階段 1</span>
+          <span style="font-family:'Noto Serif TC',serif;font-weight:700;color:#2A1A1C">現在（已達成）</span>
+        </div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7">✓ iCloud 雲端同步（Mac/iPhone 跨裝置）<br>✓ GitHub 自動版本歷史<br><em style="color:#7A5A5E">這階段完全足夠</em></div>
+      </div>
+      <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:14px 16px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span style="background:#7A5A5E;color:#fff;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:900;letter-spacing:.1em">階段 2</span>
+          <span style="font-family:'Noto Serif TC',serif;font-weight:700;color:#2A1A1C">1-2 個月後</span>
+        </div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7">+ Google Drive 免費 15GB<br><em style="color:#7A5A5E">當業務檔案（影片、提案、合約）變多時加</em></div>
+      </div>
+      <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:14px 16px">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+          <span style="background:#B09498;color:#fff;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:900;letter-spacing:.1em">階段 3</span>
+          <span style="font-family:'Noto Serif TC',serif;font-weight:700;color:#2A1A1C">半年後</span>
+        </div>
+        <div style="font-size:12px;color:#2A1A1C;line-height:1.7">+ 付費 Google Drive 200GB<br>+ 外接硬碟每月大備份<br><em style="color:#7A5A5E">當有客戶機密資料時升級</em></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 6 章：問題排解 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-fix" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 06</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🆘 遇到問題怎麼辦</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">常見狀況與解法·不用慌</div>
+
+  <!-- Q1 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q1：雙擊 index.html 打開是空白</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>原因：</strong>PWA 網站需要伺服器環境才能跑。<br>
+      <strong>解法：</strong>不要在本地預覽。上傳 GitHub 後打開網址看效果就好。<br>
+      <em style="color:#7A5A5E">（詳見第 2 章 2.6 節）</em>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q2：手機 App 沒更新（看到舊版本）</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>原因：</strong>PWA 有快取，會暫存舊版本。<br>
+      <strong>解法：</strong><br>
+      <span style="margin-left:16px">① 長按桌面 icon → 刪除 App</span><br>
+      <span style="margin-left:16px">② Safari 重新打開網址</span><br>
+      <span style="margin-left:16px">③ 分享鍵 → 加入主畫面（重新加）</span><br>
+      <span style="margin-left:16px">✅ 桌面 icon 就是新版</span>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q3：編輯模式找不到 Commit 按鈕</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>原因：</strong>你可能還在「瀏覽模式」不是「編輯模式」。<br>
+      <strong>判斷方法：</strong><br>
+      ✅ 看<strong>右上角</strong>：<br>
+      <span style="margin-left:16px">→ 有<strong>鉛筆 ✏️</strong> = 瀏覽模式（要點鉛筆進編輯）</span><br>
+      <span style="margin-left:16px">→ 有 <strong>Cancel changes / Commit changes...</strong> = 已在編輯模式</span>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q4：傳錯檔案怎麼救</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>情境：</strong>上傳到 GitHub 後才發現檔案有錯 / 版本不對。<br>
+      <strong>解法：</strong>打開該 repo 的 Commits 歷史：<br>
+      <span style="margin-left:16px">① 網址輸入 <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">github.com/luckylisaaa/xxx/commits/main</code></span><br>
+      <span style="margin-left:16px">② 找到舊的那個 commit</span><br>
+      <span style="margin-left:16px">③ 點 Browse files 下載舊版本</span><br>
+      <span style="margin-left:16px">④ 重新上傳覆蓋</span>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q5：網站上傳後沒變化</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>原因：</strong>GitHub Pages 部署需要時間 + 瀏覽器快取。<br>
+      <strong>解法：</strong><br>
+      <span style="margin-left:16px">① 先等 2-3 分鐘（GitHub 後台正在部署）</span><br>
+      <span style="margin-left:16px">② 用「無痕視窗」打開網址</span><br>
+      <span style="margin-left:16px">③ Mac：Cmd + Shift + N 開無痕</span><br>
+      <span style="margin-left:16px">✅ 還是沒變 → 檢查 Commit 是否成功</span>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div style="margin-bottom:16px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q6：搞不清楚自己在哪個網頁</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>情境：</strong>開了一堆分頁分不清哪個是哪個。<br>
+      <strong>解法：</strong>看網址列就知道！<br>
+      <span style="margin-left:16px">→ <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">luckylisaaa.github.io/...</code> = 對外網站</span><br>
+      <span style="margin-left:16px">→ <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">github.com/luckylisaaa/...</code> = GitHub 後台</span><br>
+      <em style="color:#7A5A5E;margin-top:6px;display:block">記住：看網站 vs 改檔案</em>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div style="margin-bottom:8px;background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px 18px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:15px;font-weight:900;color:#A51820;margin-bottom:8px">❓ Q7：不確定這個知識放哪</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>判斷邏輯：</strong><br>
+      🔧 <strong>技術 / 系統知識</strong> → 這一頁「系統架設」<br>
+      💼 <strong>業務流程 / 創業邏輯</strong> → handbook 其他分頁<br>
+      📝 <strong>每日心情 / 感受</strong> → Notion 日記<br>
+      💡 <strong>重大決策前因後果</strong> → 電腦 03_決策日誌/
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 7 章：進階知識 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-advanced" style="padding:32px 16px 40px;background:#fff;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 07</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🎓 進階知識</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">以後再學·現在不急著懂</div>
+
+  <div style="background:#FDF3F4;border:1px dashed #A51820;border-radius:6px;padding:12px 14px;margin-bottom:20px;font-size:11px;color:#A51820;line-height:1.7">
+    💝 <strong>這一章的內容</strong>都是「未來會用到但現在不急」的技術。<br>看過有印象就好，等到真的需要再深入研究。
+  </div>
+
+  <!-- 7.1 買網域 -->
+  <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🌐 7.1 買品牌網域</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>什麼時候需要：</strong>有第一個付費客戶、想要專業形象時。<br>
+      <strong>推薦網域：</strong>
+      <ul style="padding-left:20px;margin-top:6px;line-height:1.9">
+        <li><code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">ics-studio.com</code></li>
+        <li><code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">inspirecreateshine.com</code></li>
+        <li><code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-size:11px">ics.tw</code></li>
+      </ul>
+      <strong style="display:block;margin-top:10px">費用：</strong>一年 $300-600 台幣<br>
+      <strong>買哪：</strong>Gandi / Namecheap / GoDaddy<br>
+      <strong>好處：</strong>網址變短、專業、可以做 email（hello@你的域名.com）
+    </div>
+  </div>
+
+  <!-- 7.2 Firebase -->
+  <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔥 7.2 Firebase 什麼時候需要</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>Firebase vs GitHub Pages 差在哪：</strong><br>
+      <div style="background:#F4F1EC;padding:10px 12px;border-radius:4px;margin:8px 0;line-height:1.9">
+        📄 <strong>GitHub Pages（你在用）</strong>：靜態網頁、免費、簡單<br>
+        🔥 <strong>Firebase</strong>：動態資料庫、登入系統、推播、中等難度
+      </div>
+      <strong>你什麼時候會需要 Firebase？</strong>
+      <ul style="padding-left:20px;margin-top:6px;line-height:1.9">
+        <li>客戶要登入自己的 Portal 看進度</li>
+        <li>多人協作編輯同一份文件</li>
+        <li>跨裝置同步 Tasks 清單進度</li>
+      </ul>
+      <div style="background:#FDF3F4;padding:10px 12px;border-radius:4px;margin-top:10px;font-size:11px;line-height:1.7">
+        💡 <strong>現階段：</strong>完全不需要。localStorage + GitHub Pages 足夠。
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.3 GA -->
+  <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">📊 7.3 Google Analytics</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>做什麼的：</strong>追蹤有多少人在看你的網站、從哪來、看多久。<br>
+      <strong>什麼時候裝：</strong>開始對外行銷、想優化內容時。<br>
+      <strong>怎麼裝：</strong>Google 搜尋「GA4 教學」→ 申請 → 拿到一段 code → 貼到每個 index.html 的 &lt;head&gt; 裡。<br>
+      <strong>費用：</strong>免費
+    </div>
+  </div>
+
+  <!-- 7.4 跨裝置同步 -->
+  <div style="margin-bottom:8px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔄 7.4 跨裝置同步</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      <strong>情境：</strong>手機勾選的 Tasks，希望電腦也看得到。<br>
+      <strong>現在狀況：</strong>Tasks 進度存在瀏覽器 localStorage，每個裝置獨立。<br>
+      <strong>解法：</strong>之後用 Firebase 串起來（參見 7.2）<br>
+      <strong>什麼時候做：</strong>當你真的每天在手機 / 電腦切換操作時。
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 結尾 -->
+<!-- ═════════════════════════════════════ -->
+<div style="padding:40px 24px 50px;background:linear-gradient(180deg,#FDFBF8 0%,#F4F1EC 100%);text-align:center">
+  <div style="max-width:400px;margin:0 auto">
+    <div style="font-size:28px;margin-bottom:12px">🌟</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:17px;font-weight:900;color:#A51820;margin-bottom:8px">這一頁會跟你一起長大</div>
+    <div style="font-size:12px;color:#7A5A5E;line-height:1.9;font-style:italic;margin-bottom:20px">
+      未來學會新技術就加進來<br>
+      遇到新問題就新增 Q&amp;A<br>
+      這就是你專屬的技術知識庫
+    </div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:11px;color:#A51820;letter-spacing:.25em;font-weight:700">INSPIRE · CREATE · SHINE</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:10px;color:#7A5A5E;font-style:italic;margin-top:6px;letter-spacing:.1em">Finding beauty. Making it move.</div>
+  </div>
+</div>
+
+</div>
+<!-- ===== TAB 21: ⚙️ 系統架設 END ===== -->
+
+
+</body>
 </html>
