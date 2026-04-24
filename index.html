@@ -12058,7 +12058,8 @@ init();
     <a href="#ch-backup" style="padding:10px 12px;background:#FAE8EA;border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🛡️ Ch6 分級備份 ⭐</a>
     <a href="#ch-update-sop" style="padding:10px 12px;background:#FAE8EA;border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🔁 Ch7 更新SOP ⭐</a>
     <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🆘 Ch8 問題排解</a>
-    <a href="#ch-advanced" style="grid-column:1/-1;padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🎓 Ch9 進階知識（以後再學）</a>
+    <a href="#ch-advanced" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🎓 Ch9 進階知識</a>
+    <a href="#ch-agent" style="grid-column:1/-1;padding:10px 12px;background:linear-gradient(135deg,#B51E28,#7A1018);border:1px solid #A51820;border-radius:6px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🤖 Ch10 AI Agent 指令模板 ⭐ NEW</a>
   </div>
 </div>
 
@@ -12776,6 +12777,111 @@ init();
       <strong style="color:#A51820">不是每天建！一週 1-2 次就好</strong>
     </div>
   </div>
+
+  <!-- 6.6 檔案生態系 -->
+  <div style="margin-top:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">6.6 檔案生態系 · 誰該去哪裡</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">每個檔案一個清楚角色·不要重複存·不要漏存</div>
+
+    <!-- 生態系流程圖 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px 14px;margin-bottom:16px">
+      <svg viewBox="0 0 340 620" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:340px;display:block;margin:0 auto">
+        <!-- Step 1 -->
+        <rect x="10" y="10" width="320" height="64" rx="8" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="24" y="32" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#A51820">① 從 Claude 下載</text>
+        <text x="24" y="52" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">[網站]_完整上架包.zip 到 Downloads</text>
+        <text x="24" y="66" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#7A5A5E" font-style="italic">臨時停車場·等一下要解壓</text>
+
+        <line x1="170" y1="80" x2="170" y2="96" stroke="#7A5A5E" stroke-width="1"/>
+        <polygon points="167,94 173,94 170,100" fill="#7A5A5E"/>
+
+        <!-- Step 2 -->
+        <rect x="10" y="104" width="320" height="64" rx="8" fill="#F0F8F4" stroke="#4A9D4C" stroke-width="1"/>
+        <text x="24" y="126" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#2A5A2C">② 雙擊解壓</text>
+        <text x="24" y="146" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">得到 3 個檔案 · index.html + 兩個素材 zip</text>
+        <text x="24" y="160" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A5A2C" font-style="italic">解完才看得到內容</text>
+
+        <line x1="170" y1="174" x2="170" y2="190" stroke="#7A5A5E" stroke-width="1"/>
+        <polygon points="167,188 173,188 170,194" fill="#7A5A5E"/>
+
+        <!-- Step 3 -->
+        <rect x="10" y="198" width="320" height="82" rx="8" fill="#FFF8E0" stroke="#C07A10" stroke-width="1"/>
+        <text x="24" y="220" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#7A5010">③ 備份舊 index.html（🔴 大改才做）</text>
+        <text x="24" y="240" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">01_重大里程碑備份/</text>
+        <text x="24" y="256" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">└ 20260424_FEAT_Handbook_V3_描述/</text>
+        <text x="24" y="272" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#7A5010" font-style="italic">只備 index.html·不用備兩個 zip</text>
+
+        <line x1="170" y1="286" x2="170" y2="302" stroke="#7A5A5E" stroke-width="1"/>
+        <polygon points="167,300 173,300 170,306" fill="#7A5A5E"/>
+
+        <!-- Step 4 -->
+        <rect x="10" y="310" width="320" height="92" rx="8" fill="#F4EDFA" stroke="#6A4A85" stroke-width="1"/>
+        <text x="24" y="332" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#6A4A85">④ 3 檔案放進 Site_1_Handbook</text>
+        <text x="24" y="352" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">├ index.html（覆蓋舊的）</text>
+        <text x="24" y="368" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">├ 網站圖示.zip（新）</text>
+        <text x="24" y="384" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">└ Astra_Design_System_v1.0.zip（新）</text>
+        <text x="24" y="398" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#6A4A85" font-style="italic">這三個都要上 GitHub</text>
+
+        <line x1="170" y1="408" x2="170" y2="424" stroke="#7A5A5E" stroke-width="1"/>
+        <polygon points="167,422 173,422 170,428" fill="#7A5A5E"/>
+
+        <!-- Step 5 -->
+        <rect x="10" y="432" width="320" height="62" rx="8" fill="#FAE8EA" stroke="#A51820" stroke-width="1"/>
+        <text x="24" y="454" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#A51820">⑤ 上傳 GitHub handbook repo</text>
+        <text x="24" y="472" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">3 個檔案一起傳 · Commit · 等 2 分鐘</text>
+        <text x="24" y="486" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#A51820" font-style="italic">驗證 luckylisaaa.github.io/handbook/</text>
+
+        <line x1="170" y1="502" x2="170" y2="518" stroke="#7A5A5E" stroke-width="1"/>
+        <polygon points="167,516 173,516 170,522" fill="#7A5A5E"/>
+
+        <!-- Step 6 -->
+        <rect x="10" y="526" width="320" height="82" rx="8" fill="#F0F4F8" stroke="#4A7FA0" stroke-width="1"/>
+        <text x="24" y="548" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#2A5580">⑥ 大 zip 搬到原始素材</text>
+        <text x="24" y="568" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">02_原始素材/從Claude下載_20260424/</text>
+        <text x="24" y="584" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">└ handbook_完整上架包.zip</text>
+        <text x="24" y="600" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A5580" font-style="italic">只留外殼·未來回溯用</text>
+      </svg>
+    </div>
+
+    <!-- 快速查表 -->
+    <div style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:#2A1A1C;margin:20px 0 10px">💡 快速查表</div>
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:4px;overflow:hidden;margin-bottom:16px">
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;background:#F4F1EC;font-weight:700;font-size:12px">
+        <div style="padding:10px 12px;color:#A51820">檔案</div>
+        <div style="padding:10px 12px;color:#A51820">最終去處</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;font-size:12px;border-top:1px solid #E8E3DA">
+        <div style="padding:10px 12px;color:#2A1A1C">index.html（新版）</div>
+        <div style="padding:10px 12px;color:#2A1A1C">Site_1 覆蓋 + GitHub</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;font-size:12px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:10px 12px;color:#2A1A1C">網站附屬 zip</div>
+        <div style="padding:10px 12px;color:#2A1A1C">Site_1 新加 + GitHub</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;font-size:12px;border-top:1px solid #E8E3DA">
+        <div style="padding:10px 12px;color:#2A1A1C">index.html（舊版）</div>
+        <div style="padding:10px 12px;color:#2A1A1C">01_重大里程碑備份/...</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1.5fr;font-size:12px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:10px 12px;color:#2A1A1C">完整上架包.zip（大包）</div>
+        <div style="padding:10px 12px;color:#2A1A1C">02_原始素材/從Claude下載_日期/</div>
+      </div>
+    </div>
+
+    <!-- 其他網站適用 -->
+    <div style="background:#FDF3F4;border:1px dashed #A51820;border-radius:6px;padding:14px;margin-bottom:8px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:13px;margin-bottom:8px">🌐 其他網站也適用這套邏輯</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.9">
+        • <strong>Matrix 更新</strong> → Site_3_Matrix_選題矩陣/<br>
+        • <strong>Tasks 更新</strong> → Site_6_Tasks_執行清單/<br>
+        • <strong>Brand 更新</strong> → Site_4_Brand_品牌規範書/<br>
+        • <strong>Scripts 更新</strong> → Site_2_Scripts_腳本產生器/<br>
+        • <strong>Home 更新</strong> → Site_5_Home_總入口頁/<br>
+        <br>
+        <strong style="color:#A51820">規則不變：</strong>每個網站自己的 Site 資料夾負責覆蓋 · 舊版進里程碑 · 原始 zip 進素材區
+      </div>
+    </div>
+  </div>
 </div>
 
 <!-- ═════════════════════════════════════ -->
@@ -12902,6 +13008,137 @@ init();
       <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA">
         <div style="padding:8px 10px;font-family:monospace;color:#8A4565;font-weight:700">[DOCS]</div>
         <div style="padding:8px 10px;color:#2A1A1C">[DOCS] 更新 Build Log 20260424</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.4 素材包立即歸位 SOP -->
+  <div style="margin-top:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.4 素材包立即歸位 SOP</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">拆了 ZIP 就 10 分鐘內歸位·不拖到明天·避免「一個月後忘記」</div>
+
+    <!-- 黃金法則 -->
+    <div style="background:#FAE8EA;border:2px solid #A51820;padding:16px;border-radius:8px;margin-bottom:16px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:16px;margin-bottom:8px">⏱️ 黃金法則</div>
+      <div style="font-size:13px;color:#2A1A1C;line-height:1.8">
+        下載完 → <strong>10 分鐘內必須歸位完</strong><br>
+        不要說「等等再弄」——等等就是忘記。<br>
+        不要累積——累積的素材會變成混亂的倉庫。
+      </div>
+    </div>
+
+    <!-- 歸位圖 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A1A1C;font-size:14px;margin-bottom:12px;text-align:center">📍 Icons 歸位地圖</div>
+      <svg viewBox="0 0 340 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:340px;display:block;margin:0 auto">
+        <!-- 中心：解壓後的 zip -->
+        <rect x="90" y="10" width="160" height="50" rx="8" fill="#2A1A1C"/>
+        <text x="170" y="32" font-family="'Noto Serif TC',serif" font-size="12" font-weight="900" fill="#FDFBF8" text-anchor="middle">解壓後的素材 zip</text>
+        <text x="170" y="50" font-family="monospace" font-size="10" fill="#D4A574" text-anchor="middle">icons/ICS/H/M/S/B/T</text>
+
+        <!-- 六個 icon 資料夾的家 -->
+        <!-- ICS -->
+        <line x1="170" y1="60" x2="60" y2="100" stroke="#A51820" stroke-width="1" stroke-dasharray="3,2"/>
+        <rect x="10" y="100" width="110" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="20" y="120" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 ICS_主Logo</text>
+        <text x="20" y="136" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_圖示/</text>
+        <text x="20" y="148" font-family="monospace" font-size="9" fill="#2A1A1C">ICS_主Logo/</text>
+
+        <!-- H -->
+        <line x1="170" y1="60" x2="170" y2="100" stroke="#A51820" stroke-width="1" stroke-dasharray="3,2"/>
+        <rect x="125" y="100" width="90" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="135" y="120" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 H_Handbook</text>
+        <text x="135" y="136" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_</text>
+        <text x="135" y="148" font-family="monospace" font-size="9" fill="#2A1A1C">圖示/H_Handbook/</text>
+
+        <!-- M -->
+        <line x1="170" y1="60" x2="280" y2="100" stroke="#A51820" stroke-width="1" stroke-dasharray="3,2"/>
+        <rect x="220" y="100" width="110" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="230" y="120" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 M_Matrix</text>
+        <text x="230" y="136" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_</text>
+        <text x="230" y="148" font-family="monospace" font-size="9" fill="#2A1A1C">圖示/M_Matrix/</text>
+
+        <!-- S -->
+        <rect x="10" y="170" width="110" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="20" y="190" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 S_Scripts</text>
+        <text x="20" y="206" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_</text>
+        <text x="20" y="218" font-family="monospace" font-size="9" fill="#2A1A1C">圖示/S_Scripts/</text>
+
+        <!-- B -->
+        <rect x="125" y="170" width="90" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="135" y="190" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 B_Brand</text>
+        <text x="135" y="206" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_</text>
+        <text x="135" y="218" font-family="monospace" font-size="9" fill="#2A1A1C">圖示/B_Brand/</text>
+
+        <!-- T -->
+        <rect x="220" y="170" width="110" height="56" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1"/>
+        <text x="230" y="190" font-family="'Noto Serif TC',serif" font-size="11" font-weight="900" fill="#A51820">📁 T_Tasks</text>
+        <text x="230" y="206" font-family="monospace" font-size="9" fill="#2A1A1C">Shared/Icons_</text>
+        <text x="230" y="218" font-family="monospace" font-size="9" fill="#2A1A1C">圖示/T_Tasks/</text>
+
+        <!-- 底下說明 -->
+        <line x1="10" y1="250" x2="330" y2="250" stroke="#E8E3DA" stroke-width="1"/>
+        <text x="170" y="276" font-family="'Noto Serif TC',serif" font-size="13" font-weight="900" fill="#2A1A1C" text-anchor="middle">配色規則</text>
+
+        <rect x="10" y="294" width="320" height="34" rx="6" fill="#F4F1EC"/>
+        <text x="24" y="314" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">🎨 Colors_色票/ → CSS 變數 + 色票 SVG + README</text>
+
+        <rect x="10" y="336" width="320" height="34" rx="6" fill="#F4F1EC"/>
+        <text x="24" y="356" font-family="'Noto Sans TC',sans-serif" font-size="11" fill="#2A1A1C">📐 Logos_標誌/ → 完整 Logo 檔（SVG 為主）</text>
+
+        <rect x="10" y="378" width="320" height="50" rx="6" fill="#FFF8E0" stroke="#C07A10" stroke-width="1"/>
+        <text x="24" y="398" font-family="'Noto Sans TC',sans-serif" font-size="11" font-weight="700" fill="#7A5010">💡 快速辨認：看檔名開頭字母</text>
+        <text x="24" y="416" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A1A1C">icon-h-xxx.png → H_Handbook 資料夾</text>
+
+        <rect x="10" y="438" width="320" height="34" rx="6" fill="#FAE8EA" stroke="#A51820" stroke-width="1"/>
+        <text x="24" y="458" font-family="'Noto Sans TC',sans-serif" font-size="10" font-weight="700" fill="#A51820">⏱️ 全部 6 套 icon 歸位 · 約 5 分鐘</text>
+      </svg>
+    </div>
+
+    <!-- 執行步驟 -->
+    <div style="font-family:'Noto Serif TC',serif;font-size:14px;font-weight:700;color:#2A1A1C;margin:20px 0 10px">🎯 立即歸位 5 步驟</div>
+
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Noto Serif TC',serif">1</div>
+        <div style="flex:1;font-size:12px;color:#2A1A1C;line-height:1.7;padding-top:4px">
+          <strong>雙擊解壓</strong>素材 zip（例如 Astra_Design_System_v1.0.zip）
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Noto Serif TC',serif">2</div>
+        <div style="flex:1;font-size:12px;color:#2A1A1C;line-height:1.7;padding-top:4px">
+          看到 <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace">icons/</code> 資料夾 → 打開 → 裡面有 ICS / H / M / S / B / T 六個子資料夾
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Noto Serif TC',serif">3</div>
+        <div style="flex:1;font-size:12px;color:#2A1A1C;line-height:1.7;padding-top:4px">
+          打開 <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace">Shared_共用素材/Icons_圖示/</code>
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Noto Serif TC',serif">4</div>
+        <div style="flex:1;font-size:12px;color:#2A1A1C;line-height:1.7;padding-top:4px">
+          把 zip 裡 6 個子資料夾的內容 <strong>一個個拖進對應的家</strong>（H → H_Handbook, M → M_Matrix...）
+        </div>
+      </div>
+      <div style="display:flex;gap:12px;align-items:flex-start">
+        <div style="flex-shrink:0;width:32px;height:32px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-family:'Noto Serif TC',serif">5</div>
+        <div style="flex:1;font-size:12px;color:#2A1A1C;line-height:1.7;padding-top:4px">
+          <strong>Colors 資料夾</strong>內容放進 <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace">Colors_色票/</code>，完成！
+        </div>
+      </div>
+    </div>
+
+    <!-- 檢查清單 -->
+    <div style="background:#F4F1EC;border-radius:6px;padding:14px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A1A1C;font-size:13px;margin-bottom:8px">✅ 歸位完成檢查清單</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.9">
+        ☐ 6 個 icon 資料夾各自有 5 個檔案（SVG + 4 PNG + ICO）<br>
+        ☐ Colors_色票 有 4 個檔案（CSV + TXT + SVG + CSS）<br>
+        ☐ 原始 zip 已刪除（避免混淆）<br>
+        ☐ 大 zip 已搬到 02_原始素材/（備份留存）
       </div>
     </div>
   </div>
@@ -13088,6 +13325,167 @@ init();
     </div>
     <div style="font-family:'Noto Serif TC',serif;font-size:11px;color:#A51820;letter-spacing:.25em;font-weight:700">INSPIRE · CREATE · SHINE</div>
     <div style="font-family:'Noto Serif TC',serif;font-size:10px;color:#7A5A5E;font-style:italic;margin-top:6px;letter-spacing:.1em">Finding beauty. Making it move.</div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 10 章：AI Agent 指令模板 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-agent" style="padding:32px 16px 40px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 10</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🤖 AI Agent 指令模板</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">從「我自己做」→「AI 幫我做」·讓一句話啟動整個流程</div>
+
+  <!-- 三階段進化 -->
+  <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:18px;margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:15px;margin-bottom:12px">📈 你的 AI 使用三階段進化</div>
+    <svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:320px;display:block;margin:0 auto">
+      <!-- Lv1 -->
+      <rect x="10" y="10" width="300" height="60" rx="6" fill="#F4F1EC" stroke="#B09498"/>
+      <text x="22" y="30" font-family="'Noto Serif TC',serif" font-size="12" font-weight="900" fill="#7A5A5E">Lv1 · 助理模式</text>
+      <text x="22" y="48" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A1A1C">問一步答一步·效率低</text>
+      <text x="22" y="62" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" font-style="italic">「要不要備份？」「備到哪？」</text>
+
+      <!-- Lv2 -->
+      <rect x="10" y="80" width="300" height="60" rx="6" fill="#FDF3F4" stroke="#A51820"/>
+      <text x="22" y="100" font-family="'Noto Serif TC',serif" font-size="12" font-weight="900" fill="#A51820">Lv2 · 四件套模式 · 你現在在這</text>
+      <text x="22" y="118" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A1A1C">一次給你資料夾名+Commit+電腦步驟+GitHub</text>
+      <text x="22" y="132" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#A51820" font-style="italic">按 Ch7 SOP 執行</text>
+
+      <!-- Lv3 -->
+      <rect x="10" y="150" width="300" height="60" rx="6" fill="#FAE8EA" stroke="#A51820" stroke-width="2"/>
+      <text x="22" y="170" font-family="'Noto Serif TC',serif" font-size="12" font-weight="900" fill="#A51820">Lv3 · Agent 模式 · 未來目標 ⭐</text>
+      <text x="22" y="188" font-family="'Noto Sans TC',sans-serif" font-size="10" fill="#2A1A1C">一句話·AI 自主判斷執行完</text>
+      <text x="22" y="202" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#A51820" font-style="italic">你只負責決策·不操作細節</text>
+    </svg>
+  </div>
+
+  <!-- 10.1 核心咒語 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.1 核心啟動咒語</div>
+    <div style="font-size:12px;color:#7A5A5E;margin-bottom:12px;font-style:italic">對任何新 AI 說這句·它就會進入 Agent 模式</div>
+
+    <div style="background:#2A1A1C;color:#FDFBF8;border-radius:8px;padding:16px;font-family:monospace;font-size:12px;line-height:1.8;border-left:4px solid #D4A574">
+      <div style="color:#D4A574;font-weight:700;margin-bottom:8px">// 貼這段作為對話開頭</div>
+      Agent 模式啟動。<br>
+      任務：[描述你要做的事]<br>
+      <br>
+      請依照我 Handbook Ch6-Ch7 的規則：<br>
+      1. 判斷等級（🟢 / 🟡 / 🔴）<br>
+      2. 若需備份，給我命名公式<br>
+      3. 給我 Commit message<br>
+      4. 給我完整四件套（資料夾名+Commit+電腦步驟+GitHub 步驟）<br>
+      5. 若有檔案改動，直接打包給我<br>
+      <br>
+      最終我只要：下載 → 上傳 GitHub → 完成。
+    </div>
+  </div>
+
+  <!-- 10.2 場景範例 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.2 常用場景咒語</div>
+
+    <!-- 場景 1 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;border-radius:4px;padding:14px;margin-bottom:12px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:13px;margin-bottom:8px">🎯 場景 1 · 修一個 bug</div>
+      <div style="background:#F4F1EC;padding:10px;border-radius:3px;font-family:monospace;font-size:11px;color:#2A1A1C;line-height:1.7">
+        Agent 模式。<br>
+        [網站] 的 [功能] 有 bug：[現象]<br>
+        請診斷+修正+打包給我。
+      </div>
+    </div>
+
+    <!-- 場景 2 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #4A7FA0;border-radius:4px;padding:14px;margin-bottom:12px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A5580;font-size:13px;margin-bottom:8px">✨ 場景 2 · 加新功能</div>
+      <div style="background:#F4F1EC;padding:10px;border-radius:3px;font-family:monospace;font-size:11px;color:#2A1A1C;line-height:1.7">
+        Agent 模式。<br>
+        在 [網站] 的 [章節] 新增：[描述內容]<br>
+        風格對齊 handbook 既有風格。打包給我。
+      </div>
+    </div>
+
+    <!-- 場景 3 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #6A4A85;border-radius:4px;padding:14px;margin-bottom:12px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#6A4A85;font-size:13px;margin-bottom:8px">🎨 場景 3 · 改視覺</div>
+      <div style="background:#F4F1EC;padding:10px;border-radius:3px;font-family:monospace;font-size:11px;color:#2A1A1C;line-height:1.7">
+        Agent 模式。<br>
+        [網站] 的 [元件] 改成 [新樣式]<br>
+        不動其他東西。打包給我。
+      </div>
+    </div>
+
+    <!-- 場景 4 -->
+    <div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #C07A10;border-radius:4px;padding:14px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#7A5010;font-size:13px;margin-bottom:8px">📦 場景 4 · 做素材包</div>
+      <div style="background:#F4F1EC;padding:10px;border-radius:3px;font-family:monospace;font-size:11px;color:#2A1A1C;line-height:1.7">
+        Agent 模式。<br>
+        做 [類型] 素材包：[規格]<br>
+        參考 Handbook 品牌規範·打包給我。
+      </div>
+    </div>
+  </div>
+
+  <!-- 10.3 期待 AI 的回應 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.3 AI 的標準回應格式</div>
+    <div style="font-size:12px;color:#7A5A5E;margin-bottom:12px;font-style:italic">如果 AI 沒按這格式給·叫它重來</div>
+
+    <div style="background:#fff;border:2px solid #A51820;border-radius:8px;padding:16px">
+      <div style="background:#FAE8EA;margin:-16px -16px 12px;padding:10px 16px;font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:13px;border-radius:8px 8px 0 0">AI 回應範例</div>
+
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.9">
+        <strong style="color:#A51820">等級判斷：</strong>🔴 大改（新增章節）<br><br>
+
+        <strong style="color:#A51820">① 資料夾命名：</strong><br>
+        <code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:11px">20260424_FEAT_Handbook_V3_新章節名</code><br><br>
+
+        <strong style="color:#4A7FA0">② Commit Message：</strong><br>
+        標題：<code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:11px">[FEAT] 新增 [章節名]</code><br>
+        描述：<code style="background:#F4F1EC;padding:2px 6px;border-radius:3px;font-family:monospace;font-size:11px">Add [chapter] to handbook</code><br><br>
+
+        <strong style="color:#C07A10">③ 電腦操作：</strong><br>
+        建備份資料夾 → 複製舊 index.html → 新版覆蓋 → 原始 zip 搬素材區<br><br>
+
+        <strong style="color:#6A4A85">④ GitHub 上架：</strong><br>
+        打開 handbook repo → Upload → Replace → Commit → 驗證<br><br>
+
+        <strong style="color:#A51820">⑤ 交付檔案：</strong><br>
+        [Claude 給你檔案下載]
+      </div>
+    </div>
+  </div>
+
+  <!-- 10.4 交接摘要的進化 -->
+  <div style="background:#FDF3F4;border:1px dashed #A51820;border-radius:6px;padding:14px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:10px">💎 進階：每週更新「交接摘要」</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      每週日花 10 分鐘，叫 AI 幫你更新<strong>交接摘要文件</strong>，把本週進度整合進去。<br><br>
+
+      <strong>這份摘要的威力：</strong><br>
+      ✓ 換 AI 對話不用重新解釋<br>
+      ✓ 未來員工接手瞬間理解<br>
+      ✓ 客戶 Demo 時可展示完整脈絡<br>
+      ✓ 你自己回頭看「我做了多少事」<br><br>
+
+      <strong style="color:#A51820">咒語：</strong>
+      <div style="background:#2A1A1C;color:#FDFBF8;padding:10px 12px;border-radius:4px;margin-top:6px;font-family:monospace;font-size:11px;line-height:1.7">
+        Agent 模式。根據本週對話，更新我的交接摘要。<br>
+        重點：本週完成項、未完成 P0、技術升級、決策日誌。<br>
+        保持原格式，打包新版給我。
+      </div>
+    </div>
+  </div>
+
+  <!-- 最後結語 -->
+  <div style="text-align:center;padding:32px 16px 8px;background:#FDFBF8;border-radius:8px;margin-top:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#A51820;margin-bottom:8px">從工人 → 工頭</div>
+    <div style="font-size:12px;color:#7A5A5E;line-height:1.8;font-style:italic;margin-bottom:12px">
+      你不用自己搬磚，<br>
+      但你知道磚要砌在哪。<br>
+      這就是創辦人的腦袋。
+    </div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:11px;color:#A51820;letter-spacing:.25em;font-weight:700">INSPIRE · CREATE · SHINE</div>
   </div>
 </div>
 
