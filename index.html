@@ -232,6 +232,7 @@ h1,h2,h3{font-family:'Noto Serif TC',serif}
 </style>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 <script>
 const firebaseConfig = {
   apiKey: "AIzaSyDSw-N0KsSXUdKHEatiJa3tut0m279C_38",
@@ -241,11 +242,21 @@ const firebaseConfig = {
   messagingSenderId: "618597633790",
   appId: "1:618597633790:web:e25c4c7b48406b99d6dfaf"
 };
+
+// FOUNDER UID — 只有這個帳號能完整讀寫
+const FOUNDER_UID = "7PVhEyBe9XbEcdAqbq2uLtEqRLC2";
+
 let db = null;
+let auth = null;
+let currentUser = null;
 const DOC_ID = 'baby_handbook';
+
 try {
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
+  auth = firebase.auth();
+  // 設定登入狀態持久化（關瀏覽器也不用重登）
+  auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 } catch(e) {
   console.log('Firebase init failed, using localStorage only');
 }
@@ -253,10 +264,142 @@ try {
 </head>
 <body>
 
+<!-- ═══ 🔐 登入鎖屏（未登入時覆蓋整頁）═══ -->
+<div id="auth-overlay" style="display:none;position:fixed;inset:0;z-index:99999;background:linear-gradient(135deg,#FDFBF8 0%,#FDF3F4 100%);overflow-y:auto">
+  <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px">
+    <div style="max-width:420px;width:100%;background:#fff;border:1px solid #E8E3DA;border-radius:12px;padding:32px 24px;box-shadow:0 16px 48px rgba(42,26,28,.08)">
+      
+      <div style="text-align:center;margin-bottom:28px">
+        <div style="width:72px;height:72px;margin:0 auto 16px;border-radius:16px;background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif TC',serif;font-size:28px;font-weight:900;box-shadow:0 12px 32px rgba(165,24,32,.25)">H</div>
+        <div style="font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:#2A1A1C;margin-bottom:4px">ICS Handbook</div>
+        <div style="font-size:11px;color:#A51820;letter-spacing:.25em;font-weight:700;margin-bottom:8px">PRIVATE · FOUNDERS ONLY</div>
+        <div style="font-size:12px;color:#7A5A5E;font-style:italic">請登入以繼續</div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div>
+          <label style="display:block;font-size:11px;color:#7A5A5E;font-weight:700;letter-spacing:1px;margin-bottom:6px">電子郵件</label>
+          <input type="email" id="auth-email" autocomplete="email" style="width:100%;padding:12px 14px;border:1px solid #E8E3DA;border-radius:6px;font-size:14px;font-family:inherit;box-sizing:border-box;background:#FDFBF8" placeholder="your@email.com">
+        </div>
+        <div>
+          <label style="display:block;font-size:11px;color:#7A5A5E;font-weight:700;letter-spacing:1px;margin-bottom:6px">密碼</label>
+          <input type="password" id="auth-password" autocomplete="current-password" style="width:100%;padding:12px 14px;border:1px solid #E8E3DA;border-radius:6px;font-size:14px;font-family:inherit;box-sizing:border-box;background:#FDFBF8" placeholder="••••••••••••">
+        </div>
+
+        <div id="auth-error" style="display:none;background:#FAE8EA;border:1px solid #A51820;color:#A51820;padding:10px 12px;border-radius:6px;font-size:12px;line-height:1.6"></div>
+
+        <button id="auth-login-btn" style="background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border:none;padding:14px;border-radius:6px;font-size:14px;font-weight:700;letter-spacing:2px;font-family:'Noto Serif TC',serif;cursor:pointer;margin-top:4px">登 入</button>
+
+        <button id="auth-reset-btn" style="background:transparent;color:#7A5A5E;border:none;padding:8px;font-size:11px;cursor:pointer;text-decoration:underline;font-family:inherit">忘記密碼？</button>
+      </div>
+
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid #E8E3DA;text-align:center">
+        <div style="font-family:'Noto Serif TC',serif;font-size:11px;color:#A51820;letter-spacing:.25em;font-weight:700">INSPIRE · CREATE · SHINE</div>
+        <div style="font-size:10px;color:#B09498;font-style:italic;margin-top:4px">Finding beauty. Making it move.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ Auth 控制腳本 ═══ -->
+<script>
+(function(){
+  // 等 DOM 載入
+  function initAuth(){
+    const overlay = document.getElementById('auth-overlay');
+    const emailInput = document.getElementById('auth-email');
+    const passwordInput = document.getElementById('auth-password');
+    const loginBtn = document.getElementById('auth-login-btn');
+    const resetBtn = document.getElementById('auth-reset-btn');
+    const errorBox = document.getElementById('auth-error');
+
+    if(!overlay || !auth){ return; }
+
+    function showError(msg){
+      errorBox.textContent = msg;
+      errorBox.style.display = 'block';
+    }
+    function hideError(){ errorBox.style.display = 'none'; }
+
+    function doLogin(){
+      hideError();
+      const email = emailInput.value.trim();
+      const pwd = passwordInput.value;
+      if(!email || !pwd){ showError('請輸入電子郵件和密碼'); return; }
+      loginBtn.textContent = '登入中...';
+      loginBtn.disabled = true;
+      auth.signInWithEmailAndPassword(email, pwd)
+        .then(function(cred){
+          // 成功 - onAuthStateChanged 會處理後續
+        })
+        .catch(function(err){
+          loginBtn.textContent = '登 入';
+          loginBtn.disabled = false;
+          const msg = {
+            'auth/invalid-email': '電子郵件格式錯誤',
+            'auth/user-not-found': '找不到這個帳號',
+            'auth/wrong-password': '密碼錯誤',
+            'auth/invalid-credential': '電子郵件或密碼錯誤',
+            'auth/too-many-requests': '嘗試太多次，請稍後再試',
+            'auth/network-request-failed': '網路連線失敗'
+          }[err.code] || ('登入失敗：' + err.message);
+          showError(msg);
+        });
+    }
+
+    loginBtn.addEventListener('click', doLogin);
+    passwordInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ doLogin(); }});
+    emailInput.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ passwordInput.focus(); }});
+
+    resetBtn.addEventListener('click', function(){
+      const email = emailInput.value.trim();
+      if(!email){ showError('請先填電子郵件'); return; }
+      auth.sendPasswordResetEmail(email)
+        .then(function(){
+          hideError();
+          alert('重設密碼信已寄到 ' + email + '\n\n請收信後點連結重設密碼。');
+        })
+        .catch(function(err){
+          showError('寄送失敗：' + (err.message || err.code));
+        });
+    });
+
+    // ─── 監聽登入狀態 ───
+    auth.onAuthStateChanged(function(user){
+      currentUser = user;
+      if(user){
+        // 已登入 → 隱藏鎖屏
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+        // 如果是 FOUNDER · 標記身份
+        if(user.uid === FOUNDER_UID){
+          document.body.setAttribute('data-role', 'founder');
+        } else {
+          document.body.setAttribute('data-role', 'visitor');
+        }
+        // 觸發事件讓其他模組知道已登入
+        window.dispatchEvent(new CustomEvent('ics-auth-ready', {detail:{user:user}}));
+      } else {
+        // 未登入 → 顯示鎖屏
+        overlay.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', initAuth);
+  } else {
+    initAuth();
+  }
+})();
+</script>
+
 <nav class="nav">
   <div class="nav-title">短影音代理營運｜完整學習手冊</div>
   <div style="display:flex;align-items:center;gap:8px">
     <div id="sync-status" style="font-size:10px;color:var(--p1)">⏳ 載入中...</div>
+    <button id="auth-logout-btn" title="登出" style="display:none;background:transparent;border:1px solid #E8E3DA;color:#7A5A5E;font-size:10px;padding:4px 8px;border-radius:4px;cursor:pointer;font-family:inherit">登出</button>
     <div class="nav-prog" id="nav-prog">0/26</div>
   </div>
 </nav>
@@ -10595,6 +10738,84 @@ init();
 </div>
 
 
+<!-- ════════════ 🌱 心情日記 · Firebase 雲端同步 ════════════ -->
+<div style="padding:24px 16px 8px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="margin-bottom:14px">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">PRIVATE JOURNAL · CLOUD SYNC</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:#2A1A1C;margin-bottom:4px">🌱 心情日記</div>
+    <div style="font-size:11px;color:#7A5A5E;font-style:italic">寫下今天的感受 · 自動存到雲端 · 永不消失</div>
+  </div>
+
+  <!-- 輸入區 -->
+  <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
+    <div style="display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px">
+      <input type="text" id="buildlog-title" placeholder="標題（選填，例：今天好累）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#FDFBF8">
+      <select id="buildlog-mood" style="padding:10px;border:1px solid #E8E3DA;border-radius:4px;font-size:12px;font-family:inherit;background:#FDFBF8;cursor:pointer">
+        <option value="neutral">📝 平常</option>
+        <option value="happy">😊 開心</option>
+        <option value="proud">🏆 驕傲</option>
+        <option value="grateful">🙏 感謝</option>
+        <option value="tired">😮‍💨 疲憊</option>
+        <option value="anxious">😰 焦慮</option>
+      </select>
+    </div>
+    <textarea id="buildlog-input" placeholder="今天發生了什麼？有什麼感覺？有什麼學到的？&#10;&#10;這裡只有你看得到 · 放心寫" rows="5" style="width:100%;padding:12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;line-height:1.7;resize:vertical;box-sizing:border-box;background:#FDFBF8"></textarea>
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+      <div style="font-size:11px;color:#B09498"><span id="buildlog-count">0 篇</span> · 已雲端同步</div>
+      <button id="buildlog-save" style="background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">💾 儲存</button>
+    </div>
+  </div>
+
+  <!-- 歷史日記列表 -->
+  <div id="buildlog-list" style="margin-bottom:24px">
+    <div style="padding:20px;text-align:center;color:#B09498;font-size:12px">載入中...</div>
+  </div>
+</div>
+
+
+<!-- ════════════ 🔐 私人密碼區 · Firebase 雲端同步 ════════════ -->
+<div style="padding:24px 16px 32px;background:#fff;border-top:3px solid #A51820">
+  <div style="margin-bottom:14px">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">PRIVATE VAULT · ENCRYPTED</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:22px;font-weight:900;color:#2A1A1C;margin-bottom:4px">🔐 私人密碼區</div>
+    <div style="font-size:11px;color:#7A5A5E;font-style:italic">統一收藏 · 只有你能看 · 密碼預設星號遮住</div>
+  </div>
+
+  <!-- 安全說明 -->
+  <div style="background:#FAE8EA;border:1px solid #A51820;border-radius:6px;padding:12px;margin-bottom:16px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:12px;margin-bottom:6px">🔒 安全機制</div>
+    <div style="font-size:11px;color:#2A1A1C;line-height:1.7">
+      • 只有登入你帳號的人能看<br>
+      • 密碼預設星號 · 點一下才顯示<br>
+      • 建議重要密碼也備份到 iCloud 鑰匙圈<br>
+      • 此區不適合存銀行類最高機密（用專業密碼管理器）
+    </div>
+  </div>
+
+  <!-- 新增表單 -->
+  <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:13px;font-weight:900;color:#2A1A1C;margin-bottom:10px">✨ 新增一組密碼</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <input type="text" id="vault-name" placeholder="名稱（例：GitHub）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
+      <input type="text" id="vault-url" placeholder="網址（選填）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <input type="text" id="vault-user" placeholder="帳號/email" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
+      <input type="text" id="vault-pass" placeholder="密碼" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:monospace;background:#fff">
+    </div>
+    <input type="text" id="vault-note" placeholder="備註（選填，例：兩步驗證開啟）" style="width:100%;padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:12px;font-family:inherit;box-sizing:border-box;background:#fff;margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <div style="font-size:11px;color:#B09498"><span id="vault-count">0 組</span></div>
+      <button id="vault-save" style="background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;border:none;padding:10px 20px;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">💾 儲存</button>
+    </div>
+  </div>
+
+  <!-- 密碼列表 -->
+  <div id="vault-list">
+    <div style="padding:20px;text-align:center;color:#B09498;font-size:12px">載入中...</div>
+  </div>
+</div>
+
 <!-- ════════════ Astra 使命三版本 ════════════ -->
 <div style="padding:16px 12px 8px">
   <div style="font-size:10px;font-weight:700;color:var(--muted);margin-bottom:12px;letter-spacing:.15em;text-transform:uppercase"><svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg> ASTRA 的使命</div>
@@ -13492,6 +13713,230 @@ init();
 </div>
 <!-- ===== TAB 21: ⚙️ 系統架設 END ===== -->
 
+
+<!-- ═══ Auth 登出按鈕 + Build Log / Vault 模組 ═══ -->
+<script>
+(function(){
+  // 登出按鈕
+  const logoutBtn = document.getElementById('auth-logout-btn');
+  if(logoutBtn){
+    logoutBtn.addEventListener('click', function(){
+      if(!confirm('確定要登出嗎？')) return;
+      auth.signOut().then(function(){
+        location.reload();
+      });
+    });
+  }
+
+  // 登入後顯示登出按鈕
+  window.addEventListener('ics-auth-ready', function(e){
+    if(logoutBtn){
+      logoutBtn.style.display = 'inline-block';
+      logoutBtn.title = '已登入：' + (e.detail.user.email || '未知');
+    }
+  });
+})();
+
+// ═══ Build Log 心情日記模組（Firebase 同步）═══
+(function(){
+  // 等到登入後才初始化
+  window.addEventListener('ics-auth-ready', function(){
+    const listEl = document.getElementById('buildlog-list');
+    const inputEl = document.getElementById('buildlog-input');
+    const titleEl = document.getElementById('buildlog-title');
+    const moodEl = document.getElementById('buildlog-mood');
+    const saveBtn = document.getElementById('buildlog-save');
+    const countEl = document.getElementById('buildlog-count');
+
+    if(!listEl) return;
+    if(!db || !currentUser){ listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#B09498;font-size:12px">尚未連接雲端資料庫</div>'; return; }
+
+    // 讀取日記
+    function loadEntries(){
+      db.collection('buildLog').orderBy('createdAt', 'desc').limit(50).get()
+        .then(function(snap){
+          listEl.innerHTML = '';
+          if(snap.empty){
+            listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#B09498;font-size:12px;font-style:italic">還沒有日記 · 從上方開始第一篇</div>';
+            if(countEl) countEl.textContent = '0 篇';
+            return;
+          }
+          if(countEl) countEl.textContent = snap.size + ' 篇';
+          snap.forEach(function(doc){
+            const d = doc.data();
+            const date = d.createdAt && d.createdAt.toDate ? d.createdAt.toDate() : new Date(d.createdAtString || Date.now());
+            const dateStr = date.getFullYear() + '/' + String(date.getMonth()+1).padStart(2,'0') + '/' + String(date.getDate()).padStart(2,'0') + ' ' + String(date.getHours()).padStart(2,'0') + ':' + String(date.getMinutes()).padStart(2,'0');
+            const moodIcon = {'happy':'😊','tired':'😮‍💨','proud':'🏆','anxious':'😰','grateful':'🙏','neutral':'📝'}[d.mood || 'neutral'] || '📝';
+            const entryDiv = document.createElement('div');
+            entryDiv.style.cssText = 'background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px';
+            entryDiv.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px">' + moodIcon + ' ' + (d.title ? escapeHtml(d.title) : '無標題') + '</div><div style="font-size:10px;color:#B09498;font-family:monospace">' + dateStr + '</div></div><div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(d.content || '') + '</div><button data-id="' + doc.id + '" class="buildlog-del" style="margin-top:8px;background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer;padding:0">刪除</button>';
+            listEl.appendChild(entryDiv);
+          });
+          // 綁刪除
+          listEl.querySelectorAll('.buildlog-del').forEach(function(b){
+            b.addEventListener('click', function(){
+              if(!confirm('確定要刪除這篇日記嗎？')) return;
+              db.collection('buildLog').doc(b.getAttribute('data-id')).delete().then(loadEntries);
+            });
+          });
+        })
+        .catch(function(err){
+          listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#A51820;font-size:12px">讀取失敗：' + err.message + '</div>';
+        });
+    }
+
+    function escapeHtml(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    if(saveBtn){
+      saveBtn.addEventListener('click', function(){
+        const content = (inputEl && inputEl.value || '').trim();
+        if(!content){ alert('請先寫點什麼 🌱'); return; }
+        saveBtn.textContent = '儲存中...';
+        saveBtn.disabled = true;
+        db.collection('buildLog').add({
+          title: titleEl ? titleEl.value.trim() : '',
+          content: content,
+          mood: moodEl ? moodEl.value : 'neutral',
+          level: 'owner',
+          author: currentUser.uid,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          createdAtString: new Date().toISOString()
+        })
+        .then(function(){
+          if(titleEl) titleEl.value = '';
+          inputEl.value = '';
+          if(moodEl) moodEl.value = 'neutral';
+          saveBtn.textContent = '💾 儲存';
+          saveBtn.disabled = false;
+          loadEntries();
+        })
+        .catch(function(err){
+          saveBtn.textContent = '💾 儲存';
+          saveBtn.disabled = false;
+          alert('儲存失敗：' + err.message);
+        });
+      });
+    }
+
+    loadEntries();
+  });
+})();
+
+// ═══ 私人密碼儲存區模組 ═══
+(function(){
+  window.addEventListener('ics-auth-ready', function(){
+    const listEl = document.getElementById('vault-list');
+    const nameEl = document.getElementById('vault-name');
+    const userEl = document.getElementById('vault-user');
+    const passEl = document.getElementById('vault-pass');
+    const urlEl = document.getElementById('vault-url');
+    const noteEl = document.getElementById('vault-note');
+    const saveBtn = document.getElementById('vault-save');
+    const countEl = document.getElementById('vault-count');
+
+    if(!listEl) return;
+    if(!db || !currentUser){ listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#B09498;font-size:12px">尚未連接雲端資料庫</div>'; return; }
+
+    function escapeHtml(s){
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function loadVault(){
+      db.collection('vault').orderBy('updatedAt', 'desc').limit(100).get()
+        .then(function(snap){
+          listEl.innerHTML = '';
+          if(snap.empty){
+            listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#B09498;font-size:12px;font-style:italic">還沒有密碼 · 從上方新增第一個</div>';
+            if(countEl) countEl.textContent = '0 組';
+            return;
+          }
+          if(countEl) countEl.textContent = snap.size + ' 組';
+          snap.forEach(function(doc){
+            const d = doc.data();
+            const card = document.createElement('div');
+            card.style.cssText = 'background:#fff;border:1px solid #E8E3DA;padding:14px;margin-bottom:10px;border-radius:6px';
+            const passMask = '••••••••••';
+            card.innerHTML = 
+              '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
+                '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:14px">🔐 ' + escapeHtml(d.name || '無名') + '</div>' +
+                '<button data-id="' + doc.id + '" class="vault-del" style="background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer">刪除</button>' +
+              '</div>' +
+              (d.url ? '<div style="font-size:11px;color:#7A5A5E;margin-bottom:6px">🌐 <a href="' + escapeHtml(d.url) + '" target="_blank" rel="noopener" style="color:#A51820;text-decoration:none;border-bottom:1px dashed #A51820">' + escapeHtml(d.url) + '</a></div>' : '') +
+              (d.user ? '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">帳號</span> <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px">' + escapeHtml(d.user) + '</code></div>' : '') +
+              '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">密碼</span> <code class="vault-pass-field" data-real="' + escapeHtml(d.pass || '') + '" style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px;cursor:pointer" title="點擊顯示">' + passMask + '</code> <button class="vault-copy-pass" data-val="' + escapeHtml(d.pass || '') + '" style="background:transparent;border:1px solid #E8E3DA;padding:2px 6px;border-radius:3px;font-size:10px;color:#7A5A5E;cursor:pointer;margin-left:4px">複製</button></div>' +
+              (d.note ? '<div style="font-size:11px;color:#7A5A5E;font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed #E8E3DA">📝 ' + escapeHtml(d.note) + '</div>' : '');
+            listEl.appendChild(card);
+          });
+          // 綁事件：顯示密碼
+          listEl.querySelectorAll('.vault-pass-field').forEach(function(el){
+            el.addEventListener('click', function(){
+              const real = el.getAttribute('data-real');
+              if(el.textContent === '••••••••••'){ el.textContent = real; el.title = '點擊隱藏'; }
+              else { el.textContent = '••••••••••'; el.title = '點擊顯示'; }
+            });
+          });
+          // 綁事件：複製
+          listEl.querySelectorAll('.vault-copy-pass').forEach(function(b){
+            b.addEventListener('click', function(){
+              const v = b.getAttribute('data-val');
+              navigator.clipboard.writeText(v).then(function(){
+                const orig = b.textContent;
+                b.textContent = '✓ 已複製';
+                setTimeout(function(){ b.textContent = orig; }, 1500);
+              });
+            });
+          });
+          // 綁事件：刪除
+          listEl.querySelectorAll('.vault-del').forEach(function(b){
+            b.addEventListener('click', function(){
+              if(!confirm('確定要刪除這組密碼嗎？')) return;
+              db.collection('vault').doc(b.getAttribute('data-id')).delete().then(loadVault);
+            });
+          });
+        })
+        .catch(function(err){
+          listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#A51820;font-size:12px">讀取失敗：' + err.message + '</div>';
+        });
+    }
+
+    if(saveBtn){
+      saveBtn.addEventListener('click', function(){
+        const name = (nameEl && nameEl.value || '').trim();
+        const pass = (passEl && passEl.value || '').trim();
+        if(!name || !pass){ alert('請至少填寫「名稱」和「密碼」'); return; }
+        saveBtn.textContent = '儲存中...';
+        saveBtn.disabled = true;
+        db.collection('vault').add({
+          name: name,
+          user: userEl ? userEl.value.trim() : '',
+          pass: pass,
+          url: urlEl ? urlEl.value.trim() : '',
+          note: noteEl ? noteEl.value.trim() : '',
+          level: 'owner',
+          author: currentUser.uid,
+          createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+        })
+        .then(function(){
+          [nameEl,userEl,passEl,urlEl,noteEl].forEach(function(el){ if(el) el.value=''; });
+          saveBtn.textContent = '💾 儲存';
+          saveBtn.disabled = false;
+          loadVault();
+        })
+        .catch(function(err){
+          saveBtn.textContent = '💾 儲存';
+          saveBtn.disabled = false;
+          alert('儲存失敗：' + err.message);
+        });
+      });
+    }
+
+    loadVault();
+  });
+})();
+</script>
 
 <!-- ═══ ICS Navigation Widget ═══ -->
 <style>
