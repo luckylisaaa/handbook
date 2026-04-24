@@ -12055,8 +12055,10 @@ init();
     <a href="#ch-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📋 Ch3 常用 SOP</a>
     <a href="#ch-commit" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">⚡ Ch4 Commit 格式</a>
     <a href="#ch-folder" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📁 Ch5 資料夾系統</a>
-    <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🆘 Ch6 問題排解</a>
-    <a href="#ch-advanced" style="grid-column:1/-1;padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🎓 Ch7 進階知識（以後再學）</a>
+    <a href="#ch-backup" style="padding:10px 12px;background:#FAE8EA;border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🛡️ Ch6 分級備份 ⭐</a>
+    <a href="#ch-update-sop" style="padding:10px 12px;background:#FAE8EA;border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🔁 Ch7 更新SOP ⭐</a>
+    <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🆘 Ch8 問題排解</a>
+    <a href="#ch-advanced" style="grid-column:1/-1;padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🎓 Ch9 進階知識（以後再學）</a>
   </div>
 </div>
 
@@ -12630,10 +12632,286 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 6 章：問題排解 -->
+<!-- 第 6 章：次數分級備份系統 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-backup" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 06</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🛡️ 次數分級備份系統</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">一天 40 次更新也不會累·小改靠 GitHub·大改手動備份</div>
+
+  <!-- 核心觀念 -->
+  <div style="background:#fff;border:1px solid #E8E3DA;border-left:4px solid #A51820;padding:16px;margin-bottom:24px;border-radius:4px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:15px;margin-bottom:8px">💎 核心觀念</div>
+    <div style="font-size:13px;color:#2A1A1C;line-height:1.8">你已經有 <strong>3 層備份保護</strong>，不用什麼都手動：<br>🌐 GitHub Commits（自動·永久）<br>☁️ iCloud Drive（自動·雲端）<br>📦 里程碑資料夾（手動·只給大事）</div>
+  </div>
+
+  <!-- 6.1 三級分類 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">6.1 三級更新分類</div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #4A9D4C;padding:14px;margin-bottom:12px;border-radius:4px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:16px">🟢</span>
+        <span style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A1A1C;font-size:14px">小改 · 約佔 70%</span>
+        <span style="background:#E8F5E9;color:#2A5A2C;padding:2px 6px;border-radius:2px;font-size:10px">每天約 28 次</span>
+      </div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        <strong>例：</strong>改錯字、調顏色、換一張圖、改一個數字<br>
+        <strong>備份策略：</strong>只靠 GitHub Commit（不用建資料夾）<br>
+        <strong>流程：</strong>改 → 上傳 → commit → 完成<br>
+        <strong>時間：</strong>約 2 分鐘
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #E8A33C;padding:14px;margin-bottom:12px;border-radius:4px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:16px">🟡</span>
+        <span style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A1A1C;font-size:14px">中改 · 約佔 25%</span>
+        <span style="background:#FFF4E0;color:#7A5010;padding:2px 6px;border-radius:2px;font-size:10px">每天約 10 次</span>
+      </div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        <strong>例：</strong>新增一個功能、修一個 bug、加一段內容<br>
+        <strong>備份策略：</strong>當日累積備份資料夾（一天一個）<br>
+        <strong>流程：</strong>改 → 複製到當日資料夾 → 上傳 → commit<br>
+        <strong>時間：</strong>約 5 分鐘
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #A51820;padding:14px;margin-bottom:0;border-radius:4px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+        <span style="font-size:16px">🔴</span>
+        <span style="font-family:'Noto Serif TC',serif;font-weight:900;color:#2A1A1C;font-size:14px">大改 · 約佔 5%</span>
+        <span style="background:#FAE8EA;color:#A51820;padding:2px 6px;border-radius:2px;font-size:10px">每週 1-2 次</span>
+      </div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        <strong>例：</strong>新增整個章節、重做視覺風格、建新系統<br>
+        <strong>備份策略：</strong>建里程碑資料夾（完整備份）<br>
+        <strong>流程：</strong>改 → 建新里程碑 → 完整備份 → 上傳 → commit<br>
+        <strong>時間：</strong>約 10-15 分鐘
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.2 命名公式 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">6.2 里程碑資料夾命名公式</div>
+
+    <div style="background:#2A1A1C;color:#FDFBF8;padding:16px;border-radius:4px;font-family:monospace;font-size:13px;text-align:center;margin-bottom:12px">
+      YYYYMMDD_類型_網站_V版本號_一句話摘要
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:4px;overflow:hidden;margin-bottom:12px">
+      <div style="display:grid;grid-template-columns:80px 1fr;background:#F4F1EC;font-weight:700;font-size:12px">
+        <div style="padding:8px 10px;color:#A51820">欄位</div>
+        <div style="padding:8px 10px;color:#A51820">填什麼</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:12px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-weight:700;color:#2A1A1C">日期</div>
+        <div style="padding:8px 10px;color:#2A1A1C;font-family:monospace">20260424</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:12px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:8px 10px;font-weight:700;color:#2A1A1C">類型</div>
+        <div style="padding:8px 10px;color:#2A1A1C">BUILD / FEAT / FIX / STYLE / DOCS</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:12px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-weight:700;color:#2A1A1C">網站</div>
+        <div style="padding:8px 10px;color:#2A1A1C">Handbook / Matrix / Tasks / ALL</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:12px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:8px 10px;font-weight:700;color:#2A1A1C">版本</div>
+        <div style="padding:8px 10px;color:#2A1A1C">V1 開始累計·不重置</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:12px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-weight:700;color:#2A1A1C">摘要</div>
+        <div style="padding:8px 10px;color:#2A1A1C">一句話講做了什麼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6.3 類型代號對照 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">6.3 五種類型代號</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:10px;font-style:italic">💡 跟 Commit Message 用同一套代號·記一次終身受用</div>
+
+    <div style="display:grid;grid-template-columns:90px 1fr;gap:8px;font-size:13px">
+      <div style="background:linear-gradient(135deg,#B51E28,#7A1018);color:#fff;padding:8px 10px;border-radius:4px;font-weight:900;text-align:center;font-family:monospace">BUILD</div>
+      <div style="background:#fff;border:1px solid #E8E3DA;padding:8px 12px;border-radius:4px;color:#2A1A1C">建立 / 架構 / 新系統</div>
+
+      <div style="background:linear-gradient(135deg,#4A7FA0,#2A5580);color:#fff;padding:8px 10px;border-radius:4px;font-weight:900;text-align:center;font-family:monospace">FEAT</div>
+      <div style="background:#fff;border:1px solid #E8E3DA;padding:8px 12px;border-radius:4px;color:#2A1A1C">新功能 / 新內容</div>
+
+      <div style="background:linear-gradient(135deg,#E8A33C,#C07A10);color:#fff;padding:8px 10px;border-radius:4px;font-weight:900;text-align:center;font-family:monospace">FIX</div>
+      <div style="background:#fff;border:1px solid #E8E3DA;padding:8px 12px;border-radius:4px;color:#2A1A1C">修 bug / 錯誤修正</div>
+
+      <div style="background:linear-gradient(135deg,#8B6CA8,#6A4A85);color:#fff;padding:8px 10px;border-radius:4px;font-weight:900;text-align:center;font-family:monospace">STYLE</div>
+      <div style="background:#fff;border:1px solid #E8E3DA;padding:8px 12px;border-radius:4px;color:#2A1A1C">視覺 / 樣式 / 調整</div>
+
+      <div style="background:linear-gradient(135deg,#C07090,#8A4565);color:#fff;padding:8px 10px;border-radius:4px;font-weight:900;text-align:center;font-family:monospace">DOCS</div>
+      <div style="background:#fff;border:1px solid #E8E3DA;padding:8px 12px;border-radius:4px;color:#2A1A1C">文件更新 / 摘要 / 紀錄</div>
+    </div>
+  </div>
+
+  <!-- 6.4 實戰範例 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">6.4 實戰範例</div>
+    <div style="background:#2A1A1C;color:#FDFBF8;padding:16px;border-radius:4px;font-family:monospace;font-size:11px;line-height:2">
+      20260423_BUILD_ALL_V1_六大網站上線<br>
+      20260424_FIX_Handbook_V2_系統架設空白+素材包<br>
+      20260501_FEAT_Matrix_V3_破圈挑戰14格<br>
+      20260505_STYLE_Brand_V4_配色微調<br>
+      20260510_FEAT_Tasks_V5_週報模組<br>
+      20260515_DOCS_ALL_V6_更新交接摘要
+    </div>
+  </div>
+
+  <!-- 6.5 什麼時候要建里程碑 -->
+  <div style="background:#FAE8EA;border:1px solid #A51820;padding:16px;border-radius:4px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:10px">🎯 什麼時候建里程碑資料夾</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.9">
+      ✓ 重大功能完成（新章節、新系統）<br>
+      ✓ 大改版前（想之後回去）<br>
+      ✓ 交給客戶前的穩定版<br>
+      ✓ 做實驗性改動前（可能會壞）<br>
+      <br>
+      <strong style="color:#A51820">不是每天建！一週 1-2 次就好</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 7 章：每次更新 SOP -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-update-sop" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 07</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🔁 每次更新的 SOP</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">跟 AI 合作的標準流程·確保下次跟任何 AI 都能接上</div>
+
+  <!-- 重點提示 -->
+  <div style="background:#FAE8EA;border:1px solid #A51820;padding:14px;margin-bottom:24px;border-radius:4px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:8px">📌 重要：告訴 AI 的開頭咒語</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      每次跟新 AI 說話，先貼這句：<br>
+      <div style="background:#fff;border:1px dashed #A51820;padding:10px;margin-top:8px;font-family:monospace;font-size:11px;color:#2A1A1C">
+        我要更新 [網站名]，請依照 Handbook Ch7 的 SOP 給我完整四件套：<br>
+        1. 資料夾命名 2. Commit message<br>
+        3. 電腦操作步驟 4. GitHub 上架步驟
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.1 AI 四件套 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.1 AI 必須給你的四件套</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:10px;font-style:italic">缺任何一件就叫 AI 補·不要自己猜</div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:6px">① 資料夾命名</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        AI 要幫你決定這次是 🟢🟡🔴 哪級<br>
+        若是 🔴 要給完整命名：<span style="font-family:monospace;background:#F4F1EC;padding:2px 6px;font-size:11px">20260424_FIX_Handbook_V2_描述</span>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #4A7FA0;padding:14px;margin-bottom:10px;border-radius:4px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#4A7FA0;font-size:14px;margin-bottom:6px">② Commit Message</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        標題格式：<span style="font-family:monospace;background:#F4F1EC;padding:2px 6px;font-size:11px">[類型] 中文描述</span><br>
+        描述格式：<span style="font-family:monospace;background:#F4F1EC;padding:2px 6px;font-size:11px">English description</span>
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #E8A33C;padding:14px;margin-bottom:10px;border-radius:4px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#C07A10;font-size:14px;margin-bottom:6px">③ 電腦操作步驟</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        1. 下載檔案位置<br>
+        2. 是否要備份·備份到哪<br>
+        3. 放進哪個 Site 資料夾<br>
+        4. 是否覆蓋
+      </div>
+    </div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #8B6CA8;padding:14px;margin-bottom:0;border-radius:4px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#6A4A85;font-size:14px;margin-bottom:6px">④ GitHub 上架步驟</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.7">
+        1. 哪個 repo（URL）<br>
+        2. 傳哪些檔案<br>
+        3. Commit message 文字<br>
+        4. 驗證網址
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.2 範例對話 -->
+  <div style="margin-bottom:24px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.2 範例對話</div>
+
+    <div style="background:#F4F1EC;padding:12px;border-radius:4px;margin-bottom:8px">
+      <div style="font-size:10px;color:#A51820;font-weight:900;letter-spacing:1px;margin-bottom:4px">你 →</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.6">幫我在 handbook 加一個新的章節介紹 ICS 的服務項目</div>
+    </div>
+
+    <div style="background:#FAE8EA;border-left:3px solid #A51820;padding:12px;border-radius:4px">
+      <div style="font-size:10px;color:#A51820;font-weight:900;letter-spacing:1px;margin-bottom:4px">AI ← 正確回應</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+        這屬於 🔴 <strong>大改</strong>，需要建里程碑備份。<br><br>
+        <strong>① 資料夾命名：</strong><br>
+        <span style="font-family:monospace;background:#fff;padding:2px 6px;font-size:10px">20260424_FEAT_Handbook_V3_服務項目章節</span><br><br>
+        <strong>② Commit Message：</strong><br>
+        標題：<span style="font-family:monospace;background:#fff;padding:2px 6px;font-size:10px">[FEAT] 新增服務項目章節</span><br>
+        描述：<span style="font-family:monospace;background:#fff;padding:2px 6px;font-size:10px">Add services chapter to Handbook</span><br><br>
+        <strong>③ 電腦操作步驟：</strong><br>
+        1. 下載我打包好的 index.html<br>
+        2. 建立里程碑資料夾（見上）<br>
+        3. 從 Site_1 複製現有 index.html 過去備份<br>
+        4. 新版放進 Site_1 覆蓋<br><br>
+        <strong>④ GitHub 上架：</strong><br>
+        1. 打開 github.com/luckylisaaa/handbook<br>
+        2. Add file → Upload files<br>
+        3. 拖 index.html → 選 Replace<br>
+        4. 填上面的 Commit message → Commit<br>
+        5. 驗證：luckylisaaa.github.io/handbook/
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.3 快速查表 -->
+  <div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.3 Commit Message 快速查表</div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:4px;overflow:hidden">
+      <div style="display:grid;grid-template-columns:80px 1fr;background:#F4F1EC;font-weight:700;font-size:11px">
+        <div style="padding:8px 10px;color:#A51820">類型</div>
+        <div style="padding:8px 10px;color:#A51820">標題範例</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-family:monospace;color:#A51820;font-weight:700">[BUILD]</div>
+        <div style="padding:8px 10px;color:#2A1A1C">[BUILD] 建立矩陣 PWA 架構</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:8px 10px;font-family:monospace;color:#4A7FA0;font-weight:700">[FEAT]</div>
+        <div style="padding:8px 10px;color:#2A1A1C">[FEAT] 新增容器④教知識14格</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-family:monospace;color:#C07A10;font-weight:700">[FIX]</div>
+        <div style="padding:8px 10px;color:#2A1A1C">[FIX] 修正系統架設分頁空白 bug</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA;background:#FDF8F8">
+        <div style="padding:8px 10px;font-family:monospace;color:#6A4A85;font-weight:700">[STYLE]</div>
+        <div style="padding:8px 10px;color:#2A1A1C">[STYLE] 調整按鈕配色+間距</div>
+      </div>
+      <div style="display:grid;grid-template-columns:80px 1fr;font-size:11px;border-top:1px solid #E8E3DA">
+        <div style="padding:8px 10px;font-family:monospace;color:#8A4565;font-weight:700">[DOCS]</div>
+        <div style="padding:8px 10px;color:#2A1A1C">[DOCS] 更新 Build Log 20260424</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 8 章：問題排解（原第 6 章） -->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-fix" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 06</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 08</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🆘 遇到問題怎麼辦</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">常見狀況與解法·不用慌</div>
 
@@ -12727,7 +13005,7 @@ init();
 <!-- 第 7 章：進階知識 -->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-advanced" style="padding:32px 16px 40px;background:#fff;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 07</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 09</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🎓 進階知識</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">以後再學·現在不急著懂</div>
 
