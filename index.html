@@ -13106,10 +13106,316 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 7 章：每次更新 SOP -->
+<!-- 第 7 章：Firebase 雲端 SOP（全新章節）-->
+<!-- 插入位置：原 Ch7 之前，原 Ch7 順移成 Ch8 -->
+<!-- ═════════════════════════════════════ -->
+<div id="ch-firebase" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 07</div>
+  <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🔥 Firebase 雲端 SOP</div>
+  <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">把網站從「本機檔案」升級成「雲端應用」·所有資料即時同步永不消失</div>
+
+  <!-- 重點提示 -->
+  <div style="background:#FAE8EA;border:1px solid #A51820;padding:14px;margin-bottom:24px;border-radius:4px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:8px">📌 為什麼這章「非常重要」</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+      Ch5-6 教你怎麼放「本機檔案」（電腦資料夾）<br>
+      Ch7 教你怎麼放「雲端資料」（Firebase 資料庫）<br>
+      → 這是把網站從「靜態」升級成「動態 SaaS」的關鍵章節
+    </div>
+  </div>
+
+  <!-- 7.1 Firebase 是什麼 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.1 Firebase 是什麼·用比喻說</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">不要被技術名詞嚇到·用日常生活的比喻來理解</div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:12px">
+      <div style="font-weight:700;color:#A51820;font-size:13px;margin-bottom:8px">🏠 把 Firebase 想像成「雲端的家」</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+        ・<strong>GitHub Pages</strong> = 你網站的<strong>外觀</strong>（HTML/CSS/JS 靜態檔案）<br>
+        ・<strong>Firebase</strong> = 你網站的<strong>大腦</strong>（會記住每個用戶寫了什麼）<br>
+        ・<strong>Firestore</strong> = Firebase 裡的<strong>資料庫</strong>（一格一格的資料表）<br>
+        ・<strong>Firebase Auth</strong> = Firebase 的<strong>門鎖</strong>（誰能進來·誰能看什麼）
+      </div>
+    </div>
+
+    <div style="background:#FDF3F4;border:1px solid #A51820;border-radius:8px;padding:16px">
+      <div style="font-weight:700;color:#A51820;font-size:13px;margin-bottom:8px">💡 ICS 集中派戰略</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+        所有 6 個網站（Handbook / Scripts / Tasks / Matrix / Brand / Home）<br>
+        全部接<strong>同一個 Firebase 專案</strong>：<code style="background:#fff;padding:2px 6px;border-radius:3px;font-family:monospace">lucky-handbook</code><br>
+        → 一個帳號登入·全網站通用<br>
+        → 資料統一管理·不用切換
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.2 三大核心功能 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.2 三大核心功能</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">你目前用到的 Firebase 三件事</div>
+
+    <div style="display:grid;gap:10px">
+      <div style="background:#fff;border-left:3px solid #A51820;padding:12px 14px">
+        <div style="font-weight:700;color:#A51820;font-size:13px;margin-bottom:4px">① Authentication 登入系統</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.6">
+          Email + 密碼登入·只有 FOUNDER UID（你）才能看私密內容<br>
+          <span style="color:#7A5A5E;font-style:italic">→ 用在：Handbook 私人密碼區、Tasks 個人任務</span>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-left:3px solid #4A9D4C;padding:12px 14px">
+        <div style="font-weight:700;color:#2A5A2C;font-size:13px;margin-bottom:4px">② Firestore 資料庫</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.6">
+          NoSQL 即時雲端資料庫·每筆資料叫「文件 document」<br>
+          <span style="color:#7A5A5E;font-style:italic">→ 用在：Tasks 任務清單、Build Log 心情日記、私人密碼</span>
+        </div>
+      </div>
+
+      <div style="background:#fff;border-left:3px solid #6A4A85;padding:12px 14px">
+        <div style="font-weight:700;color:#6A4A85;font-size:13px;margin-bottom:4px">③ Hosting 網站託管（暫不用）</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.6">
+          Firebase 自己的網站託管服務<br>
+          <span style="color:#7A5A5E;font-style:italic">→ 我們用 GitHub Pages 託管·所以這個暫不用</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.3 集中派架構 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.3 ICS 集中派架構圖</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">所有網站接同一個資料庫·永遠不要分開</div>
+
+    <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:20px 14px">
+      <svg viewBox="0 0 340 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;max-width:340px;display:block;margin:0 auto">
+        <!-- 中心：Firebase -->
+        <rect x="120" y="200" width="100" height="60" rx="8" fill="#A51820"/>
+        <text x="170" y="226" font-family="'Noto Serif TC',serif" font-size="12" font-weight="900" fill="#fff" text-anchor="middle">Firebase</text>
+        <text x="170" y="244" font-family="monospace" font-size="9" fill="#FAE8EA" text-anchor="middle">lucky-handbook</text>
+
+        <!-- 6 個網站圍繞 -->
+        <!-- Handbook 上 -->
+        <rect x="130" y="20" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="170" y="38" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Handbook</text>
+        <text x="170" y="52" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">學習手冊</text>
+
+        <!-- Scripts 右上 -->
+        <rect x="230" y="80" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="270" y="98" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Scripts</text>
+        <text x="270" y="112" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">腳本系統</text>
+
+        <!-- Tasks 右下 -->
+        <rect x="230" y="340" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="270" y="358" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Tasks</text>
+        <text x="270" y="372" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">執行清單</text>
+
+        <!-- Matrix 下 -->
+        <rect x="130" y="400" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="170" y="418" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Matrix</text>
+        <text x="170" y="432" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">選題矩陣</text>
+
+        <!-- Brand 左下 -->
+        <rect x="30" y="340" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="70" y="358" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Brand</text>
+        <text x="70" y="372" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">品牌規範書</text>
+
+        <!-- Home 左上 -->
+        <rect x="30" y="80" width="80" height="40" rx="6" fill="#FDF3F4" stroke="#A51820" stroke-width="1.5"/>
+        <text x="70" y="98" font-family="'Noto Serif TC',serif" font-size="11" font-weight="700" fill="#A51820" text-anchor="middle">Home</text>
+        <text x="70" y="112" font-family="'Noto Sans TC',sans-serif" font-size="9" fill="#7A5A5E" text-anchor="middle">總入口頁</text>
+
+        <!-- 連線到中心 -->
+        <line x1="170" y1="62" x2="170" y2="200" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="232" y1="120" x2="200" y2="200" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="232" y1="340" x2="200" y2="260" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="170" y1="400" x2="170" y2="260" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="108" y1="340" x2="140" y2="260" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+        <line x1="108" y1="120" x2="140" y2="200" stroke="#A51820" stroke-width="1" stroke-dasharray="3,3"/>
+      </svg>
+      <div style="text-align:center;font-size:10px;color:#7A5A5E;font-style:italic;margin-top:12px">六網站全串連·一個資料庫</div>
+    </div>
+  </div>
+
+  <!-- 7.4 開頭咒語 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.4 跟 AI 合作 Firebase 的開頭咒語</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">每次跟新 AI 說話·先貼這段·避免重做或破壞</div>
+
+    <div style="background:#FAE8EA;border:1px solid #A51820;padding:14px;border-radius:4px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:13px;margin-bottom:10px">📋 Firebase 開頭咒語（複製貼上）</div>
+      <div style="background:#fff;border:1px dashed #A51820;padding:12px;font-family:monospace;font-size:11px;color:#2A1A1C;line-height:1.7">
+        我的 Firebase 設定（請嚴格遵守·不要改動）：<br>
+        ・專案：lucky-handbook（集中派·不要建新專案）<br>
+        ・SDK 版本：v9 compat（不要碰 v10 modules）<br>
+        ・FOUNDER UID：7PVhEyBe9XbEcdAqbq2uLtEqRLC2<br>
+        ・Auth：Email + 密碼<br>
+        ・主要 collection：tasks / buildLog / vault<br>
+        <br>
+        我要做的：[在這裡寫你的需求]
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.5 三大規則 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.5 三大絕對規則·不要破</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">破任何一條都會讓網站爆炸或資料消失</div>
+
+    <div style="display:grid;gap:10px">
+      <div style="background:#fff;border:2px solid #A51820;border-radius:6px;padding:14px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:6px">🚫 規則 ①·不要建新 Firebase 專案</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.7">
+          所有網站都用 <code style="background:#FDF3F4;padding:2px 6px;border-radius:3px;font-family:monospace">lucky-handbook</code> 這一個專案<br>
+          AI 如果建議「為這個網站建獨立 Firebase」→ <strong style="color:#A51820">直接拒絕</strong><br>
+          理由：分開後資料無法互通·登入要重做·破壞集中派
+        </div>
+      </div>
+
+      <div style="background:#fff;border:2px solid #A51820;border-radius:6px;padding:14px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:6px">🚫 規則 ②·不要混用 SDK 版本</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.7">
+          全部用 <code style="background:#FDF3F4;padding:2px 6px;border-radius:3px;font-family:monospace">v9 compat</code>·不要碰 v10 modules<br>
+          AI 如果建議「升級到 modular SDK」→ <strong style="color:#A51820">直接拒絕</strong><br>
+          理由：v10 跟現有程式碼語法不同·改一個檔會帶壞全網站
+        </div>
+      </div>
+
+      <div style="background:#fff;border:2px solid #A51820;border-radius:6px;padding:14px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:6px">🚫 規則 ③·不要動 Security Rules（除非你完全懂）</div>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.7">
+          目前 Firestore 規則設定為：FOUNDER UID 才能寫入<br>
+          AI 如果說「為了測試先開放讀寫」→ <strong style="color:#A51820">直接拒絕</strong><br>
+          理由：開放後任何人都能改你的資料·被駭客找到會被洗光
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.6 常見場景 SOP -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.6 常見場景 SOP</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">遇到問題·先看這裡有沒有對應 SOP</div>
+
+    <div style="display:grid;gap:12px">
+      <details style="background:#fff;border:1px solid #E8E3DA;border-radius:6px;padding:12px 14px">
+        <summary style="font-weight:700;color:#A51820;font-size:13px;cursor:pointer">📝 場景 A·新網站要接 Firebase</summary>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px dashed #E8E3DA">
+          <strong>步驟：</strong><br>
+          1. 跟 AI 說：「請接 lucky-handbook，用 v9 compat」<br>
+          2. AI 給你 firebaseConfig（複製貼到 index.html 的 &lt;head&gt;）<br>
+          3. AI 給你 import 標籤（compat 版的 firebase-app.js + firebase-auth.js + firebase-firestore.js）<br>
+          4. 測試登入：用 FOUNDER 信箱 + 密碼<br>
+          5. 測試寫入：建一筆測試資料·確認有進 Firestore<br>
+          <strong>檢核：</strong>到 Firebase Console 看資料有沒有進去
+        </div>
+      </details>
+
+      <details style="background:#fff;border:1px solid #E8E3DA;border-radius:6px;padding:12px 14px">
+        <summary style="font-weight:700;color:#A51820;font-size:13px;cursor:pointer">🔄 場景 B·新增一個 collection</summary>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px dashed #E8E3DA">
+          <strong>步驟：</strong><br>
+          1. 想清楚 collection 名稱（例：moodLog / projects）<br>
+          2. 想清楚每筆資料有哪些欄位（例：title / content / mood / createdAt）<br>
+          3. 跟 AI 說：「在 lucky-handbook 新增 moodLog collection·欄位有 X / Y / Z」<br>
+          4. AI 寫 add / read / update / delete 函式<br>
+          5. 部署測試<br>
+          <strong>注意：</strong>collection 名稱<strong>不要用中文</strong>·都用小寫英文
+        </div>
+      </details>
+
+      <details style="background:#fff;border:1px solid #E8E3DA;border-radius:6px;padding:12px 14px">
+        <summary style="font-weight:700;color:#A51820;font-size:13px;cursor:pointer">⚠️ 場景 C·登入有問題（看不到資料 / 一直登出）</summary>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px dashed #E8E3DA">
+          <strong>檢查順序：</strong><br>
+          1. 打開瀏覽器開發者工具（F12）→ Console 頁籤<br>
+          2. 看有沒有紅色錯誤訊息（截圖給 AI）<br>
+          3. 確認 firebaseConfig 是 lucky-handbook（不是別的專案）<br>
+          4. 確認 Auth 已啟用 Email/Password<br>
+          5. 確認你登入的 email 在 Firebase Auth 裡<br>
+          <strong>常見原因：</strong>跨網站 Auth 沒同步·清快取重登
+        </div>
+      </details>
+
+      <details style="background:#fff;border:1px solid #E8E3DA;border-radius:6px;padding:12px 14px">
+        <summary style="font-weight:700;color:#A51820;font-size:13px;cursor:pointer">🚨 場景 D·資料寫不進去（Permission denied）</summary>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px dashed #E8E3DA">
+          <strong>原因：</strong>Firestore Rules 阻擋<br>
+          <strong>檢查：</strong><br>
+          1. 確認你已登入（不是匿名）<br>
+          2. 確認 UID 是 FOUNDER UID<br>
+          3. 看 Firestore Rules 是否允許 FOUNDER 寫入<br>
+          <strong>絕對不要：</strong>把 Rules 改成「allow read, write: if true;」<br>
+          → 這等於把家門打開讓全世界進來
+        </div>
+      </details>
+
+      <details style="background:#fff;border:1px solid #E8E3DA;border-radius:6px;padding:12px 14px">
+        <summary style="font-weight:700;color:#A51820;font-size:13px;cursor:pointer">💾 場景 E·備份 Firebase 資料</summary>
+        <div style="font-size:11px;color:#2A1A1C;line-height:1.8;margin-top:10px;padding-top:10px;border-top:1px dashed #E8E3DA">
+          <strong>頻率：</strong>每月一次（重大改動前）<br>
+          <strong>步驟：</strong><br>
+          1. 進 Firebase Console → Firestore<br>
+          2. 每個 collection 點開·一筆一筆截圖（簡單版）<br>
+          3. 或用 Firebase CLI 匯出（進階版·問 AI）<br>
+          4. 存到「01_重大里程碑備份/Firebase_YYYYMMDD/」<br>
+          <strong>提醒：</strong>Firebase 免費版不會自動備份·要靠你
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- 7.7 集中派 vs 分散派 -->
+  <div style="margin-bottom:32px">
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.7 為什麼選「集中派」</div>
+    <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">這個決定影響你未來所有網站</div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:#FDF3F4;border:1px solid #A51820;border-radius:6px;padding:12px">
+        <div style="font-weight:900;color:#A51820;font-size:12px;margin-bottom:6px">✅ 集中派（你的選擇）</div>
+        <div style="font-size:10px;color:#2A1A1C;line-height:1.7">
+          ・一個 Firebase 專案<br>
+          ・一個帳號通用 6 網站<br>
+          ・資料統一查詢<br>
+          ・備份只備一次<br>
+          ・成本最低
+        </div>
+      </div>
+      <div style="background:#F4F1EC;border:1px solid #7A5A5E;border-radius:6px;padding:12px">
+        <div style="font-weight:900;color:#7A5A5E;font-size:12px;margin-bottom:6px">❌ 分散派（不要選）</div>
+        <div style="font-size:10px;color:#2A1A1C;line-height:1.7">
+          ・每網站獨立專案<br>
+          ・每網站要重新登入<br>
+          ・資料無法互通<br>
+          ・備份要做 6 次<br>
+          ・管理複雜
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7.8 給未來自己的話 -->
+  <div style="background:linear-gradient(135deg,#FDF3F4 0%,#FAE8EA 100%);border:1px solid #A51820;border-radius:8px;padding:16px">
+    <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:8px">💎 給未來的 Lisa</div>
+    <div style="font-size:12px;color:#2A1A1C;line-height:1.8;font-style:italic">
+      Firebase 是你網站的「命脈」·動它要謹慎<br>
+      但只要遵守這章的規則·它就是最強的盟友<br>
+      <br>
+      6 個網站串成一片宇宙·都是因為有它<br>
+      → 這是你從「會做網站」變成「擁有 SaaS」的關鍵
+    </div>
+  </div>
+</div>
+<!-- ═════════════════════════════════════ -->
+<!-- 第 7 章 結束 -->
+<!-- ═════════════════════════════════════ -->
+
+
+<!-- ═════════════════════════════════════ -->
+<!-- 第 8 章:每次更新 SOP（原第 7 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-update-sop" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 07</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 08</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🔁 每次更新的 SOP</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">跟 AI 合作的標準流程·確保下次跟任何 AI 都能接上</div>
 
@@ -13366,10 +13672,10 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 8 章：問題排解（原第 6 章） -->
+<!-- 第 9 章:問題排解（原第 8 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-fix" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 08</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 09</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🆘 遇到問題怎麼辦</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">常見狀況與解法·不用慌</div>
 
@@ -13460,10 +13766,10 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 7 章：進階知識 -->
+<!-- 第 10 章：進階知識（原第 9 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-advanced" style="padding:32px 16px 40px;background:#fff;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 09</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 10</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🎓 進階知識</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">以後再學·現在不急著懂</div>
 
@@ -13550,10 +13856,10 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 10 章：AI Agent 指令模板 -->
+<!-- 第 11 章：AI Agent 指令模板（原第 10 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-agent" style="padding:32px 16px 40px;background:#FDFBF8;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 10</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 11</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🤖 AI Agent 指令模板</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">從「我自己做」→「AI 幫我做」·讓一句話啟動整個流程</div>
 
@@ -13721,7 +14027,7 @@ init();
   const logoutBtn = document.getElementById('auth-logout-btn');
   if(logoutBtn){
     logoutBtn.addEventListener('click', function(){
-      if(!confirm('確定要登出嗎？')) return;
+      if(!confirm('⚠️ 提醒：登出後 Handbook / Scripts / Tasks 會同時登出（共享登入狀態）\n\n確定要登出嗎？')) return;
       auth.signOut().then(function(){
         location.reload();
       });
