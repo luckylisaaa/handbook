@@ -10751,12 +10751,26 @@ init();
     <div style="display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px">
       <input type="text" id="buildlog-title" placeholder="標題（選填，例：今天好累）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#FDFBF8">
       <select id="buildlog-mood" style="padding:10px;border:1px solid #E8E3DA;border-radius:4px;font-size:12px;font-family:inherit;background:#FDFBF8;cursor:pointer">
-        <option value="neutral">📝 平常</option>
-        <option value="happy">😊 開心</option>
-        <option value="proud">🏆 驕傲</option>
-        <option value="grateful">🙏 感謝</option>
-        <option value="tired">😮‍💨 疲憊</option>
-        <option value="anxious">😰 焦慮</option>
+        <optgroup label="✨ 高能量">
+          <option value="excited">✨ 興奮 · 停不下來</option>
+          <option value="eureka">💡 啊哈 · 懂了</option>
+          <option value="cheer">🎉 慶祝 · 想跟全世界說</option>
+          <option value="proud">🏆 驕傲 · 做到了</option>
+        </optgroup>
+        <optgroup label="🌷 平穩">
+          <option value="touched">🥹 感動 · 心被觸動</option>
+          <option value="happy">😊 開心 · 日常小快樂</option>
+          <option value="grateful">🙏 感謝 · 想說謝謝</option>
+          <option value="grow">🌱 成長 · 比昨天多懂一點</option>
+          <option value="neutral" selected>📝 平常 · 好好過了一天</option>
+        </optgroup>
+        <optgroup label="🌫 低能量">
+          <option value="confused">🤔 困惑 · 卡住了</option>
+          <option value="calm">🧘 沉澱 · 想慢下來</option>
+          <option value="tired">😮‍💨 疲憊 · 該休息了</option>
+          <option value="anxious">😰 焦慮 · 想太多</option>
+          <option value="sad">😢 難過 · 需要被擁抱</option>
+        </optgroup>
       </select>
     </div>
     <textarea id="buildlog-input" placeholder="今天發生了什麼？有什麼感覺？有什麼學到的？&#10;&#10;這裡只有你看得到 · 放心寫" rows="5" style="width:100%;padding:12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;line-height:1.7;resize:vertical;box-sizing:border-box;background:#FDFBF8"></textarea>
@@ -14072,7 +14086,11 @@ init();
             const d = doc.data();
             const date = d.createdAt && d.createdAt.toDate ? d.createdAt.toDate() : new Date(d.createdAtString || Date.now());
             const dateStr = date.getFullYear() + '/' + String(date.getMonth()+1).padStart(2,'0') + '/' + String(date.getDate()).padStart(2,'0') + ' ' + String(date.getHours()).padStart(2,'0') + ':' + String(date.getMinutes()).padStart(2,'0');
-            const moodIcon = {'happy':'😊','tired':'😮‍💨','proud':'🏆','anxious':'😰','grateful':'🙏','neutral':'📝'}[d.mood || 'neutral'] || '📝';
+            const moodIcon = {
+              'excited':'✨','eureka':'💡','cheer':'🎉','proud':'🏆',
+              'touched':'🥹','happy':'😊','grateful':'🙏','grow':'🌱','neutral':'📝',
+              'confused':'🤔','calm':'🧘','tired':'😮‍💨','anxious':'😰','sad':'😢'
+            }[d.mood || 'neutral'] || '📝';
             const entryDiv = document.createElement('div');
             entryDiv.style.cssText = 'background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px';
             entryDiv.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px">' + moodIcon + ' ' + (d.title ? escapeHtml(d.title) : '無標題') + '</div><div style="font-size:10px;color:#B09498;font-family:monospace">' + dateStr + '</div></div><div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(d.content || '') + '</div><button data-id="' + doc.id + '" class="buildlog-del" style="margin-top:8px;background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer;padding:0">刪除</button>';
