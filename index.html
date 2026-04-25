@@ -264,8 +264,9 @@ try {
 
 
 
+
 <style>
-/* ===== 14 Iris 心情下拉 v7 · 手機完美版 ===== */
+/* ===== 14 Iris 心情下拉 v8 · 終極版 ===== */
 
 /* === 桌面版：絕對定位下拉 === */
 #buildlog-mood-wrap {
@@ -322,6 +323,10 @@ try {
   padding: 6px 8px 4px;
   border-bottom: 1px solid #E8E3DA;
   margin-bottom: 4px;
+  position: sticky;
+  top: 0;
+  background: #FDFBF8;
+  z-index: 2;
 }
 
 /* === 每個心情選項 === */
@@ -329,7 +334,7 @@ try {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 8px;
+  padding: 10px 8px;
   border-radius: 6px;
   cursor: pointer;
   transition: background .15s;
@@ -361,7 +366,6 @@ try {
   display: block;
 }
 
-/* === 文字標籤 === */
 .mood-label-wrap {
   flex: 1 1 auto;
   min-width: 0;
@@ -384,7 +388,6 @@ try {
   text-overflow: ellipsis;
 }
 
-/* === 按鈕內 SVG === */
 #mood-btn-svg {
   width: 36px !important;
   height: 36px !important;
@@ -401,7 +404,6 @@ try {
   display: block;
 }
 
-/* === 日記項目小 Iris === */
 .entry-mood-icon {
   width: 32px !important;
   height: 32px !important;
@@ -418,15 +420,33 @@ try {
   display: block;
 }
 
-/* ===== 手機 RWD：下拉變 fixed bottom modal ===== */
+/* === 手機背景遮罩（v8 新增）=== */
+#mood-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(42,26,28,.5);
+  z-index: 9998;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+#mood-overlay.active { display: block; }
+
+/* === 鎖住背景捲動 === */
+body.mood-locked {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+}
+
+/* ===== 手機 RWD：真 modal ===== */
 @media (max-width: 480px) {
   body { overflow-x: hidden; }
   
-  /* 整體分頁防溢出 */
   .tpage { overflow-x: hidden; max-width: 100vw; box-sizing: border-box; }
   .tpage > div, .tpage > section { max-width: 100%; box-sizing: border-box; }
   
-  /* 手機下拉：固定在螢幕底部·全寬·永遠不會超出 */
+  /* 手機下拉：固定底部 modal */
   #buildlog-mood-dropdown {
     position: fixed !important;
     top: auto !important;
@@ -435,31 +455,31 @@ try {
     right: 0 !important;
     width: 100vw !important;
     max-width: 100vw !important;
-    max-height: 70vh !important;
+    max-height: 75vh !important;
     border-radius: 16px 16px 0 0 !important;
     border: none !important;
     border-top: 1px solid #E8E3DA !important;
     box-shadow: 0 -8px 32px rgba(165,24,32,.25) !important;
-    padding: 16px !important;
+    padding: 8px !important;
     padding-bottom: 32px !important;
-    z-index: 10000 !important;
+    z-index: 9999 !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
   }
   
-  /* 加個遮罩讓使用者知道是 modal */
+  /* 加個 handle 提示「可拉」 */
   #buildlog-mood-dropdown::before {
     content: "";
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 70vh;
-    background: rgba(0,0,0,.3);
-    z-index: -1;
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: #E8E3DA;
+    border-radius: 2px;
+    margin: 4px auto 12px;
   }
   
-  /* 手機選項稍大方便點 */
-  .mood-option {
-    padding: 12px 8px;
-  }
+  .mood-option { padding: 12px 8px; }
   
-  /* 手機 SVG 略小 */
   .mood-svg-wrap, .mood-svg-wrap svg {
     width: 40px !important;
     height: 40px !important;
@@ -468,7 +488,6 @@ try {
     flex: 0 0 40px !important;
   }
   
-  /* 表格自動橫捲 */
   .tpage table, .tpage pre, .tpage code {
     max-width: 100%;
     overflow-x: auto;
@@ -12830,7 +12849,7 @@ init();
         <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Scripts</div>
         <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px"><a href="https://luckylisaaa.github.io/script-generator/" target="_blank" rel="noopener" style="color:#2A1A1C;text-decoration:none;border-bottom:1px dashed #A51820;padding-bottom:1px">luckylisaaa.github.io/script-generator/</a></div>
         <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820;border-bottom:1px solid #E8E3DA">Brand</div>
-        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px"><a href="https://luckylisaaa.github.io/brand-guidelines/" target="_blank" rel="noopener" style="color:#2A1A1C;text-decoration:none;border-bottom:1px dashed #A51820;padding-bottom:1px">luckylisaaa.github.io/brand-guidelines/</a></div>
+        <div style="padding:10px 12px;border-bottom:1px solid #E8E3DA;font-family:monospace;font-size:11px"><a href="https://luckylisaaa.github.io/brand/" target="_blank" rel="noopener" style="color:#2A1A1C;text-decoration:none;border-bottom:1px dashed #A51820;padding-bottom:1px">luckylisaaa.github.io/brand/</a></div>
         <div style="padding:10px 12px;background:#F4F1EC;font-weight:700;color:#A51820">Tasks</div>
         <div style="padding:10px 12px;font-family:monospace;font-size:11px"><a href="https://luckylisaaa.github.io/tasks/" target="_blank" rel="noopener" style="color:#2A1A1C;text-decoration:none;border-bottom:1px dashed #A51820;padding-bottom:1px">luckylisaaa.github.io/tasks/</a></div>
       </div>
@@ -12848,7 +12867,7 @@ init();
         <a href="https://github.com/luckylisaaa/handbook" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/handbook</a><br>
         <a href="https://github.com/luckylisaaa/matrix" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/matrix</a><br>
         <a href="https://github.com/luckylisaaa/script-generator" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/script-generator</a><br>
-        <a href="https://github.com/luckylisaaa/brand-guidelines" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/brand-guidelines</a><br>
+        <a href="https://github.com/luckylisaaa/brand" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/brand</a><br>
         <a href="https://github.com/luckylisaaa/tasks" target="_blank" rel="noopener" style="color:#FAE8EA;text-decoration:none;border-bottom:1px dashed #D4A574">github.com/luckylisaaa/tasks</a>
       </div>
     </div>
@@ -12923,7 +12942,7 @@ init();
         📦 <strong>handbook</strong> → 你的指揮中心<br>
         📦 <strong>matrix</strong> → 選題矩陣<br>
         📦 <strong>script-generator</strong> → 腳本產生器<br>
-        📦 <strong>brand-guidelines</strong> → 品牌規範書<br>
+        📦 <strong>brand</strong> → 品牌規範書<br>
         📦 <strong>tasks</strong> → 執行清單
       </div>
     </div>
@@ -14788,7 +14807,7 @@ init();
 <a href="https://luckylisaaa.github.io/handbook/" class="ics-nav-item" data-site="handbook"><div class="ics-nav-icon">H</div><div class="ics-nav-text"><div class="ics-nav-name">Handbook</div><div class="ics-nav-desc">完整學習手冊</div></div></a>
 <a href="https://luckylisaaa.github.io/matrix/" class="ics-nav-item" data-site="matrix"><div class="ics-nav-icon">M</div><div class="ics-nav-text"><div class="ics-nav-name">Matrix</div><div class="ics-nav-desc">選題作戰矩陣</div></div></a>
 <a href="https://luckylisaaa.github.io/script-generator/" class="ics-nav-item" data-site="scripts"><div class="ics-nav-icon">S</div><div class="ics-nav-text"><div class="ics-nav-name">Scripts</div><div class="ics-nav-desc">腳本產生器 V3</div></div></a>
-<a href="https://luckylisaaa.github.io/brand-guidelines/" class="ics-nav-item" data-site="brand"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺規範</div></div></a>
+<a href="https://luckylisaaa.github.io/brand/" class="ics-nav-item" data-site="brand"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺規範</div></div></a>
 <a href="https://luckylisaaa.github.io/tasks/" class="ics-nav-item" data-site="tasks"><div class="ics-nav-icon">T</div><div class="ics-nav-text"><div class="ics-nav-name">Tasks</div><div class="ics-nav-desc">執行清單</div></div></a>
 </div>
 <div class="ics-nav-footer">Finding beauty. Making it move.</div>
@@ -14801,7 +14820,7 @@ var t=document.getElementById('icsNavTrigger'),m=document.getElementById('icsNav
 var p=window.location.pathname;
 document.querySelectorAll('.ics-nav-item').forEach(function(i){
 var s=i.getAttribute('data-site');
-var mark=(s==='root'&&(p==='/'||p==='/index.html'))||(s==='handbook'&&p.indexOf('/handbook')!==-1)||(s==='matrix'&&p.indexOf('/matrix')!==-1)||(s==='scripts'&&p.indexOf('/script-generator')!==-1)||(s==='brand'&&p.indexOf('/brand-guidelines')!==-1)||(s==='tasks'&&p.indexOf('/tasks')!==-1);
+var mark=(s==='root'&&(p==='/'||p==='/index.html'))||(s==='handbook'&&p.indexOf('/handbook')!==-1)||(s==='matrix'&&p.indexOf('/matrix')!==-1)||(s==='scripts'&&p.indexOf('/script-generator')!==-1)||(s==='brand'&&p.indexOf('/brand')!==-1)||(s==='tasks'&&p.indexOf('/tasks')!==-1);
 if(mark){i.classList.add('current');var b=document.createElement('span');b.className='ics-nav-current-badge';b.textContent='目前';i.querySelector('.ics-nav-text').appendChild(b)}
 });
 t.addEventListener('click',function(e){e.stopPropagation();m.classList.toggle('open');t.classList.toggle('active')});
@@ -14815,7 +14834,33 @@ document.addEventListener('click',function(e){if(!document.getElementById('icsNa
 function toggleMoodDropdown(e) {
   e.stopPropagation();
   const dd = document.getElementById('buildlog-mood-dropdown');
-  if (dd) dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+  let ov = document.getElementById('mood-overlay');
+  if (!ov) {
+    ov = document.createElement('div');
+    ov.id = 'mood-overlay';
+    ov.onclick = function() { closeMoodDropdown(); };
+    document.body.appendChild(ov);
+  }
+  if (dd) {
+    const isOpen = dd.style.display === 'block';
+    if (isOpen) {
+      closeMoodDropdown();
+    } else {
+      dd.style.display = 'block';
+      // 手機才加遮罩+鎖背景
+      if (window.innerWidth <= 480) {
+        ov.classList.add('active');
+        document.body.classList.add('mood-locked');
+      }
+    }
+  }
+}
+function closeMoodDropdown() {
+  const dd = document.getElementById('buildlog-mood-dropdown');
+  const ov = document.getElementById('mood-overlay');
+  if (dd) dd.style.display = 'none';
+  if (ov) ov.classList.remove('active');
+  document.body.classList.remove('mood-locked');
 }
 function selectMood(el) {
   const value = el.getAttribute('data-value');
@@ -14835,7 +14880,7 @@ function selectMood(el) {
   }
   document.querySelectorAll('.mood-option').forEach(o => o.classList.remove('active'));
   el.classList.add('active');
-  document.getElementById('buildlog-mood-dropdown').style.display = 'none';
+  closeMoodDropdown();
 }
 document.addEventListener('click', function(e) {
   const wrap = document.getElementById('buildlog-mood-wrap');
