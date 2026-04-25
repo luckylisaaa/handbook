@@ -261,6 +261,101 @@ try {
   console.log('Firebase init failed, using localStorage only');
 }
 </script>
+
+<style>
+/* 14 Iris 心情下拉選單 */
+.mood-group { margin-bottom: 8px; }
+.mood-group:last-child { margin-bottom: 0; }
+.mood-group-label {
+  font-size: 9px; font-weight: 700; color: #A51820;
+  letter-spacing: .15em; padding: 6px 8px 4px;
+  border-bottom: 1px solid #E8E3DA; margin-bottom: 4px;
+}
+.mood-option {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 4px; cursor: pointer;
+  transition: background .15s;
+}
+.mood-option:hover { background: #FDF3F4; }
+.mood-option.active { background: #FAE8EA; }
+.mood-svg-wrap {
+  width: 36px; height: 36px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.mood-svg-wrap svg { width: 36px; height: 36px; }
+.mood-label-wrap { flex: 1; min-width: 0; }
+.mood-zh { font-weight: 700; color: #2A1A1C; font-size: 12px; }
+.mood-desc { color: #7A5A5E; font-size: 10px; margin-top: 1px; }
+
+/* 日記項目的小 Iris */
+.entry-mood-icon {
+  width: 28px; height: 28px; display: inline-block;
+  vertical-align: middle; flex-shrink: 0;
+}
+.entry-mood-icon svg { width: 28px; height: 28px; }
+
+/* 手機 RWD：選單寬度 + 容器邊距 */
+@media (max-width: 480px) {
+  #buildlog-mood-dropdown { max-width: 100%; left: -8px; right: -8px; }
+  .mood-svg-wrap { width: 32px; height: 32px; }
+  .mood-svg-wrap svg { width: 32px; height: 32px; }
+}
+</style>
+
+<style>
+/* 手機 RWD 全面修補 v4.7 */
+@media (max-width: 480px) {
+  /* 防止內容溢出 */
+  body { overflow-x: hidden; }
+  .tpage { overflow-x: hidden; max-width: 100vw; }
+  .tpage > div, .tpage > section { 
+    max-width: 100%; 
+    box-sizing: border-box; 
+    overflow-x: hidden;
+  }
+  
+  /* 表格 / 寬元素自動捲動 */
+  .tpage table, .tpage pre, .tpage code {
+    max-width: 100%;
+    overflow-x: auto;
+    display: block;
+  }
+  
+  /* 標題不被切 */
+  .tpage h1, .tpage h2, .tpage h3 { 
+    word-break: break-word; 
+    overflow-wrap: break-word;
+  }
+  
+  /* Build Log 心情選單下拉 */
+  #buildlog-mood-dropdown {
+    position: fixed !important;
+    top: auto !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    max-width: 100vw !important;
+    max-height: 70vh;
+    border-radius: 12px 12px 0 0;
+    box-shadow: 0 -8px 32px rgba(165,24,32,.2);
+    z-index: 9999;
+  }
+  
+  /* Build Log 容器邊距 */
+  #tp-15, .tpage[id*="build"] { padding: 12px 8px !important; }
+  
+  /* 圖片 / SVG 不溢出 */
+  .tpage img, .tpage svg { max-width: 100%; height: auto; }
+  
+  /* 紅色 header 防止內容超出 */
+  header, .header { max-width: 100vw; box-sizing: border-box; }
+}
+
+/* 平板 RWD */
+@media (min-width: 481px) and (max-width: 768px) {
+  .tpage { max-width: 100%; }
+}
+</style>
 </head>
 <body>
 
@@ -576,6 +671,10 @@ try {
     <circle cx="12" cy="7" r="3.5" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M5 21 C5 16 8 14 12 14 C16 14 19 16 19 21" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">一人作戰</span></div>
+  <div class="tab" onclick="switchTab(22,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  <path d="M12 3 L13.5 7.5 L18 8 L14.5 11 L16 15.5 L12 13 L8 15.5 L9.5 11 L6 8 L10.5 7.5 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+  <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
+  </svg><span style="margin-left:5px">品牌系統 V5.1</span></div>
 
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
@@ -9469,7 +9568,7 @@ B 地區：【填你的客戶所在地，例如：馬來西亞 PDPA / 歐盟 GDP
 
 <script>
 const TOTAL=39;
-const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-feed",9:"tp-delivery",10:6,11:7,12:8,13:"tp-legal",14:9,15:11,16:12,17:13,18:15,19:19,20:20,21:"tp-system"};
+const TAB_MAP={0:"tp-start",1:0,2:1,3:2,4:3,5:14,6:4,7:5,8:"tp-feed",9:"tp-delivery",10:6,11:7,12:8,13:"tp-legal",14:9,15:11,16:12,17:13,18:15,19:19,20:20,21:"tp-system",22:"tp-brand-v51"};
 const STORAGE_KEY='wg_progress';
 const NOTES_KEY='wg_notes';
 let S={c:[],n:{}};
@@ -9618,7 +9717,11 @@ function switchTab(idx,tab){
   const pageId = typeof tpId === 'string' ? tpId : 'tp-'+tpId;
   const pg=document.getElementById(pageId);
   if(pg)pg.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  // 滑到分頁頂部 · 不是跳到 Ch7
+  setTimeout(function(){
+    if(pg) pg.scrollIntoView({behavior:'smooth',block:'start'});
+    else window.scrollTo({top:0,behavior:'smooth'});
+  }, 50);
 }
 
 function toggleNote(card){
@@ -10750,28 +10853,300 @@ init();
   <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
     <div style="display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px">
       <input type="text" id="buildlog-title" placeholder="標題（選填，例：今天好累）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#FDFBF8">
-      <select id="buildlog-mood" style="padding:10px;border:1px solid #E8E3DA;border-radius:4px;font-size:12px;font-family:inherit;background:#FDFBF8;cursor:pointer">
-        <optgroup label="✨ 高能量">
-          <option value="excited">✨ 興奮 · 停不下來</option>
-          <option value="eureka">💡 啊哈 · 懂了</option>
-          <option value="cheer">🎉 慶祝 · 想跟全世界說</option>
-          <option value="proud">🏆 驕傲 · 做到了</option>
-        </optgroup>
-        <optgroup label="🌷 平穩">
-          <option value="touched">🥹 感動 · 心被觸動</option>
-          <option value="happy">😊 開心 · 日常小快樂</option>
-          <option value="grateful">🙏 感謝 · 想說謝謝</option>
-          <option value="grow">🌱 成長 · 比昨天多懂一點</option>
-          <option value="neutral" selected>📝 平常 · 好好過了一天</option>
-        </optgroup>
-        <optgroup label="🌫 低能量">
-          <option value="confused">🤔 困惑 · 卡住了</option>
-          <option value="calm">🧘 沉澱 · 想慢下來</option>
-          <option value="tired">😮‍💨 疲憊 · 該休息了</option>
-          <option value="anxious">😰 焦慮 · 想太多</option>
-          <option value="sad">😢 難過 · 需要被擁抱</option>
-        </optgroup>
-      </select>
+<div id="buildlog-mood-wrap" style="position:relative">
+        <input type="hidden" id="buildlog-mood" value="neutral">
+        <button type="button" id="buildlog-mood-btn" onclick="toggleMoodDropdown(event)" style="width:100%;padding:8px 12px;border:1px solid #E8E3DA;border-radius:4px;background:#FDFBF8;font-family:inherit;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:8px;text-align:left">
+          <div id="mood-btn-svg" style="width:32px;height:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="32" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="42" cy="48" r="1.5" fill="#A51820"/><circle cx="58" cy="48" r="1.5" fill="#A51820"/>
+          <line x1="46" y1="62" x2="54" y2="62" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="32" rx="1.5" fill="#A51820"/>
+        </svg></div>
+          <div style="flex:1;min-width:0">
+            <div id="mood-btn-zh" style="font-weight:700;color:#2A1A1C;font-size:12px">平常</div>
+            <div id="mood-btn-desc" style="color:#7A5A5E;font-size:10px">好好過了一天</div>
+          </div>
+          <div style="color:#A51820;font-size:10px">▾</div>
+        </button>
+        <div id="buildlog-mood-dropdown" style="display:none;position:absolute;top:calc(100% + 4px);left:0;right:0;max-width:380px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:6px;box-shadow:0 8px 24px rgba(165,24,32,.15);z-index:1000;max-height:60vh;overflow-y:auto;padding:8px">
+        <div class="mood-group"><div class="mood-group-label">✨ 高能量</div>
+        <div class="mood-option" data-value="excited" data-zh="興奮" data-en="EXCITED" data-desc="停不下來" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <text x="44" y="48" font-family="serif" font-size="6" fill="#A51820" text-anchor="middle">✦</text>
+          <text x="56" y="48" font-family="serif" font-size="6" fill="#A51820" text-anchor="middle">✦</text>
+          <path d="M 45 58 Q 50 63 55 58" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <text x="20" y="32" font-family="serif" font-size="5" fill="#A51820">✦</text>
+          <text x="78" y="40" font-family="serif" font-size="5" fill="#A51820">✦</text>
+          <text x="78" y="68" font-family="serif" font-size="5" fill="#A51820">★</text>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">興奮</div><div class="mood-desc">停不下來</div></div></div>
+        <div class="mood-option" data-value="eureka" data-zh="啊哈" data-en="EUREKA" data-desc="懂了" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <text x="50" y="11" font-family="serif" font-size="5" fill="#A51820" text-anchor="middle">✦</text>
+          <line x1="44" y1="14" x2="40" y2="10" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <line x1="56" y1="14" x2="60" y2="10" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 48 Q 44 44 48 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 48 Q 57 44 61 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <path d="M 45 62 Q 50 66 55 62" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="80" cy="32" rx="6" ry="7" fill="none" stroke="#A51820" stroke-width="1.5"/>
+          <line x1="76" y1="40" x2="84" y2="40" stroke="#A51820" stroke-width="1"/>
+          <line x1="77" y1="42" x2="83" y2="42" stroke="#A51820" stroke-width="1"/>
+          <path d="M 77 32 Q 80 29 83 32" stroke="#A51820" stroke-width="0.8" fill="none"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">啊哈</div><div class="mood-desc">懂了</div></div></div>
+        <div class="mood-option" data-value="cheer" data-zh="慶祝" data-en="CHEER" data-desc="想跟全世界說" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <text x="20" y="22" font-family="serif" font-size="6" fill="#A51820">✦</text>
+          <text x="78" y="22" font-family="serif" font-size="6" fill="#A51820">★</text>
+          <text x="14" y="42" font-family="serif" font-size="5" fill="#A51820">★</text>
+          <text x="82" y="42" font-family="serif" font-size="5" fill="#A51820">✦</text>
+          <line x1="20" y1="30" x2="24" y2="34" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <line x1="80" y1="30" x2="76" y2="34" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <text x="44" y="50" font-family="serif" font-size="6" fill="#A51820" text-anchor="middle">✦</text>
+          <text x="56" y="50" font-family="serif" font-size="6" fill="#A51820" text-anchor="middle">✦</text>
+          <path d="M 44 60 Q 50 67 56 60" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">慶祝</div><div class="mood-desc">想跟全世界說</div></div></div>
+        <div class="mood-option" data-value="proud" data-zh="驕傲" data-en="PROUD" data-desc="做到了" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 48 Q 44 44 48 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 48 Q 57 44 61 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <path d="M 45 62 Q 50 66 55 62" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <g transform="translate(20, 60)"><rect x="0" y="0" width="8" height="44" rx="1" fill="#A51820"/><path d="M 2 0 L 2 -4 Q 2 -6 4 -6 Q 6 -6 6 -4 L 6 0 Z" fill="#A51820"/></g>
+          <g transform="translate(80, 60) scale(-1, 1)"><rect x="0" y="0" width="8" height="11" rx="1" fill="#A51820"/><path d="M 2 0 L 2 -4 Q 2 -6 4 -6 Q 6 -6 6 -4 L 6 0 Z" fill="#A51820"/></g>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="10" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">驕傲</div><div class="mood-desc">做到了</div></div></div>
+        </div>
+        <div class="mood-group"><div class="mood-group-label">🌷 平穩</div>
+        <div class="mood-option" data-value="touched" data-zh="感動" data-en="TOUCHED" data-desc="心被觸動" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 41 47 C 38 44, 34 45, 34 49 C 34 53, 41 57, 41 57 C 41 57, 48 53, 48 49 C 48 45, 44 44, 41 47 Z" fill="#A51820"/>
+          <path d="M 59 47 C 56 44, 52 45, 52 49 C 52 53, 59 57, 59 57 C 59 57, 66 53, 66 49 C 66 45, 62 44, 59 47 Z" fill="#A51820"/>
+          <circle cx="42" cy="60" r="0.8" fill="#A51820"/><circle cx="44" cy="62" r="0.8" fill="#A51820"/>
+          <circle cx="56" cy="60" r="0.8" fill="#A51820"/><circle cx="58" cy="62" r="0.8" fill="#A51820"/>
+          <path d="M 46 65 Q 50 67 54 65" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">感動</div><div class="mood-desc">心被觸動</div></div></div>
+        <div class="mood-option" data-value="happy" data-zh="開心" data-en="HAPPY" data-desc="日常小快樂" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 48 Q 44 44 48 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 48 Q 57 44 61 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <path d="M 45 62 Q 50 65 55 62" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">開心</div><div class="mood-desc">日常小快樂</div></div></div>
+        <div class="mood-option" data-value="grateful" data-zh="感謝" data-en="THANKS" data-desc="想說謝謝" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 50 Q 44 46 48 50" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 50 Q 57 46 61 50" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <path d="M 45 62 Q 50 64 55 62" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M 78 50 C 76 47, 72 48, 72 51 C 72 54, 78 58, 78 58 C 78 58, 84 54, 84 51 C 84 48, 80 47, 78 50 Z" fill="none" stroke="#A51820" stroke-width="1.2"/>
+          <path d="M 22 50 C 20 47, 16 48, 16 51 C 16 54, 22 58, 22 58 C 22 58, 28 54, 28 51 C 28 48, 24 47, 22 50 Z" fill="none" stroke="#A51820" stroke-width="1.2"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">感謝</div><div class="mood-desc">想說謝謝</div></div></div>
+        <div class="mood-option" data-value="grow" data-zh="成長" data-en="GROW" data-desc="比昨天多懂一點" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 41 48 Q 44 45 47 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 53 48 Q 56 45 59 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <path d="M 46 62 Q 50 64 54 62" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M 78 70 L 82 60 L 86 65" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 86 65 L 86 60 L 81 60" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">成長</div><div class="mood-desc">比昨天多懂一點</div></div></div>
+        <div class="mood-option" data-value="neutral" data-zh="平常" data-en="NORMAL" data-desc="好好過了一天" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="42" cy="48" r="1.5" fill="#A51820"/><circle cx="58" cy="48" r="1.5" fill="#A51820"/>
+          <line x1="46" y1="62" x2="54" y2="62" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">平常</div><div class="mood-desc">好好過了一天</div></div></div>
+        </div>
+        <div class="mood-group"><div class="mood-group-label">🌫 低能量</div>
+        <div class="mood-option" data-value="confused" data-zh="困惑" data-en="CONFUSED" data-desc="卡住了" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="42" cy="48" r="2.5" fill="none" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="42" cy="48" r="1" fill="#A51820"/>
+          <ellipse cx="58" cy="48" rx="2" ry="2.5" fill="#A51820"/>
+          <path d="M 44 62 Q 47 60 50 62 Q 53 64 56 62" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="80" cy="32" rx="6" ry="6" fill="none" stroke="#A51820" stroke-width="1.2"/>
+          <text x="80" y="35" font-family="serif" font-size="8" font-weight="900" fill="#A51820" text-anchor="middle">?</text>
+          <circle cx="72" cy="42" r="1.2" fill="none" stroke="#A51820" stroke-width="1"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">困惑</div><div class="mood-desc">卡住了</div></div></div>
+        <div class="mood-option" data-value="calm" data-zh="沉澱" data-en="CALM" data-desc="想慢下來" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="33" y2="14" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="67" y2="14" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="33" cy="14" r="1.8" fill="#A51820"/><circle cx="67" cy="14" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 48 Q 44 51 48 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 48 Q 57 51 61 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <line x1="46" y1="62" x2="54" y2="62" stroke="#A51820" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M 78 30 Q 82 32 80 36 Q 78 38 80 40" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 22 30 Q 18 32 20 36 Q 22 38 20 40" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">沉澱</div><div class="mood-desc">想慢下來</div></div></div>
+        <div class="mood-option" data-value="tired" data-zh="疲憊" data-en="TIRED" data-desc="該休息了" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="34" y2="16" stroke="#A51820" stroke-width="44" stroke-linecap="round" opacity="0.7"/>
+          <line x1="64" y1="30" x2="66" y2="16" stroke="#A51820" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+          <circle cx="34" cy="16" r="1.8" fill="#A51820" opacity="0.7"/><circle cx="66" cy="16" r="1.8" fill="#A51820" opacity="0.7"/>
+          <path d="M 45 28 L 49 16 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 39 48 Q 44 52 48 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 52 48 Q 57 52 61 48" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="38" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="62" cy="58" rx="2.5" ry="1.5" fill="#A51820" opacity="0.4"/>
+          <ellipse cx="50" cy="64" rx="2" ry="1" fill="#A51820"/>
+          <text x="76" y="28" font-family="serif" font-size="6" font-weight="900" fill="#A51820">z</text>
+          <text x="82" y="22" font-family="serif" font-size="8" font-weight="900" fill="#A51820">z</text>
+          <text x="89" y="16" font-family="serif" font-size="10" font-weight="900" fill="#A51820">Z</text>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">疲憊</div><div class="mood-desc">該休息了</div></div></div>
+        <div class="mood-option" data-value="anxious" data-zh="焦慮" data-en="ANXIOUS" data-desc="想太多" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="32" y2="12" stroke="#A51820" stroke-width="44" stroke-linecap="round"/>
+          <line x1="64" y1="30" x2="68" y2="12" stroke="#A51820" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="32" cy="12" r="1.8" fill="#A51820"/><circle cx="68" cy="12" r="1.8" fill="#A51820"/>
+          <path d="M 45 28 L 50 14 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21 M 47 18 Q 50 16 53 18" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="42" cy="48" r="3" fill="none" stroke="#A51820" stroke-width="1.2"/>
+          <circle cx="42" cy="48" r="1.2" fill="#A51820"/>
+          <circle cx="58" cy="48" r="3" fill="none" stroke="#A51820" stroke-width="1.2"/>
+          <circle cx="58" cy="48" r="1.2" fill="#A51820"/>
+          <line x1="38" y1="42" x2="44" y2="44" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <line x1="56" y1="44" x2="62" y2="42" stroke="#A51820" stroke-width="1" stroke-linecap="round"/>
+          <path d="M 44 64 Q 47 62 50 64 Q 53 66 56 64" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <path d="M 18 38 Q 24 32 22 42 Q 16 42 18 38" stroke="#A51820" stroke-width="1" fill="none"/>
+          <path d="M 82 38 Q 76 32 78 42 Q 84 42 82 38" stroke="#A51820" stroke-width="1" fill="none"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">焦慮</div><div class="mood-desc">想太多</div></div></div>
+        <div class="mood-option" data-value="sad" data-zh="難過" data-en="SAD" data-desc="需要被擁抱" onclick="selectMood(this)"><div class="mood-svg-wrap"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <line x1="36" y1="30" x2="34" y2="16" stroke="#A51820" stroke-width="44" stroke-linecap="round" opacity="0.6"/>
+          <line x1="64" y1="30" x2="66" y2="16" stroke="#A51820" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+          <circle cx="34" cy="16" r="1.8" fill="#A51820" opacity="0.6"/><circle cx="66" cy="16" r="1.8" fill="#A51820" opacity="0.6"/>
+          <path d="M 45 28 L 49 18 L 55 28 Z" fill="none" stroke="#A51820" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M 46 24 Q 50 22 54 24 M 47 21 Q 50 19 53 21" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <path d="M 32 45 Q 31 32 50 30 Q 69 32 68 45 Q 70 55 62 57 Q 64 62 60 64 Q 58 68 62 72 Q 58 74 56 70 Q 53 74 50 70 Q 47 74 44 70 Q 42 72 38 68 Q 36 70 35 64 Q 31 62 32 57 Q 28 55 32 45" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <path d="M 38 50 Q 42 47 46 50" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 54 50 Q 58 47 62 50" stroke="#A51820" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M 42 53 Q 41 57 42 60" stroke="#A51820" stroke-width="1" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="61" r="0.8" fill="#A51820"/>
+          <path d="M 45 65 Q 50 62 55 65" stroke="#A51820" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+          <circle cx="42" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="50" cy="82" r="2.5" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <circle cx="58" cy="78" r="2" fill="#FDFBF8" stroke="#A51820" stroke-width="1.5"/>
+          <rect x="40" y="88" width="20" height="44" rx="1.5" fill="#A51820"/>
+        </svg></div><div class="mood-label-wrap"><div class="mood-zh">難過</div><div class="mood-desc">需要被擁抱</div></div></div>
+        </div>
+        </div>
+      </div>
     </div>
     <textarea id="buildlog-input" placeholder="今天發生了什麼？有什麼感覺？有什麼學到的？&#10;&#10;這裡只有你看得到 · 放心寫" rows="5" style="width:100%;padding:12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;line-height:1.7;resize:vertical;box-sizing:border-box;background:#FDFBF8"></textarea>
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
@@ -13426,7 +13801,7 @@ init();
 
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 8 章:每次更新 SOP（原第 7 章）-->
+<!-- 第 8 章：每次更新 SOP（原第 7 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-update-sop" style="padding:32px 16px 20px;background:#fff;border-top:3px solid #A51820">
   <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 08</div>
@@ -13446,9 +13821,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.1 AI 四件套 -->
+  <!-- 8.1 AI 四件套 -->
   <div style="margin-bottom:24px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.1 AI 必須給你的四件套</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">8.1 AI 必須給你的四件套</div>
     <div style="font-size:11px;color:#7A5A5E;margin-bottom:10px;font-style:italic">缺任何一件就叫 AI 補·不要自己猜</div>
 
     <div style="background:#fff;border:1px solid #E8E3DA;border-top:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px">
@@ -13488,9 +13863,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.2 範例對話 -->
+  <!-- 8.2 範例對話 -->
   <div style="margin-bottom:24px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.2 範例對話</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">8.2 範例對話</div>
 
     <div style="background:#F4F1EC;padding:12px;border-radius:4px;margin-bottom:8px">
       <div style="font-size:10px;color:#A51820;font-weight:900;letter-spacing:1px;margin-bottom:4px">你 →</div>
@@ -13521,9 +13896,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.3 快速查表 -->
+  <!-- 8.3 快速查表 -->
   <div>
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">7.3 Commit Message 快速查表</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:12px">8.3 Commit Message 快速查表</div>
 
     <div style="background:#fff;border:1px solid #E8E3DA;border-radius:4px;overflow:hidden">
       <div style="display:grid;grid-template-columns:80px 1fr;background:#F4F1EC;font-weight:700;font-size:11px">
@@ -13553,9 +13928,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.4 素材包立即歸位 SOP -->
+  <!-- 8.4 素材包立即歸位 SOP -->
   <div style="margin-top:32px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">7.4 素材包立即歸位 SOP</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:6px">8.4 素材包立即歸位 SOP</div>
     <div style="font-size:11px;color:#7A5A5E;margin-bottom:16px;font-style:italic">拆了 ZIP 就 10 分鐘內歸位·不拖到明天·避免「一個月後忘記」</div>
 
     <!-- 黃金法則 -->
@@ -13686,7 +14061,7 @@ init();
 </div>
 
 <!-- ═════════════════════════════════════ -->
-<!-- 第 9 章:問題排解（原第 8 章）-->
+<!-- 第 9 章：問題排解（原第 8 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-fix" style="padding:32px 16px 20px;background:#FDFBF8;border-top:3px solid #A51820">
   <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 09</div>
@@ -13791,9 +14166,9 @@ init();
     💝 <strong>這一章的內容</strong>都是「未來會用到但現在不急」的技術。<br>看過有印象就好，等到真的需要再深入研究。
   </div>
 
-  <!-- 7.1 買網域 -->
+  <!-- 10.1 買網域 -->
   <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🌐 7.1 買品牌網域</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🌐 10.1 買品牌網域</div>
     <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
       <strong>什麼時候需要：</strong>有第一個付費客戶、想要專業形象時。<br>
       <strong>推薦網域：</strong>
@@ -13808,9 +14183,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.2 Firebase -->
+  <!-- 10.2 Firebase -->
   <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔥 7.2 Firebase 什麼時候需要</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔥 10.2 Firebase 什麼時候需要</div>
     <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
       <strong>Firebase vs GitHub Pages 差在哪：</strong><br>
       <div style="background:#F4F1EC;padding:10px 12px;border-radius:4px;margin:8px 0;line-height:1.9">
@@ -13829,9 +14204,9 @@ init();
     </div>
   </div>
 
-  <!-- 7.3 GA -->
+  <!-- 10.3 GA -->
   <div style="margin-bottom:20px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">📊 7.3 Google Analytics</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">📊 10.3 Google Analytics</div>
     <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
       <strong>做什麼的：</strong>追蹤有多少人在看你的網站、從哪來、看多久。<br>
       <strong>什麼時候裝：</strong>開始對外行銷、想優化內容時。<br>
@@ -13840,13 +14215,13 @@ init();
     </div>
   </div>
 
-  <!-- 7.4 跨裝置同步 -->
+  <!-- 10.4 跨裝置同步 -->
   <div style="margin-bottom:8px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:18px 20px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔄 7.4 跨裝置同步</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:900;color:#2A1A1C;margin-bottom:8px">🔄 10.4 跨裝置同步</div>
     <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
       <strong>情境：</strong>手機勾選的 Tasks，希望電腦也看得到。<br>
       <strong>現在狀況：</strong>Tasks 進度存在瀏覽器 localStorage，每個裝置獨立。<br>
-      <strong>解法：</strong>之後用 Firebase 串起來（參見 7.2）<br>
+      <strong>解法：</strong>之後用 Firebase 串起來（參見 10.2）<br>
       <strong>什麼時候做：</strong>當你真的每天在手機 / 電腦切換操作時。
     </div>
   </div>
@@ -13873,7 +14248,7 @@ init();
 <!-- 第 11 章：AI Agent 指令模板（原第 10 章）-->
 <!-- ═════════════════════════════════════ -->
 <div id="ch-agent" style="padding:32px 16px 40px;background:#FDFBF8;border-top:3px solid #A51820">
-  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 11</div>
+  <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:4px">CHAPTER 10</div>
   <div style="font-family:'Noto Serif TC',serif;font-size:24px;font-weight:900;color:#2A1A1C;margin-bottom:6px">🤖 AI Agent 指令模板</div>
   <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:20px">從「我自己做」→「AI 幫我做」·讓一句話啟動整個流程</div>
 
@@ -13901,9 +14276,9 @@ init();
     </svg>
   </div>
 
-  <!-- 10.1 核心咒語 -->
+  <!-- 11.1 核心咒語 -->
   <div style="margin-bottom:24px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.1 核心啟動咒語</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">11.1 核心啟動咒語</div>
     <div style="font-size:12px;color:#7A5A5E;margin-bottom:12px;font-style:italic">對任何新 AI 說這句·它就會進入 Agent 模式</div>
 
     <div style="background:#2A1A1C;color:#FDFBF8;border-radius:8px;padding:16px;font-family:monospace;font-size:12px;line-height:1.8;border-left:4px solid #D4A574">
@@ -13922,9 +14297,9 @@ init();
     </div>
   </div>
 
-  <!-- 10.2 場景範例 -->
+  <!-- 11.2 場景範例 -->
   <div style="margin-bottom:24px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.2 常用場景咒語</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">11.2 常用場景咒語</div>
 
     <!-- 場景 1 -->
     <div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;border-radius:4px;padding:14px;margin-bottom:12px">
@@ -13967,9 +14342,9 @@ init();
     </div>
   </div>
 
-  <!-- 10.3 期待 AI 的回應 -->
+  <!-- 11.3 期待 AI 的回應 -->
   <div style="margin-bottom:24px">
-    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">10.3 AI 的標準回應格式</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:16px;font-weight:700;color:#2A1A1C;margin-bottom:10px">11.3 AI 的標準回應格式</div>
     <div style="font-size:12px;color:#7A5A5E;margin-bottom:12px;font-style:italic">如果 AI 沒按這格式給·叫它重來</div>
 
     <div style="background:#fff;border:2px solid #A51820;border-radius:8px;padding:16px">
@@ -13997,7 +14372,7 @@ init();
     </div>
   </div>
 
-  <!-- 10.4 交接摘要的進化 -->
+  <!-- 11.4 交接摘要的進化 -->
   <div style="background:#FDF3F4;border:1px dashed #A51820;border-radius:6px;padding:14px">
     <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:10px">💎 進階：每週更新「交接摘要」</div>
     <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
@@ -14086,11 +14461,7 @@ init();
             const d = doc.data();
             const date = d.createdAt && d.createdAt.toDate ? d.createdAt.toDate() : new Date(d.createdAtString || Date.now());
             const dateStr = date.getFullYear() + '/' + String(date.getMonth()+1).padStart(2,'0') + '/' + String(date.getDate()).padStart(2,'0') + ' ' + String(date.getHours()).padStart(2,'0') + ':' + String(date.getMinutes()).padStart(2,'0');
-            const moodIcon = {
-              'excited':'✨','eureka':'💡','cheer':'🎉','proud':'🏆',
-              'touched':'🥹','happy':'😊','grateful':'🙏','grow':'🌱','neutral':'📝',
-              'confused':'🤔','calm':'🧘','tired':'😮‍💨','anxious':'😰','sad':'😢'
-            }[d.mood || 'neutral'] || '📝';
+            const moodKey = d.mood || 'neutral'; const moodSvg = (window.IRIS_MOOD_SVG && window.IRIS_MOOD_SVG[moodKey]) || (window.IRIS_MOOD_SVG && window.IRIS_MOOD_SVG['neutral']) || '📝'; const moodIcon = moodSvg.startsWith('<svg') ? '<span class="entry-mood-icon">' + moodSvg + '</span>' : moodSvg;
             const entryDiv = document.createElement('div');
             entryDiv.style.cssText = 'background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px';
             entryDiv.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px">' + moodIcon + ' ' + (d.title ? escapeHtml(d.title) : '無標題') + '</div><div style="font-size:10px;color:#B09498;font-family:monospace">' + dateStr + '</div></div><div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(d.content || '') + '</div><button data-id="' + doc.id + '" class="buildlog-del" style="margin-top:8px;background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer;padding:0">刪除</button>';
@@ -14313,6 +14684,292 @@ document.addEventListener('click',function(e){if(!document.getElementById('icsNa
 })();
 </script>
 <!-- ═══ End ICS Nav Widget ═══ -->
+
+
+<script>
+// 14 Iris 心情下拉控制
+function toggleMoodDropdown(e) {
+  e.stopPropagation();
+  const dd = document.getElementById('buildlog-mood-dropdown');
+  if (dd) dd.style.display = dd.style.display === 'none' ? 'block' : 'none';
+}
+function selectMood(el) {
+  const value = el.getAttribute('data-value');
+  const zh = el.getAttribute('data-zh');
+  const desc = el.getAttribute('data-desc');
+  const en = el.getAttribute('data-en');
+  
+  document.getElementById('buildlog-mood').value = value;
+  document.getElementById('mood-btn-zh').textContent = zh;
+  document.getElementById('mood-btn-desc').textContent = desc;
+  
+  // 換按鈕的 SVG（從選項複製）
+  const svgWrap = el.querySelector('.mood-svg-wrap');
+  const btnSvg = document.getElementById('mood-btn-svg');
+  if (svgWrap && btnSvg) {
+    const svg = svgWrap.querySelector('svg').cloneNode(true);
+    svg.setAttribute('width', '32');
+    svg.setAttribute('height', '32');
+    btnSvg.innerHTML = '';
+    btnSvg.appendChild(svg);
+  }
+  
+  // 標記 active
+  document.querySelectorAll('.mood-option').forEach(o => o.classList.remove('active'));
+  el.classList.add('active');
+  
+  // 關閉
+  document.getElementById('buildlog-mood-dropdown').style.display = 'none';
+}
+// 點外面關閉
+document.addEventListener('click', function(e) {
+  const wrap = document.getElementById('buildlog-mood-wrap');
+  if (wrap && !wrap.contains(e.target)) {
+    const dd = document.getElementById('buildlog-mood-dropdown');
+    if (dd) dd.style.display = 'none';
+  }
+});
+
+// 日記顯示用 SVG（Iris 縮小版）
+window.IRIS_MOOD_SVG = {
+  'excited': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8dGV4dCB4PSI0NCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI2IiBmaWxsPSIjQTUxODIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7inKY8L3RleHQ+CiAgICAgICAgICA8dGV4dCB4PSI1NiIgeT0iNDgiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI2IiBmaWxsPSIjQTUxODIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj7inKY8L3RleHQ+CiAgICAgICAgICA8cGF0aCBkPSJNIDQ1IDU4IFEgNTAgNjMgNTUgNTgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHRleHQgeD0iMjAiIHk9IjMyIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNSIgZmlsbD0iI0E1MTgyMCI+4pymPC90ZXh0PgogICAgICAgICAgPHRleHQgeD0iNzgiIHk9IjQwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNSIgZmlsbD0iI0E1MTgyMCI+4pymPC90ZXh0PgogICAgICAgICAgPHRleHQgeD0iNzgiIHk9IjY4IiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNSIgZmlsbD0iI0E1MTgyMCI+4piFPC90ZXh0PgogICAgICAgICAgPGNpcmNsZSBjeD0iNDIiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTAiIGN5PSI4MiIgcj0iMi41IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1OCIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cmVjdCB4PSI0MCIgeT0iODgiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyOCIgcng9IjEuNSIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgIDwvc3ZnPg=='),
+  'eureka': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDx0ZXh0IHg9IjUwIiB5PSIxMSIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjUiIGZpbGw9IiNBNTE4MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPuKcpjwvdGV4dD4KICAgICAgICAgIDxsaW5lIHgxPSI0NCIgeTE9IjE0IiB4Mj0iNDAiIHkyPSIxMCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPGxpbmUgeDE9IjU2IiB5MT0iMTQiIHgyPSI2MCIgeTI9IjEwIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQ1IDI4IEwgNTAgMTQgTCA1NSAyOCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQ2IDI0IFEgNTAgMjIgNTQgMjQgTSA0NyAyMSBRIDUwIDE5IDUzIDIxIE0gNDcgMTggUSA1MCAxNiA1MyAxOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSAzMiA0NSBRIDMxIDMyIDUwIDMwIFEgNjkgMzIgNjggNDUgUSA3MCA1NSA2MiA1NyBRIDY0IDYyIDYwIDY0IFEgNTggNjggNjIgNzIgUSA1OCA3NCA1NiA3MCBRIDUzIDc0IDUwIDcwIFEgNDcgNzQgNDQgNzAgUSA0MiA3MiAzOCA2OCBRIDM2IDcwIDM1IDY0IFEgMzEgNjIgMzIgNTcgUSAyOCA1NSAzMiA0NSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHBhdGggZD0iTSAzOSA0OCBRIDQ0IDQ0IDQ4IDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNTIgNDggUSA1NyA0NCA2MSA0OCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8ZWxsaXBzZSBjeD0iMzgiIGN5PSI1OCIgcng9IjIuNSIgcnk9IjEuNSIgZmlsbD0iI0E1MTgyMCIgb3BhY2l0eT0iMC40Ii8+CiAgICAgICAgICA8ZWxsaXBzZSBjeD0iNjIiIGN5PSI1OCIgcng9IjIuNSIgcnk9IjEuNSIgZmlsbD0iI0E1MTgyMCIgb3BhY2l0eT0iMC40Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQ1IDYyIFEgNTAgNjYgNTUgNjIiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzIiIHJ4PSI2IiByeT0iNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGxpbmUgeDE9Ijc2IiB5MT0iNDAiIHgyPSI4NCIgeTI9IjQwIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgICAgICAgPGxpbmUgeDE9Ijc3IiB5MT0iNDIiIHgyPSI4MyIgeTI9IjQyIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgICAgICAgPHBhdGggZD0iTSA3NyAzMiBRIDgwIDI5IDgzIDMyIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMC44IiBmaWxsPSJub25lIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'cheer': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8dGV4dCB4PSIyMCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI2IiBmaWxsPSIjQTUxODIwIj7inKY8L3RleHQ+CiAgICAgICAgICA8dGV4dCB4PSI3OCIgeT0iMjIiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI2IiBmaWxsPSIjQTUxODIwIj7imIU8L3RleHQ+CiAgICAgICAgICA8dGV4dCB4PSIxNCIgeT0iNDIiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI1IiBmaWxsPSIjQTUxODIwIj7imIU8L3RleHQ+CiAgICAgICAgICA8dGV4dCB4PSI4MiIgeT0iNDIiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI1IiBmaWxsPSIjQTUxODIwIj7inKY8L3RleHQ+CiAgICAgICAgICA8bGluZSB4MT0iMjAiIHkxPSIzMCIgeDI9IjI0IiB5Mj0iMzQiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI4MCIgeTE9IjMwIiB4Mj0iNzYiIHkyPSIzNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSAzMiA0NSBRIDMxIDMyIDUwIDMwIFEgNjkgMzIgNjggNDUgUSA3MCA1NSA2MiA1NyBRIDY0IDYyIDYwIDY0IFEgNTggNjggNjIgNzIgUSA1OCA3NCA1NiA3MCBRIDUzIDc0IDUwIDcwIFEgNDcgNzQgNDQgNzAgUSA0MiA3MiAzOCA2OCBRIDM2IDcwIDM1IDY0IFEgMzEgNjIgMzIgNTcgUSAyOCA1NSAzMiA0NSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHRleHQgeD0iNDQiIHk9IjUwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNiIgZmlsbD0iI0E1MTgyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4pymPC90ZXh0PgogICAgICAgICAgPHRleHQgeD0iNTYiIHk9IjUwIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iNiIgZmlsbD0iI0E1MTgyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+4pymPC90ZXh0PgogICAgICAgICAgPHBhdGggZD0iTSA0NCA2MCBRIDUwIDY3IDU2IDYwIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMjgiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+  'proud': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDM5IDQ4IFEgNDQgNDQgNDggNDgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA1MiA0OCBRIDU3IDQ0IDYxIDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSIzOCIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgNjIgUSA1MCA2NiA1NSA2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgyMCwgNjApIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOCIgaGVpZ2h0PSIyOCIgcng9IjEiIGZpbGw9IiNBNTE4MjAiLz48cGF0aCBkPSJNIDIgMCBMIDIgLTQgUSAyIC02IDQgLTYgUSA2IC02IDYgLTQgTCA2IDAgWiIgZmlsbD0iI0E1MTgyMCIvPjwvZz4KICAgICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDgwLCA2MCkgc2NhbGUoLTEsIDEpIj48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iOCIgaGVpZ2h0PSIxMSIgcng9IjEiIGZpbGw9IiNBNTE4MjAiLz48cGF0aCBkPSJNIDIgMCBMIDIgLTQgUSAyIC02IDQgLTYgUSA2IC02IDYgLTQgTCA2IDAgWiIgZmlsbD0iI0E1MTgyMCIvPjwvZz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMTAiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+  'touched': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQxIDQ3IEMgMzggNDQsIDM0IDQ1LCAzNCA0OSBDIDM0IDUzLCA0MSA1NywgNDEgNTcgQyA0MSA1NywgNDggNTMsIDQ4IDQ5IEMgNDggNDUsIDQ0IDQ0LCA0MSA0NyBaIiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDU5IDQ3IEMgNTYgNDQsIDUyIDQ1LCA1MiA0OSBDIDUyIDUzLCA1OSA1NywgNTkgNTcgQyA1OSA1NywgNjYgNTMsIDY2IDQ5IEMgNjYgNDUsIDYyIDQ0LCA1OSA0NyBaIiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjYwIiByPSIwLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI0NCIgY3k9IjYyIiByPSIwLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU2IiBjeT0iNjAiIHI9IjAuOCIgZmlsbD0iI0E1MTgyMCIvPjxjaXJjbGUgY3g9IjU4IiBjeT0iNjIiIHI9IjAuOCIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NiA2NSBRIDUwIDY3IDU0IDY1IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMjgiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+  'happy': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDM5IDQ4IFEgNDQgNDQgNDggNDgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA1MiA0OCBRIDU3IDQ0IDYxIDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSIzOCIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgNjIgUSA1MCA2NSA1NSA2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'grateful': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDM5IDUwIFEgNDQgNDYgNDggNTAiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA1MiA1MCBRIDU3IDQ2IDYxIDUwIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSIzOCIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgNjIgUSA1MCA2NCA1NSA2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDc4IDUwIEMgNzYgNDcsIDcyIDQ4LCA3MiA1MSBDIDcyIDU0LCA3OCA1OCwgNzggNTggQyA3OCA1OCwgODQgNTQsIDg0IDUxIEMgODQgNDgsIDgwIDQ3LCA3OCA1MCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDIyIDUwIEMgMjAgNDcsIDE2IDQ4LCAxNiA1MSBDIDE2IDU0LCAyMiA1OCwgMjIgNTggQyAyMiA1OCwgMjggNTQsIDI4IDUxIEMgMjggNDgsIDI0IDQ3LCAyMiA1MCBaIiBmaWxsPSJub25lIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'grow': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQxIDQ4IFEgNDQgNDUgNDcgNDgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA1MyA0OCBRIDU2IDQ1IDU5IDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSIzOCIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSI2MiIgY3k9IjU4IiByeD0iMi41IiByeT0iMS41IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgNjIgUSA1MCA2NCA1NCA2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDc4IDcwIEwgODIgNjAgTCA4NiA2NSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDg2IDY1IEwgODYgNjAgTCA4MSA2MCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'neutral': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjQ4IiByPSIxLjUiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI1OCIgY3k9IjQ4IiByPSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxsaW5lIHgxPSI0NiIgeTE9IjYyIiB4Mj0iNTQiIHkyPSI2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'confused': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjQ4IiByPSIyLjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNDgiIHI9IjEiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxlbGxpcHNlIGN4PSI1OCIgY3k9IjQ4IiByeD0iMiIgcnk9IjIuNSIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NCA2MiBRIDQ3IDYwIDUwIDYyIFEgNTMgNjQgNTYgNjIiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPGVsbGlwc2UgY3g9IjgwIiBjeT0iMzIiIHJ4PSI2IiByeT0iNiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogICAgICAgICAgPHRleHQgeD0iODAiIHk9IjM1IiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iOCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI0E1MTgyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+PzwvdGV4dD4KICAgICAgICAgIDxjaXJjbGUgY3g9IjcyIiBjeT0iNDIiIHI9IjEuMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMjgiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+  'calm': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzMiIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjciIHkyPSIxNCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2NyIgY3k9IjE0IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cGF0aCBkPSJNIDM5IDQ4IFEgNDQgNTEgNDggNDgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA1MiA0OCBRIDU3IDUxIDYxIDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI0NiIgeTE9IjYyIiB4Mj0iNTQiIHkyPSI2MiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDc4IDMwIFEgODIgMzIgODAgMzYgUSA3OCAzOCA4MCA0MCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSAyMiAzMCBRIDE4IDMyIDIwIDM2IFEgMjIgMzggMjAgNDAiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMjgiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+  'tired': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzQiIHkyPSIxNiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgogICAgICAgICAgPGxpbmUgeDE9IjY0IiB5MT0iMzAiIHgyPSI2NiIgeTI9IjE2IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNyIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iMzQiIGN5PSIxNiIgcj0iMS44IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSI2NiIgY3k9IjE2IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiIG9wYWNpdHk9IjAuNyIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NSAyOCBMIDQ5IDE2IEwgNTUgMjggWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NiAyNCBRIDUwIDIyIDU0IDI0IE0gNDcgMjEgUSA1MCAxOSA1MyAyMSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSAzMiA0NSBRIDMxIDMyIDUwIDMwIFEgNjkgMzIgNjggNDUgUSA3MCA1NSA2MiA1NyBRIDY0IDYyIDYwIDY0IFEgNTggNjggNjIgNzIgUSA1OCA3NCA1NiA3MCBRIDUzIDc0IDUwIDcwIFEgNDcgNzQgNDQgNzAgUSA0MiA3MiAzOCA2OCBRIDM2IDcwIDM1IDY0IFEgMzEgNjIgMzIgNTcgUSAyOCA1NSAzMiA0NSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHBhdGggZD0iTSAzOSA0OCBRIDQ0IDUyIDQ4IDQ4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNTIgNDggUSA1NyA1MiA2MSA0OCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8ZWxsaXBzZSBjeD0iMzgiIGN5PSI1OCIgcng9IjIuNSIgcnk9IjEuNSIgZmlsbD0iI0E1MTgyMCIgb3BhY2l0eT0iMC40Ii8+CiAgICAgICAgICA8ZWxsaXBzZSBjeD0iNjIiIGN5PSI1OCIgcng9IjIuNSIgcnk9IjEuNSIgZmlsbD0iI0E1MTgyMCIgb3BhY2l0eT0iMC40Ii8+CiAgICAgICAgICA8ZWxsaXBzZSBjeD0iNTAiIGN5PSI2NCIgcng9IjIiIHJ5PSIxIiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgICA8dGV4dCB4PSI3NiIgeT0iMjgiIGZvbnQtZmFtaWx5PSJzZXJpZiIgZm9udC1zaXplPSI2IiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjQTUxODIwIj56PC90ZXh0PgogICAgICAgICAgPHRleHQgeD0iODIiIHk9IjIyIiBmb250LWZhbWlseT0ic2VyaWYiIGZvbnQtc2l6ZT0iOCIgZm9udC13ZWlnaHQ9IjkwMCIgZmlsbD0iI0E1MTgyMCI+ejwvdGV4dD4KICAgICAgICAgIDx0ZXh0IHg9Ijg5IiB5PSIxNiIgZm9udC1mYW1pbHk9InNlcmlmIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iOTAwIiBmaWxsPSIjQTUxODIwIj5aPC90ZXh0PgogICAgICAgICAgPGNpcmNsZSBjeD0iNDIiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTAiIGN5PSI4MiIgcj0iMi41IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1OCIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8cmVjdCB4PSI0MCIgeT0iODgiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyOCIgcng9IjEuNSIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgIDwvc3ZnPg=='),
+  'anxious': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzIiIHkyPSIxMiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxsaW5lIHgxPSI2NCIgeTE9IjMwIiB4Mj0iNjgiIHkyPSIxMiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSIzMiIgY3k9IjEyIiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz48Y2lyY2xlIGN4PSI2OCIgY3k9IjEyIiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDUgMjggTCA1MCAxNCBMIDU1IDI4IFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDYgMjQgUSA1MCAyMiA1NCAyNCBNIDQ3IDIxIFEgNTAgMTkgNTMgMjEgTSA0NyAxOCBRIDUwIDE2IDUzIDE4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDMyIDQ1IFEgMzEgMzIgNTAgMzAgUSA2OSAzMiA2OCA0NSBRIDcwIDU1IDYyIDU3IFEgNjQgNjIgNjAgNjQgUSA1OCA2OCA2MiA3MiBRIDU4IDc0IDU2IDcwIFEgNTMgNzQgNTAgNzAgUSA0NyA3NCA0NCA3MCBRIDQyIDcyIDM4IDY4IFEgMzYgNzAgMzUgNjQgUSAzMSA2MiAzMiA1NyBRIDI4IDU1IDMyIDQ1IiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjQ4IiByPSIzIiBmaWxsPSJub25lIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9IjQ4IiByPSIxLjIiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNDgiIHI9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNDgiIHI9IjEuMiIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgICAgPGxpbmUgeDE9IjM4IiB5MT0iNDIiIHgyPSI0NCIgeTI9IjQ0IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8bGluZSB4MT0iNTYiIHkxPSI0NCIgeDI9IjYyIiB5Mj0iNDIiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNDQgNjQgUSA0NyA2MiA1MCA2NCBRIDUzIDY2IDU2IDY0IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gMTggMzggUSAyNCAzMiAyMiA0MiBRIDE2IDQyIDE4IDM4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIvPgogICAgICAgICAgPHBhdGggZD0iTSA4MiAzOCBRIDc2IDMyIDc4IDQyIFEgODQgNDIgODIgMzgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIi8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI0MiIgY3k9Ijc4IiByPSIyIiBmaWxsPSIjRkRGQkY4IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICAgICAgICA8Y2lyY2xlIGN4PSI1MCIgY3k9IjgyIiByPSIyLjUiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjU4IiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxyZWN0IHg9IjQwIiB5PSI4OCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI4IiByeD0iMS41IiBmaWxsPSIjQTUxODIwIi8+CiAgICAgICAgPC9zdmc+'),
+  'sad': atob('PHN2ZyB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICAgICAgICAgIDxsaW5lIHgxPSIzNiIgeTE9IjMwIiB4Mj0iMzQiIHkyPSIxNiIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjI4IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogICAgICAgICAgPGxpbmUgeDE9IjY0IiB5MT0iMzAiIHgyPSI2NiIgeTI9IjE2IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIG9wYWNpdHk9IjAuNiIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iMzQiIGN5PSIxNiIgcj0iMS44IiBmaWxsPSIjQTUxODIwIiBvcGFjaXR5PSIwLjYiLz48Y2lyY2xlIGN4PSI2NiIgY3k9IjE2IiByPSIxLjgiIGZpbGw9IiNBNTE4MjAiIG9wYWNpdHk9IjAuNiIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NSAyOCBMIDQ5IDE4IEwgNTUgMjggWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NiAyNCBRIDUwIDIyIDU0IDI0IE0gNDcgMjEgUSA1MCAxOSA1MyAyMSIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPgogICAgICAgICAgPHBhdGggZD0iTSAzMiA0NSBRIDMxIDMyIDUwIDMwIFEgNjkgMzIgNjggNDUgUSA3MCA1NSA2MiA1NyBRIDY0IDYyIDYwIDY0IFEgNTggNjggNjIgNzIgUSA1OCA3NCA1NiA3MCBRIDUzIDc0IDUwIDcwIFEgNDcgNzQgNDQgNzAgUSA0MiA3MiAzOCA2OCBRIDM2IDcwIDM1IDY0IFEgMzEgNjIgMzIgNTcgUSAyOCA1NSAzMiA0NSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHBhdGggZD0iTSAzOCA1MCBRIDQyIDQ3IDQ2IDUwIiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS41IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxwYXRoIGQ9Ik0gNTQgNTAgUSA1OCA0NyA2MiA1MCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgICAgICAgICA8cGF0aCBkPSJNIDQyIDUzIFEgNDEgNTcgNDIgNjAiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNjEiIHI9IjAuOCIgZmlsbD0iI0E1MTgyMCIvPgogICAgICAgICAgPHBhdGggZD0iTSA0NSA2NSBRIDUwIDYyIDU1IDY1IiBzdHJva2U9IiNBNTE4MjAiIHN0cm9rZS13aWR0aD0iMS4yIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjQyIiBjeT0iNzgiIHI9IjIiIGZpbGw9IiNGREZCRjgiIHN0cm9rZT0iI0E1MTgyMCIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgICAgICAgIDxjaXJjbGUgY3g9IjUwIiBjeT0iODIiIHI9IjIuNSIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPGNpcmNsZSBjeD0iNTgiIGN5PSI3OCIgcj0iMiIgZmlsbD0iI0ZERkJGOCIgc3Ryb2tlPSIjQTUxODIwIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogICAgICAgICAgPHJlY3QgeD0iNDAiIHk9Ijg4IiB3aWR0aD0iMjAiIGhlaWdodD0iMjgiIHJ4PSIxLjUiIGZpbGw9IiNBNTE4MjAiLz4KICAgICAgICA8L3N2Zz4='),
+};
+</script>
+
+<!-- ═════════════════════════════════════ -->
+<!-- 分頁 22：品牌系統 V5.1（新增） -->
+<!-- ═════════════════════════════════════ -->
+<div class="tpage" id="tp-brand-v51">
+
+  <!-- 開場 Hero -->
+  <div style="padding:40px 16px 32px;background:linear-gradient(135deg,#FDF3F4 0%,#FAE8EA 100%);border-radius:8px;margin-bottom:20px">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.3em;margin-bottom:8px">ICS BRAND SYSTEM</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:26px;font-weight:900;color:#2A1A1C;line-height:1.3;margin-bottom:8px">品牌系統 V5.1<br>藝術整合版</div>
+    <div style="font-size:12px;color:#7A5A5E;font-style:italic;line-height:1.7">短影音代理營運的視覺語言聖經<br>Per Aspera Ad Astra · 穿越艱辛 · 抵達繁星</div>
+  </div>
+
+  <!-- 1. 品牌哲學 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">PHILOSOPHY</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:12px">品牌哲學</div>
+    <div style="background:#FDF3F4;padding:16px;border-left:3px solid #A51820;border-radius:4px;font-family:'Noto Serif TC',serif;font-size:14px;color:#2A1A1C;line-height:1.8;font-style:italic">
+      我們相信，<br>
+      <strong style="color:#A51820;font-style:normal">每一個故事</strong> 都值得被精心對待。
+    </div>
+    <div style="font-size:12px;color:#7A5A5E;line-height:1.8;margin-top:14px">
+      ICS 不是一間單純做「短影音剪輯」的公司。我們是一個 <strong>說故事的工坊</strong>。<br>
+      把客戶的真實樣子，用最美的方式呈現給世界。
+    </div>
+  </div>
+
+  <!-- 2. ICS 三件事 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">CORE VALUES</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:14px">ICS 三件事</div>
+    <div style="display:grid;gap:10px">
+      <div style="background:#FDF3F4;padding:14px;border-radius:6px">
+        <div style="font-family:'Playfair Display',serif;font-size:20px;color:#A51820;font-style:italic;margin-bottom:4px">I — Inspire</div>
+        <div style="font-size:12px;color:#2A1A1C">啟發 · 看見別人沒看見的故事角度</div>
+      </div>
+      <div style="background:#FAE8EA;padding:14px;border-radius:6px">
+        <div style="font-family:'Playfair Display',serif;font-size:20px;color:#A51820;font-style:italic;margin-bottom:4px">C — Create</div>
+        <div style="font-size:12px;color:#2A1A1C">創造 · 把抽象想法做成具體作品</div>
+      </div>
+      <div style="background:#FDF3F4;padding:14px;border-radius:6px">
+        <div style="font-family:'Playfair Display',serif;font-size:20px;color:#A51820;font-style:italic;margin-bottom:4px">S — Shine</div>
+        <div style="font-size:12px;color:#2A1A1C">閃耀 · 讓每個客戶在世界裡被看見</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Logo 系統概覽 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">LOGO SYSTEM</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:14px">Logo 系統 · 4 種版本</div>
+    <div style="display:grid;gap:10px">
+      <div style="background:#F4F1EC;padding:12px;border-radius:6px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">① 主 Logo</div>
+        <div style="font-size:11px;color:#7A5A5E">完整品牌識別 · 用於：官網首頁、提案封面、合約抬頭</div>
+      </div>
+      <div style="background:#F4F1EC;padding:12px;border-radius:6px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">② 極簡符號</div>
+        <div style="font-size:11px;color:#7A5A5E">一個符號打天下 · 用於：Favicon、APP icon、社群頭像</div>
+      </div>
+      <div style="background:#F4F1EC;padding:12px;border-radius:6px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">③ 文字型 Logo</div>
+        <div style="font-size:11px;color:#7A5A5E">正式文件用 · 用於：合約、發票、財務文件</div>
+      </div>
+      <div style="background:#F4F1EC;padding:12px;border-radius:6px">
+        <div style="font-weight:900;color:#A51820;font-size:13px;margin-bottom:4px">④ 酷炫版</div>
+        <div style="font-size:11px;color:#7A5A5E">影片 / 社群 / 未來感 · 用於：影片片頭、社群動態、年度回顧</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;padding:12px;background:#FDF3F4;border-radius:6px;font-size:11px;color:#7A5A5E;line-height:1.7">
+      💡 <strong>使用原則</strong>：4 種版本都來自同一個 DNA · 不同場合用不同版本 · 千萬不要混用
+    </div>
+  </div>
+
+  <!-- 4. Astra 吉祥物 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">MASCOT</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:8px">吉祥物 · Astra</div>
+    <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:14px">從你手繪的小機器人，長成一個完整角色</div>
+    <div style="background:#FDF3F4;padding:16px;border-radius:6px">
+      <div style="font-family:'Noto Serif TC',serif;font-weight:900;color:#A51820;font-size:14px;margin-bottom:8px">Astra 的 5 個 DNA</div>
+      <div style="font-size:12px;color:#2A1A1C;line-height:1.8">
+        ① <strong>雙觸角</strong> · 兩根細線+紅色小圓點<br>
+        ② <strong>螺旋角</strong> · 額頭中央向上的螺旋<br>
+        ③ <strong>CS 眼鏡</strong> · 左 C 右 S（Create / Shine）<br>
+        ④ <strong>融化身體</strong> · 不規則波浪邊緣（史萊姆/水母/布丁感）<br>
+        ⑤ <strong>ICS 紅色方塊身</strong> · 紅底白字「ICS」標牌
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. 14 款心情 · 預覽 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">14 MOODS</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:8px">14 款心情圖示</div>
+    <div style="font-size:12px;color:#7A5A5E;font-style:italic;margin-bottom:14px">從停不下來到需要被擁抱 · 已整合進 Build Log</div>
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:14px">
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">✨</div>興奮</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">💡</div>啊哈</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🎉</div>慶祝</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🏆</div>驕傲</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🥹</div>感動</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">😊</div>開心</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🙏</div>感謝</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🌱</div>成長</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">📝</div>平常</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🤔</div>困惑</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">🧘</div>沉澱</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">😮‍💨</div>疲憊</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">😰</div>焦慮</div>
+      <div style="text-align:center;font-size:9px;color:#7A5A5E"><div style="font-size:18px">😢</div>難過</div>
+    </div>
+    <div style="padding:12px;background:#FAE8EA;border-radius:6px;font-size:11px;color:#7A5A5E;line-height:1.7">
+      💡 <strong>已整合</strong>：去 Build Log 心情選單 · 看到的就是 14 款 Astra 心情角色
+    </div>
+  </div>
+
+  <!-- 6. 色彩系統 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">COLORS</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:14px">色彩系統 · 完整 hex</div>
+    <div style="display:grid;gap:8px">
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#A51820;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Primary 主紅</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#A51820</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#7A1018;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Deep 深紅</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#7A1018</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#C02030;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Bright 亮紅</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#C02030</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#FDFBF8;border:1px solid #E8E3DA;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Warm White 暖白</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#FDFBF8</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#FDF3F4;border:1px solid #E8E3DA;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Hero Pink 主背景粉</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#FDF3F4</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#FAE8EA;border:1px solid #E8E3DA;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Accent Pink 點綴粉</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#FAE8EA</div></div>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;padding:8px;background:#F4F1EC;border-radius:4px">
+        <div style="width:36px;height:36px;background:#D4A574;border-radius:6px;flex-shrink:0"></div>
+        <div style="flex:1;min-width:0"><div style="font-weight:900;color:#2A1A1C;font-size:12px">Gold 金色點綴</div><div style="font-family:monospace;font-size:11px;color:#7A5A5E">#D4A574</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 字體系統 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">TYPOGRAPHY</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:14px">字體系統 · 6 字體各司其職</div>
+    <div style="display:grid;gap:10px;font-size:12px">
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'Noto Serif TC',serif;font-weight:900;font-size:18px;color:#2A1A1C;margin-bottom:4px">Noto Serif TC</div>
+        <div style="color:#7A5A5E">中文標題 · 莊重感 · 文化感</div>
+      </div>
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'Noto Sans TC',sans-serif;font-weight:500;font-size:16px;color:#2A1A1C;margin-bottom:4px">Noto Sans TC</div>
+        <div style="color:#7A5A5E">中文內文 · 易讀</div>
+      </div>
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:18px;color:#A51820;margin-bottom:4px">Playfair Display</div>
+        <div style="color:#7A5A5E">英文標題 · 優雅 · 編輯感</div>
+      </div>
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'Inter',sans-serif;font-weight:500;font-size:14px;color:#2A1A1C;margin-bottom:4px">Inter</div>
+        <div style="color:#7A5A5E">英文內文 · UI 文字</div>
+      </div>
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#2A1A1C;margin-bottom:4px">JetBrains Mono</div>
+        <div style="color:#7A5A5E">程式碼 · hex 值 · 系統訊息</div>
+      </div>
+      <div style="padding:12px;background:#F4F1EC;border-radius:6px">
+        <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#A51820;margin-bottom:4px">Cormorant Garamond</div>
+        <div style="color:#7A5A5E">引言 · 品牌標語</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. 該做與不該做 -->
+  <div style="padding:24px 16px;background:#fff;border-radius:8px;margin-bottom:16px;border:1px solid #E8E3DA">
+    <div style="font-size:10px;font-weight:900;color:#A51820;letter-spacing:.25em;margin-bottom:6px">USAGE RULES</div>
+    <div style="font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#2A1A1C;margin-bottom:14px">使用規則</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:#FDF3F4;padding:14px;border-radius:6px;border-left:3px solid #2A5A2C">
+        <div style="font-weight:900;color:#2A5A2C;font-size:12px;margin-bottom:8px">✅ 該做</div>
+        <div style="font-size:10px;color:#2A1A1C;line-height:1.7">
+          • 用主紅 #A51820<br>
+          • 中文用 Noto Serif TC<br>
+          • Astra 保留 5 DNA<br>
+          • 留白要夠
+        </div>
+      </div>
+      <div style="background:#F4F1EC;padding:14px;border-radius:6px;border-left:3px solid #A51820">
+        <div style="font-weight:900;color:#A51820;font-size:12px;margin-bottom:8px">❌ 不該做</div>
+        <div style="font-size:10px;color:#2A1A1C;line-height:1.7">
+          • 不要改 Astra 比例<br>
+          • 不要混用色票<br>
+          • 不要拉伸 Logo<br>
+          • 不要太擁擠
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 結尾 -->
+  <div style="padding:20px 16px;background:linear-gradient(135deg,#FDF3F4 0%,#FAE8EA 100%);border-radius:8px;text-align:center">
+    <div style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#A51820;margin-bottom:6px">Per Aspera Ad Astra.</div>
+    <div style="font-size:11px;color:#7A5A5E">穿越艱辛 · 抵達繁星</div>
+    <div style="font-size:10px;color:#B09498;margin-top:8px;font-style:italic">完整聖經請參考：品牌資產_設計系統/00_ICS品牌系統聖經_V5.1.html</div>
+  </div>
+
+</div>
+<!-- ═════════════════════════════════════ -->
+<!-- 分頁 22 結束 -->
+<!-- ═════════════════════════════════════ -->
 
 </body>
 </html>
