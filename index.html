@@ -65,13 +65,37 @@ h1,h2,h3{font-family:'Noto Serif TC',serif}
 .hsnum{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#fff}
 .hslabel{font-size:9px;color:var(--p1);margin-top:1px}
 
-/* TABS */
-.tabs{display:flex;background:var(--r2);overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.1);align-items:center}
-.tabs::-webkit-scrollbar{display:none}
-.tab-label{flex-shrink:0;padding:0 8px;font-size:9px;font-weight:700;color:rgba(255,255,255,.5);letter-spacing:.12em;white-space:nowrap;text-transform:uppercase}
-.tab-divider{flex-shrink:0;width:1px;height:20px;background:rgba(255,255,255,.2);margin:0 4px}
-.tab{flex-shrink:0;padding:10px 14px;font-size:11px;font-weight:700;color:rgba(255,255,255,.55);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
-.tab.active{color:#fff;border-bottom-color:#fff}
+/* TABS V11 · 三排彩色分組設計 */
+.tabs-wrap{background:linear-gradient(180deg,#8C1F27 0%,#7A1018 100%);border-top:1px solid rgba(255,255,255,.08);position:sticky;top:46px;z-index:99;transition:all .3s ease}
+.tabs-wrap.compact{padding:0}
+.tabs-row{display:flex;align-items:center;flex-wrap:wrap;padding:6px 12px 6px;gap:4px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .3s ease}
+.tabs-row:last-child{border-bottom:none}
+.tabs-row-label{font-size:8.5px;font-weight:900;color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase;padding:0 8px 0 2px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:4px}
+.tabs-row-label-icon{display:inline-block;width:11px;height:11px;line-height:0}
+.tab{padding:7px 11px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7);cursor:pointer;border-radius:6px;white-space:nowrap;transition:all .15s ease;display:inline-flex;align-items:center;background:transparent}
+.tab:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.95)}
+.tab.active{color:#7A1018;background:#fff;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+.tab.active svg{color:#A51820 !important}
+/* 第一排：執行引擎 - 略亮 */
+.tabs-row.row-execution{background:rgba(255,255,255,.04)}
+/* 第二排：底氣區 - 中等 */
+.tabs-row.row-foundation{background:rgba(0,0,0,.08)}
+/* 第三排：工具區 - 最深 */
+.tabs-row.row-toolkit{background:rgba(0,0,0,.15)}
+/* 滾動時·縮成迷你模式 */
+.tabs-wrap.compact .tabs-row:not(.row-active){display:none}
+.tabs-wrap.compact .tabs-row{padding:4px 12px;border:none}
+.tabs-wrap.compact .tabs-row-label{font-size:8px;color:rgba(255,255,255,.4)}
+.tabs-wrap.compact .tab{padding:5px 10px;font-size:10.5px}
+/* 手機 RWD */
+@media (max-width:480px){
+  .tabs-row{padding:5px 8px;gap:3px}
+  .tabs-row-label{font-size:7.5px;padding:0 6px 0 2px}
+  .tab{padding:6px 8px;font-size:10.5px}
+  .tab svg{width:11px !important;height:11px !important}
+  .tab span{margin-left:4px !important}
+}
+.tpage{display:none}.tpage.active{display:block}
 .tpage{display:none}.tpage.active{display:block}
 
 /* CHAPTER HEAD */
@@ -658,19 +682,19 @@ body.mood-locked {
   </div>
 </div>
 
-<div class="tabs">
-  <div class="tab active" onclick="switchTab(0,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tabs-wrap" id="tabs-wrap">
+  <div class="tabs-row row-execution">
+    <div class="tabs-row-label">
+      <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><path d="M14 3 L5 14 L11 14 L10 21 L19 10 L13 10 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg></span>
+      <span>EXECUTION · 執行引擎</span>
+    </div>
+<div class="tab active" onclick="switchTab(0,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M8 12 L16 12 M12 8 L16 12 L12 16" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">開始</span></div>
-  <div class="tab-label"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
-  
-  <g>
-    <path d="M14 3 L5 14 L11 14 L10 21 L19 10 L13 10 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-  </g></svg><span style="margin-left:5px">執行引擎</span></div>
-  <div class="tab" onclick="switchTab(1,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(1,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="2.2" fill="none"/>
@@ -678,81 +702,85 @@ body.mood-locked {
 <line x1="9" y1="13" x2="15" y2="13" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 <line x1="9" y1="17" x2="13" y2="17" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">客戶流程</span></div>
-  <div class="tab" onclick="switchTab(2,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(2,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <circle cx="12" cy="12" r="5" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
   </g></svg><span style="margin-left:5px">IP定位</span></div>
-  <div class="tab" onclick="switchTab(3,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(3,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M12 3 L13.5 9 L19.5 10.5 L13.5 12 L12 18 L10.5 12 L4.5 10.5 L10.5 9 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M18 16 L18.8 18.2 L21 19 L18.8 19.8 L18 22 L17.2 19.8 L15 19 L17.2 18.2 Z" fill="currentColor"/>
   </g></svg><span style="margin-left:5px">AI工具</span></div>
-  <div class="tab" onclick="switchTab(4,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(4,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M14.5 9 C14.5 9 13 8 12 8 C10 8 9 9 9 10 C9 12 15 12 15 14 C15 15 14 16 12 16 C11 16 9.5 15 9.5 15" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 <line x1="12" y1="6.5" x2="12" y2="17.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">報價合約</span></div>
-  <div class="tab" onclick="switchTab(5,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(5,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M8 6 L10 4 L14 4 L16 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <circle cx="12" cy="13" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
   </g></svg><span style="margin-left:5px">拍攝執行</span></div>
-  <div class="tab" onclick="switchTab(6,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(6,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M20 12 A8 8 0 1 1 12 4" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 <path d="M20 4 L20 9 L15 9" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">每月執行</span></div>
-  <div class="tab" onclick="switchTab(7,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(7,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <rect x="3" y="7" width="18" height="13" rx="1.5" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M3 12 L21 12" stroke="currentColor" stroke-width="2.2"/>
 <path d="M6 4 L9 7 M12 4 L15 7 M18 4 L21 7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">腳本系統</span></div>
-  <div class="tab" onclick="switchTab(8,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(8,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M4 6 L4 20 L12 18 L20 20 L20 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M4 6 L12 4 L20 6 L12 8 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <line x1="12" y1="8" x2="12" y2="18" stroke="currentColor" stroke-width="2.2"/>
   </g></svg><span style="margin-left:5px">靈感餵養</span></div>
-  <div class="tab" onclick="switchTab(9,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(9,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M5 21 L5 9 C5 5 8 3 12 3 C16 3 19 5 19 9 L19 21" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 <path d="M3 21 L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 <circle cx="15" cy="13" r="1" fill="currentColor"/>
   </g></svg><span style="margin-left:5px">交付閘門</span></div>
-  <div class="tab-divider"></div>
-  <div class="tab-label"><svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg> 底氣區</div>
-  <div class="tab" onclick="switchTab(10,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  </div>
+  <div class="tabs-row row-foundation">
+    <div class="tabs-row-label">
+      <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg></span>
+      <span>FOUNDATION · 底氣區</span>
+    </div>
+<div class="tab" onclick="switchTab(10,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M5 3 L5 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 <path d="M5 4 L18 4 L15 8 L18 12 L5 12" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">合作目標</span></div>
-  <div class="tab" onclick="switchTab(11,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(11,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M3 5 L12 7 L21 5 L21 19 L12 21 L3 19 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M12 7 L12 21" stroke="currentColor" stroke-width="2.2"/>
   </g></svg><span style="margin-left:5px">術語庫</span></div>
-  <div class="tab" onclick="switchTab(12,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(12,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M12 3 L20 6 L20 12 C20 17 16 21 12 22 C8 21 4 17 4 12 L4 6 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M9 12 L11 14 L15 10" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">權責邊界</span></div>
-  <div class="tab" onclick="switchTab(13,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(13,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <line x1="12" y1="4" x2="12" y2="21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
@@ -761,7 +789,13 @@ body.mood-locked {
 <path d="M4 8 L2 13 L6 13 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M20 8 L18 13 L22 13 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">法律風險</span></div>
-  <div class="tab" onclick="switchTab(14,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  </div>
+  <div class="tabs-row row-toolkit">
+    <div class="tabs-row-label">
+      <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/><path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M5 5 L7.5 7.5 M16.5 16.5 L19 19 M5 19 L7.5 16.5 M16.5 7.5 L19 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+      <span>TOOLKIT · 工具與底蘊</span>
+    </div>
+<div class="tab" onclick="switchTab(14,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <rect x="3" y="4" width="18" height="14" rx="1.5" stroke="currentColor" stroke-width="2.2" fill="none"/>
@@ -769,39 +803,13 @@ body.mood-locked {
 <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 <path d="M7 13 L11 9 L14 12 L17 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">提案練習</span></div>
-  <div class="tab" onclick="switchTab(15,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
-  
-  <g>
-    <path d="M12 3 C6.5 3 3 7 3 12 C3 15.5 5.5 18 8.5 18 C9.5 18 10 17.5 10 16.5 C10 16 9.8 15.5 9.8 15 C9.8 14 10.5 13.5 11.5 13.5 L14 13.5 C17.5 13.5 20 11 20 8 C20 5 16.5 3 12 3 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-<circle cx="7" cy="10" r="1.3" fill="currentColor"/>
-<circle cx="12" cy="7" r="1.3" fill="currentColor"/>
-<circle cx="16" cy="10" r="1.3" fill="currentColor"/>
-  </g></svg><span style="margin-left:5px">品牌視覺</span></div>
-  <div class="tab" onclick="switchTab(19,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
-  
-  <g>
-    <path d="M12 3 L13.5 7.5 L18 8 L14.5 11 L16 15.5 L12 13 L8 15.5 L9.5 11 L6 8 L10.5 7.5 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
-<circle cx="19" cy="19" r="1.2" fill="currentColor"/>
-<circle cx="5" cy="19" r="1.2" fill="currentColor"/>
-  </g></svg><span style="margin-left:5px">Astra 系統</span></div>
-  <div class="tab" onclick="switchTab(20,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="2.2" fill="none"/>
-    <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-    <circle cx="17" cy="16" r="2.2" fill="currentColor"/></svg><span style="margin-left:5px">Build Log</span></div>
-  <div class="tab" onclick="switchTab(21,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
-  
-  <g>
-    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
-<path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M4.9 4.9 L7.8 7.8 M16.2 16.2 L19.1 19.1 M4.9 19.1 L7.8 16.2 M16.2 7.8 L19.1 4.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
-  </g></svg><span style="margin-left:5px">系統架設</span></div>
-  <div class="tab" onclick="switchTab(16,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(16,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M6 3 L18 3 L22 9 L12 21 L2 9 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M2 9 L22 9" stroke="currentColor" stroke-width="2.2"/>
   </g></svg><span style="margin-left:5px">我是誰</span></div>
-  <div class="tab" onclick="switchTab(17,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(17,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <path d="M8 7 L12 3 L16 7" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -809,17 +817,43 @@ body.mood-locked {
 <path d="M16 17 L12 21 L8 17" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 <path d="M12 9 L12 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">提案介紹</span></div>
-  <div class="tab" onclick="switchTab(18,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(18,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
     <circle cx="12" cy="7" r="3.5" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M5 21 C5 16 8 14 12 14 C16 14 19 16 19 21" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">一人作戰</span></div>
-  <div class="tab" onclick="switchTab(22,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+<div class="tab" onclick="switchTab(15,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  
+  <g>
+    <path d="M12 3 C6.5 3 3 7 3 12 C3 15.5 5.5 18 8.5 18 C9.5 18 10 17.5 10 16.5 C10 16 9.8 15.5 9.8 15 C9.8 14 10.5 13.5 11.5 13.5 L14 13.5 C17.5 13.5 20 11 20 8 C20 5 16.5 3 12 3 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+<circle cx="7" cy="10" r="1.3" fill="currentColor"/>
+<circle cx="12" cy="7" r="1.3" fill="currentColor"/>
+<circle cx="16" cy="10" r="1.3" fill="currentColor"/>
+  </g></svg><span style="margin-left:5px">品牌視覺</span></div>
+<div class="tab" onclick="switchTab(22,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   <path d="M12 3 L13.5 7.5 L18 8 L14.5 11 L16 15.5 L12 13 L8 15.5 L9.5 11 L6 8 L10.5 7.5 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
   <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
   </svg><span style="margin-left:5px">品牌系統</span></div>
-
+<div class="tab" onclick="switchTab(19,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  
+  <g>
+    <path d="M12 3 L13.5 7.5 L18 8 L14.5 11 L16 15.5 L12 13 L8 15.5 L9.5 11 L6 8 L10.5 7.5 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+<circle cx="19" cy="19" r="1.2" fill="currentColor"/>
+<circle cx="5" cy="19" r="1.2" fill="currentColor"/>
+  </g></svg><span style="margin-left:5px">Astra 系統</span></div>
+<div class="tab" onclick="switchTab(20,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="2.2" fill="none"/>
+    <line x1="8" y1="8" x2="16" y2="8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="8" y1="12" x2="16" y2="12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <line x1="8" y1="16" x2="13" y2="16" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+    <circle cx="17" cy="16" r="2.2" fill="currentColor"/></svg><span style="margin-left:5px">Build Log</span></div>
+<div class="tab" onclick="switchTab(21,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
+  
+  <g>
+    <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
+<path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M4.9 4.9 L7.8 7.8 M16.2 16.2 L19.1 19.1 M4.9 19.1 L7.8 16.2 M16.2 7.8 L19.1 4.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+  </g></svg><span style="margin-left:5px">系統架設</span></div>
+  </div>
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
 <div class="tpage active" id="tp-start">
@@ -9856,16 +9890,67 @@ function switchInner(tab,idx){
 function switchTab(idx,tab){
   document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.tpage').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tabs-row').forEach(r=>r.classList.remove('row-active'));
   tab.classList.add('active');
+  // 標記當前 tab 所在的 row（給 compact mode 用）
+  const parentRow = tab.closest('.tabs-row');
+  if(parentRow) parentRow.classList.add('row-active');
   const tpId = TAB_MAP[idx] !== undefined ? TAB_MAP[idx] : idx;
   const pageId = typeof tpId === 'string' ? tpId : 'tp-'+tpId;
   const pg=document.getElementById(pageId);
   if(pg)pg.classList.add('active');
-  // 強制滾到頂部·避免跳到中間錨點
+  // 切換時·先離開 compact 模式·讓使用者看到全部選項
+  const tw = document.getElementById('tabs-wrap');
+  if(tw) tw.classList.remove('compact');
+  // 強制滾到頂部
   setTimeout(function(){
     window.scrollTo({top:0,behavior:'smooth'});
   }, 80);
 }
+
+// 滾動時·tabs-wrap 自動切換 compact 模式
+(function(){
+  let lastScroll = 0;
+  let ticking = false;
+  function updateTabsMode(){
+    const tw = document.getElementById('tabs-wrap');
+    if(!tw) return;
+    const sy = window.scrollY || window.pageYOffset;
+    // 滾動超過 200px·進入 compact（只顯示當前 row）
+    if(sy > 200){
+      tw.classList.add('compact');
+      // 確保有 row-active 標記
+      if(!document.querySelector('.tabs-row.row-active')){
+        const activeTab = document.querySelector('.tab.active');
+        if(activeTab){
+          const r = activeTab.closest('.tabs-row');
+          if(r) r.classList.add('row-active');
+        }
+      }
+    } else {
+      tw.classList.remove('compact');
+    }
+    lastScroll = sy;
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){
+      window.requestAnimationFrame(updateTabsMode);
+      ticking = true;
+    }
+  }, {passive: true});
+  // 點擊 compact 區域·展開全部
+  document.addEventListener('DOMContentLoaded', function(){
+    const tw = document.getElementById('tabs-wrap');
+    if(tw){
+      tw.addEventListener('click', function(e){
+        if(tw.classList.contains('compact') && !e.target.closest('.tab')){
+          tw.classList.remove('compact');
+        }
+      });
+    }
+  });
+})();
 
 function toggleNote(card){
   const np=card.querySelector('.npanel');
@@ -10324,6 +10409,17 @@ window.toggleLegalMulti = toggleLegalMulti;
 window.runLegalDiag = runLegalDiag;
 window.resetLegalDiag = resetLegalDiag;
 
+
+// 初始化：為預設 active tab 標記 row-active
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    const activeTab = document.querySelector('.tab.active');
+    if(activeTab){
+      const row = activeTab.closest('.tabs-row');
+      if(row) row.classList.add('row-active');
+    }
+  });
+})();
 
 function updateBar(){
   const n=S.c.length;
