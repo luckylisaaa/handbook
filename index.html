@@ -298,47 +298,47 @@ try {
   top: calc(100% + 4px);
   left: 0;
   right: 0;
-  width: 100% !important;
-  max-width: 100% !important;
+  min-width: 280px;
+  width: auto !important;
+  max-width: 380px !important;
   box-sizing: border-box;
   background: #FDFBF8;
   border: 1px solid #E8E3DA;
-  border-radius: 8px;
-  box-shadow: 0 8px 24px rgba(165,24,32,.15);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(165,24,32,.18);
   z-index: 9999;
   max-height: 60vh;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 8px;
+  padding: 12px;
 }
 
 /* === 心情分組 === */
 .mood-group { margin-bottom: 8px; }
 .mood-group:last-child { margin-bottom: 0; }
 .mood-group-label {
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 11px;
+  font-weight: 900;
   color: #A51820;
   letter-spacing: .15em;
-  padding: 6px 8px 4px;
-  border-bottom: 1px solid #E8E3DA;
-  margin-bottom: 4px;
-  position: sticky;
-  top: 0;
+  padding: 8px 10px;
+  margin-bottom: 6px;
   background: #FDFBF8;
-  z-index: 2;
+  border-bottom: 1px solid #E8E3DA;
+  /* 不用 sticky·避免滑動時跟 SVG 重疊 */
 }
 
 /* === 每個心情選項 === */
 .mood-option {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 8px;
-  border-radius: 6px;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: background .15s;
   width: 100%;
+  min-width: 0;
   box-sizing: border-box;
 }
 .mood-option:hover { background: #FDF3F4; }
@@ -12799,21 +12799,43 @@ init();
   </div>
 </div>
 
-<!-- 11 章節導覽 -->
+<!-- 11 章節導覽 (v9·Astra Icon)-->
 <div style="padding:24px 16px 8px;background:#FDFBF8">
   <div style="font-family:'Noto Serif TC',serif;font-size:11px;font-weight:900;color:#A51820;letter-spacing:.2em;margin-bottom:12px;text-align:center">本頁 11 大章節</div>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:480px;margin:0 auto">
-    <a href="#ch-urls" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📚 Ch1 網址速查表</a>
-    <a href="#ch-concept" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🧠 Ch2 基礎概念</a>
-    <a href="#ch-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📋 Ch3 常用 SOP</a>
-    <a href="#ch-commit" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">⚡ Ch4 Commit 格式</a>
-    <a href="#ch-folder" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">📁 Ch5 資料夾系統</a>
-    <a href="#ch-backup" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🛡️ Ch6 分級備份</a>
-    <a href="#ch-firebase" style="padding:10px 12px;background:linear-gradient(135deg,#FAE8EA,#FDF3F4);border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🔥 Ch7 Firebase 雲端 SOP</a>
-    <a href="#ch-update-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🔁 Ch8 更新 SOP</a>
-    <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🆘 Ch9 問題排解</a>
-    <a href="#ch-advanced" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif">🎓 Ch10 進階知識</a>
-    <a href="#ch-agent" style="grid-column:1/-1;padding:10px 12px;background:linear-gradient(135deg,#B51E28,#7A1018);border:1px solid #A51820;border-radius:6px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;text-align:center">🤖 Ch11 AI Agent 指令模板</a>
+    <a href="#ch-urls" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<rect x="4" y="4" width="16" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="5" y="10" width="14" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="16" width="18" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg><span>Ch1 網址速查表</span></a>
+    <a href="#ch-concept" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M9 4 C7 4 5 6 5 8 C4 9 3 10 3 12 C3 14 4 15 5 16 C5 18 7 20 9 20 L12 20 L12 4 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M15 4 C17 4 19 6 19 8 C20 9 21 10 21 12 C21 14 20 15 19 16 C19 18 17 20 15 20 L12 20 L12 4 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+</svg><span>Ch2 基礎概念</span></a>
+    <a href="#ch-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<rect x="5" y="4" width="14" height="17" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><rect x="9" y="2" width="6" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><line x1="9" y1="11" x2="15" y2="11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="15" x2="14" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg><span>Ch3 常用 SOP</span></a>
+    <a href="#ch-commit" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M14 3 L5 14 L11 14 L10 21 L19 10 L13 10 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+</svg><span>Ch4 Commit 格式</span></a>
+    <a href="#ch-folder" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<rect x="4" y="4" width="16" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="5" y="10" width="14" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/><rect x="3" y="16" width="18" height="4" rx="1" stroke="currentColor" stroke-width="2" fill="none"/>
+</svg><span>Ch5 資料夾系統</span></a>
+    <a href="#ch-backup" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M12 3 L20 6 L20 12 C20 17 16 21 12 22 C8 21 4 17 4 12 L4 6 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+</svg><span>Ch6 分級備份</span></a>
+    <a href="#ch-firebase" style="padding:10px 12px;background:linear-gradient(135deg,#FAE8EA,#FDF3F4);border:1px solid #A51820;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M12 3 C10 7 7 9 7 13 C7 17 9 20 12 20 C15 20 17 17 17 13 C17 11 16 10 14 10 C14 8 13 5 12 3 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/>
+</svg><span>Ch7 Firebase 雲端 SOP</span></a>
+    <a href="#ch-update-sop" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M14 3 L5 14 L11 14 L10 21 L19 10 L13 10 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+</svg><span>Ch8 更新 SOP</span></a>
+    <a href="#ch-fix" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M6 18 L6 11 C6 7.5 8.5 5 12 5 C15.5 5 18 7.5 18 11 L18 18 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="4" y1="21" x2="20" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="3" r="1" fill="currentColor"/>
+</svg><span>Ch9 問題排解</span></a>
+    <a href="#ch-advanced" style="padding:10px 12px;background:#FDF3F4;border:1px solid #FAE8EA;border-radius:6px;color:#A51820;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block;margin-right:4px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#A51820">
+<path d="M2 9 L12 5 L22 9 L12 13 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M6 11 L6 16 C6 17.5 9 19 12 19 C15 19 18 17.5 18 16 L18 11" stroke="currentColor" stroke-width="2" fill="none"/><line x1="22" y1="9" x2="22" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg><span>Ch10 進階知識</span></a>
+    <a href="#ch-agent" style="grid-column:1/-1;padding:10px 12px;background:linear-gradient(135deg,#B51E28,#7A1018);border:1px solid #A51820;border-radius:6px;color:#fff;text-decoration:none;font-size:12px;font-weight:700;font-family:'Noto Serif TC',serif;display:flex;align-items:center;justify-content:center;gap:6px"><svg style="vertical-align:-2px;display:inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" color="#fff">
+<rect x="5" y="7" width="14" height="13" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="9" cy="13" r="1.3" fill="currentColor"/><circle cx="15" cy="13" r="1.3" fill="currentColor"/><line x1="12" y1="2" x2="12" y2="7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="2" r="1" fill="currentColor"/><line x1="3" y1="12" x2="5" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="19" y1="12" x2="21" y2="12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+</svg><span>Ch11 AI Agent 指令模板</span></a>
   </div>
 </div>
 
@@ -14807,7 +14829,8 @@ init();
 <a href="https://luckylisaaa.github.io/handbook/" class="ics-nav-item" data-site="handbook"><div class="ics-nav-icon">H</div><div class="ics-nav-text"><div class="ics-nav-name">Handbook</div><div class="ics-nav-desc">完整學習手冊</div></div></a>
 <a href="https://luckylisaaa.github.io/matrix/" class="ics-nav-item" data-site="matrix"><div class="ics-nav-icon">M</div><div class="ics-nav-text"><div class="ics-nav-name">Matrix</div><div class="ics-nav-desc">選題作戰矩陣</div></div></a>
 <a href="https://luckylisaaa.github.io/script-generator/" class="ics-nav-item" data-site="scripts"><div class="ics-nav-icon">S</div><div class="ics-nav-text"><div class="ics-nav-name">Scripts</div><div class="ics-nav-desc">腳本產生器 V3</div></div></a>
-<a href="https://luckylisaaa.github.io/brand/" class="ics-nav-item" data-site="brand"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺規範</div></div></a>
+<a href="https://luckylisaaa.github.io/brand/" class="ics-nav-item" data-site="brand-new"><div class="ics-nav-icon">B</div><div class="ics-nav-text"><div class="ics-nav-name">Brand</div><div class="ics-nav-desc">品牌視覺·新版（含 Iris）</div></div></a>
+<a href="https://luckylisaaa.github.io/brand-guidelines/" class="ics-nav-item" data-site="brand-old"><div class="ics-nav-icon">G</div><div class="ics-nav-text"><div class="ics-nav-name">Style Guide</div><div class="ics-nav-desc">品牌規範書·舊版</div></div></a>
 <a href="https://luckylisaaa.github.io/tasks/" class="ics-nav-item" data-site="tasks"><div class="ics-nav-icon">T</div><div class="ics-nav-text"><div class="ics-nav-name">Tasks</div><div class="ics-nav-desc">執行清單</div></div></a>
 </div>
 <div class="ics-nav-footer">Finding beauty. Making it move.</div>
