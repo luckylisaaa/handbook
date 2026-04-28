@@ -65,36 +65,91 @@ h1,h2,h3{font-family:'Noto Serif TC',serif}
 .hsnum{font-family:'Noto Serif TC',serif;font-size:18px;font-weight:900;color:#fff}
 .hslabel{font-size:9px;color:var(--p1);margin-top:1px}
 
-/* TABS V11 · 三排彩色分組設計 */
-.tabs-wrap{background:linear-gradient(180deg,#8C1F27 0%,#7A1018 100%);border-top:1px solid rgba(255,255,255,.08);position:sticky;top:46px;z-index:99;transition:all .3s ease}
-.tabs-wrap.compact{padding:0}
-.tabs-row{display:flex;align-items:center;flex-wrap:wrap;padding:6px 12px 6px;gap:4px;border-bottom:1px solid rgba(255,255,255,.06);transition:all .3s ease}
-.tabs-row:last-child{border-bottom:none}
-.tabs-row-label{font-size:8.5px;font-weight:900;color:rgba(255,255,255,.55);letter-spacing:.18em;text-transform:uppercase;padding:0 8px 0 2px;white-space:nowrap;flex-shrink:0;display:flex;align-items:center;gap:4px}
-.tabs-row-label-icon{display:inline-block;width:11px;height:11px;line-height:0}
-.tab{padding:7px 11px;font-size:11px;font-weight:600;color:rgba(255,255,255,.7);cursor:pointer;border-radius:6px;white-space:nowrap;transition:all .15s ease;display:inline-flex;align-items:center;background:transparent}
-.tab:hover{background:rgba(255,255,255,.08);color:rgba(255,255,255,.95)}
-.tab.active{color:#7A1018;background:#fff;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.15)}
+/* TABS V12 · 標籤獨立行 + 手機橫滑 + 桌面 wrap */
+.tabs-wrap{
+  background:linear-gradient(180deg,#8C1F27 0%,#7A1018 100%);
+  border-top:1px solid rgba(255,255,255,.08);
+  position:sticky;top:46px;z-index:99;
+  transition:all .3s ease;
+}
+.tabs-row{
+  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:8px 0 10px;
+}
+.tabs-row:last-child{border-bottom:none;padding-bottom:12px}
+
+/* 標籤獨立一行（不跟 tab 混在一起）*/
+.tabs-row-label{
+  display:flex;align-items:center;gap:6px;
+  font-size:9px;font-weight:900;
+  color:rgba(255,255,255,.5);
+  letter-spacing:.18em;text-transform:uppercase;
+  padding:0 16px 4px;
+  white-space:nowrap;
+}
+.tabs-row-label-icon{
+  display:inline-flex;width:11px;height:11px;
+  color:rgba(255,255,255,.55);
+}
+.tabs-row-label-icon svg{width:11px;height:11px}
+
+/* tab 列：可橫向滾動 */
+.tabs-row-items{
+  display:flex;align-items:center;gap:4px;
+  padding:0 12px;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.tabs-row-items::-webkit-scrollbar{display:none}
+
+/* 每個 tab */
+.tab{
+  flex-shrink:0;
+  padding:7px 12px;
+  font-size:11.5px;font-weight:600;
+  color:rgba(255,255,255,.78);
+  cursor:pointer;
+  border-radius:7px;
+  white-space:nowrap;
+  transition:all .15s ease;
+  display:inline-flex;align-items:center;gap:5px;
+  background:transparent;
+}
+.tab:hover{background:rgba(255,255,255,.1);color:#fff}
+.tab.active{
+  color:#7A1018;
+  background:#FDF3F4;
+  font-weight:700;
+  box-shadow:0 2px 6px rgba(0,0,0,.18);
+}
 .tab.active svg{color:#A51820 !important}
-/* 第一排：執行引擎 - 略亮 */
-.tabs-row.row-execution{background:rgba(255,255,255,.04)}
-/* 第二排：底氣區 - 中等 */
-.tabs-row.row-foundation{background:rgba(0,0,0,.08)}
-/* 第三排：工具區 - 最深 */
-.tabs-row.row-toolkit{background:rgba(0,0,0,.15)}
-/* 滾動時·縮成迷你模式 */
-.tabs-wrap.compact .tabs-row:not(.row-active){display:none}
-.tabs-wrap.compact .tabs-row{padding:4px 12px;border:none}
-.tabs-wrap.compact .tabs-row-label{font-size:8px;color:rgba(255,255,255,.4)}
-.tabs-wrap.compact .tab{padding:5px 10px;font-size:10.5px}
+.tab svg{flex-shrink:0}
+
+/* 三排背景層次 */
+.tabs-row.row-execution{background:rgba(255,255,255,.03)}
+.tabs-row.row-foundation{background:rgba(0,0,0,.06)}
+.tabs-row.row-toolkit{background:rgba(0,0,0,.12)}
+
+/* 桌面版：tab 列自動換行 */
+@media (min-width:768px){
+  .tabs-row-items{
+    flex-wrap:wrap;
+    overflow-x:visible;
+  }
+  .tab{padding:7px 12px;font-size:12px}
+}
+
 /* 手機 RWD */
 @media (max-width:480px){
-  .tabs-row{padding:5px 8px;gap:3px}
-  .tabs-row-label{font-size:7.5px;padding:0 6px 0 2px}
-  .tab{padding:6px 8px;font-size:10.5px}
+  .tabs-row{padding:6px 0 8px}
+  .tabs-row-label{font-size:8.5px;padding:0 14px 3px;letter-spacing:.16em}
+  .tabs-row-items{gap:3px;padding:0 10px}
+  .tab{padding:6px 10px;font-size:11px;gap:4px;border-radius:6px}
   .tab svg{width:11px !important;height:11px !important}
-  .tab span{margin-left:4px !important}
+  .tab span{margin-left:0 !important}
 }
+
 .tpage{display:none}.tpage.active{display:block}
 .tpage{display:none}.tpage.active{display:block}
 
@@ -683,11 +738,12 @@ body.mood-locked {
 </div>
 
 <div class="tabs-wrap" id="tabs-wrap">
-  <div class="tabs-row row-execution">
-    <div class="tabs-row-label">
+<div class="tabs-row row-execution">
+<div class="tabs-row-label">
       <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><path d="M14 3 L5 14 L11 14 L10 21 L19 10 L13 10 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg></span>
       <span>EXECUTION · 執行引擎</span>
     </div>
+<div class="tabs-row-items">
 <div class="tab active" onclick="switchTab(0,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
@@ -756,12 +812,15 @@ body.mood-locked {
 <path d="M3 21 L21 21" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
 <circle cx="15" cy="13" r="1" fill="currentColor"/>
   </g></svg><span style="margin-left:5px">交付閘門</span></div>
-  </div>
-  <div class="tabs-row row-foundation">
-    <div class="tabs-row-label">
+</div>
+</div>
+
+<div class="tabs-row row-foundation">
+<div class="tabs-row-label">
       <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg></span>
       <span>FOUNDATION · 底氣區</span>
     </div>
+<div class="tabs-row-items">
 <div class="tab" onclick="switchTab(10,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
@@ -789,12 +848,15 @@ body.mood-locked {
 <path d="M4 8 L2 13 L6 13 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
 <path d="M20 8 L18 13 L22 13 Z" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
   </g></svg><span style="margin-left:5px">法律風險</span></div>
-  </div>
-  <div class="tabs-row row-toolkit">
-    <div class="tabs-row-label">
+</div>
+</div>
+
+<div class="tabs-row row-toolkit">
+<div class="tabs-row-label">
       <span class="tabs-row-label-icon"><svg viewBox="0 0 24 24" width="11" height="11" style="display:inline-block;vertical-align:middle"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/><path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M5 5 L7.5 7.5 M16.5 16.5 L19 19 M5 19 L7.5 16.5 M16.5 7.5 L19 5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
       <span>TOOLKIT · 工具與底蘊</span>
     </div>
+<div class="tabs-row-items">
 <div class="tab" onclick="switchTab(14,this)"><svg viewBox="0 0 24 24" width="13" height="13" style="vertical-align:-2px;display:inline-block;color:currentColor" fill="none" stroke-width="1.8">
   
   <g>
@@ -853,7 +915,8 @@ body.mood-locked {
     <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2.2" fill="none"/>
 <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12 M4.9 4.9 L7.8 7.8 M16.2 16.2 L19.1 19.1 M4.9 19.1 L7.8 16.2 M16.2 7.8 L19.1 4.9" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
   </g></svg><span style="margin-left:5px">系統架設</span></div>
-  </div>
+</div>
+</div>
 </div>
 <!-- ===== TAB 0: 學習路徑 ===== -->
 <div class="tpage active" id="tp-start">
