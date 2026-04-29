@@ -15271,9 +15271,30 @@ window.IRIS_MOOD_SVG = {
 .ai-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px}
 .ai-card{background:#fff;border:1px solid #E8E3DA;border-radius:10px;padding:14px 10px;text-align:center;cursor:pointer;transition:all .2s ease;position:relative;overflow:hidden}
 .ai-card:hover{border-color:#A51820;box-shadow:0 4px 12px rgba(165,24,32,.12);transform:translateY(-2px)}
-.ai-card.copied{background:#FAE8EA;border-color:#A51820}
-.ai-card.copied::after{content:'<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已複製 SVG';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#A51820;color:#fff;padding:6px 14px;border-radius:6px;font-size:11px;font-weight:700;animation:fadeIn .3s ease}
+.ai-card.copied{background:#FAE8EA;border-color:#A51820;transform:scale(.98)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* === Astra Toast (V17.2) · 通用元件 · 可給 Build Log/Tasks/密碼庫共用 === */
+.astra-toast{
+  position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);
+  z-index:9999;background:#7A1018;color:#FDFBF8;
+  padding:12px 22px;border-radius:999px;
+  font-family:'Noto Sans TC','Inter',sans-serif;font-size:13px;font-weight:600;
+  letter-spacing:.02em;
+  box-shadow:0 8px 24px rgba(122,16,24,.35),0 2px 6px rgba(0,0,0,.08);
+  display:flex;align-items:center;gap:8px;
+  opacity:0;pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease;
+  max-width:calc(100vw - 32px);
+}
+.astra-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.astra-toast .at-ic{display:inline-flex;color:#FDFBF8}
+.astra-toast .at-ic svg{display:block}
+.astra-toast .at-key{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.85;font-weight:500}
+@media (min-width:768px){
+  .astra-toast{left:auto;right:32px;bottom:32px;transform:translateX(0) translateY(20px)}
+  .astra-toast.show{transform:translateX(0) translateY(0)}
+}
 
 .ai-svg-wrap{display:flex;align-items:center;justify-content:center;height:48px;margin-bottom:8px;color:#A51820}
 .ai-svg-wrap svg{color:currentColor}
@@ -17461,26 +17482,82 @@ window.IRIS_MOOD_SVG = {
 </div>
 
 <script>
+// === Astra Toast (V17.2) · 通用吐司元件 ===
+// 用法：showAstraToast('已複製 SVG', 'camera-flash')
+//      showAstraToast('儲存成功')        ← 不帶 key 也可以
+window.showAstraToast = function(msg, key){
+  // 如果還有上一個 toast 沒消失，先移除
+  const old = document.querySelector('.astra-toast');
+  if(old) old.remove();
+
+  const t = document.createElement('div');
+  t.className = 'astra-toast';
+  // 安全構建 DOM（不用 innerHTML 注入文字）
+  const ic = document.createElement('span');
+  ic.className = 'at-ic';
+  ic.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12 L10 17 L19 7"/></svg>';
+  const txt = document.createElement('span');
+  txt.textContent = msg || '已完成';
+  t.appendChild(ic);
+  t.appendChild(txt);
+  if(key){
+    const k = document.createElement('span');
+    k.className = 'at-key';
+    k.textContent = key;
+    t.appendChild(k);
+  }
+  document.body.appendChild(t);
+  // 觸發 transition（下一個 frame）
+  requestAnimationFrame(()=>{ t.classList.add('show'); });
+  // 1.5 秒後淡出 + 移除
+  setTimeout(()=>{
+    t.classList.remove('show');
+    setTimeout(()=>{ if(t.parentNode) t.remove(); }, 320);
+  }, 1500);
+};
+
 function copyIconCode(unicode, card){
   // 取得整個 SVG（含 wrapper）
   const svg = card.querySelector('svg');
+  if(!svg){ window.showAstraToast('找不到 SVG'); return; }
   const svgHTML = svg.outerHTML;
-  // 複製到剪貼簿
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(svgHTML).then(()=>{
-      card.classList.add('copied');
-      setTimeout(()=>card.classList.remove('copied'), 1500);
-    });
-  } else {
-    // fallback
-    const ta = document.createElement('textarea');
-    ta.value = svgHTML;
-    document.body.appendChild(ta);
-    ta.select();
-    try{ document.execCommand('copy'); } catch(e){}
-    document.body.removeChild(ta);
+
+  const onSuccess = ()=>{
     card.classList.add('copied');
     setTimeout(()=>card.classList.remove('copied'), 1500);
+    window.showAstraToast('已複製 SVG', unicode);
+  };
+  const onFail = ()=>{
+    window.showAstraToast('複製失敗·請手動選取');
+  };
+
+  // 優先用 Clipboard API
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(svgHTML).then(onSuccess).catch(()=>{
+      // Clipboard API 失敗就走 fallback
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = svgHTML;
+        ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        onSuccess();
+      }catch(e){ onFail(); }
+    });
+  } else {
+    // 老瀏覽器 fallback
+    try{
+      const ta = document.createElement('textarea');
+      ta.value = svgHTML;
+      ta.style.position='fixed'; ta.style.opacity='0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      onSuccess();
+    }catch(e){ onFail(); }
   }
 }
 
