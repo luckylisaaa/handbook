@@ -421,7 +421,7 @@ try {
   right: 0;
   min-width: 280px;
   width: auto !important;
-  max-width: 380px !important;
+  max-width: min(420px, calc(100vw - 24px)) !important;
   box-sizing: border-box;
   background: #FDFBF8;
   border: 1px solid #E8E3DA;
@@ -9758,7 +9758,7 @@ function setSyncStatus(state){
   const el=document.getElementById('sync-status');
   if(!el)return;
   const map={loading:'<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 本機儲存',saving:'<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M7 18 C4 18 3 16 3 14 C3 12 5 11 6 11 C6 8 9 6 12 6 C15 6 17 8 18 10 C20 10 21 12 21 14 C21 16 19 18 17 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M12 13 L12 21 M9 16 L12 13 L15 16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>️ 儲存中...',saved:'<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已同步',error:'<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 4 L21 19 L3 19 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>️ 離線模式'};
-  el.textContent=map[state]||'';
+  el.innerHTML=map[state]||'';
   el.style.color=state==='error'?'#ffb3b3':state==='saved'?'#a8f0c6':'var(--p1)';
 }
 
@@ -14787,9 +14787,63 @@ init();
     if(!listEl) return;
     if(!db || !currentUser){ listEl.innerHTML = '<div style="padding:20px;text-align:center;color:#B09498;font-size:12px">尚未連接雲端資料庫</div>'; return; }
 
+    // === V18: Build Log 心情日記 · 分組摺疊 + 編輯 ===
+    // 狀態：哪些月份已展開、哪些日記內容已展開、哪篇正在編輯
+    let groupOpen = {}; // {'2026-04': true}
+    let entryOpen = {}; // {docId: true}
+    let editingId = null;
+
+    function fmtDate(d){
+      return d.getFullYear() + '/' + String(d.getMonth()+1).padStart(2,'0') + '/' + String(d.getDate()).padStart(2,'0') + ' ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0');
+    }
+    function monthKey(d){
+      return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0');
+    }
+    function monthLabel(key){
+      const [y,m] = key.split('-');
+      return y + ' 年 ' + parseInt(m,10) + ' 月';
+    }
+
+    function getMoodIcon(moodKey){
+      const k = moodKey || 'neutral';
+      const fallback = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M4 20 L8 19 L19 8 L16 5 L5 16 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      const moodSvg = (window.IRIS_MOOD_SVG && (window.IRIS_MOOD_SVG[k] || window.IRIS_MOOD_SVG['neutral'])) || fallback;
+      return (typeof moodSvg === 'string' && moodSvg.indexOf('<svg') === 0) ? '<span class="entry-mood-icon">' + moodSvg + '</span>' : '';
+    }
+
+    function buildEntryHtml(doc, d, date){
+      const dateStr = fmtDate(date);
+      const moodIcon = getMoodIcon(d.mood);
+      const content = d.content || '';
+      const isOpen = !!entryOpen[doc.id];
+      const isEditing = editingId === doc.id;
+      const PREVIEW_LEN = 80;
+      const needsTrim = content.length > PREVIEW_LEN;
+      const shown = (isOpen || !needsTrim) ? content : content.slice(0, PREVIEW_LEN) + '…';
+
+      let body;
+      if(isEditing){
+        body = '<textarea class="bl-edit-area" data-id="' + doc.id + '" style="width:100%;min-height:120px;padding:10px;border:1px solid #A51820;border-radius:6px;font-family:inherit;font-size:12px;line-height:1.7;color:#2A1A1C;resize:vertical;box-sizing:border-box;background:#FDF3F4">' + escapeHtml(content) + '</textarea>' +
+        '<div style="display:flex;gap:8px;margin-top:8px"><button class="bl-edit-save" data-id="' + doc.id + '" style="background:#A51820;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">儲存修改</button><button class="bl-edit-cancel" data-id="' + doc.id + '" style="background:transparent;border:1px solid #E8E3DA;color:#7A5A5E;padding:6px 14px;border-radius:4px;font-size:11px;cursor:pointer;font-family:inherit">取消</button></div>';
+      } else {
+        body = '<div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(shown) + '</div>';
+        if(needsTrim){
+          body += '<button class="bl-toggle" data-id="' + doc.id + '" style="margin-top:6px;background:transparent;border:none;color:#A51820;font-size:11px;font-weight:600;cursor:pointer;padding:0">' + (isOpen ? '收起 ▲' : '展開全文 ▼') + '</button>';
+        }
+        body += '<div style="margin-top:8px;display:flex;gap:14px"><button class="bl-edit-btn" data-id="' + doc.id + '" style="background:transparent;border:none;color:#7A5A5E;font-size:11px;cursor:pointer;padding:0">編輯</button><button data-id="' + doc.id + '" class="buildlog-del" style="background:transparent;border:none;color:#B09498;font-size:11px;cursor:pointer;padding:0">刪除</button></div>';
+      }
+
+      return '<div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px">' +
+        '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap">' +
+          '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px;display:flex;align-items:center;gap:6px;flex:1;min-width:0">' + moodIcon + '<span style="overflow:hidden;text-overflow:ellipsis">' + (d.title ? escapeHtml(d.title) : '無標題') + '</span></div>' +
+          '<div style="font-size:10px;color:#B09498;font-family:monospace;flex-shrink:0">' + dateStr + '</div>' +
+        '</div>' + body +
+      '</div>';
+    }
+
     // 讀取日記
     function loadEntries(){
-      db.collection('buildLog').orderBy('createdAt', 'desc').limit(50).get()
+      db.collection('buildLog').orderBy('createdAt', 'desc').limit(100).get()
         .then(function(snap){
           listEl.innerHTML = '';
           if(snap.empty){
@@ -14798,21 +14852,101 @@ init();
             return;
           }
           if(countEl) countEl.textContent = snap.size + ' 篇';
+
+          // 按月份分組
+          const groups = {}; // {'2026-04': [{doc, d, date}, ...]}
+          const order = [];
           snap.forEach(function(doc){
             const d = doc.data();
             const date = d.createdAt && d.createdAt.toDate ? d.createdAt.toDate() : new Date(d.createdAtString || Date.now());
-            const dateStr = date.getFullYear() + '/' + String(date.getMonth()+1).padStart(2,'0') + '/' + String(date.getDate()).padStart(2,'0') + ' ' + String(date.getHours()).padStart(2,'0') + ':' + String(date.getMinutes()).padStart(2,'0');
-            const moodKey = d.mood || 'neutral'; const moodSvg = (window.IRIS_MOOD_SVG && window.IRIS_MOOD_SVG[moodKey]) || (window.IRIS_MOOD_SVG && window.IRIS_MOOD_SVG['neutral']) || '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M4 20 L8 19 L19 8 L16 5 L5 16 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="14" y1="7" x2="17" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'; const moodIcon = (typeof moodSvg === 'string' && moodSvg.indexOf('<svg') === 0) ? '<span class="entry-mood-icon">' + moodSvg + '</span>' : moodSvg;
-            const entryDiv = document.createElement('div');
-            entryDiv.style.cssText = 'background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px';
-            entryDiv.innerHTML = '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px"><div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px">' + moodIcon + ' ' + (d.title ? escapeHtml(d.title) : '無標題') + '</div><div style="font-size:10px;color:#B09498;font-family:monospace">' + dateStr + '</div></div><div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(d.content || '') + '</div><button data-id="' + doc.id + '" class="buildlog-del" style="margin-top:8px;background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer;padding:0">刪除</button>';
-            listEl.appendChild(entryDiv);
+            const k = monthKey(date);
+            if(!groups[k]){ groups[k] = []; order.push(k); }
+            groups[k].push({doc:doc, d:d, date:date});
           });
-          // 綁刪除
+
+          // 預設：第一個月份（最新）展開，其他摺疊
+          if(Object.keys(groupOpen).length === 0 && order.length > 0){
+            groupOpen[order[0]] = true;
+          }
+
+          let html = '';
+          order.forEach(function(k){
+            const items = groups[k];
+            const open = !!groupOpen[k];
+            const arrow = open ? '▼' : '▶';
+            html += '<div style="margin-bottom:12px">' +
+              '<button class="bl-group-toggle" data-month="' + k + '" style="width:100%;display:flex;justify-content:space-between;align-items:center;background:#FDF3F4;border:1px solid #F0DDE0;color:#7A1018;padding:10px 14px;border-radius:6px;font-family:inherit;font-size:12px;font-weight:700;cursor:pointer;margin-bottom:8px">' +
+                '<span>' + arrow + ' ' + monthLabel(k) + '</span>' +
+                '<span style="background:#A51820;color:#fff;padding:2px 10px;border-radius:10px;font-size:10px">' + items.length + ' 篇</span>' +
+              '</button>';
+            if(open){
+              items.forEach(function(it){
+                html += buildEntryHtml(it.doc, it.d, it.date);
+              });
+            }
+            html += '</div>';
+          });
+          listEl.innerHTML = html;
+
+          // 綁定：月份摺疊
+          listEl.querySelectorAll('.bl-group-toggle').forEach(function(b){
+            b.addEventListener('click', function(){
+              const k = b.getAttribute('data-month');
+              groupOpen[k] = !groupOpen[k];
+              loadEntries();
+            });
+          });
+          // 綁定：單篇展開/收起
+          listEl.querySelectorAll('.bl-toggle').forEach(function(b){
+            b.addEventListener('click', function(){
+              const id = b.getAttribute('data-id');
+              entryOpen[id] = !entryOpen[id];
+              loadEntries();
+            });
+          });
+          // 綁定：編輯
+          listEl.querySelectorAll('.bl-edit-btn').forEach(function(b){
+            b.addEventListener('click', function(){
+              editingId = b.getAttribute('data-id');
+              entryOpen[editingId] = true; // 編輯時自動展開
+              loadEntries();
+            });
+          });
+          listEl.querySelectorAll('.bl-edit-cancel').forEach(function(b){
+            b.addEventListener('click', function(){
+              editingId = null;
+              loadEntries();
+            });
+          });
+          listEl.querySelectorAll('.bl-edit-save').forEach(function(b){
+            b.addEventListener('click', function(){
+              const id = b.getAttribute('data-id');
+              const ta = listEl.querySelector('.bl-edit-area[data-id="' + id + '"]');
+              if(!ta) return;
+              const newContent = ta.value.trim();
+              if(!newContent){ alert('內容不能空白'); return; }
+              b.disabled = true; b.textContent = '儲存中...';
+              db.collection('buildLog').doc(id).update({
+                content: newContent,
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+              }).then(function(){
+                editingId = null;
+                if(window.showAstraToast) window.showAstraToast('日記已更新');
+                loadEntries();
+              }).catch(function(err){
+                b.disabled = false; b.textContent = '儲存修改';
+                alert('儲存失敗：' + err.message);
+              });
+            });
+          });
+          // 綁定：刪除
           listEl.querySelectorAll('.buildlog-del').forEach(function(b){
             b.addEventListener('click', function(){
               if(!confirm('確定要刪除這篇日記嗎？')) return;
-              db.collection('buildLog').doc(b.getAttribute('data-id')).delete().then(loadEntries);
+              db.collection('buildLog').doc(b.getAttribute('data-id')).delete().then(function(){
+                if(window.showAstraToast) window.showAstraToast('已刪除');
+                loadEntries();
+              });
             });
           });
         })
@@ -14821,7 +14955,7 @@ init();
         });
     }
 
-    function escapeHtml(s){
+        function escapeHtml(s){
       return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
@@ -15274,11 +15408,11 @@ window.IRIS_MOOD_SVG = {
 .ai-card.copied{background:#FAE8EA;border-color:#A51820;transform:scale(.98)}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* === Astra Toast (V17.2) · 通用元件 · 可給 Build Log/Tasks/密碼庫共用 === */
+/* === Astra Toast (V18) · 通用元件 · 從頂部飄出避開卡片 === */
 .astra-toast{
-  position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);
+  position:fixed;left:50%;top:88px;transform:translateX(-50%) translateY(-12px);
   z-index:9999;background:#7A1018;color:#FDFBF8;
-  padding:12px 22px;border-radius:999px;
+  padding:10px 20px;border-radius:999px;
   font-family:'Noto Sans TC','Inter',sans-serif;font-size:13px;font-weight:600;
   letter-spacing:.02em;
   box-shadow:0 8px 24px rgba(122,16,24,.35),0 2px 6px rgba(0,0,0,.08);
@@ -15286,13 +15420,14 @@ window.IRIS_MOOD_SVG = {
   opacity:0;pointer-events:none;
   transition:opacity .28s ease,transform .28s ease;
   max-width:calc(100vw - 32px);
+  white-space:nowrap;
 }
 .astra-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.astra-toast .at-ic{display:inline-flex;color:#FDFBF8}
+.astra-toast .at-ic{display:inline-flex;color:#FDFBF8;flex-shrink:0}
 .astra-toast .at-ic svg{display:block}
 .astra-toast .at-key{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:.85;font-weight:500}
 @media (min-width:768px){
-  .astra-toast{left:auto;right:32px;bottom:32px;transform:translateX(0) translateY(20px)}
+  .astra-toast{left:auto;right:32px;top:auto;bottom:32px;transform:translateX(0) translateY(20px)}
   .astra-toast.show{transform:translateX(0) translateY(0)}
 }
 
@@ -15307,9 +15442,15 @@ window.IRIS_MOOD_SVG = {
 @media (max-width:480px){
   .ai-grid{grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px}
   .ai-card{padding:10px 8px}
-  .ai-name{font-size:11px}
+  /* V18: 手機卡片內資訊改直排，name 不再被切 */
+  .ai-info{flex-direction:column;align-items:flex-start;gap:2px;padding:0 2px}
+  .ai-name{font-size:11px;max-width:100%;width:100%}
+  .ai-uni{font-size:8px;width:100%;text-align:left;word-break:break-all;white-space:normal;line-height:1.2;color:#B09498}
   .ai-keywords,.ai-usage{font-size:8.5px}
   .ai-stats{grid-template-columns:repeat(3,1fr)}
+  /* V18: Toast 在手機上窄一點 + 文字可換行 */
+  .astra-toast{font-size:12px;padding:9px 16px;white-space:normal}
+  .astra-toast .at-key{font-size:10px}
 }
 </style>
 
@@ -17516,49 +17657,168 @@ window.showAstraToast = function(msg, key){
   }, 1500);
 };
 
+// === V18: SVG → PNG 工具 ===
+// 把 SVG 字串渲染成 PNG Blob，可給「複製 PNG」「下載 PNG」共用
+window.svgToPngBlob = function(svgString, size){
+  size = size || 512; // 高解析度，貼 Line/筆記本看起來精緻
+  return new Promise((resolve, reject)=>{
+    try{
+      // 確保 SVG 有正確的 xmlns（轉 PNG 必須）
+      let svg = svgString;
+      if(svg.indexOf('xmlns=') === -1){
+        svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
+      }
+      // 用 deep red 主色 + 白底圓角，讓貼到任何地方都好看
+      const blob = new Blob([svg], {type:'image/svg+xml;charset=utf-8'});
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = function(){
+        const canvas = document.createElement('canvas');
+        canvas.width = size; canvas.height = size;
+        const ctx = canvas.getContext('2d');
+        // 暖白圓角底（貼到深色背景也看得清楚）
+        const r = size * 0.12;
+        ctx.fillStyle = '#FDFBF8';
+        ctx.beginPath();
+        ctx.moveTo(r, 0);
+        ctx.lineTo(size - r, 0);
+        ctx.quadraticCurveTo(size, 0, size, r);
+        ctx.lineTo(size, size - r);
+        ctx.quadraticCurveTo(size, size, size - r, size);
+        ctx.lineTo(r, size);
+        ctx.quadraticCurveTo(0, size, 0, size - r);
+        ctx.lineTo(0, r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.closePath();
+        ctx.fill();
+        // SVG 置中、留 padding
+        const pad = size * 0.18;
+        ctx.drawImage(img, pad, pad, size - pad*2, size - pad*2);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(b => b ? resolve(b) : reject(new Error('toBlob failed')), 'image/png');
+      };
+      img.onerror = function(){
+        URL.revokeObjectURL(url);
+        reject(new Error('SVG load failed'));
+      };
+      img.src = url;
+    }catch(e){ reject(e); }
+  });
+};
+
+// === V18: copyIconCode 升級 · 點擊複製 PNG（可貼 Line/筆記本） ===
 function copyIconCode(unicode, card){
-  // 取得整個 SVG（含 wrapper）
   const svg = card.querySelector('svg');
   if(!svg){ window.showAstraToast('找不到 SVG'); return; }
-  const svgHTML = svg.outerHTML;
+  // 把當前顏色（可能 currentColor）轉成深紅，PNG 才有顏色
+  const cloned = svg.cloneNode(true);
+  cloned.setAttribute('width', '512');
+  cloned.setAttribute('height', '512');
+  // 把 currentColor 替換成主紅
+  let svgHTML = cloned.outerHTML.replace(/currentColor/g, '#A51820');
+  const svgRaw = svg.outerHTML; // 保留原始 SVG 給 fallback
 
-  const onSuccess = ()=>{
+  const onSuccess = (mode)=>{
     card.classList.add('copied');
     setTimeout(()=>card.classList.remove('copied'), 1500);
-    window.showAstraToast('已複製 SVG', unicode);
+    window.showAstraToast(mode === 'png' ? '已複製為圖片' : '已複製 SVG 程式碼', unicode);
   };
-  const onFail = ()=>{
-    window.showAstraToast('複製失敗·請手動選取');
+  const onFail = (msg)=>{
+    window.showAstraToast(msg || '複製失敗·請長按下載');
   };
 
-  // 優先用 Clipboard API
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(svgHTML).then(onSuccess).catch(()=>{
-      // Clipboard API 失敗就走 fallback
-      try{
-        const ta = document.createElement('textarea');
-        ta.value = svgHTML;
-        ta.style.position='fixed'; ta.style.opacity='0';
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand('copy');
-        document.body.removeChild(ta);
-        onSuccess();
-      }catch(e){ onFail(); }
+  // 優先：複製 PNG 到剪貼簿（支援 Line / Apple 筆記本貼上）
+  if(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
+    window.svgToPngBlob(svgHTML, 512).then(blob=>{
+      const item = new ClipboardItem({'image/png': blob});
+      return navigator.clipboard.write([item]);
+    }).then(()=> onSuccess('png')).catch(err=>{
+      // PNG 複製失敗就退回 SVG 文字複製
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(svgRaw).then(()=> onSuccess('svg')).catch(()=> onFail());
+      } else { onFail(); }
     });
+  } else if(navigator.clipboard && navigator.clipboard.writeText){
+    // Safari 舊版 / 不支援 ClipboardItem → 退回 SVG 文字
+    navigator.clipboard.writeText(svgRaw).then(()=> onSuccess('svg')).catch(()=> onFail());
   } else {
-    // 老瀏覽器 fallback
+    // 最後 fallback
     try{
       const ta = document.createElement('textarea');
-      ta.value = svgHTML;
+      ta.value = svgRaw;
       ta.style.position='fixed'; ta.style.opacity='0';
       document.body.appendChild(ta);
       ta.select();
       document.execCommand('copy');
       document.body.removeChild(ta);
-      onSuccess();
+      onSuccess('svg');
     }catch(e){ onFail(); }
   }
+}
+
+// === V18: 長按下載 PNG 檔案 ===
+function downloadIconPng(unicode, card){
+  const svg = card.querySelector('svg');
+  if(!svg){ window.showAstraToast('找不到 SVG'); return; }
+  const cloned = svg.cloneNode(true);
+  cloned.setAttribute('width', '1024');
+  cloned.setAttribute('height', '1024');
+  const svgHTML = cloned.outerHTML.replace(/currentColor/g, '#A51820');
+  window.svgToPngBlob(svgHTML, 1024).then(blob=>{
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'astra-' + unicode + '.png';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(()=> URL.revokeObjectURL(url), 1000);
+    card.classList.add('copied');
+    setTimeout(()=>card.classList.remove('copied'), 1500);
+    window.showAstraToast('已下載 PNG', unicode);
+  }).catch(()=>{
+    window.showAstraToast('下載失敗·請點擊複製');
+  });
+}
+
+// === V18: 綁定長按事件（手機長按 600ms 觸發下載） ===
+window.bindIconLongPress = function(){
+  document.querySelectorAll('.ai-card[onclick*="copyIconCode"]').forEach(function(card){
+    if(card.dataset.lpBound) return;
+    card.dataset.lpBound = '1';
+    let timer=null, longPressed=false;
+    const onclickAttr = card.getAttribute('onclick') || '';
+    const m = onclickAttr.match(/copyIconCode\(['"]([^'"]+)['"]/);
+    if(!m) return;
+    const unicode = m[1];
+
+    const start = function(e){
+      longPressed=false;
+      timer = setTimeout(function(){
+        longPressed=true;
+        if(navigator.vibrate) try{ navigator.vibrate(40); }catch(_){}
+        downloadIconPng(unicode, card);
+      }, 600);
+    };
+    const cancel = function(){ if(timer){ clearTimeout(timer); timer=null; } };
+    card.addEventListener('touchstart', start, {passive:true});
+    card.addEventListener('touchend', cancel);
+    card.addEventListener('touchmove', cancel);
+    card.addEventListener('touchcancel', cancel);
+    card.addEventListener('mousedown', start);
+    card.addEventListener('mouseup', cancel);
+    card.addEventListener('mouseleave', cancel);
+    // 長按後阻止後續的 click（避免又觸發複製）
+    card.addEventListener('click', function(e){
+      if(longPressed){ e.stopPropagation(); e.preventDefault(); longPressed=false; }
+    }, true);
+  });
+};
+// 頁面載入後綁定（晚點呼叫，等 Icon 庫渲染完）
+if(document.readyState !== 'loading'){
+  setTimeout(window.bindIconLongPress, 300);
+} else {
+  document.addEventListener('DOMContentLoaded', function(){ setTimeout(window.bindIconLongPress, 300); });
 }
 
 // V15: 初始化 Iris 心情卡 SVG
