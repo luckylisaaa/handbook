@@ -189,6 +189,10 @@ body.tabs-compact .tabs-breadcrumb{display:flex}
   .bc-current-en{font-size:7.5px}
   .tabs-breadcrumb{padding:8px 12px;gap:6px}
   .bc-info{gap:6px}
+  /* V19: 心情日記輸入區手機單欄 · 修 iris 圖示被切 */
+  .bl-input-row{grid-template-columns:1fr !important}
+  /* V19: 私人密碼區手機單欄 · 修網址/密碼欄爆版 */
+  .vault-form-row{grid-template-columns:1fr !important}
 }
 
 .tpage{display:none}.tpage.active{display:block}
@@ -11166,7 +11170,7 @@ init();
 
   <!-- 輸入區 -->
   <div style="background:#fff;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
-    <div style="display:grid;grid-template-columns:1fr 110px;gap:10px;margin-bottom:10px">
+    <div class="bl-input-row" style="display:grid;grid-template-columns:1fr 130px;gap:10px;margin-bottom:10px">
       <input type="text" id="buildlog-title" placeholder="標題（選填，例：今天好累）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#FDFBF8">
 <div id="buildlog-mood-wrap" style="position:relative">
         <input type="hidden" id="buildlog-mood" value="neutral">
@@ -11499,11 +11503,11 @@ init();
   <!-- 新增表單 -->
   <div style="background:#FDFBF8;border:1px solid #E8E3DA;border-radius:8px;padding:16px;margin-bottom:16px">
     <div style="font-family:'Noto Serif TC',serif;font-size:13px;font-weight:900;color:#2A1A1C;margin-bottom:10px"><svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13.5 9 L19.5 10.5 L13.5 12 L12 18 L10.5 12 L4.5 10.5 L10.5 9 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M18 16 L18.8 18.2 L21 19 L18.8 19.8 L18 22 L17.2 19.8 L15 19 L17.2 18.2 Z" fill="currentColor"/></svg> 新增一組密碼</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+    <div class="vault-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
       <input type="text" id="vault-name" placeholder="名稱（例：GitHub）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
       <input type="text" id="vault-url" placeholder="網址（選填）" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+    <div class="vault-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
       <input type="text" id="vault-user" placeholder="帳號/email" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:inherit;background:#fff">
       <input type="text" id="vault-pass" placeholder="密碼" style="padding:10px 12px;border:1px solid #E8E3DA;border-radius:4px;font-size:13px;font-family:monospace;background:#fff">
     </div>
@@ -14814,29 +14818,41 @@ init();
     function buildEntryHtml(doc, d, date){
       const dateStr = fmtDate(date);
       const moodIcon = getMoodIcon(d.mood);
+      const title = d.title || '';
       const content = d.content || '';
+      const editCount = d.editCount || 0;
+      const updatedAt = d.updatedAt && d.updatedAt.toDate ? d.updatedAt.toDate() : null;
       const isOpen = !!entryOpen[doc.id];
       const isEditing = editingId === doc.id;
       const PREVIEW_LEN = 80;
       const needsTrim = content.length > PREVIEW_LEN;
       const shown = (isOpen || !needsTrim) ? content : content.slice(0, PREVIEW_LEN) + '…';
 
+      // V19: 修改紀錄區塊（如果有改過）
+      let metaHtml = '';
+      if(updatedAt && editCount > 0){
+        metaHtml = '<div style="margin-top:6px;font-size:10px;color:#B09498;font-family:monospace;display:flex;gap:8px;flex-wrap:wrap"><span>最近修改：' + fmtDate(updatedAt) + '</span><span style="background:#FAE8EA;color:#7A1018;padding:1px 8px;border-radius:8px;font-weight:700">已修改 ' + editCount + ' 次</span></div>';
+      }
+
       let body;
       if(isEditing){
-        body = '<textarea class="bl-edit-area" data-id="' + doc.id + '" style="width:100%;min-height:120px;padding:10px;border:1px solid #A51820;border-radius:6px;font-family:inherit;font-size:12px;line-height:1.7;color:#2A1A1C;resize:vertical;box-sizing:border-box;background:#FDF3F4">' + escapeHtml(content) + '</textarea>' +
+        // V19: 編輯模式有兩個欄位（標題+內容）
+        body = '<input type="text" class="bl-edit-title" data-id="' + doc.id + '" placeholder="標題（選填）" value="' + escapeHtml(title) + '" style="width:100%;padding:8px 10px;margin-bottom:8px;border:1px solid #A51820;border-radius:6px;font-family:inherit;font-size:13px;font-weight:700;color:#2A1A1C;box-sizing:border-box;background:#FDF3F4">' +
+        '<textarea class="bl-edit-area" data-id="' + doc.id + '" style="width:100%;min-height:120px;padding:10px;border:1px solid #A51820;border-radius:6px;font-family:inherit;font-size:12px;line-height:1.7;color:#2A1A1C;resize:vertical;box-sizing:border-box;background:#FDF3F4">' + escapeHtml(content) + '</textarea>' +
         '<div style="display:flex;gap:8px;margin-top:8px"><button class="bl-edit-save" data-id="' + doc.id + '" style="background:#A51820;color:#fff;border:none;padding:6px 14px;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit">儲存修改</button><button class="bl-edit-cancel" data-id="' + doc.id + '" style="background:transparent;border:1px solid #E8E3DA;color:#7A5A5E;padding:6px 14px;border-radius:4px;font-size:11px;cursor:pointer;font-family:inherit">取消</button></div>';
       } else {
         body = '<div style="font-size:12px;color:#2A1A1C;line-height:1.7;white-space:pre-wrap">' + escapeHtml(shown) + '</div>';
         if(needsTrim){
           body += '<button class="bl-toggle" data-id="' + doc.id + '" style="margin-top:6px;background:transparent;border:none;color:#A51820;font-size:11px;font-weight:600;cursor:pointer;padding:0">' + (isOpen ? '收起 ▲' : '展開全文 ▼') + '</button>';
         }
+        body += metaHtml;
         body += '<div style="margin-top:8px;display:flex;gap:14px"><button class="bl-edit-btn" data-id="' + doc.id + '" style="background:transparent;border:none;color:#7A5A5E;font-size:11px;cursor:pointer;padding:0">編輯</button><button data-id="' + doc.id + '" class="buildlog-del" style="background:transparent;border:none;color:#B09498;font-size:11px;cursor:pointer;padding:0">刪除</button></div>';
       }
 
       return '<div style="background:#fff;border:1px solid #E8E3DA;border-left:3px solid #A51820;padding:14px;margin-bottom:10px;border-radius:4px">' +
         '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;gap:8px;flex-wrap:wrap">' +
-          '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px;display:flex;align-items:center;gap:6px;flex:1;min-width:0">' + moodIcon + '<span style="overflow:hidden;text-overflow:ellipsis">' + (d.title ? escapeHtml(d.title) : '無標題') + '</span></div>' +
-          '<div style="font-size:10px;color:#B09498;font-family:monospace;flex-shrink:0">' + dateStr + '</div>' +
+          '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:13px;display:flex;align-items:center;gap:6px;flex:1;min-width:0">' + moodIcon + '<span style="overflow:hidden;text-overflow:ellipsis">' + (title ? escapeHtml(title) : '無標題') + '</span></div>' +
+          '<div style="font-size:10px;color:#B09498;font-family:monospace;flex-shrink:0">建立：' + dateStr + '</div>' +
         '</div>' + body +
       '</div>';
     }
@@ -14922,13 +14938,18 @@ init();
             b.addEventListener('click', function(){
               const id = b.getAttribute('data-id');
               const ta = listEl.querySelector('.bl-edit-area[data-id="' + id + '"]');
+              const ti = listEl.querySelector('.bl-edit-title[data-id="' + id + '"]');
               if(!ta) return;
               const newContent = ta.value.trim();
+              const newTitle = ti ? ti.value.trim() : '';
               if(!newContent){ alert('內容不能空白'); return; }
               b.disabled = true; b.textContent = '儲存中...';
+              // V19: editCount +1
               db.collection('buildLog').doc(id).update({
+                title: newTitle,
                 content: newContent,
-                updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+                updatedAt: firebase.firestore.FieldValue.serverTimestamp(),
+                editCount: firebase.firestore.FieldValue.increment(1)
               }).then(function(){
                 editingId = null;
                 if(window.showAstraToast) window.showAstraToast('日記已更新');
@@ -14978,12 +14999,12 @@ init();
           if(titleEl) titleEl.value = '';
           inputEl.value = '';
           if(moodEl) moodEl.value = 'neutral';
-          saveBtn.textContent = '💾 儲存';
+          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           loadEntries();
         })
         .catch(function(err){
-          saveBtn.textContent = '💾 儲存';
+          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           alert('儲存失敗：' + err.message);
         });
@@ -15030,13 +15051,13 @@ init();
             const passMask = '••••••••••';
             card.innerHTML = 
               '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">' +
-                '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:14px">🔐 ' + escapeHtml(d.name || '無名') + '</div>' +
+                '<div style="font-family:\'Noto Serif TC\',serif;font-weight:900;color:#A51820;font-size:14px"><svg viewBox=\"0 0 24 24\" width=\"14\" height=\"14\" style=\"display:inline-block;vertical-align:-2px;color:currentColor\" fill=\"none\"><rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/><path d=\"M8 11 L8 7 C8 5 10 3 12 3 C14 3 16 5 16 7 L16 11\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/><circle cx=\"12\" cy=\"16\" r=\"1.2\" fill=\"currentColor\"/></svg> ' + escapeHtml(d.name || '無名') + '</div>' +
                 '<button data-id="' + doc.id + '" class="vault-del" style="background:transparent;border:none;color:#B09498;font-size:10px;cursor:pointer">刪除</button>' +
               '</div>' +
-              (d.url ? '<div style="font-size:11px;color:#7A5A5E;margin-bottom:6px">🌐 <a href="' + escapeHtml(d.url) + '" target="_blank" rel="noopener" style="color:#A51820;text-decoration:none;border-bottom:1px dashed #A51820">' + escapeHtml(d.url) + '</a></div>' : '') +
+              (d.url ? '<div style="font-size:11px;color:#7A5A5E;margin-bottom:6px"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" style=\"display:inline-block;vertical-align:-1px;color:currentColor\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"9\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/><path d=\"M3 12 L21 12 M12 3 C16 7 16 17 12 21 C8 17 8 7 12 3\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/></svg> <a href="' + escapeHtml(d.url) + '" target="_blank" rel="noopener" style="color:#A51820;text-decoration:none;border-bottom:1px dashed #A51820">' + escapeHtml(d.url) + '</a></div>' : '') +
               (d.user ? '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">帳號</span> <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px">' + escapeHtml(d.user) + '</code></div>' : '') +
               '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">密碼</span> <code class="vault-pass-field" data-real="' + escapeHtml(d.pass || '') + '" style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px;cursor:pointer" title="點擊顯示">' + passMask + '</code> <button class="vault-copy-pass" data-val="' + escapeHtml(d.pass || '') + '" style="background:transparent;border:1px solid #E8E3DA;padding:2px 6px;border-radius:3px;font-size:10px;color:#7A5A5E;cursor:pointer;margin-left:4px">複製</button></div>' +
-              (d.note ? '<div style="font-size:11px;color:#7A5A5E;font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed #E8E3DA">📝 ' + escapeHtml(d.note) + '</div>' : '');
+              (d.note ? '<div style="font-size:11px;color:#7A5A5E;font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed #E8E3DA"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" style=\"display:inline-block;vertical-align:-1px;color:currentColor\" fill=\"none\"><path d=\"M5 4 L5 20 L19 20 L19 8 L15 4 Z\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linejoin=\"round\"/><path d=\"M15 4 L15 8 L19 8\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linejoin=\"round\"/><line x1=\"8\" y1=\"12\" x2=\"16\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><line x1=\"8\" y1=\"15\" x2=\"14\" y2=\"15\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg> ' + escapeHtml(d.note) + '</div>' : '');
             listEl.appendChild(card);
           });
           // 綁事件：顯示密碼
@@ -15091,12 +15112,12 @@ init();
         })
         .then(function(){
           [nameEl,userEl,passEl,urlEl,noteEl].forEach(function(el){ if(el) el.value=''; });
-          saveBtn.textContent = '💾 儲存';
+          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           loadVault();
         })
         .catch(function(err){
-          saveBtn.textContent = '💾 儲存';
+          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           alert('儲存失敗：' + err.message);
         });
@@ -15472,7 +15493,7 @@ window.IRIS_MOOD_SVG = {
 <div id="ai-sections">
 <div class="ai-section">
   <div class="ai-section-header">
-    <div class="ai-section-title">✨ Tab 自訂版（Handbook 專屬·V5 新增）</div>
+    <div class="ai-section-title"><svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13.5 9 L19.5 10.5 L13.5 12 L12 18 L10.5 12 L4.5 10.5 L10.5 9 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><path d="M18 16 L18.8 18.2 L21 19 L18.8 19.8 L18 22 L17.2 19.8 L15 19 L17.2 18.2 Z" fill="currentColor"/></svg> Tab 自訂版（Handbook 專屬·V5 新增）</div>
     <div class="ai-section-count">12 個</div>
   </div>
   <div class="ai-grid">
@@ -17657,45 +17678,44 @@ window.showAstraToast = function(msg, key){
   }, 1500);
 };
 
-// === V18: SVG → PNG 工具 ===
-// 把 SVG 字串渲染成 PNG Blob，可給「複製 PNG」「下載 PNG」共用
+// === V19: SVG → PNG 工具（透明背景 · 可去背） ===
+// 重要：PNG 一律透明背景·讓 Lisa 貼到 Line/筆記本/任何地方都能融入
 window.svgToPngBlob = function(svgString, size){
-  size = size || 512; // 高解析度，貼 Line/筆記本看起來精緻
-  return new Promise((resolve, reject)=>{
+  size = size || 1024;
+  return new Promise(function(resolve, reject){
     try{
-      // 確保 SVG 有正確的 xmlns（轉 PNG 必須）
+      // 1. 確保 SVG 有 xmlns（PNG 渲染必需）
       let svg = svgString;
       if(svg.indexOf('xmlns=') === -1){
         svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ');
       }
-      // 用 deep red 主色 + 白底圓角，讓貼到任何地方都好看
+      // 2. 強制設定 viewBox 為 0 0 24 24（Astra 標準）·避免被裁切
+      if(svg.indexOf('viewBox') === -1){
+        svg = svg.replace('<svg ', '<svg viewBox="0 0 24 24" ');
+      }
+      // 3. 強制 width/height 為 size
+      svg = svg.replace(/width="[^"]*"/, 'width="' + size + '"').replace(/height="[^"]*"/, 'height="' + size + '"');
+      if(svg.indexOf('width=') === -1){
+        svg = svg.replace('<svg ', '<svg width="' + size + '" height="' + size + '" ');
+      }
+      // 4. 把 currentColor 替換成主紅 #A51820
+      svg = svg.replace(/currentColor/g, '#A51820');
+
       const blob = new Blob([svg], {type:'image/svg+xml;charset=utf-8'});
       const url = URL.createObjectURL(blob);
       const img = new Image();
+      img.crossOrigin = 'anonymous';
       img.onload = function(){
         const canvas = document.createElement('canvas');
         canvas.width = size; canvas.height = size;
         const ctx = canvas.getContext('2d');
-        // 暖白圓角底（貼到深色背景也看得清楚）
-        const r = size * 0.12;
-        ctx.fillStyle = '#FDFBF8';
-        ctx.beginPath();
-        ctx.moveTo(r, 0);
-        ctx.lineTo(size - r, 0);
-        ctx.quadraticCurveTo(size, 0, size, r);
-        ctx.lineTo(size, size - r);
-        ctx.quadraticCurveTo(size, size, size - r, size);
-        ctx.lineTo(r, size);
-        ctx.quadraticCurveTo(0, size, 0, size - r);
-        ctx.lineTo(0, r);
-        ctx.quadraticCurveTo(0, 0, r, 0);
-        ctx.closePath();
-        ctx.fill();
-        // SVG 置中、留 padding
-        const pad = size * 0.18;
+        // ★ V19 關鍵：完全透明背景·不畫任何底色！
+        ctx.clearRect(0, 0, size, size);
+        // SVG 留 padding（讓線條不貼邊·貼到任何背景都好看）
+        const pad = Math.round(size * 0.12);
         ctx.drawImage(img, pad, pad, size - pad*2, size - pad*2);
         URL.revokeObjectURL(url);
-        canvas.toBlob(b => b ? resolve(b) : reject(new Error('toBlob failed')), 'image/png');
+        canvas.toBlob(function(b){ b ? resolve(b) : reject(new Error('toBlob failed')); }, 'image/png');
       };
       img.onerror = function(){
         URL.revokeObjectURL(url);
@@ -17706,65 +17726,85 @@ window.svgToPngBlob = function(svgString, size){
   });
 };
 
-// === V18: copyIconCode 升級 · 點擊複製 PNG（可貼 Line/筆記本） ===
+// === V19: 偵測 iOS Safari（決定要走 PNG 還是 SVG 文字） ===
+window.isIosSafari = (function(){
+  const ua = navigator.userAgent;
+  const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
+  const isSafari = /Safari/.test(ua) && !/Chrome|CriOS|FxiOS|EdgiOS/.test(ua);
+  return isIOS || isSafari;
+})();
+
+// === V19: copyIconCode 智慧選擇複製方式 ===
 function copyIconCode(unicode, card){
   const svg = card.querySelector('svg');
   if(!svg){ window.showAstraToast('找不到 SVG'); return; }
-  // 把當前顏色（可能 currentColor）轉成深紅，PNG 才有顏色
-  const cloned = svg.cloneNode(true);
-  cloned.setAttribute('width', '512');
-  cloned.setAttribute('height', '512');
-  // 把 currentColor 替換成主紅
-  let svgHTML = cloned.outerHTML.replace(/currentColor/g, '#A51820');
-  const svgRaw = svg.outerHTML; // 保留原始 SVG 給 fallback
+  const svgRaw = svg.outerHTML; // 原始 SVG 字串
 
-  const onSuccess = (mode)=>{
+  const onSuccess = function(mode){
     card.classList.add('copied');
-    setTimeout(()=>card.classList.remove('copied'), 1500);
-    window.showAstraToast(mode === 'png' ? '已複製為圖片' : '已複製 SVG 程式碼', unicode);
-  };
-  const onFail = (msg)=>{
-    window.showAstraToast(msg || '複製失敗·請長按下載');
+    setTimeout(function(){ card.classList.remove('copied'); }, 1500);
+    if(mode === 'png'){
+      window.showAstraToast('已複製為圖片·可貼到筆記本', unicode);
+    } else {
+      window.showAstraToast('已複製·貼到 Notes 看圖·長按可下載', unicode);
+    }
   };
 
-  // 優先：複製 PNG 到剪貼簿（支援 Line / Apple 筆記本貼上）
-  if(window.ClipboardItem && navigator.clipboard && navigator.clipboard.write){
-    window.svgToPngBlob(svgHTML, 512).then(blob=>{
-      const item = new ClipboardItem({'image/png': blob});
-      return navigator.clipboard.write([item]);
-    }).then(()=> onSuccess('png')).catch(err=>{
-      // PNG 複製失敗就退回 SVG 文字複製
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(svgRaw).then(()=> onSuccess('svg')).catch(()=> onFail());
-      } else { onFail(); }
+  // 嘗試 PNG 複製（Chrome/Edge/桌機 Safari 支援）
+  function tryPngCopy(){
+    return new Promise(function(resolve, reject){
+      if(!window.ClipboardItem || !navigator.clipboard || !navigator.clipboard.write){
+        reject(new Error('no ClipboardItem'));
+        return;
+      }
+      window.svgToPngBlob(svgRaw, 512).then(function(blob){
+        const item = new ClipboardItem({'image/png': blob});
+        return navigator.clipboard.write([item]);
+      }).then(resolve).catch(reject);
     });
-  } else if(navigator.clipboard && navigator.clipboard.writeText){
-    // Safari 舊版 / 不支援 ClipboardItem → 退回 SVG 文字
-    navigator.clipboard.writeText(svgRaw).then(()=> onSuccess('svg')).catch(()=> onFail());
+  }
+
+  // 退回方案：複製 SVG 文字（Apple 筆記本貼上會看到圖）
+  function tryTextCopy(){
+    return new Promise(function(resolve, reject){
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(svgRaw).then(resolve).catch(reject);
+      } else {
+        try{
+          const ta = document.createElement('textarea');
+          ta.value = svgRaw;
+          ta.style.position='fixed'; ta.style.opacity='0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          resolve();
+        }catch(e){ reject(e); }
+      }
+    });
+  }
+
+  // iOS Safari 不支援 ClipboardItem PNG·直接走 SVG 文字（不要嚇使用者）
+  if(window.isIosSafari){
+    tryTextCopy().then(function(){ onSuccess('svg'); }).catch(function(){
+      window.showAstraToast('複製失敗·請改用長按下載', unicode);
+    });
   } else {
-    // 最後 fallback
-    try{
-      const ta = document.createElement('textarea');
-      ta.value = svgRaw;
-      ta.style.position='fixed'; ta.style.opacity='0';
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      onSuccess('svg');
-    }catch(e){ onFail(); }
+    // 桌機/Android：嘗試 PNG，失敗退 SVG 文字
+    tryPngCopy().then(function(){ onSuccess('png'); }).catch(function(){
+      tryTextCopy().then(function(){ onSuccess('svg'); }).catch(function(){
+        window.showAstraToast('複製失敗·請改用長按下載', unicode);
+      });
+    });
   }
 }
 
-// === V18: 長按下載 PNG 檔案 ===
+// === V19: 長按下載 PNG（透明背景） ===
 function downloadIconPng(unicode, card){
   const svg = card.querySelector('svg');
   if(!svg){ window.showAstraToast('找不到 SVG'); return; }
-  const cloned = svg.cloneNode(true);
-  cloned.setAttribute('width', '1024');
-  cloned.setAttribute('height', '1024');
-  const svgHTML = cloned.outerHTML.replace(/currentColor/g, '#A51820');
-  window.svgToPngBlob(svgHTML, 1024).then(blob=>{
+  const svgRaw = svg.outerHTML;
+  window.svgToPngBlob(svgRaw, 1024).then(function(blob){
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -17772,16 +17812,17 @@ function downloadIconPng(unicode, card){
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    setTimeout(()=> URL.revokeObjectURL(url), 1000);
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
     card.classList.add('copied');
-    setTimeout(()=>card.classList.remove('copied'), 1500);
-    window.showAstraToast('已下載 PNG', unicode);
-  }).catch(()=>{
-    window.showAstraToast('下載失敗·請點擊複製');
+    setTimeout(function(){ card.classList.remove('copied'); }, 1500);
+    window.showAstraToast('已下載 PNG·去相簿選圖傳 Line', unicode);
+  }).catch(function(err){
+    console.error('PNG download failed:', err);
+    window.showAstraToast('下載失敗·重試或截圖');
   });
 }
 
-// === V18: 綁定長按事件（手機長按 600ms 觸發下載） ===
+// === V19: 綁定長按事件（手機長按 600ms 觸發下載） ===
 window.bindIconLongPress = function(){
   document.querySelectorAll('.ai-card[onclick*="copyIconCode"]').forEach(function(card){
     if(card.dataset.lpBound) return;
@@ -17808,13 +17849,11 @@ window.bindIconLongPress = function(){
     card.addEventListener('mousedown', start);
     card.addEventListener('mouseup', cancel);
     card.addEventListener('mouseleave', cancel);
-    // 長按後阻止後續的 click（避免又觸發複製）
     card.addEventListener('click', function(e){
       if(longPressed){ e.stopPropagation(); e.preventDefault(); longPressed=false; }
     }, true);
   });
 };
-// 頁面載入後綁定（晚點呼叫，等 Icon 庫渲染完）
 if(document.readyState !== 'loading'){
   setTimeout(window.bindIconLongPress, 300);
 } else {
