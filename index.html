@@ -10077,7 +10077,7 @@ function checkApiKey(){
     if(hint){ hint.textContent=''; }
   } else {
     if(keyStatus){ keyStatus.style.display='none'; }
-    if(hint){ hint.textContent='<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M9 21 L15 21 M10 18 L14 18 M12 3 C8.5 3 6 6 6 9 C6 11 7 12.5 8.5 14 L9 16 L15 16 L15.5 14 C17 12.5 18 11 18 9 C18 6 15.5 3 12 3 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 點右邊 <svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><circle cx="7" cy="15" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 13 L21 3 L21 7 L19 7 L19 9 L17 9 L17 11 L15 11" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg> 按鈕輸入 API Key，就能直接在這裡問問題'; }
+    if(hint){ hint.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M9 21 L15 21 M10 18 L14 18 M12 3 C8.5 3 6 6 6 9 C6 11 7 12.5 8.5 14 L9 16 L15 16 L15.5 14 C17 12.5 18 11 18 9 C18 6 15.5 3 12 3 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 點右邊 <svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><circle cx="7" cy="15" r="4" stroke="currentColor" stroke-width="2" fill="none"/><path d="M10 13 L21 3 L21 7 L19 7 L19 9 L17 9 L17 11 L15 11" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/></svg> 按鈕輸入 API Key，就能直接在這裡問問題'; }
   }
 }
 
@@ -10111,7 +10111,7 @@ async function sendQ(){
   
   const btn=document.querySelector('.msend');
   const originalText=btn.textContent;
-  btn.textContent='<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M6 3 L18 3 M6 21 L18 21 M7 3 L7 7 C7 9 12 12 12 12 C12 12 17 9 17 7 L17 3 M7 21 L7 17 C7 15 12 12 12 12 C12 12 17 15 17 17 L17 21" stroke="#A51820" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg> AI思考中...';
+  btn.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M6 3 L18 3 M6 21 L18 21 M7 3 L7 7 C7 9 12 12 12 12 C12 12 17 9 17 7 L17 3 M7 21 L7 17 C7 15 12 12 12 12 C12 12 17 15 17 17 L17 21" stroke="#A51820" stroke-width="2.2" fill="none" stroke-linejoin="round"/></svg> AI思考中...';
   btn.disabled=true;
   
   // 清除舊回答
@@ -10173,7 +10173,7 @@ async function sendQ(){
     const ansDiv=document.createElement('div');
     ansDiv.id='ai-answer';
     ansDiv.style.cssText='background:var(--ye);border-radius:9px;padding:10px 12px;margin-top:10px;font-size:11px;color:var(--yd)';
-    ansDiv.textContent='<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 4 L21 19 L3 19 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>️ 暫時無法連線，請直接去 claude.ai 問問題。';
+    ansDiv.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 4 L21 19 L3 19 Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><line x1="12" y1="10" x2="12" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="17" r="0.8" fill="currentColor"/></svg>️ 暫時無法連線，請直接去 claude.ai 問問題。';
     const mhint=document.querySelector('.mhint');
     if(mhint)mhint.parentNode.insertBefore(ansDiv,mhint);
     btn.textContent=originalText;
@@ -10184,14 +10184,14 @@ async function sendQ(){
 function copyP(btn){
   const text=btn.closest('.pbox').querySelector('.ptext').textContent;
   navigator.clipboard.writeText(text).then(()=>{
-    const o=btn.textContent;btn.textContent='<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已複製';btn.style.background='#0F6E56';
+    const o=btn.textContent;btn.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已複製';btn.style.background='#0F6E56';
     setTimeout(()=>{btn.textContent=o;btn.style.background='';},1500);
   }).catch(()=>alert('請手動複製'));
 }
 
 function copyText(btn,text){
   navigator.clipboard.writeText(text).then(()=>{
-    const o=btn.textContent;btn.textContent='<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已複製';btn.style.background='var(--gd)';
+    const o=btn.textContent;btn.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已複製';btn.style.background='var(--gd)';
     setTimeout(()=>{btn.textContent=o;btn.style.background='';},1500);
   }).catch(()=>alert('請手動複製'));
 }
@@ -12588,7 +12588,7 @@ init();
   
   function saveAISession(){
     if(aiAnswers.length === 0){
-      document.getElementById('ai-question').textContent = '沒有答題也沒關係，明天再寫 <svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg>';
+      document.getElementById('ai-question').innerHTML = '沒有答題也沒關係，明天再寫 <svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg>';
       return;
     }
     const logs = JSON.parse(localStorage.getItem('astra_buildlogs') || '[]');
@@ -12607,7 +12607,7 @@ init();
     localStorage.setItem('astra_buildlogs', JSON.stringify(logs));
     
     document.getElementById('ai-question').textContent = `<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 太好了，今天記錄了 ${aiAnswers.length} 件事`;
-    document.getElementById('ai-progress').textContent = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg> AI 會在週日幫你整理成週報';
+    document.getElementById('ai-progress').innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M12 3 L13 11 L21 12 L13 13 L12 21 L11 13 L3 12 L11 11 Z" fill="currentColor"/></svg> AI 會在週日幫你整理成週報';
     
     setTimeout(()=>{
       loadLogs();
@@ -12699,7 +12699,7 @@ init();
     if(toggle.checked){
       slider.style.background = '#A51820';
       slider.children[0].style.left = '23px';
-      status.textContent = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已啟用（每晚 10:00 提醒）';
+      status.innerHTML = '<svg viewBox="0 0 24 24" width="1em" height="1em" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><path d="M5 12 L10 17 L19 7" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg> 已啟用（每晚 10:00 提醒）';
       localStorage.setItem('astra_reminder', 'on');
       
       // 請求通知權限
@@ -14999,12 +14999,12 @@ init();
           if(titleEl) titleEl.value = '';
           inputEl.value = '';
           if(moodEl) moodEl.value = 'neutral';
-          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
+          saveBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           loadEntries();
         })
         .catch(function(err){
-          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
+          saveBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           alert('儲存失敗：' + err.message);
         });
@@ -15056,7 +15056,7 @@ init();
               '</div>' +
               (d.url ? '<div style="font-size:11px;color:#7A5A5E;margin-bottom:6px"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" style=\"display:inline-block;vertical-align:-1px;color:currentColor\" fill=\"none\"><circle cx=\"12\" cy=\"12\" r=\"9\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/><path d=\"M3 12 L21 12 M12 3 C16 7 16 17 12 21 C8 17 8 7 12 3\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/></svg> <a href="' + escapeHtml(d.url) + '" target="_blank" rel="noopener" style="color:#A51820;text-decoration:none;border-bottom:1px dashed #A51820">' + escapeHtml(d.url) + '</a></div>' : '') +
               (d.user ? '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">帳號</span> <code style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px">' + escapeHtml(d.user) + '</code></div>' : '') +
-              '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px"><span style="color:#7A5A5E">密碼</span> <code class="vault-pass-field" data-real="' + escapeHtml(d.pass || '') + '" style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px;cursor:pointer" title="點擊顯示">' + passMask + '</code> <button class="vault-copy-pass" data-val="' + escapeHtml(d.pass || '') + '" style="background:transparent;border:1px solid #E8E3DA;padding:2px 6px;border-radius:3px;font-size:10px;color:#7A5A5E;cursor:pointer;margin-left:4px">複製</button></div>' +
+              '<div style="font-size:11px;color:#2A1A1C;margin-bottom:6px;display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="color:#7A5A5E;flex-shrink:0">密碼</span> <code class="vault-pass-field" data-real="' + escapeHtml(d.pass || '') + '" style="background:#F4F1EC;padding:2px 6px;border-radius:2px;font-family:monospace;font-size:11px;cursor:pointer" title="點擊顯示">' + passMask + '</code> <button class="vault-copy-pass" data-val="' + escapeHtml(d.pass || '') + '" style="background:transparent;border:1px solid #E8E3DA;padding:2px 6px;border-radius:3px;font-size:10px;color:#7A5A5E;cursor:pointer">複製</button></div>' +
               (d.note ? '<div style="font-size:11px;color:#7A5A5E;font-style:italic;margin-top:6px;padding-top:6px;border-top:1px dashed #E8E3DA"><svg viewBox=\"0 0 24 24\" width=\"12\" height=\"12\" style=\"display:inline-block;vertical-align:-1px;color:currentColor\" fill=\"none\"><path d=\"M5 4 L5 20 L19 20 L19 8 L15 4 Z\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linejoin=\"round\"/><path d=\"M15 4 L15 8 L19 8\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-linejoin=\"round\"/><line x1=\"8\" y1=\"12\" x2=\"16\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><line x1=\"8\" y1=\"15\" x2=\"14\" y2=\"15\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"/></svg> ' + escapeHtml(d.note) + '</div>' : '');
             listEl.appendChild(card);
           });
@@ -15112,12 +15112,12 @@ init();
         })
         .then(function(){
           [nameEl,userEl,passEl,urlEl,noteEl].forEach(function(el){ if(el) el.value=''; });
-          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
+          saveBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           loadVault();
         })
         .catch(function(err){
-          saveBtn.textContent = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
+          saveBtn.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" style="display:inline-block;vertical-align:-2px;color:currentColor" fill="none"><rect x="4" y="4" width="16" height="16" rx="2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M7 4 L7 9 L17 9 L17 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round"/><rect x="9" y="13" width="6" height="7" stroke="currentColor" stroke-width="2" fill="none"/></svg> 儲存';
           saveBtn.disabled = false;
           alert('儲存失敗：' + err.message);
         });
@@ -15450,6 +15450,32 @@ window.IRIS_MOOD_SVG = {
 @media (min-width:768px){
   .astra-toast{left:auto;right:32px;top:auto;bottom:32px;transform:translateX(0) translateY(20px)}
   .astra-toast.show{transform:translateX(0) translateY(0)}
+}
+
+/* === V20: Astra Icon Preview Modal · 高級感設計 === */
+.astra-icon-modal{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s ease;padding:24px;box-sizing:border-box}
+.astra-icon-modal.show{opacity:1;pointer-events:auto}
+.astra-icon-modal .aim-backdrop{position:absolute;inset:0;background:rgba(42,26,28,.55);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);cursor:pointer}
+.astra-icon-modal .aim-card{position:relative;background:#FDFBF8;border-radius:20px;padding:28px 24px 22px;width:min(360px,calc(100vw - 48px));box-shadow:0 24px 60px rgba(122,16,24,.25),0 8px 16px rgba(0,0,0,.08);transform:scale(.96);transition:transform .25s cubic-bezier(.2,.8,.2,1);text-align:center}
+.astra-icon-modal.show .aim-card{transform:scale(1)}
+.astra-icon-modal .aim-close{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;background:transparent;border:none;color:#7A5A5E;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .15s}
+.astra-icon-modal .aim-close:hover{background:#F0E8E5;color:#A51820}
+.astra-icon-modal .aim-name{font-family:'JetBrains Mono',monospace;font-size:11px;color:#A51820;letter-spacing:.1em;margin-bottom:14px;text-transform:lowercase;font-weight:600}
+.astra-icon-modal .aim-img-wrap{display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#FDF3F4 0%,#FAE8EA 100%);border-radius:14px;padding:24px;margin-bottom:14px;min-height:200px}
+.astra-icon-modal .aim-img{max-width:100%;max-height:200px;width:auto;height:auto;display:block;-webkit-touch-callout:default;-webkit-user-select:auto;user-select:auto}
+.astra-icon-modal .aim-tip{font-size:11px;color:#7A5A5E;font-style:italic;margin-bottom:16px;line-height:1.5}
+.astra-icon-modal .aim-actions{display:flex;gap:8px;justify-content:center}
+.astra-icon-modal .aim-btn{padding:10px 16px;border-radius:8px;font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;border:1px solid #E8E3DA;background:#fff;color:#2A1A1C;flex:1;max-width:160px}
+.astra-icon-modal .aim-btn:hover{border-color:#A51820;color:#A51820}
+.astra-icon-modal .aim-btn-primary{background:linear-gradient(135deg,#A51820,#7A1018);color:#FDFBF8;border-color:transparent}
+.astra-icon-modal .aim-btn-primary:hover{color:#fff;box-shadow:0 4px 12px rgba(165,24,32,.3)}
+@media (max-width:480px){
+  .astra-icon-modal{padding:16px}
+  .astra-icon-modal .aim-card{padding:22px 18px 18px}
+  .astra-icon-modal .aim-img-wrap{padding:18px;min-height:160px}
+  .astra-icon-modal .aim-img{max-height:160px}
+  .astra-icon-modal .aim-actions{flex-direction:column}
+  .astra-icon-modal .aim-btn{max-width:100%}
 }
 
 .ai-svg-wrap{display:flex;align-items:center;justify-content:center;height:48px;margin-bottom:8px;color:#A51820}
@@ -17734,75 +17760,97 @@ window.isIosSafari = (function(){
   return isIOS || isSafari;
 })();
 
-// === V19: copyIconCode 智慧選擇複製方式 ===
+// === V20: Icon 點擊改跳「圖片預覽 Modal」·解決 iOS Safari 複製限制 ===
+// 為什麼這樣做：iOS Safari 不支援 ClipboardItem PNG·無論複製 SVG 或 PNG 貼到 Line/Notes/Notion 都是亂碼
+// 所以改用 iOS 原生的「長按圖片」選單·讓使用者直接「儲存圖片」or「分享」
 function copyIconCode(unicode, card){
   const svg = card.querySelector('svg');
-  if(!svg){ window.showAstraToast('找不到 SVG'); return; }
-  const svgRaw = svg.outerHTML; // 原始 SVG 字串
-
-  const onSuccess = function(mode){
-    card.classList.add('copied');
-    setTimeout(function(){ card.classList.remove('copied'); }, 1500);
-    if(mode === 'png'){
-      window.showAstraToast('已複製為圖片·可貼到筆記本', unicode);
-    } else {
-      window.showAstraToast('已複製·貼到 Notes 看圖·長按可下載', unicode);
-    }
-  };
-
-  // 嘗試 PNG 複製（Chrome/Edge/桌機 Safari 支援）
-  function tryPngCopy(){
-    return new Promise(function(resolve, reject){
-      if(!window.ClipboardItem || !navigator.clipboard || !navigator.clipboard.write){
-        reject(new Error('no ClipboardItem'));
-        return;
-      }
-      window.svgToPngBlob(svgRaw, 512).then(function(blob){
-        const item = new ClipboardItem({'image/png': blob});
-        return navigator.clipboard.write([item]);
-      }).then(resolve).catch(reject);
-    });
-  }
-
-  // 退回方案：複製 SVG 文字（Apple 筆記本貼上會看到圖）
-  function tryTextCopy(){
-    return new Promise(function(resolve, reject){
-      if(navigator.clipboard && navigator.clipboard.writeText){
-        navigator.clipboard.writeText(svgRaw).then(resolve).catch(reject);
-      } else {
-        try{
-          const ta = document.createElement('textarea');
-          ta.value = svgRaw;
-          ta.style.position='fixed'; ta.style.opacity='0';
-          document.body.appendChild(ta);
-          ta.select();
-          document.execCommand('copy');
-          document.body.removeChild(ta);
-          resolve();
-        }catch(e){ reject(e); }
-      }
-    });
-  }
-
-  // iOS Safari 不支援 ClipboardItem PNG·直接走 SVG 文字（不要嚇使用者）
-  if(window.isIosSafari){
-    tryTextCopy().then(function(){ onSuccess('svg'); }).catch(function(){
-      window.showAstraToast('複製失敗·請改用長按下載', unicode);
-    });
-  } else {
-    // 桌機/Android：嘗試 PNG，失敗退 SVG 文字
-    tryPngCopy().then(function(){ onSuccess('png'); }).catch(function(){
-      tryTextCopy().then(function(){ onSuccess('svg'); }).catch(function(){
-        window.showAstraToast('複製失敗·請改用長按下載', unicode);
-      });
-    });
-  }
+  if(!svg){ window.showAstraToast('找不到圖示'); return; }
+  const svgRaw = svg.outerHTML;
+  // 開圖片預覽 Modal
+  window.openIconPreview(svgRaw, unicode, card);
 }
 
-// === V19: 長按下載 PNG（透明背景） ===
+// === V20: Icon 預覽 Modal ===
+window.openIconPreview = function(svgRaw, unicode, card){
+  // 先轉 PNG·完成後才開 Modal（避免空白）
+  card.classList.add('copied');
+  setTimeout(function(){ card.classList.remove('copied'); }, 1500);
+
+  window.svgToPngBlob(svgRaw, 1024).then(function(blob){
+    const url = URL.createObjectURL(blob);
+
+    // 建 Modal
+    const overlay = document.createElement('div');
+    overlay.className = 'astra-icon-modal';
+    overlay.innerHTML = ''
+      + '<div class="aim-backdrop"></div>'
+      + '<div class="aim-card">'
+      +   '<button class="aim-close" aria-label="關閉">'
+      +     '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6 L18 18 M6 18 L18 6"/></svg>'
+      +   '</button>'
+      +   '<div class="aim-name">' + unicode + '</div>'
+      +   '<div class="aim-img-wrap">'
+      +     '<img class="aim-img" src="' + url + '" alt="' + unicode + '" draggable="true">'
+      +   '</div>'
+      +   '<div class="aim-tip">長按圖片 → 儲存圖片 / 分享</div>'
+      +   '<div class="aim-actions">'
+      +     '<button class="aim-btn aim-btn-primary" data-action="download">下載到「檔案」</button>'
+      +     '<button class="aim-btn" data-action="share">分享…</button>'
+      +   '</div>'
+      + '</div>';
+    document.body.appendChild(overlay);
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ overlay.classList.add('show'); });
+
+    function closeModal(){
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+      setTimeout(function(){
+        if(overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        URL.revokeObjectURL(url);
+      }, 220);
+    }
+
+    // 關閉：背景、X、ESC
+    overlay.querySelector('.aim-backdrop').addEventListener('click', closeModal);
+    overlay.querySelector('.aim-close').addEventListener('click', closeModal);
+    document.addEventListener('keydown', function esc(e){
+      if(e.key === 'Escape'){ closeModal(); document.removeEventListener('keydown', esc); }
+    });
+
+    // 下載按鈕
+    overlay.querySelector('[data-action="download"]').addEventListener('click', function(){
+      const a = document.createElement('a');
+      a.href = url; a.download = 'astra-' + unicode + '.png';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      window.showAstraToast('已下載');
+    });
+
+    // 分享按鈕（Web Share API · 直接傳到 Line / Messages 等）
+    overlay.querySelector('[data-action="share"]').addEventListener('click', function(){
+      if(navigator.share && window.File){
+        try{
+          const file = new File([blob], 'astra-' + unicode + '.png', {type:'image/png'});
+          if(navigator.canShare && navigator.canShare({files:[file]})){
+            navigator.share({files:[file], title:'Astra Icon · ' + unicode}).catch(function(){});
+            return;
+          }
+        }catch(e){}
+      }
+      // 退回：複製圖片（桌機）or 提示長按
+      window.showAstraToast(window.isIosSafari ? '請長按圖片儲存' : '此瀏覽器不支援分享');
+    });
+  }).catch(function(err){
+    console.error('preview failed:', err);
+    window.showAstraToast('圖片產生失敗');
+  });
+};
+
+// === V20: 長按下載 PNG（保留·給 Icon 庫卡片用） ===
 function downloadIconPng(unicode, card){
   const svg = card.querySelector('svg');
-  if(!svg){ window.showAstraToast('找不到 SVG'); return; }
+  if(!svg){ window.showAstraToast('找不到圖示'); return; }
   const svgRaw = svg.outerHTML;
   window.svgToPngBlob(svgRaw, 1024).then(function(blob){
     const url = URL.createObjectURL(blob);
@@ -17815,14 +17863,13 @@ function downloadIconPng(unicode, card){
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
     card.classList.add('copied');
     setTimeout(function(){ card.classList.remove('copied'); }, 1500);
-    window.showAstraToast('已下載 PNG·去相簿選圖傳 Line', unicode);
-  }).catch(function(err){
-    console.error('PNG download failed:', err);
-    window.showAstraToast('下載失敗·重試或截圖');
+    window.showAstraToast('已下載');
+  }).catch(function(){
+    window.showAstraToast('下載失敗');
   });
 }
 
-// === V19: 綁定長按事件（手機長按 600ms 觸發下載） ===
+// === V20: 綁定長按 = 直接下載（跳過 Modal） ===
 window.bindIconLongPress = function(){
   document.querySelectorAll('.ai-card[onclick*="copyIconCode"]').forEach(function(card){
     if(card.dataset.lpBound) return;
